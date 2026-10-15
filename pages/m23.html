@@ -1,0 +1,44 @@
+<?php
+require_once './_common.php';
+include_once(G5_PATH.'/newbex_head.php');
+$sql = "select * from p_product where product_kind = 'ReviveCell' limit 1";
+$result = sql_fetch($sql);
+?>
+<main class="container">
+	<div id="contents">
+		<div class="pageTop pn2">
+			<div class="bg"></div>
+			<div class="inner">
+				<h1 class="pageSlg"><?php echo $result['product_subject']; ?></h1>
+			</div>
+		</div>
+		<div class="pageTitleArea inner">
+			<ul>
+				<li><a href="/index.html">Home</a></li>
+				<li>Product</li>
+				<li><?php echo $result['product_subject']; ?></li>
+			</ul>
+		</div>
+		<div class="page m21_view">
+			<div class="preInfo inner">
+				<div class="thumb"><img src="<?php echo G5_URL;?>/data/product/<?php echo $result['product_file'];?>"></div>
+				<div class="txts">
+					<h3><?php echo $result['product_subject']; ?></h3>
+					<p><?php echo $result['product_info']; ?></p>
+					<span></span>
+					<button class="click_btn">문의하기</button>
+				</div>
+			</div>
+			<div class="feature">
+				<?php echo $result['product_content']; ?>
+			</div>
+		</div>
+	</div> 
+</main>
+
+<!-- 문의하기 modal -->
+<?php
+include_once(G5_PATH."/pages/product_contact.php");
+
+include_once(G5_PATH."/newbex_tail.php");
+?>

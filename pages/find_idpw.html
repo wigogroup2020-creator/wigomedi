@@ -1,0 +1,151 @@
+<?php
+require_once './_common.php';
+include_once(G5_PATH.'/newbex_head.php');
+
+if($member['mb_id']){
+	goto_url(G5_URL."/page/info.php");
+}
+?>
+<main class="container">
+	<div id="contents">
+		<div class="pageTop pn7">
+			<div class="bg"></div>
+			<div class="inner">
+				<h1 class="pageSlg">회원서비스</h1>
+			</div>
+		</div>
+		<div class="pageTitleArea pn7">
+			<div class="inner">
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li>회원서비스</li>
+				</ul>
+			</div>
+		</div>
+		<div class="page m70 findPage">
+			<div class="inner">
+				<h1>아이디/비밀번호 찾기</h1>
+				<ul class="tabs">
+					<li class="on">아이디 찾기</li>
+					<li>비밀번호 찾기</li>
+				</ul>
+				<div class="tabconwrap">
+					<div class="tabcon tab1 on">
+						<form name="fidfind" method="post">
+							<ul class="formList">
+								<li>
+									<input type="text" id="mb_name" name="mb_name" placeholder="이름을 입력해 주세요." required>
+								</li>
+								<li>
+									<input type="text" id="mb_email_id" name="mb_email" placeholder="이메일을 입력해 주세요." required>
+								</li>
+							</ul>
+							<button type="button" class="submit_btn" style="margin-top: 20px" onclick="f_idfind()">찾기</button>
+						</form>
+					</div>
+					<div class="tabcon tab2">
+						<form name="fpassfind" method="post">
+							<ul class="formList">
+								<li>
+									<input type="text" id="mb_id" name="mb_id" placeholder="아이디를 입력해 주세요." required autocomplete="new-password">
+								</li>
+								<li>
+									<input type="text" id="mb_email_pass" name="mb_email" placeholder="이메일을 입력해 주세요." required autocomplete="new-password">
+								</li>
+							</ul>
+							<button type="button" class="submit_btn" style="margin-top: 20px" onclick="f_passfind()">찾기</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> 
+</main>
+
+<script>
+function f_idfind(){
+	var mb_name = $("#mb_name").val();
+	var mb_email = $("#mb_email_id").val();
+	
+	if(mb_name == ""){
+		Swal.fire("", "이름을 입력해주세요.", "error");
+		return;
+	}
+	
+	if(mb_email == ""){
+		Swal.fire("", "이메일을 입력해주세요.", "error");
+		return;
+	}
+	
+	var mb_id_check = "";
+	$.ajax({
+		async: false,
+		cache: false,
+		type: "POST",
+		url: "<?php echo G5_BBS_URL;?>/ajax.find_id.php",
+		data: {mb_name: mb_name, mb_email: mb_email},
+		success: function(result) {
+			mb_id_check = result;
+        }
+	});
+
+	if(mb_id_check){
+		Swal.fire("", "회원님의 ID : " + mb_id_check + " 입니다.", "success");
+		return;
+	}else{
+		Swal.fire("", "회원정보가 없습니다.", "error");
+		return;
+	}
+}
+
+function f_passfind(){
+	var mb_id = $("#mb_id").val();
+	var mb_email = $("#mb_email_pass").val();
+	
+	if(mb_id == ""){
+		Swal.fire("", "아이디를 입력해주세요.", "error");
+		return;
+	}
+	
+	if(mb_email == ""){
+		Swal.fire("", "이메일을 입력해주세요.", "error");
+		return;
+	}
+	
+	var mb_id_check = "";
+	$.ajax({
+		async: false,
+		cache: false,
+		type: "POST",
+		url: "<?php echo G5_BBS_URL;?>/ajax.find_pass.php",
+		data: {mb_id: mb_id, mb_email: mb_email},
+		success: function(result) {
+			mb_id_check = result;
+        }
+	});
+
+	if(mb_id_check == "y"){
+		Swal.fire("", "회원님의 이메일로 임시 비밀번호를 전달했습니다.", "success");
+		return;
+	}else{
+		Swal.fire("", "회원정보가 없습니다.", "error");
+		return;
+	}
+}
+</script>
+
+<?php
+include_once(G5_PATH."/newbex_tail.php");
+?>
+<script>
+	// tabs
+	$(function(){
+		$(".tabs li").click(function(){
+			let tabNum = $(this).index();
+	
+			$(this).addClass("on").siblings().removeClass("on");
+				$(".findPage .tabcon").hide();
+				$(".findPage .tabcon:eq("+tabNum+")").show();
+		});
+	});
+</script>

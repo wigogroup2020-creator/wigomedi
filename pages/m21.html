@@ -1,0 +1,98 @@
+<?php
+require_once './_common.php';
+include_once(G5_PATH.'/newbex_head.php');
+?>
+    <main class="container">
+        <div id="contents">
+            <div class="pageTop pn2">
+                <div class="bg"></div>
+                <div class="inner">
+                    <h1 class="pageSlg">제품 목록</h1>
+                </div>
+            </div>
+            <div class="pageTitleArea inner">
+                <ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li>Product</li>
+                    <li>Newbex</li>
+                </ul>
+            </div>
+            <div class="category inner">
+                <ul>
+                    <li class="on"><a href="<?php echo G5_URL;?>/pages/m21.html">Newbex</a></li>
+                    <li><a href="<?php echo G5_URL;?>/pages/m22.html">HIFU+LDM</a></li>
+                    <li><a href="<?php echo G5_URL;?>/pages/m23.html">ReviveCell</a></li>
+                </ul>
+            </div>
+            <div class="page m21 inner">
+                <ul class="prdList">
+					<?php
+					$sql = "select * from p_product where product_kind = 'Newbex' order by product_no";
+					$result = sql_query($sql);
+					
+					for($i=1;$row=sql_fetch_array($result);$i++){
+						$product_no = $row['product_no'];	// 상세보기 할때 이거 넘기면 됨
+						// 내용은 $row['product_content'];
+					?>
+						<li>
+							<a href="./m21_view.html?product_no=<?php echo $product_no;?>">
+								<div class="thumb"><img src="<?php echo G5_URL;?>/data/product/<?php echo $row['product_file'];?>"></div>
+								<div class="prdDetail"><?php echo $row['product_info']; ?></div>
+								<div class="prdName"><?php echo $row['product_subject']; ?></div>
+							</a>
+						</li>
+					<?php
+					}
+					?>
+                    <!-- <li>
+                        <a href="/pages/m21_view.html">
+                            <div class="thumb">
+                                <img src="/img/뉴벡스_thumbnail.png" alt="">
+                            </div>
+                            <div class="prdDetail">홈케어 제품</div>
+                            <div class="prdName">Newbex 250</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/pages/m21_view450.html">
+                            <div class="thumb">
+                                <img src="/img/뉴벡스_thumbnail.png" alt="">
+                            </div>
+                            <div class="prdDetail">전문가용 제품</div>
+                            <div class="prdName">Newbex 450</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/pages/m21_view650.html">
+                            <div class="thumb">
+                                <img src="/img/뉴벡스_thumbnail.png" alt="">
+                            </div>
+                            <div class="prdDetail">전문가용 제품</div>
+                            <div class="prdName">Newbex 650</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/pages/m21_view850.html">
+                            <div class="thumb">
+                                <img src="/img/뉴벡스_thumbnail.png" alt="">
+                            </div>
+                            <div class="prdDetail">전문가용 제품</div>
+                            <div class="prdName">Newbex 850</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/pages/m21_view1.25.html">
+                            <div class="thumb">
+                                <img src="/img/뉴벡스_thumbnail.png" alt="">
+                            </div>
+                            <div class="prdDetail">전문가용 제품</div>
+                            <div class="prdName">Newbex 1.25</div>
+                        </a>
+                    </li> -->
+                </ul>
+            </div>
+        </div> 
+    </main>
+ <?php
+include_once(G5_PATH."/newbex_tail.php");
+?>

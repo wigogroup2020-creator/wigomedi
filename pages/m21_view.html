@@ -1,0 +1,95 @@
+<?php
+require_once './_common.php';
+include_once(G5_PATH.'/newbex_head.php');
+
+$sql = "select * from p_product where product_no = '".$product_no."' ";
+$result = sql_fetch($sql);
+
+$product_info = $result['product_info'];
+$product_subject = $result['product_subject'];
+$product_kind = $result['product_kind'];
+$product_file = $result['product_file'];
+$product_content = $result['product_content'];
+$product_price = $result['product_price'];					// 정상가
+$product_price_member = $result['product_price_member'];	// 회원가
+$product_price_sales = $result['product_price_sales'];		// 영업사원가
+$product_price_branch = $result['product_price_branch'];	// 대리점가
+$product_price_chong = $result['product_price_chong'];		// 총판가
+
+$special_price = 0;
+if($member['mb_grade'] == "a"){
+	$special_price = $product_price_chong;	// 총판
+	
+}elseif($member['mb_grade'] == "b"){
+	$special_price = $product_price_branch;	// 대리점
+	
+}elseif($member['mb_grade'] == "c"){
+	$special_price = $product_price_sales;	// 영업
+	
+}elseif($member['mb_grade'] == "d"){
+	$special_price = $product_price_member;	// 회원
+}
+?>
+    <main class="container">
+        <div id="contents">
+            <div class="pageTop pn2">
+                <div class="bg"></div>
+                <div class="inner">
+                    <h1 class="pageSlg"><?php echo $product_subject;?></h1>
+                </div>
+            </div>
+            <div class="pageTitleArea inner">
+                <ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li>Product</li>
+                    <li><?php echo $product_kind;?></li>
+                </ul>
+            </div>
+
+            <div class="page m21_view">
+                <div class="preInfo inner">
+                    <div class="thumb"><img src="<?php echo G5_URL;?>/data/product/<?php echo $product_file;?>"></div>
+                    <div class="txts">
+                        <h3><?php echo $product_subject;?></h3>
+                        <p><?php echo $product_info;?></p>
+                        <div class="price_original">
+                            <?php 
+                            if($special_price > 0){
+                                $sale_per = ($special_price/$product_price) * 100;
+
+                                echo "<span>".number_format($sale_per)." % </span><em>".number_format($product_price)." 원</em>";
+                            }else{
+                                echo number_format($product_price)." 원";
+                            }
+                            ?>
+                        </div>
+                        <div class="price_option">
+                            혜택가
+                            <span>
+								<?php
+								if($special_price > 0){
+									echo "<b>".number_format($special_price)." 원</b>";
+								}else{
+								?>
+									로그인 후 확인 가능
+								<?php
+								}
+								?>
+                            </span>
+                        </div>
+                        <button class="click_btn">문의하기</button>
+                    </div>
+                </div>
+                <div class="feature">
+					<?php echo $product_content;?>
+                </div>
+            </div>
+        </div> 
+    </main>
+
+<!-- 문의하기 modal -->
+<?php
+include_once(G5_PATH."/pages/product_contact.php");
+
+include_once(G5_PATH."/newbex_tail.php");
+?>

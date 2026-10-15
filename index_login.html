@@ -1,0 +1,910 @@
+<?php
+require_once './_common.php';
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>위고메디 - 뉴벡스, 올비스, 리바이브셀</title>
+    <meta name="naver-site-verification" content="580a165978a18aaefcf133b99973ad01e2df2f93" />
+    <meta name="description" content="의료ㆍ미용 장비와 플랫폼 비즈니스, 뉴벡스(무통주사), 올비스(HIFU+LDM), 리바이브셀(셀프뷰티샵 프랜차이즈), 총판문의, 가맹문의"/>
+    <meta name="keywords" content="위고메디, wigomedi, 뉴벡스, newbex, 주사기, 주사, 바늘, 올비스, allvis, hifu, 하이프 장비, LDM, 초음파 장비, 물방울 리프팅, 피부미용, 피부, 피부미용기기, 피부미용 시술, 피부 리프팅, 탄력 개선, 주름 개선, 콜라겐 생성, 고강도 집속초음파, 하이푸, 바늘없는 주사기, 무바늘 주사기, 무통 주사기, 마이크로니들, 중공형 마이크로니들, 바늘 공포증 해결, 바늘없는 인슐린 주사, 정밀 약물 주입, 피부과 주사기, 미용 시술 주사기, 당뇨 자가주사, 예방접종 솔루션, 어린이 주사기, 고령자 주사기, 감염 방지 의료기기, 의료기기 플랫폼,무통 의료기기, 병원 전용 주사기, 백신 주사기, 필러 주사 대체, 의료기기 총판, 의료기기 수출, 글로벌 의료기기, B2B 의료기기, Newbex250, Newbex850"/>
+    <meta name="author" content="위고메디 - 기술과 상생을 연결하다">
+    <meta property="og:title" content="위고메디 - 뉴벡스, 올비스, 리바이브셀" />
+    <meta property="og:url" content="https://www.newbex.kr" />
+    <meta property="og:image" content="/img/common/og_image.png" /> 
+    <meta property="og:description" content="의료ㆍ미용 장비와 플랫폼 비즈니스" />
+    <link rel="icon" type="image/png" sizes="16x16"  href="/img/favicon-16x16.png">
+    <!-- css -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/css/common.css">
+    <style>
+        body [data-pc-layout='pc-left-container'] {
+            --swiper-theme-color: #007aff;
+            --swiper-navigation-size: 44px;
+            color: #262626;
+            line-height: 1.2;
+            -webkit-font-smoothing: antialiased;
+            -webkit-tap-highlight-color: transparent;
+            cursor: default;
+            user-select: none;
+            box-sizing: border-box;
+            font-size: inherit;
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            height: 100%;
+            position: fixed;
+            left: 50%;
+            margin-left: -509.5px;
+        }
+        body [data-pc-layout='app-template']:before {
+            content: '';
+            position: fixed;
+            top: -1px;
+            bottom: 0;
+            left: 50%;
+            width: 475px;
+            border: 1px solid #e7e7e7;
+            z-index: 10000020;
+            user-select: none;
+            pointer-events: none;
+            max-width: 475px;
+        }
+        body [data-pc-layout='app-template'] {
+            width: 100%;
+            max-width: 475px;
+            min-height: 100vh;
+            position: relative;
+        }
+        nav {
+            max-width: 475px;
+        }
+        @media (min-width: 475px) {
+            body [data-pc-layout='app-template'],
+            body [data-pc-layout='app-template']:before {
+                left: 50%;
+                margin-left: -237.5px;
+            }
+        }
+        @media (min-width: 747px) {
+            body [data-pc-layout='app-template'],
+            body [data-pc-layout='app-template']:before {
+                max-width: 475px;
+            }
+        }
+        @media (max-width: 475px) {
+            body [data-pc-layout='app-template']:before {
+                display:none;
+            }
+        }
+        @media (max-width: 1120.5px) {
+            #pc-left-container {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sub_search_content" style="display: none;">
+		<h4>기술과 상생을 연결하다</h4>
+		<p>
+		무통ㆍ무바늘 주사기 "뉴벡스", HIFU와 LDM 멀티 디바이스 "올비스", 셀프 뷰티샵 프랜차이즈 "리바이브셀"을 중심으로, 국내는 물론 아시아 시장으로 사업을 확장해 가고 있습니다.
+		</p>
+	</div>
+    <div id="root">
+        <!-- pc버전 왼쪽에 나오는 부분 -->
+        <div data-pc-layout="pc-left-container" id="pc-left-container">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 32px;">
+                <a style="display: flex; flex-direction: column; gap: 14px; align-items: center;" href="/">
+                    <span style="font-size: 18px; font-weight: 600; color: #272727;">기술과 상생을 연결하다</span>
+                    <img src="https://ggotbosa.com/data/member_image/wi/wigomedi.gif?1749104028" alt="logo" style="height: 42px">
+                </a>
+                <div style="background-color: #fff; padding: 20px 16px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <!-- php 안됨 이슈 -->
+                    <img draggable="false" src="https://www.newbex.kr/data/qr/admin_qr.png" alt="qr" style="width: 120px;">
+                    <span style="line-height: 140%; font-size: 15px; font-weight: 600; color: #555; text-align: center; letter-spacing: 1px;">
+                        QR 찍고<br>가입해서<br>더 많은 혜택받기
+                    </span>
+					<button onclick="location.href='/pages/m41.html'" style="margin: 20px 0;">문의하기</button>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- main -->
+        <div id="app-template" data-pc-layout="app-template">
+            
+            <html lang="ko"><head><style type="text/css">.swal-icon--error{border-color:#f27474;-webkit-animation:animateErrorIcon .5s;animation:animateErrorIcon .5s}.swal-icon--error__x-mark{position:relative;display:block;-webkit-animation:animateXMark .5s;animation:animateXMark .5s}.swal-icon--error__line{position:absolute;height:5px;width:47px;background-color:#f27474;display:block;top:37px;border-radius:2px}.swal-icon--error__line--left{-webkit-transform:rotate(45deg);transform:rotate(45deg);left:17px}.swal-icon--error__line--right{-webkit-transform:rotate(-45deg);transform:rotate(-45deg);right:16px}@-webkit-keyframes animateErrorIcon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}to{-webkit-transform:rotateX(0deg);transform:rotateX(0deg);opacity:1}}@keyframes animateErrorIcon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}to{-webkit-transform:rotateX(0deg);transform:rotateX(0deg);opacity:1}}@-webkit-keyframes animateXMark{0%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}50%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}80%{-webkit-transform:scale(1.15);transform:scale(1.15);margin-top:-6px}to{-webkit-transform:scale(1);transform:scale(1);margin-top:0;opacity:1}}@keyframes animateXMark{0%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}50%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}80%{-webkit-transform:scale(1.15);transform:scale(1.15);margin-top:-6px}to{-webkit-transform:scale(1);transform:scale(1);margin-top:0;opacity:1}}.swal-icon--warning{border-color:#f8bb86;-webkit-animation:pulseWarning .75s infinite alternate;animation:pulseWarning .75s infinite alternate}.swal-icon--warning__body{width:5px;height:47px;top:10px;border-radius:2px;margin-left:-2px}.swal-icon--warning__body,.swal-icon--warning__dot{position:absolute;left:50%;background-color:#f8bb86}.swal-icon--warning__dot{width:7px;height:7px;border-radius:50%;margin-left:-4px;bottom:-11px}@-webkit-keyframes pulseWarning{0%{border-color:#f8d486}to{border-color:#f8bb86}}@keyframes pulseWarning{0%{border-color:#f8d486}to{border-color:#f8bb86}}.swal-icon--success{border-color:#a5dc86}.swal-icon--success:after,.swal-icon--success:before{content:"";border-radius:50%;position:absolute;width:60px;height:120px;background:#fff;-webkit-transform:rotate(45deg);transform:rotate(45deg)}.swal-icon--success:before{border-radius:120px 0 0 120px;top:-7px;left:-33px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:60px 60px;transform-origin:60px 60px}.swal-icon--success:after{border-radius:0 120px 120px 0;top:-11px;left:30px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:0 60px;transform-origin:0 60px;-webkit-animation:rotatePlaceholder 4.25s ease-in;animation:rotatePlaceholder 4.25s ease-in}.swal-icon--success__ring{width:80px;height:80px;border:4px solid hsla(98,55%,69%,.2);border-radius:50%;box-sizing:content-box;position:absolute;left:-4px;top:-4px;z-index:2}.swal-icon--success__hide-corners{width:5px;height:90px;background-color:#fff;padding:1px;position:absolute;left:28px;top:8px;z-index:1;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.swal-icon--success__line{height:5px;background-color:#a5dc86;display:block;border-radius:2px;position:absolute;z-index:2}.swal-icon--success__line--tip{width:25px;left:14px;top:46px;-webkit-transform:rotate(45deg);transform:rotate(45deg);-webkit-animation:animateSuccessTip .75s;animation:animateSuccessTip .75s}.swal-icon--success__line--long{width:47px;right:8px;top:38px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-animation:animateSuccessLong .75s;animation:animateSuccessLong .75s}@-webkit-keyframes rotatePlaceholder{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}to{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@keyframes rotatePlaceholder{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}to{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@-webkit-keyframes animateSuccessTip{0%{width:0;left:1px;top:19px}54%{width:0;left:1px;top:19px}70%{width:50px;left:-8px;top:37px}84%{width:17px;left:21px;top:48px}to{width:25px;left:14px;top:45px}}@keyframes animateSuccessTip{0%{width:0;left:1px;top:19px}54%{width:0;left:1px;top:19px}70%{width:50px;left:-8px;top:37px}84%{width:17px;left:21px;top:48px}to{width:25px;left:14px;top:45px}}@-webkit-keyframes animateSuccessLong{0%{width:0;right:46px;top:54px}65%{width:0;right:46px;top:54px}84%{width:55px;right:0;top:35px}to{width:47px;right:8px;top:38px}}@keyframes animateSuccessLong{0%{width:0;right:46px;top:54px}65%{width:0;right:46px;top:54px}84%{width:55px;right:0;top:35px}to{width:47px;right:8px;top:38px}}.swal-icon--info{border-color:#c9dae1}.swal-icon--info:before{width:5px;height:29px;bottom:17px;border-radius:2px;margin-left:-2px}.swal-icon--info:after,.swal-icon--info:before{content:"";position:absolute;left:50%;background-color:#c9dae1}.swal-icon--info:after{width:7px;height:7px;border-radius:50%;margin-left:-3px;top:19px}.swal-icon{width:80px;height:80px;border-width:4px;border-style:solid;border-radius:50%;padding:0;position:relative;box-sizing:content-box;margin:20px auto}.swal-icon:first-child{margin-top:32px}.swal-icon--custom{width:auto;height:auto;max-width:100%;border:none;border-radius:0}.swal-icon img{max-width:100%;max-height:100%}.swal-title{color:rgba(0,0,0,.65);font-weight:600;text-transform:none;position:relative;display:block;padding:13px 16px;font-size:27px;line-height:normal;text-align:center;margin-bottom:0}.swal-title:first-child{margin-top:26px}.swal-title:not(:first-child){padding-bottom:0}.swal-title:not(:last-child){margin-bottom:13px}.swal-text{font-size:16px;position:relative;float:none;line-height:normal;vertical-align:top;text-align:left;display:inline-block;margin:0;padding:0 10px;font-weight:400;color:rgba(0,0,0,.64);max-width:calc(100% - 20px);overflow-wrap:break-word;box-sizing:border-box}.swal-text:first-child{margin-top:45px}.swal-text:last-child{margin-bottom:45px}.swal-footer{text-align:right;padding-top:13px;margin-top:13px;padding:13px 16px;border-radius:inherit;border-top-left-radius:0;border-top-right-radius:0}.swal-button-container{margin:5px;display:inline-block;position:relative}.swal-button{background-color:#7cd1f9;color:#fff;border:none;box-shadow:none;border-radius:5px;font-weight:600;font-size:14px;padding:10px 24px;margin:0;cursor:pointer}.swal-button:not([disabled]):hover{background-color:#78cbf2}.swal-button:active{background-color:#70bce0}.swal-button:focus{outline:none;box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(43,114,165,.29)}.swal-button[disabled]{opacity:.5;cursor:default}.swal-button::-moz-focus-inner{border:0}.swal-button--cancel{color:#555;background-color:#efefef}.swal-button--cancel:not([disabled]):hover{background-color:#e8e8e8}.swal-button--cancel:active{background-color:#d7d7d7}.swal-button--cancel:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(116,136,150,.29)}.swal-button--danger{background-color:#e64942}.swal-button--danger:not([disabled]):hover{background-color:#df4740}.swal-button--danger:active{background-color:#cf423b}.swal-button--danger:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(165,43,43,.29)}.swal-content{padding:0 20px;margin-top:20px;font-size:medium}.swal-content:last-child{margin-bottom:20px}.swal-content__input,.swal-content__textarea{-webkit-appearance:none;background-color:#fff;border:none;font-size:14px;display:block;box-sizing:border-box;width:100%;border:1px solid rgba(0,0,0,.14);padding:10px 13px;border-radius:2px;transition:border-color .2s}.swal-content__input:focus,.swal-content__textarea:focus{outline:none;border-color:#6db8ff}.swal-content__textarea{resize:vertical}.swal-button--loading{color:transparent}.swal-button--loading~.swal-button__loader{opacity:1}.swal-button__loader{position:absolute;height:auto;width:43px;z-index:2;left:50%;top:50%;-webkit-transform:translateX(-50%) translateY(-50%);transform:translateX(-50%) translateY(-50%);text-align:center;pointer-events:none;opacity:0}.swal-button__loader div{display:inline-block;float:none;vertical-align:baseline;width:9px;height:9px;padding:0;border:none;margin:2px;opacity:.4;border-radius:7px;background-color:hsla(0,0%,100%,.9);transition:background .2s;-webkit-animation:swal-loading-anim 1s infinite;animation:swal-loading-anim 1s infinite}.swal-button__loader div:nth-child(3n+2){-webkit-animation-delay:.15s;animation-delay:.15s}.swal-button__loader div:nth-child(3n+3){-webkit-animation-delay:.3s;animation-delay:.3s}@-webkit-keyframes swal-loading-anim{0%{opacity:.4}20%{opacity:.4}50%{opacity:1}to{opacity:.4}}@keyframes swal-loading-anim{0%{opacity:.4}20%{opacity:.4}50%{opacity:1}to{opacity:.4}}.swal-overlay{position:fixed;top:0;bottom:0;left:0;right:0;text-align:center;font-size:0;overflow-y:auto;background-color:rgba(0,0,0,.4);z-index:10000;pointer-events:none;opacity:0;transition:opacity .3s}.swal-overlay:before{content:" ";display:inline-block;vertical-align:middle;height:100%}.swal-overlay--show-modal{opacity:1;pointer-events:auto}.swal-overlay--show-modal .swal-modal{opacity:1;pointer-events:auto;box-sizing:border-box;-webkit-animation:showSweetAlert .3s;animation:showSweetAlert .3s;will-change:transform}.swal-modal{width:478px;opacity:0;pointer-events:none;background-color:#fff;text-align:center;border-radius:5px;position:static;margin:20px auto;display:inline-block;vertical-align:middle;-webkit-transform:scale(1);transform:scale(1);-webkit-transform-origin:50% 50%;transform-origin:50% 50%;z-index:10001;transition:opacity .2s,-webkit-transform .3s;transition:transform .3s,opacity .2s;transition:transform .3s,opacity .2s,-webkit-transform .3s}@media (max-width:500px){.swal-modal{width:calc(100% - 20px)}}@-webkit-keyframes showSweetAlert{0%{-webkit-transform:scale(1);transform:scale(1)}1%{-webkit-transform:scale(.5);transform:scale(.5)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}to{-webkit-transform:scale(1);transform:scale(1)}}@keyframes showSweetAlert{0%{-webkit-transform:scale(1);transform:scale(1)}1%{-webkit-transform:scale(.5);transform:scale(.5)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}to{-webkit-transform:scale(1);transform:scale(1)}}</style>
+			<!-- Meta Pixel Code -->
+			<script src="https://connect.facebook.net/signals/config/255736883130389?v=2.9.208&amp;r=stable&amp;domain=ggotbosa.com&amp;hme=c7027faad2bd527f2b384e7a6d6c55127377ecc46dce76c1ebbdd02e9451da4e&amp;ex_m=81%2C138%2C121%2C15%2C114%2C56%2C37%2C115%2C62%2C55%2C126%2C70%2C10%2C80%2C23%2C109%2C100%2C60%2C63%2C108%2C125%2C6%2C2%2C3%2C5%2C88%2C4%2C71%2C79%2C128%2C129%2C200%2C150%2C50%2C205%2C202%2C203%2C42%2C163%2C22%2C59%2C209%2C208%2C152%2C25%2C49%2C7%2C52%2C75%2C76%2C77%2C82%2C104%2C24%2C21%2C107%2C103%2C102%2C122%2C61%2C124%2C47%2C123%2C38%2C105%2C48%2C97%2C34%2C190%2C192%2C160%2C18%2C19%2C20%2C12%2C13%2C33%2C30%2C31%2C66%2C72%2C74%2C86%2C113%2C116%2C35%2C87%2C16%2C14%2C91%2C57%2C28%2C118%2C117%2C119%2C110%2C17%2C27%2C46%2C85%2C26%2C173%2C146%2C84%2C1%2C106%2C65%2C95%2C41%2C36%2C93%2C94%2C99%2C45%2C11%2C101%2C92%2C53%2C40%2C43%2C0%2C78%2C127%2C98%2C9%2C96%2C249%2C188%2C136%2C176%2C169%2C8%2C44%2C73%2C51%2C120%2C54%2C90%2C69%2C68%2C39%2C111%2C67%2C64%2C58%2C89%2C83%2C32%2C112%2C29%2C130" async=""></script><script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script><script>
+				!function(f,b,e,v,n,t,s)
+				{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+					n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+					if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+					n.queue=[];t=b.createElement(e);t.async=!0;
+					t.src=v;s=b.getElementsByTagName(e)[0];
+					s.parentNode.insertBefore(t,s)}(window, document,'script',
+					'https://connect.facebook.net/en_US/fbevents.js');
+					fbq('init', '255736883130389');
+					fbq('track', 'PageView');
+			</script>
+			<!-- End Meta Pixel Code -->
+
+			<meta charset="UTF-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+			<script src="https://ggotbosa.com/flower/js/jquery-ui.js"></script>
+			<link href="https://ggotbosa.com/flower/css/common.css?ver=72" rel="stylesheet">
+			<link href="https://ggotbosa.com/flower/css/main01.css?ver=12" rel="stylesheet">
+			<script src="https://ggotbosa.com/flower/js/main.js?ver=2"></script>
+			<link rel="stylesheet" href="https://ggotbosa.com/flower/css/swiper-bundle.min.css">
+			<script src="https://ggotbosa.com/flower/js/swiper-bundle.min.js"></script>
+			<script src="https://ggotbosa.com/flower/js/common.js"></script>
+			<script src="https://ggotbosa.com/flower/js/order.js"></script>
+			<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+			<style>
+			/* 페이징 */
+			.pg_wrap {clear:both;float:left;display:inline-block}
+			.pg_wrap:after {display:block;visibility:hidden;clear:both;content:""} 
+			.pg {text-align:center}
+			.pg_page, .pg_current {display:inline-block;vertical-align:middle;background:#eee;border:1px solid #eee}
+			.pg a:focus, .pg a:hover {text-decoration:none}
+			.pg_page {color:#959595;font-size:1.083em;height:30px;line-height:28px;padding:0 5px;min-width:30px;text-decoration:none;border-radius:3px}
+			.pg_page:hover {background-color:#fafafa}
+			.pg_start {text-indent:-999px;overflow:hidden;background:url('../img/btn_first.gif') no-repeat 50% 50% #eee;padding:0;border:1px solid #eee}
+			.pg_prev {text-indent:-999px;overflow:hidden;background:url('../img/btn_prev.gif') no-repeat 50% 50% #eee;padding:0;border:1px solid #eee}
+			.pg_end {text-indent:-999px;overflow:hidden;background:url('../img/btn_end.gif') no-repeat 50% 50% #eee;padding:0;border:1px solid #eee}
+			.pg_next {text-indent:-999px;overflow:hidden;background:url('../img/btn_next.gif') no-repeat 50% 50% #eee;padding:0;border:1px solid #eee}
+			.pg_start:hover,.pg_prev:hover,.pg_end:hover,.pg_next:hover {background-color:#fafafa}
+
+			.pg_current {display:inline-block;background:#3a8afd;border:1px solid #3a8afd;color:#fff;font-weight:bold;height:30px;line-height:30px;padding:0 10px;min-width:30px;border-radius:3px}
+			</style>
+		</head>
+		<body>
+			<!-- header -->
+			<header>
+				<div class="header_wrap1">
+					<h1 class="logo">
+						<a href="#">
+							<img src="/img/wigomedi_logo.png" alt="profile_image">
+						</a>
+					</h1>
+				</div>
+			</header>
+			<!-- qr -->
+			<div class="qr_black" style="display:none"></div>
+			<div class="qr_popup" style="display:none">
+				<!-- <h2>QR코드</h2> -->
+				<p class="qr_txt01">지금 바로!<br>추천하는 사람에게<br><span>QR코드</span>를 보여주세요!</p>
+				<div class="qr_img">
+					<img src="https://ggotbosa.com/data/wigo_qr/wigomedi_qr.png">
+					<div class="qr_txt02">
+						<p style="font-size:1rem;">추천, 가입시 포인트 지급!</p>
+						<p>이용시 포인트 적립!</p>
+						<p>포인트 현금 출금 가능!</p>
+						<a id="qr_download_btn" class="qr_download_btn" href="https://ggotbosa.com/data/wigo_qr/wigomedi_qr.png" role="button">이미지 저장</a>
+					</div>
+				</div>
+				<div class="close">
+					<img src="images/sub/icon09_close.svg" alt="닫기버튼">
+				</div>
+			</div>
+			<script>
+				document.getElementById('qr_download_btn').addEventListener('click', async function(e) {
+					e.preventDefault();
+
+					const imageUrl = this.getAttribute('href');
+
+					// fetch로 이미지 파일 가져오기
+					try {
+						const response = await fetch(imageUrl);
+						const blob = await response.blob();
+
+						const file = new File([blob], "qr_code.png", { type: blob.type });
+
+						if (navigator.canShare && navigator.canShare({ files: [file] })) {
+							await navigator.share({
+								title: '위고메디님의 추천QR이미지',
+								text: 'QR 이미지를 이용하여 회원가입시 포인트 지급!',
+								files: [file]
+							});
+						} else {
+							alert('공유를 지원하지 않는 환경입니다.');
+						}
+					} catch (error) {
+						console.error('이미지 공유 실패:', error);
+						alert('이미지를 공유할 수 없습니다.');
+					}
+				});
+			</script>
+
+		<!-- 공지사항 팝업 -->
+			<style>
+			html {display: flex; justify-content: center; align-items: center;}
+			* {
+				box-sizing: border-box;
+				font-family: 'Pretendard-Regular';
+			}
+			.notice_img img{
+				width:100%;
+			}
+			.notice_popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-49%);padding:20px;width:90%;max-width:720px;min-width:320px;overflow-y:scroll;}
+			.notice_img{position:relative;border-radius:6px;overflow:hidden;z-index:0;}
+			.notice_img_wrap{max-width: 800px;width:100%;}
+			.notice_img_wrap li a{display: inline-block;}
+			.notice_img_wrap li a img{width:100%;}
+			.notice_img .swiper-pagination{position: absolute;display: inline;background-color: rgba(0,0,0,0.3);width:50px;height: fit-content;top:10px;left: 10px;color:#fff;border-radius:60px;font-size: 1em;padding:3px 0 2px;color:rgba(255, 255, 255 ,0.5);}
+			.swiper-pagination-current{color: #fff;font-weight:900;}
+			#wrapper .sec03 .best_cate_wrap ul{display: grid;justify-content: inherit;grid-template-columns: repeat(2, 1fr);
+					grid-template-areas:
+					"best_cate04 best_cate04"
+					"best_cate01 best_cate02";
+					gap: 5px;
+					justify-items: center;
+				}
+				#wrapper .sec03 .best_cate_wrap ul .best_cate01{grid-area:best_cate01;width:100%}
+				#wrapper .sec03 .best_cate_wrap ul .best_cate02{grid-area:best_cate02;width:100%}
+				#wrapper .sec03 .best_cate_wrap ul .best_cate02 div:first-child{
+					margin-bottom: 5px;
+				}
+				/* #wrapper .sec03 .best_cate_wrap ul .best_cate04{grid-area:best_cate04;width:100%} */
+				#wrapper .sec03 .best_cate_wrap ul li a {display: block;width: 100%;background-color: #ddd;}
+				#wrapper .sec03 .best_cate_wrap ul li a img {width: 100%;}
+				#wrapper .sec03 .cate_wrapper{margin-top:12px;}
+				#wrapper .sec02 .money_wrap .TooltipView{position: absolute;background-color:rgba(92, 191, 90, 0.8);color:#fff;border-radius:50px;padding: 5px 10px;font-size:0.929rem;animation: tooltip 1.3s infinite alternate;
+				/* width:188px; */}
+			@keyframes tooltip{
+				0%{top:-25px}
+				100%{top:-30px;}
+			}
+			#wrapper .sec02 .money_wrap .TooltipView:after{content: "";position: absolute;width:0;height:0;border-bottom: 12px solid transparent;border-top: 11px solid rgba(92, 191, 90, 0.8);border-left: 8px solid transparent;border-right: 8px solid transparent;bottom: -22.5px;left: 20px;}
+			#wrapper .sec02 .money_wrap .TooltipView button{width:16px;height:16px;background-color:transparent;margin-left:4px;margin-bottom: 1px;cursor:pointer;}
+			#wrapper .sec02 .money_wrap .TooltipView button img{width:100%;opacity: 0.8;}
+			@media all and (max-width: 340px){
+				#wrapper .sec02 .money_wrap .TooltipView{width:100px;}
+				@keyframes tooltip{
+				0%{top:-25px}
+				100%{top:-30px;}
+			}
+			}
+			#wrapper .sec03 .best_cate_wrap02 ul{display: grid;justify-content: inherit;grid-template-rows: repeat(2, auto);grid-template-columns: repeat(2, 1fr); margin-top:12px;
+				grid-template-areas:
+					"best_cate05 best_cate06"
+					"best_cate03 best_cate03";
+				gap: 10px 10px;justify-items: center;
+			}
+			#wrapper .sec03 .best_cate_wrap02 ul .best_cate03{grid-area:best_cate03;width:100%}
+			#wrapper .sec03 .best_cate_wrap02 ul .best_cate05{grid-area:best_cate05;width:100%}
+			#wrapper .sec03 .best_cate_wrap02 ul .best_cate06{grid-area:best_cate06;width:100%}
+			html {display: flex; justify-content: center; align-items: center;}
+			* {
+				box-sizing: border-box;
+				font-family: 'Pretendard-Regular';
+			}
+
+			:root {
+				--main-color01: #2222b8;
+				--sub-color01: #ffffff;
+				--sub-color02: #333333;
+				--bg-color: #ffffff;
+			}
+			#wrapper .sec03 .best_cate_wrap ul{
+				grid-template-columns: repeat(2, 1fr);
+				gap: 5px;
+				grid-template-areas: 
+				"best_cate04 best_cate04"
+				"best_cate01 best_cate02";
+			}
+				#wrapper .sec03 .best_cate_wrap ul .best_cate01{grid-area:best_cate01;width:100%;}
+				#wrapper .sec03 .best_cate_wrap ul .best_cate02{grid-area:best_cate02;width:100%}
+				#wrapper .sec03 .best_cate_wrap ul .best_cate03{grid-area:best_cate03;width:100%}
+				#wrapper .sec03 .best_cate_wrap ul .best_cate04{grid-area:best_cate04;width:100%}
+				#wrapper .sec03 .best_cate_wrap ul li a {display: block;width: 100%;background-color: #ddd;}
+				#wrapper .sec03 .cate_wrapper{margin-top:unset;}
+				#wrapper .sec02 .money_wrap .TooltipView{position: absolute;background-color:rgba(92, 191, 90, 0.8);color:var(--bg-color);border-radius:50px;padding: 5px 10px;font-size:0.929rem;animation: tooltip 1.3s infinite alternate;
+				/* width:188px; */}
+
+			@keyframes tooltip{
+				0%{top:-25px}
+				100%{top:-30px;}
+			}
+			#wrapper .sec02 .money_wrap .TooltipView:after{content: "";position: absolute;width:0;height:0;border-bottom: 12px solid transparent;border-top: 11px solid rgba(92, 191, 90, 0.8);border-left: 8px solid transparent;border-right: 8px solid transparent;bottom: -22.5px;left: 20px;}
+			#wrapper .sec02 .money_wrap .TooltipView button{width:16px;height:16px;background-color:transparent;margin-left:4px;margin-bottom: 1px;cursor:pointer;}
+			#wrapper .sec02 .money_wrap .TooltipView button img {width:100%;opacity: 0.8;}
+			@media all and (max-width: 340px){
+				#wrapper .sec02 .money_wrap .TooltipView{width:100px;}
+				@keyframes tooltip{
+					0%{top:-25px}
+					100%{top:-30px;}
+				}
+			}
+			#wrapper .sec03 .best_cate_wrap02 ul{display: grid;justify-content: inherit;grid-template-rows: repeat(2, auto);grid-template-columns: repeat(2, 1fr); margin-top:0;
+				grid-template-areas:
+					"best_cate05 best_cate06"
+					"best_cate03 best_cate03";
+				gap: 10px;
+				justify-items: center;
+			}
+			#wrapper .sec03 .best_cate_wrap02 ul li{border-radius: 10px;overflow: hidden;}
+			#wrapper .sec03 .best_cate_wrap02 ul .best_cate03{grid-area:best_cate03;width:100%}
+			#wrapper .sec03 .best_cate_wrap02 ul .best_cate05{grid-area:best_cate05;width:100%}
+			#wrapper .sec03 .best_cate_wrap02 ul .best_cate06{grid-area:best_cate06;width:100%}
+
+			h2 {margin-bottom: 15px;}
+			img {width: 100%;}
+			header .header_wrap1 .logo img {
+				width: auto;
+			}
+
+			/* --여기서부터 sec2 css-- */
+			#wrapper .wrap {
+			padding-bottom: 0px;
+			}
+			/* --여기서부터 main .sec2 css-- */
+			.sec2 {
+				position: relative;
+				margin-top:-2rem;
+				z-index: 1;
+				padding: 25px;
+				background: var(--bg-color);
+				border-radius: 25px 25px 0 0;
+			}
+			.sec2 li {
+				display: flex;
+				align-items: center;
+			}
+			.sec2 button {
+				border-radius: 5px;
+				font-weight: bold;
+				background-color: var(--main-color01);
+				color: var(--bg-color);
+				padding: 0.4rem 1rem;
+				border-radius: 0.375rem;
+				cursor: pointer;
+				max-width: unset;
+				width: unset;
+			}
+			.sec2 button * {
+				font-size: 1rem;
+			}
+			.sec2 .user_box {
+				width: auto;
+				display: grid;
+				gap: 15px;
+			}
+			.sec2 .user_box .recom button{
+				background-color: var(--bg-color);
+				color: var(--sub-color02);
+				font-size: 17px;
+				border-radius: unset;
+				position: relative;
+				display: grid;
+				gap: 5px;
+				justify-items: center;
+				padding: unset;
+			}
+			.sec2 .user_box .recom button img {
+				width: 66%;
+			}
+			.sec2_1 {
+				padding : 10px 15px;
+			}
+			.sec2_1 .item {
+				overflow: hidden;
+				border-radius: 10px;
+				aspect-ratio: 7/3;
+				display: grid;
+				align-items: end;
+				padding: 15px;
+			}
+			.sec2_1 .item span {font-size: 16px; margin-bottom: 10px; display: block; margin-bottom: 5px;}
+			.sec2_1 .item h1 {font-size: 2.2rem; font-weight: bold; letter-spacing: 1px;}
+			/* Modal Content */
+			.modal {
+				display: none; /* Hidden by default */
+				position: fixed; /* Stay in place */
+				z-index: 1; /* Sit on top */
+				left: 0;
+				top: 0;
+				width: 100%; /* Full width */
+				height: 100%; /* Full height */
+				overflow: auto; /* Enable scroll if needed */
+				background-color: rgb(0,0,0); /* Fallback color */
+				background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+			}
+			.modal-content {
+				background-color: #fefefe;
+				margin: 15% auto; /* 15% from the top and centered */
+				padding: 20px;
+				border: 1px solid #888;
+				width: 80%; /* Could be more or less, depending on screen size */
+			}
+			.modal-content p:first-of-type {
+				font-size:24px;
+				color:#000
+			}
+			.modal-content p {
+				font-size:16px;
+			}
+			.modal-content p:first-of-type strong {
+				font-size:30px;
+				color:#95D19C;
+			}
+			.modal-content p {
+				color:#000
+			}
+			/* sec3 styles */
+			#wrapper .sec03 {
+			padding: 10px 15px;
+			}
+			#wrapper .sec03 h2 {
+			width: 100%;
+			margin: 0.5rem 0 0.5rem 0;
+			padding-bottom:-1rem;
+			font-size: 1.7rem; 
+			font-weight:bold;
+			}
+			.sec03 a {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			height: auto;
+			object-fit: cover;
+			max-width: 100%; 
+			}
+			/* sec4 style */
+			#wrapper .sec04 {
+				padding:10px 15px;
+				background-color: var(--bg-color);
+			}
+			/* Applying the container class to the sections */
+			section {
+			box-sizing: border-box;
+			margin: 0.5rem auto;
+			}
+			#wrapper .content_wrap {
+				padding: 5px 12px 0;
+			}
+			</style>
+			<!-- <div class="notice_black"></div> -->
+		<style>
+		#wrapper .sec02 .money_wrapper .money_w02 .button_plus a:before{ content:"친구 추천하기"; position: absolute; width: 100%; color:var(--bg-color); top:calc(50% + 1px); left:50%; transform:translate(-50%, -50%);  }
+		</style>
+
+		<div id="wrapper">
+			<div class="wrap">
+				<section class="sec01" style="margin: 0 auto;">
+					<h2 class="blind" style="margin-bottom: 0;">슬라이드배너</h2>
+						<!-- Swiper 상단 슬라이드 배너  -->
+						<div class="swiper mySwiper swiper-initialized swiper-horizontal swiper-ios swiper-backface-hidden">
+							<div class="swiper-wrapper" id="swiper-wrapper-683f4f0065866212" aria-live="off">
+								<div class="swiper-slide swiper-slide-active swiper-slide-next" role="group" aria-label="1 / 1" data-swiper-slide-index="0" style="width: 375px;">
+									<a href="https://www.newbex.kr/" target="_blank" onclick="f_click('ad', '146')">
+										<img src="https://ggotbosa.com/data/wigo_ad/2025061116003717496252371271.png" alt="위고메디01">
+									</a>
+								</div>
+							</div>
+							<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+						</div>
+				</section>
+
+						
+							
+			<section class="sec2">
+					<h2 hidden="">적립금,유저정보,추천</h2>
+					<ul class="user_box">
+						<li class="name">
+							<p class="m_name" style="font-size: 1.2rem;">
+								<span>안녕하세요, </span>
+								<a href="my.php">
+									<span style="font-size:1.5rem; font-weight: bold;">위고메디</span>
+								</a>
+								님.
+							</p>
+							<button onclick="location.href='benefit.php'" style="margin-left: 1rem; background-color: #DDD; color: var(--sub-color02);">관리자</button>
+						</li>
+						<li style="flex-direction: column; align-items: unset; gap: 6px;">
+							<p>정산금</p>
+							<div style="display: flex; justify-content: space-between; align-items: center;">
+								<a href="accounts.php" style="font-size:1.5rem; font-weight: bold;">0원</a>
+								<button onclick="location.href='o_money.php'">출금하기</button>
+							</div>
+						</li>
+						<li class="recom">
+							<button id="openModalBtn" class="qr">
+								<img src="/img/icon_qr.png" alt="icon_qr">
+								QR코드
+							</button>
+							<button onclick="f_recommend_medi()">
+								<img src="/img/icon_recommend.png" alt="icon_recommend">
+								추천하기
+							</button>
+							<button onclick="location.href='r_people.php'">
+								<img src="/img/icon_hospital.png" alt="icon_people">
+								병원등록
+							</button>
+							<button onclick="location.href='accounts.php'">
+								<img src="/img/icon_doctor.png" alt="icon_list">
+								의사등록
+							</button>
+						</li>
+						<li class="recom">
+							<button onclick="location.href='r_people.php'">
+								<img src="/img/icon_people.png" alt="icon_people">
+								추천인
+							</button>
+							<button id="openModalBtn" class="qr">
+								<img src="/img/icon_user_management.png" alt="icon_qr">
+								회원관리
+							</button>
+							<button onclick="location.href='accounts.php'">
+								<img src="/img/icon_list.png" alt="icon_list">
+								주문내역
+							</button>
+							<button onclick="location.href='accounts.php'">
+								<img src="/img/icon_money.png" alt="icon_list">
+								정산내역
+							</button>
+						</li>
+					</ul>
+				</section>
+
+				<section class="sec2_1">
+					<h2>제품 리스트</h2>
+					<div style="display: grid; gap: 10px;">
+						<a class="item" href="https://www.newbex.kr/pages/m21.html" style="background: url('https://ggotbosa.com/img/wigomedi/newbex.png') no-repeat center center/cover;">
+							<div style="color: #ffedca;">
+								<span>무통증 의료주사</span>
+								<h1>NEWBEX</h1>
+							</div>
+						</a>
+						<a class="item" href="https://www.newbex.kr/pages/m22.html" style="background: url('https://ggotbosa.com/img/wigomedi/allvis.png') no-repeat center center/cover;">
+							<div style="color: #c91700;">
+								<span>라인하이푸<br>&amp; LDM 기기</span>
+								<h1>ALLVIS</h1>
+							</div>
+						</a>
+						<a class="item" href="https://www.newbex.kr/pages/m23.html" style="background: url('https://ggotbosa.com/img/wigomedi/revivecell.png') no-repeat center center/cover;">
+							<div style="color: #553618;">
+								<span>셀프 리프팅 샵</span>
+								<h1>REVIVE CELL</h1>
+							</div>
+						</a>
+					</div>
+				</section>
+				<section>
+					<div class="swiper">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<a href="tel:1555-3336">
+									<img src="/img/중간배너.png" alt="중간배너">
+								</a>
+							</div>
+						</div>
+					</div>
+				</section>
+				
+				<section class="sec03">
+					<div class="best_cate_wrap02">
+						
+						<ul>
+							<li class="best_cate05">
+								<a href="nar_list.php">
+									<img src="https://ggotbosa.com/data/flower/2024022615571417089306344308.jpg?ver=1" alt="나르시피아" style="width:100%">
+								</a>
+							</li>
+							<li class="best_cate06">
+								<a href="sub_eventNarcipia.php">
+									<img src="https://ggotbosa.com/data/flower/2024022616120017089315206354.jpg?ver=1" alt="나르시피아-울세라" style="width:100%">
+								</a>
+							</li>
+						</ul>
+					</div><!--best_cate_wrap02-->
+				</section>
+
+				<section class="sec04">
+					<h2>부가서비스</h2>
+					<div class="swiper etcservice_Swiper swiper-initialized swiper-horizontal swiper-free-mode swiper-ios swiper-backface-hidden">
+						<ul class="swiper-wrapper" id="swiper-wrapper-7e2b4a2ab946b2109" aria-live="polite">
+							<li class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 4" style="width: 142.917px; margin-right: 10px;">
+								<a href="javascript:f_addservice('위고메디-꽃배달', 'flower_list.php?cate_id=1', 'n', '168')">
+									<p><img src="https://ggotbosa.com/data/wigo_ad/2025061117423117496313514617.png"></p>
+								</a>
+							</li> 
+							<li class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 4" style="width: 142.917px; margin-right: 10px;">
+								<a href="javascript:f_tel('15553388')">
+									<p><img src="https://ggotbosa.com/data/wigo_ad/2025061117430617496313866332.png"></p>
+								</a>
+							</li> 
+							<li class="swiper-slide" role="group" aria-label="3 / 4" style="width: 142.917px; margin-right: 10px;">
+								<a href="javascript:f_addservice('창업문의', 'https://ggotbosa.com/flower/subscript_benefit.php', 'y', '7')">
+									<p><img src="https://ggotbosa.com/data/wigo_ad/2025030514504817411538481823.png"></p>
+								</a>
+							</li> 
+							<li class="swiper-slide" role="group" aria-label="4 / 4" style="width: 142.917px; margin-right: 10px;">
+								<a href="javascript:f_addservice('렌탈 서비스', 'https://www.rentalrecipe.kr/html/dh/main?shopid=wigo01471', 'y', '9')">
+									<p><img src="https://ggotbosa.com/data/wigo_ad/2023032709470416798780243639.jpg"></p>
+								</a>
+							</li> 
+						</ul>
+						<div class="swiper-scrollbar swiper-scrollbar-horizontal" style="opacity: 0; transition-duration: 400ms;"><div class="swiper-scrollbar-drag" style="transform: translate3d(0px, 0px, 0px); width: 83.4621px;"></div></div>
+					<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+				</section>
+				
+				<footer>
+					<ul>
+						<li>(주)위고메디 &nbsp;&nbsp; </li>
+					</ul>
+					<ul>
+						<li>의료기기판매업 : 제2025-3660023-00074호 &nbsp;&nbsp; 대표번호 : 1555-3336</li>
+					</ul>
+					<ul>
+					</ul>
+					<div style="padding:10px"></div>
+					
+					<p class="footer_btn">주식회사 위고 <span><img src="img/footer_btn.svg" alt="버튼"></span></p>
+					<div class="footer_wrap">
+						<ul>
+							<li>대표 : 권영배</li>
+							<li>사업자등록번호 : 170-86-01471</li>
+							<li>통신판매업신고번호 : 2020-대전서구-0288</li>
+							<li>주소 : 대전 서구 탄방동 590번지 샤크존빌딩 223-228호</li>
+							<li>개인 정보관리책임자 : 임정훈 
+								<a href="mailto:wigo01471@naver.com" class="mail">(wigo01471@naver.com)</a>
+							</li>
+							<li>TEL : 1533-7152</li>
+						</ul>
+					</div>
+				</footer>
+				<!-- //wrap -->
+		</div>
+		<!-- //#wrapper -->
+
+		<script>
+			// 추천하기
+			function f_recommend_medi(){
+				var mobile_check = "y";
+				var str_url = "https://ggotbosa.com/flower/register.php?mb_recommend=wigomedi";
+
+				var app_install = "app";
+				if(app_install == "app"){
+					// 앱설치되어있음
+				}else{
+					mobile_check = "";
+				}
+
+				if(mobile_check == "y"){
+					var sMsg = '안녕하세요.<br>저희는 의료기기 전문 플랫폼을 운영하고 있으며,<br>👉 국내최초! 무통주사 마이크로 니들 `뉴벡스(NEWBEX)`<br>👉 HIFU+LDM 복합기기 올비스(ALLVIS) 등 프리미엄 의료기기를 공급하고 있습니다.<br><br>🤝현재 뉴벡스를 기반으로 전국 단위의 총판 및 판매 파트너사를 모집하고 있어, 관련 업계에 계시거나 유통 비즈니스에 관심 있는 분들께 좋은 기회가 될 수 있습니다.<br><br>📦 취급 제품군: <br> - 마이크로 니들 `뉴벡스`<br> - HIFU+LDM 올인원 피부미용 복합기 `ALLVIS`<br> - 셀프 리프팅샵 `리바이브셀`<br>🤝 파트너 혜택: 공급가 우대, 마케팅 지원, 정품 보증 등<br><br>혹시 관심 있으시거나, 주변에 적합한 분이 계시다면 공유 부탁드립니다.<br><br>👉 공유 플랫폼 회원가입 : <br>'+str_url+'<br>👉 뉴벡스 바로가기: 뉴벡스.kr<br><br>감사합니다. 좋은 하루 되세요 ☀';	//"추천하기 링크를 지인에게 전달할 수 있습니다.";
+
+					location.href = "rec^"+sMsg;
+
+				}else{
+					var sMsg = '안녕하세요.\n저희는 의료기기 전문 플랫폼을 운영하고 있으며,\n👉 국내최초! 무통주사 마이크로 니들 `뉴벡스(NEWBEX)`\n👉 HIFU+LDM 복합기기 올비스(ALLVIS) 등 프리미엄 의료기기를 공급하고 있습니다.\n\n🤝현재 뉴벡스를 기반으로 전국 단위의 총판 및 판매 파트너사를 모집하고 있어, 관련 업계에 계시거나 유통 비즈니스에 관심 있는 분들께 좋은 기회가 될 수 있습니다.\n\n📦 취급 제품군: \n - 마이크로 니들 `뉴벡스`\n - HIFU+LDM 올인원 피부미용 복합기 `ALLVIS`\n - 셀프 리프팅샵 `리바이브셀`\n🤝 파트너 혜택: 공급가 우대, 마케팅 지원, 정품 보증 등\n\n혹시 관심 있으시거나, 주변에 적합한 분이 계시다면 공유 부탁드립니다.\n\n👉 공유 플랫폼 회원가입 : \n'+str_url+'\n👉 뉴벡스 바로가기: 뉴벡스.kr\n\n감사합니다. 좋은 하루 되세요 ☀';	//"추천하기 링크를 지인에게 전달할 수 있습니다.";
+
+					// 글을 쓸 수 있는 란을 만든다.
+					var aux = document.createElement("input");
+					// 지정된 요소의 값을 할당 한다.
+					aux.setAttribute("value", sMsg);
+					// body에 추가.
+					document.body.appendChild(aux);
+					// 지정된 내용을 강조한다.
+					aux.select();
+					// 텍스트를 카피 하는 변수를 생성0
+					document.execCommand("copy");
+					// body 로 부터 다시 반환 한다.
+					document.body.removeChild(aux);
+
+					//alert("붙여넣기 하여 링크를 지인에게 전달할 수 있습니다.\n\n" + sMsg);
+
+					swal("링크를 복사하였습니다.", sMsg, 'success');
+				}
+			};
+			// 슬라이드배너
+			var swiper = new Swiper(".mySwiper", {
+				speed: 1000,
+				loop: true, // 슬라이드 반복 여부
+				spaceBetween: 0, //슬라이드 오른쪽 마진
+				autoplay:{  //자동슬라이드 (false-비활성화)
+				delay: 4000, // 시간 설정
+				disableOnInteraction: false  } // false-스와이프 후 자동 재생
+			});
+			// 부가서비스 슬라이드
+			var swiper = new Swiper(".etcservice_Swiper", {
+				slidesPerView: 2.4, 
+				spaceBetween: 10, // 사이여백
+				slidesOffsetAfter: 10, //맨 오른쪽여백
+				freeMode : true, //슬라이드 움직임
+				scrollbar: {
+				el: '.swiper-scrollbar',
+				hide: true
+				}
+			});
+
+			function f_click(history_gubun, gubun_id){
+				$.ajax({
+					async: false,
+					cache: false,
+					type: "POST",
+					url: "https://ggotbosa.com/bbs/ajax.history.php",
+					data: {history_gubun: history_gubun, gubun_id: gubun_id},
+					success: function(result) {
+						// 클릭수 넣기
+					}
+				});
+
+				if(history_gubun == "cate"){
+					location.href = "./flower_list.php?cate_id="+gubun_id;
+				}
+			}
+			// 부가 서비스 
+			function f_addservice(service_name, service_url, service_pop, service_id){
+
+				f_click("service", service_id);
+
+				if(service_pop == "n"){
+					// 내부링크
+					location.href = "./" + service_url;
+				}else{
+					
+					window.open(service_url, "_blank");
+				}
+			}
+
+			function f_mb_check(){
+
+				var mb_name = "위고메디";
+				
+				var app_install = "app";
+				
+				if(app_install == "app"){
+					// 앱을 설치했다면
+					var app_gubun = "a";
+
+					var iphone_check = navigator.userAgent.toLowerCase();
+					if ( iphone_check.indexOf("iphone") > -1||iphone_check.indexOf("ipad") > -1||iphone_check.indexOf("ipod") > -1 ) {
+						// ios 라면
+						$.ajax({
+							async: false,
+							cache: false,
+							type: "POST",
+							url: "https://ggotbosa.com/bbs/ajax.app_gubun_update.php",
+							data: {app_gubun: "i"},
+							success: function(result) {
+								
+							}
+						});
+
+						app_gubun = "i";
+
+					}else{
+						// 안드로이드로 원복
+						$.ajax({
+							async: false,
+							cache: false,
+							type: "POST",
+							url: "https://ggotbosa.com/bbs/ajax.app_gubun_update.php",
+							data: {app_gubun: "a"},
+							success: function(result) {
+								
+							}
+						});
+					}
+					// 모바일(안드로이드, 아이폰)과 통신하는 인터페이스
+					if(app_gubun == "a"){
+						// 안드로이드
+						window.Android.userId("wigomedi", "wigomedi");
+					}else{
+						// 아이폰
+						window.webkit.messageHandlers.userId.postMessage("wigomedi, wigomedi");
+					}
+				}else{
+					if( f_getCookie_2('app_install') == 'done' ) {
+						// 오늘하루 닫기
+						$("#appdown_view").hide();
+					}
+				}
+			}
+
+			function f_getCookie_2( name ) {
+				var nameOfCookie = name + "=";
+				var x = 0;
+				while ( x <= document.cookie.length ) {
+					var y = (x+nameOfCookie.length);
+					if ( document.cookie.substring( x, y ) == nameOfCookie ) {
+						if ( (endOfCookie=document.cookie.indexOf( ";", y )) == -1 )
+							endOfCookie = document.cookie.length;
+						return unescape( document.cookie.substring( y, endOfCookie ) );
+					}
+					x = document.cookie.indexOf( " ", x ) + 1;
+					if ( x == 0 )
+					break;
+				}
+				return "";
+			}
+
+			f_mb_check();
+
+			// ios 호출
+			function iOS_check(app_gubun, fcm_key){
+				$.ajax({
+					async: false,
+					cache: false,
+					type: "POST",
+					url: "https://ggotbosa.com/bbs/ajax.app_fcmkey_update.php",
+					data: {app_gubun: app_gubun, fcm_key: fcm_key},
+					success: function(result) {
+						
+					}
+				});
+			}
+
+			function f_app_store(){
+				var varUA = navigator.userAgent.toLowerCase(); //userAgent 값 얻기
+			
+				if ( varUA.indexOf('android') > -1) {
+					//안드로이드
+					location.href = "https://play.google.com/store/apps/details?id=com.allthat.flower.delivery";
+
+				} else if ( varUA.indexOf("iphone") > -1||varUA.indexOf("ipad") > -1||varUA.indexOf("ipod") > -1 ) {
+					//IOS
+					var ios = "https://apps.apple.com/us/app/%EA%BD%83%EB%B3%B4%EB%82%B4%EB%8A%94%EC%82%AC%EB%9E%8C%EB%93%A4-%EC%A0%84%EA%B5%AD-%EA%BD%83%EB%B0%B0%EB%8B%AC-%EC%84%9C%EB%B9%84%EC%8A%A4/id1664020309";
+
+					if(ios){
+						location.href = ios;
+					}
+
+					return;
+				}
+			}
+
+			function f_tel(tel=""){
+				if(tel){
+					location.href = "tel:"+tel;
+				}else{
+					var str_url = "1555-3336";
+					//var mobile_check = "y";
+
+					location.href = "tel:"+str_url;
+				}
+			}
+
+			function f_talk(){
+				var str_url = "1555-3336";
+
+				location.href = "sms:"+str_url;
+			}
+							
+			$(document).ready(function(){
+
+				// footer 버튼
+				$(".footer_btn").click(function(){
+					if($(".footer_wrap").is(":visible")){
+						$(".footer_wrap").slideUp();
+						$('.footer_btn img').css({'transform':'none'})
+					}
+					else{
+						$(".footer_wrap").slideDown();
+						$('.footer_btn img').css({'transform':'rotate(180deg)'})
+					}
+				});
+			});
+
+		</script>
+
+
+		</div></body></html>
+        </div>
+        <!-- main end -->
+    </div>
+    </footer>
+    <!-- js -->
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="/js/custom.js"></script>
+</body>
+</html>

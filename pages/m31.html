@@ -1,0 +1,61 @@
+<?php
+require_once './_common.php';
+include_once(G5_PATH.'/newbex_head.php');
+?>
+    <main class="container">
+        <div id="contents">
+            <div class="pageTop pn3">
+                <div class="bg"></div>
+                <div class="inner">
+                    <h1 class="pageSlg">공지사항</h1>
+                </div>
+            </div>
+            <div class="pageTitleArea pn3">
+                <div class="inner">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li>Customer</li>
+                        <li>공지사항</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="page m31 inner">
+                <ul>
+                    <li>
+                        <div>번호</div>
+                        <div>제목</div>
+                        <div>작성날짜</div>
+                        <div>첨부파일</div>
+                    </li>
+					<?php
+					$sql = "select * from p_notice where notice_kind = 'a' order by notice_no desc";
+					$result = sql_query($sql);
+					
+					for($i=1;$row=sql_fetch_array($result);$i++){
+						$notice_no = $row['notice_no'];	// 상세보기 할때 이거 넘기면 됨
+						// 내용은 $row['notice_content'];
+					?>
+						<li>
+							<div class="cate"><?php echo $i;?></div>
+							<div class="txt"><a href="<?php echo G5_URL;?>/pages/m31_view.php?no=<?php echo $notice_no;?>"><?php echo $row['notice_subject'];?></a></div>
+							<div class="date"><?php echo substr($row['reg_datetime'], 0,10);?></div>
+							<div class="btn download" style="border-top: unset;">
+								<?php
+								if($row['notice_file']){
+								?>
+									<a class="download_btn" href="<?php echo G5_BBS_URL;?>/newbex_download.php?notice_no=<?php echo $notice_no;?>" download><?php echo $row['notice_file_name'];?></a>
+								<?php
+								}
+								?>
+							</div>
+						</li>
+					<?php
+					}
+					?>
+                </ul>
+            </div>
+        </div> 
+    </main>
+<?php
+include_once(G5_PATH."/newbex_tail.php");
+?>

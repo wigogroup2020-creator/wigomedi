@@ -1,0 +1,122 @@
+<?php
+require_once './_common.php';
+include_once(G5_PATH.'/newbex_head.php');
+?>
+<main class="container">
+	<div id="contents">
+		<div class="pageTop pn1">
+			<div class="bg"></div>
+			<div class="inner">
+				<h1 class="pageSlg">문의하기</h1>
+			</div>
+		</div>
+		<div class="pageTitleArea inner">
+			<ul>
+				<li><a href="/index.html">Home</a></li>
+				<li>Contact</li>
+				<li>문의하기</li>
+			</ul>
+		</div>
+		<!-- <div class="category inner">
+			<ul>
+				<li><a href="/pages/m11.html">기업소개</a></li>
+				<li><a href="/pages/m12.html">오시는 길</a></li>
+				<li class="on"><a href="/pages/m13.html">협력사 / 고객사</a></li>
+			</ul>
+		</div> -->
+		<div class="page m41 inner">
+			<form name="fcontact" method="post" action="./m41_update.php">
+				<input type="hidden" name="mb_id" value="<?php echo $member['mb_id'];?>">
+				<div class="form_box">
+					<ul>
+						<li>
+							<label for="mb_name">성함<span> *</span></label>
+							<input type="text" name="mb_name" placeholder="성함입력" id="mb_name" value="<?php echo $member['mb_name'];?>" required>
+						</li>
+						<li>
+							<label for="mb_hp">연락처<span> *</span></label>
+							<input type="text" name="mb_hp" id="mb_hp" placeholder="'-'제외하고 숫자만 입력" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}" maxlength="11" value="<?php echo $member['mb_hp'];?>" required>
+						</li>
+						<li>
+							<label for="contact_company">업체명</label>
+							<input type="text" name="contact_company" placeholder="업체명입력" id="contact_company" required>
+						</li>
+						<li>
+							<label for="contact_kind">문의유형<span> *</span></label>
+							<select name="contact_kind">
+								<option value="대리점/총판문의">대리점/총판문의</option>
+								<option value="장비도입문의">장비도입문의</option>
+								<option value="주문/견적요청">주문/견적요청</option>
+								<option value="A/S신청">A/S신청</option>
+								<option value="기타">기타</option>
+							</select>
+						</li>
+						<li>
+							<label for="contact_content">문의내용</label>
+							<textarea class="form-control" type="text" name="contact_content" id="contact_content" style="height: 150px; padding: 12px 18px 16px;"></textarea>
+						</li>
+					</ul>
+				</div>
+				<div class="agree_box">
+					<input type="checkbox" name="startup_agree" id="agree_check" value="y" checked>
+					<label for="agree_check" class="check_img"></label>
+					<label for="agree_check">[필수] 개인정보 수집ㆍ이용</label>
+					<!-- <a href="/pages/service_company.html" target=”_blank” >[내용보기]</a> -->
+					<a href="javascript:void(0)" onclick="f_modal_show()">[내용보기]</a>
+				</div>
+				<div class="foun_btn">
+					<button type="button" onclick="f_contact()" style="cursor:pointer">신청하기</button>
+				</div>
+			</form>
+		</div>
+	</div> 
+</main>
+
+<script>
+function f_contact(){
+	var mb_name = $("#mb_name").val();
+	var mb_hp = $("#mb_hp").val();
+	var contact_content = $("#contact_content").val();
+	
+	const checkbox = document.getElementById("agree_check");
+    if (!checkbox.checked){
+		Swal.fire("", "문의 등록시 개인정보 수집ㆍ이용에 동의해 주셔야 합니다.", "error");
+		return;
+    }
+	
+	if(mb_name == ""){
+		Swal.fire("", "이름을 입력해주세요.", "error");
+		return;
+	}
+	
+	if(mb_hp == ""){
+		Swal.fire("", "연락처를 입력해주세요.", "error");
+		return;
+	}
+	
+	if(contact_content == ""){
+		Swal.fire("", "문의내용을 입력해주세요.", "error");
+		return;
+	}
+	
+	var frm = document.fcontact;
+	frm.submit();
+}
+
+function f_modal_show(){
+	$('.modal').addClass('active');
+    $('body').addClass('scroll-disable');
+}
+
+function f_modal_hide(){
+	$('.modal').removeClass('active');
+    $('body').removeClass('scroll-disable');
+}
+</script>
+
+
+<?php
+include_once(G5_PATH."/pages/modal_privacy.php");
+
+include_once(G5_PATH."/newbex_tail.php");
+?>

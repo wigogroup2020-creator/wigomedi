@@ -1,0 +1,97 @@
+@charset "utf-8";
+
+:root {
+    --main-color01: #bc202e;
+    --main-color02: #ed4036;
+    --main-color03: #822b36;
+    --btn-color01: #3b4263;
+    --btn-color02: #565f89;
+    --txt-color01: #ffffff;
+    --txt-color02: #9da4c9;
+    --bg-color: #1e2035;
+    --black: #000;
+    --border-raius: 7px;
+}
+
+body {
+    background-color: var(--bg-color);
+}
+
+input,
+select,
+.card {
+    background-color: transparent;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+body[data-layout-color=dark] .btn-info,
+.btn-info {
+    background-color: var(--main-color01);
+    border-color: transparent;
+    box-shadow: none;
+}
+.text-dark {
+    color: var(--txt-color01) !important;
+}
+.wrapper {
+}
+.content {
+    width: 100%;
+}
+.inner {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    height: 100vh;
+}
+/* nav */
+.topnav-navbar,
+.topnav {
+    background-color: transparent;
+}
+.navbar-custom .topbar-menu {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    top: 50%;
+    right: 10%;
+    transform: translate(-50%, -50%);
+}
+
+@media (max-width: 576px) {
+    .navbar-custom .topbar-menu {
+        position: initial;
+        transform: none;
+    }
+}
+
+/* login */
+.account-pages {
+    margin: auto;
+    width: 100%;
+    padding: 24px;
+}
+.account-pages.login {
+    max-width: 448px;
+}
+.text-style {
+    font-size: 2rem;
+	font-weight:bold;
+    color: white;
+}
+
+.form-control {
+	border: 1px solid var(--btn-color02);
+	color: var(--txt-color01);
+	font-size: 16px;
+	padding: 15px 20px;
+    border-radius: var(--border-raius);
+    background: transparent;
+}
+
+.account-pages.join {
+    
+}

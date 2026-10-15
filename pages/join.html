@@ -1,0 +1,54 @@
+<?php
+require_once './_common.php';
+include_once(G5_PATH.'/newbex_head.php');
+
+if($member['mb_id']){
+	goto_url(G5_URL."/page/info.php");
+}
+?>
+<main class="container">
+	<div id="contents">
+		<div class="pageTop pn7">
+			<div class="bg"></div>
+			<div class="inner">
+				<h1 class="pageSlg">회원서비스</h1>
+			</div>
+		</div>
+		<div class="pageTitleArea pn7">
+			<div class="inner">
+				<ul>
+					<li><a href="<?php echo G5_URL;?>">Home</a></li>
+					<li>회원서비스</li>
+				</ul>
+			</div>
+		</div>
+		<div class="page m70 joinPage">
+			<div class="inner">
+				<h1>회원가입</h1>
+				<div class="btn_list">
+					<button class="index_btn" type="button" onclick="location.href='./join_step.php?co_kind=b'">
+						<div>
+							<h1>병원/클리닉</h1>
+						</div>
+						<img src="/img/join01.png" alt="join01">
+					</button>
+					<button class="index_btn" type="button" onclick="location.href='./join_step.php?co_kind=c'">
+						<div>
+							<h1>벤더/대리점</h1>
+						</div>
+						<img src="/img/join02.png" alt="join02">
+					</button>
+					<button class="index_btn" type="button" onclick="location.href='./join_step.php?co_kind=a'">
+						<div>
+							<h1>일반회원</h1>
+						</div>
+						<img src="/img/join03.png" alt="join03">
+					</button>
+				</div>
+			</div>
+		</div>
+	</div> 
+</main>
+<?php
+include_once(G5_PATH."/newbex_tail.php");
+?>
