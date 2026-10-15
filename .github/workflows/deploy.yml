@@ -13,12 +13,12 @@ concurrency:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout WigoMedi source
-          uses: actions/checkout@v4
-          with:
+        uses: actions/checkout@v4
+        with:
           ref: wigomedi
           persist-credentials: false
 
@@ -48,4 +48,3 @@ jobs:
             **/data/**
             **/uploads/**
             **/config.php
-  
