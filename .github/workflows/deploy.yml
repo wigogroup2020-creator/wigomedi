@@ -1,7 +1,17 @@
-name: WigoMedi Cafe24 SFTP Connection Test
+name: WigoMedi Cafe24 SFTP Deploy
 
 on:
   workflow_dispatch:
+    inputs:
+      file_path:
+        description: 'One tracked file, e.g. css/style.css'
+        required: true
+        type: string
+      dry_run:
+        description: 'Preview only (no upload)'
+        required: true
+        default: true
+        type: boolean
 
 permissions:
   contents: read
@@ -13,7 +23,6 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-24.04
-
     steps:
       - name: Checkout WigoMedi source
         uses: actions/checkout@v5
@@ -21,12 +30,34 @@ jobs:
           ref: wigomedi
           persist-credentials: false
 
+      - name: Validate selected file
+        env:
+          FILE_PATH: ${{ inputs.file_path }}
+        run: |
+          python3 - <<'PY'
+          import os, pathlib, re, subprocess
+          p = os.environ['FILE_PATH']
+          if not re.fullmatch(r'[A-Za-z0-9_./-]+', p) or any(x in ('', '.', '..') for x in p.split('/')):
+              raise SystemExit('Invalid file path')
+          parts = pathlib.PurePosixPath(p).parts
+          if any(x.startswith('.') for x in parts) or pathlib.PurePosixPath(p).suffix.lower() in ('.env','.pem','.key','.sql','.db','.sqlite','.bak','.log','.zip'):
+              raise SystemExit('Sensitive or hidden file is excluded')
+          if not pathlib.Path(p).is_file() or pathlib.Path(p).is_symlink():
+              raise SystemExit('File does not exist or is a symlink')
+          if subprocess.run(['git','ls-files','--error-unmatch','--',p],capture_output=True).returncode:
+              raise SystemExit('File is not tracked in Git')
+          print('Source: ' + p)
+          print('Destination: /wigo8601471/www/' + p)
+          PY
+
       - name: Install SFTP password helper
+        if: ${{ !inputs.dry_run }}
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y sshpass
 
-      - name: Configure verified SSH host key
+      - name: Configure SSH host verification
+        if: ${{ !inputs.dry_run }}
         env:
           SFTP_HOST_KEY: ${{ secrets.SFTP_HOST_KEY }}
         run: |
@@ -37,18 +68,19 @@ jobs:
           printf '%s\n' "$SFTP_HOST_KEY" > "$HOME/.ssh/known_hosts"
           chmod 600 "$HOME/.ssh/known_hosts"
 
-      - name: Test Cafe24 SFTP login (read-only)
+      - name: Upload one file (remote parent directory must already exist)
+        if: ${{ !inputs.dry_run }}
         env:
           SFTP_HOST: ${{ secrets.FTP_SERVER }}
           SFTP_USER: ${{ secrets.FTP_USERNAME }}
           SSHPASS: ${{ secrets.FTP_PASSWORD }}
+          FILE_PATH: ${{ inputs.file_path }}
         run: |
           set -eu
-          test -n "$SFTP_HOST" || { echo "FTP_SERVER secret is missing"; exit 1; }
-          test -n "$SFTP_USER" || { echo "FTP_USERNAME secret is missing"; exit 1; }
-          test -n "$SSHPASS" || { echo "FTP_PASSWORD secret is missing"; exit 1; }
-
-          printf 'pwd\nls\nbye\n' | sshpass -e sftp \
+          test -n "$SFTP_HOST" && test -n "$SFTP_USER" && test -n "$SSHPASS" || {
+            echo "Missing SFTP connection secret"; exit 1;
+          }
+          printf 'put "%s" "/wigo8601471/www/%s"\nbye\n' "$FILE_PATH" "$FILE_PATH" | sshpass -e sftp \
             -oBatchMode=no \
             -oPreferredAuthentications=password,keyboard-interactive \
             -oStrictHostKeyChecking=yes \
@@ -57,3 +89,8 @@ jobs:
             -P 22 \
             -b - \
             "$SFTP_USER@$SFTP_HOST"
+          echo "Uploaded: $FILE_PATH"
+
+      - name: Preview complete
+        if: ${{ inputs.dry_run }}
+        run: echo "Dry run complete. No files uploaded."
