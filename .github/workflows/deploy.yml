@@ -1,5 +1,5 @@
 
-name: WigoMedi Cafe24 Deploy
+name: WigoMedi Cafe24 SFTP Deploy
 
 on:
   workflow_dispatch:
@@ -22,29 +22,38 @@ jobs:
           ref: wigomedi
           persist-credentials: false
 
-      - name: Deploy preview
-        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          port: 21
-          local-dir: ./
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
-          dry-run: true
-          dangerous-clean-slate: false
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.github/**
-            **/node_modules/**
-            **/.env*
-            **/*.sql
-            **/*.sql.gz
-            **/*.bak
-            **/*.zip
-            **/*.log
-            **/data/**
-            **/uploads/**
-            **/config.php
+      - name: Install SSH tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y sshpass
+
+      - name: Test SFTP connection
+        env:
+          SFTP_HOST: ${{ secrets.FTP_SERVER }}
+          SFTP_USER: ${{ secrets.FTP_USERNAME }}
+          SFTP_PASS: ${{ secrets.FTP_PASSWORD }}
+          SFTP_HOST_KEY: ${{ secrets.SFTP_HOST_KEY }}
+        run: |
+          set -eu
+
+          test -n "$SFTP_HOST"
+          test -n "$SFTP_USER"
+          test -n "$SFTP_PASS"
+          test -n "$SFTP_HOST_KEY"
+
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "$SFTP_HOST_KEY" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+          sshpass -e sftp \
+            -oBatchMode=no \
+            -oStrictHostKeyChecking=yes \
+            -oConnectTimeout=15 \
+            -P 22 \
+            -b /dev/stdin \
+            "$SFTP_USER@$SFTP_HOST" <<'EOF'
+          pwd
+          ls
+          bye
+          EOF
