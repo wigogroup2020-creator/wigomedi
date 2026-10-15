@@ -16,9 +16,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout main branch
-        uses: actions/checkout@v4
-        with:
+      - name: Checkout WigoMedi source
+          uses: actions/checkout@v4
+          with:
           ref: wigomedi
           persist-credentials: false
 
