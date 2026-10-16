@@ -7,7 +7,7 @@ include_once(G5_PATH.'/newbex_head.php');
 		<div class="pageTop pn1">
 			<div class="bg"></div>
 			<div class="inner">
-				<h1 class="pageSlg">문의하기</h1>
+				<h1 class="pageSlg">제품 및 파트너 문의</h1>
 			</div>
 		</div>
 		<div class="pageTitleArea inner">
@@ -25,6 +25,7 @@ include_once(G5_PATH.'/newbex_head.php');
 			</ul>
 		</div> -->
 		<div class="page m41 inner">
+			<p class="brand-contact-intro">88LION 제품과 ALLVIS 기기, 가맹·대리점 도입이 궁금하신가요?<br>문의 내용을 남겨주시면 담당자가 안내해 드리겠습니다.</p>
 			<form name="fcontact" method="post" action="./m41_update.php">
 				<input type="hidden" name="mb_id" value="<?php echo $member['mb_id'];?>">
 				<div class="form_box">
@@ -43,13 +44,7 @@ include_once(G5_PATH.'/newbex_head.php');
 						</li>
 						<li>
 							<label for="contact_kind">문의유형<span> *</span></label>
-							<select name="contact_kind">
-								<option value="대리점/총판문의">대리점/총판문의</option>
-								<option value="장비도입문의">장비도입문의</option>
-								<option value="주문/견적요청">주문/견적요청</option>
-								<option value="A/S신청">A/S신청</option>
-								<option value="기타">기타</option>
-							</select>
+							<select name="contact_kind" id="contact_kind"><option value="88LION 제품">88LION 제품</option><option value="ALLVIS 기기">ALLVIS 기기</option><option value="가맹·대리점">가맹·대리점</option><option value="광역총판·총판">광역총판·총판</option><option value="기타 제휴">기타 제휴</option></select>
 						</li>
 						<li>
 							<label for="contact_content">문의내용</label>
@@ -65,7 +60,7 @@ include_once(G5_PATH.'/newbex_head.php');
 					<a href="javascript:void(0)" onclick="f_modal_show()">[내용보기]</a>
 				</div>
 				<div class="foun_btn">
-					<button type="button" onclick="f_contact()" style="cursor:pointer">신청하기</button>
+					<button type="button" onclick="f_contact()" style="cursor:pointer">문의 남기기</button>
 				</div>
 			</form>
 		</div>

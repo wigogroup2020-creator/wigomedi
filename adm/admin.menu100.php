@@ -25,4 +25,5 @@ $menu['menu100'] = array(
 	array('100302', '자료실관리', G5_ADMIN_URL . '/p_data.php',   'p_data'),
 	array('100303', '문의하기', G5_ADMIN_URL . '/p_contact.php',   'p_contact'),
 	array('100304', '제품관리', G5_ADMIN_URL . '/p_product.php',   'p_product'),
+	array('100305', '매장안내 관리', G5_ADMIN_URL . '/stores.php', 'stores'),
 );

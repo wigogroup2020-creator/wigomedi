@@ -132,7 +132,7 @@ $(function () {
 });
 
 // sec_slide
-var swiper = new Swiper(".sec_slide", {
+var swiper = document.querySelector(".sec_slide") ? new Swiper(".sec_slide", {
     speed: 1000,
     loop: true, // 슬라이드 반복 여부
     spaceBetween: 0, //슬라이드 오른쪽 마진
@@ -140,7 +140,7 @@ var swiper = new Swiper(".sec_slide", {
         delay: 4000, // 시간 설정
         disableOnInteraction: false  // false-스와이프 후 자동 재생
     }
-});
+}) : null;
 
 $(function(){
     // all menu
@@ -261,4 +261,27 @@ $(".modal").click(function(){
 });
 $(".modal_body").click(function(event){
     event.stopPropagation();
+});
+// Brand controls retain the existing Swiper and menu interactions.
+$(function () {
+    $('.hero-playback').on('click', function () {
+        if (!swiper) return;
+        var paused = this.getAttribute('aria-pressed') === 'true';
+        if (paused) swiper.autoplay.start(); else swiper.autoplay.stop();
+        this.setAttribute('aria-pressed', paused ? 'false' : 'true');
+        this.textContent = paused ? '슬라이드 일시정지' : '슬라이드 재생';
+    });
+    $('.top_btn_index').on('click', function (event) {
+        event.preventDefault();
+        var main = document.querySelector('.fpSwiper');
+        if (main && main.swiper) main.swiper.slideTo(0);
+    });
+    $('.btnMenu').on('click', function () {
+        this.setAttribute('aria-expanded', this.classList.contains('openmenu') ? 'true' : 'false');
+    }).on('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); $(this).trigger('click'); }
+    });
+    $(document).on('keydown', function (event) {
+        if (event.key === 'Escape' && $('.btnMenu').hasClass('openmenu')) $('.btnMenu').trigger('click').focus();
+    });
 });

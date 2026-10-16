@@ -1,0 +1,143 @@
+/* 88LION draft: retain the existing blue palette and full-page sections. */
+@font-face{font-family:'Pretendard-Regular';src:url('/img/88lion/pretendard.woff') format('woff');font-display:swap}
+#header .head h1 a.brand-wordmark{background:none;text-indent:0;width:auto;height:auto;font:800 34px/1 Arial,sans-serif;letter-spacing:-1.5px;color:var(--main-color01)}
+#header.dark .head h1 a.brand-wordmark{color:#fff}
+#header.on .head h1 a.brand-wordmark{color:var(--main-color01)}
+.brand-footer-wordmark{font:800 34px/1 Arial,sans-serif;letter-spacing:-1.5px;color:#fff;display:block;white-space:nowrap}
+.brand-footer-wordmark:hover{color:#fff}
+.head .pcNav>ul{gap:40px}
+.head .pcNav>ul>li{margin:0}
+a:focus-visible,button:focus-visible,[role=button]:focus-visible{outline:3px solid #6098ff;outline-offset:5px}
+.index .sec_slide .lion-hero{background:url('/img/slide_img01.jpg') center/cover no-repeat}
+.index .sec_slide .lion-hero .inner{align-items:flex-start;gap:24px;z-index:1;width:86%;max-width:1380px;pointer-events:none}
+.index .sec_slide .lion-hero .inner>*{pointer-events:auto}
+.index .sec_slide .lion-hero h1{font-size:clamp(36px,4.3vw,76px);line-height:1.22;letter-spacing:-.045em;max-width:65%}
+.index .sec_slide .lion-hero .inner>span{font-size:clamp(16px,1.6vw,23px);line-height:1.65;max-width:52%}
+.hero-eyebrow,.brand-eyebrow{font-size:13px;font-weight:700;letter-spacing:.2em;color:var(--main-color01)}
+.index .sec_slide img.hero-product{position:absolute;right:7%;top:50%;transform:translateY(-45%);width:auto;height:min(66vh,660px);max-width:35%;object-fit:contain;border-radius:12px;box-shadow:0 30px 80px #24244520}
+.index .sec_slide .lion-hero-allvis{background:linear-gradient(90deg,#fff 20%,#ffffffb8 48%,#ffffff00 70%),url('/img/allvis_M.png') right center/70% auto no-repeat,#fff4f0}
+.index .sec_slide .lion-hero-partner{background:url('/img/slide_img03.jpg') center/cover no-repeat}
+.index .sec_slide .lion-hero-partner h1,.index .sec_slide .lion-hero-partner .inner>span{max-width:100%}
+.brand-button{display:inline-flex;justify-content:space-between;align-items:center;gap:35px;background:var(--main-color01);color:#fff;border-radius:8px;padding:15px 23px;font-size:16px;line-height:1.5;max-width:100%}
+.brand-button:hover{background:#11118e;color:#fff}
+.index .sec_slide .brand-button span{font-size:20px}
+.hero-playback{position:absolute;left:7%;bottom:30px;z-index:2;width:auto;padding:9px 14px;font-size:12px;color:#1818b5;background:#ffffffd9;border:1px solid #1818b530}
+.index .cont01 .list_products{max-width:1100px;width:90%;overflow:visible}
+.index .cont01 .list_products .product_list{position:relative;aspect-ratio:1.2;height:min(49vh,460px);flex:1;min-width:0;background-color:#f7f1e5;background-image:none;color:#171745;padding:26px}
+.index .cont01 .list_products .product01{background:#f7f1e5}
+.index .cont01 .product01>img{position:absolute;right:0;top:0;height:100%;width:58%;object-fit:contain;object-position:right center}
+.index .cont01 .list_products .product02{background:url('/img/allvis_PC.png') center/cover no-repeat}
+.index .product_title{position:relative;z-index:1;background:#ffffffed;border-radius:8px;padding:15px;width:fit-content;max-width:100%;box-shadow:0 8px 30px #19195808}
+.index .product_title b{font-weight:800;font-family:Arial,sans-serif}
+.index .product_title .product-link{margin-top:10px;font-size:13px;color:#1818b5}
+.index .cont02 p{line-height:1.8;max-width:900px}
+.pageTop.pn2 .bg{background:linear-gradient(110deg,#1818b5,#4646cb)}
+.pageTop.pn2 .bg:after{content:'';position:absolute;right:-10%;top:-90%;width:70%;height:300%;border:1px solid #ffffff30;border-radius:50%;transform:rotate(35deg)}
+.brand-about p{font-size:18px;line-height:1.9;margin-bottom:24px;color:#444}
+.brand-about>h1{font-size:28px;margin-top:65px}
+.brand-about h1 small{display:inline-block;font-size:14px;letter-spacing:.05em;margin-left:12px;color:#888}
+.brand-about .slogan{margin-bottom:55px}
+.brand-about .slogan span{font-size:clamp(21px,3vw,32px);font-weight:700;margin:20px 0}
+.brand-business-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.brand-business-grid article{background:#f6f6fc;border:1px solid #ededf7;padding:28px;border-radius:12px}
+.brand-business-grid article>b{color:#1818b5;font:700 32px Arial,sans-serif}
+.brand-business-grid h2{font-size:20px;font-weight:700;margin:24px 0 16px}
+.brand-business-grid p{font-size:16px}
+.brand-business-grid a{color:#1818b5}
+.brand-product-intro{display:grid;grid-template-columns:1fr 1fr;gap:7%;align-items:center;margin:30px 0 75px}
+.brand-product-visual{background:#f7f3ec;border-radius:12px;overflow:hidden;text-align:center}
+.brand-product-visual img{max-height:650px;width:100%;object-fit:contain;display:block}
+.brand-product-copy h2{font-size:clamp(28px,3vw,44px);font-weight:700;margin:20px 0;line-height:1.3}
+.brand-product-copy>p:not(.brand-eyebrow){font-size:18px;line-height:1.8;color:#555;margin-bottom:30px}
+.brand-product-guide{background:#f6f6fc;padding:40px;border-radius:12px;margin-bottom:30px}
+.brand-product-guide h2{font-size:24px;font-weight:700;margin-bottom:16px}
+.brand-product-guide p{line-height:1.8;margin-bottom:20px}
+.brand-product-guide a{color:#1818b5}
+.brand-downloads{display:flex;flex-wrap:wrap;gap:25px}
+.brand-contact-intro{text-align:center;line-height:1.8;margin:20px 0 40px;font-size:18px;color:#555}
+.stores-intro{text-align:center;padding:25px 0 45px}
+.stores-intro h2{font-size:clamp(27px,4vw,40px);font-weight:700;margin-bottom:18px}
+.stores-intro p,.stores-note{line-height:1.8;color:#666}
+.store-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.store-card{border:1px solid #e7e7ee;border-radius:12px;overflow:hidden;background:white}
+.store-card>img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.store-card-body{padding:24px}
+.store-card h3{font-size:23px;font-weight:700;line-height:1.4;margin-bottom:12px;overflow-wrap:anywhere}
+.store-card p{color:#666;line-height:1.7;margin-bottom:25px;overflow-wrap:anywhere}
+.store-card a{color:#1818b5;font-weight:700}
+.stores-note{padding:28px 0 0;font-size:14px}
+.stores-empty{grid-column:1/-1;padding:70px 24px;text-align:center;background:#f6f6fc;border-radius:12px;line-height:1.9;color:#555}
+.stores-empty a{display:inline-block;color:#1818b5;margin-top:14px}
+@media(min-width:813px) and (max-height:750px){.index .title{margin:15px 0 25px}.index .title h1{padding-top:10px}.index .cont01 .list_products .product_list{height:46vh}.index .sec_slide .lion-hero h1{font-size:52px}.index .sec_slide img.hero-product{height:68vh}}
+@media(max-width:1023px){.brand-business-grid{grid-template-columns:1fr}.brand-product-intro{gap:35px}.brand-product-copy h2{font-size:30px}.store-grid{gap:18px;grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:812px){
+ #header .head h1 a.brand-wordmark{font-size:28px}
+ .index .sec_slide .lion-hero .inner{width:100%;padding:95px 28px 35px;justify-content:flex-start;gap:16px}
+ .index .sec_slide .lion-hero h1{font-size:clamp(32px,8vw,47px);max-width:100%}
+ .index .sec_slide .lion-hero .inner>span{max-width:100%;font-size:16px}
+ .index .sec_slide img.hero-product{height:32vh;max-width:42%;right:28px;top:auto;bottom:65px;transform:none;border-radius:8px}
+ .hero-eyebrow{font-size:11px}
+ .hero-playback{bottom:25px;left:28px}
+ .brand-button{font-size:14px;padding:12px 18px;gap:20px}
+ .index .sec_slide .lion-hero-allvis{background:linear-gradient(#fff 30%,#ffffff00 85%),url('/img/allvis_M.png') center bottom/auto 50% no-repeat,#fff4f0}
+ .index .cont01 .list_products{padding:0;gap:14px}
+ .index .cont01 .list_products .product_list{flex:none;width:100%;height:23vh;min-height:130px;padding:14px;aspect-ratio:auto}
+ .index .cont01 .list_products .product02{background-image:url('/img/allvis_M.png')}
+ .index .product_title{padding:12px;max-width:70%}
+ .index .product_title span{font-size:14px}
+ .index .product_title b{font-size:30px}
+ .index .product_title .product-link{margin-top:5px;font-size:12px}
+ .index .cont02 p{font-size:17px}
+ .brand-product-intro{grid-template-columns:1fr;margin:20px 0 40px}
+ .brand-product-visual img{max-height:560px}
+ .brand-product-guide{padding:25px}
+ .brand-about p{font-size:16px}
+ .brand-about h1 small{display:block;margin:8px 0}
+ .store-grid{grid-template-columns:1fr}
+ .store-card-body{padding:22px}
+ .brand-contact-intro{font-size:16px}
+}
+@media(max-width:380px),(max-height:620px) and (max-width:812px){.index .sec_slide img.hero-product{height:24vh;bottom:50px}.index .sec_slide .lion-hero .inner{gap:12px;padding-top:85px}.index .sec_slide .lion-hero h1{font-size:30px}.index .sec_slide .lion-hero .inner>span{font-size:14px}}
+
+.index .sec_slide a.brand-button{height:auto;display:inline-flex}
+.index .sec_slide a.brand-button{white-space:nowrap;flex-shrink:0}
+.store-card>img{height:auto}
+@media(max-width:812px){.index .sec_slide img.hero-product{width:auto;height:auto;max-height:34vh;max-width:55%;right:50%;transform:translateX(50%);bottom:70px}}
+@media(max-width:812px) and (max-height:620px){.index .sec_slide img.hero-product{max-height:24vh;right:25px;transform:none;bottom:55px}}
+/* Override the old nth-child syringe artwork on both breakpoints. */
+.index .cont01 .list_products .product_list.product01{background:#f7f1e5}
+
+/* Store guide: photo cards following the supplied four-column reference. */
+.stores-page{background:#f5f5f7}
+.stores-page .pageTop{height:235px;background:#f0f0f5}
+.stores-page .pageTop.pn2 .bg{background:linear-gradient(120deg,#efeff5,#fafafa)}
+.stores-page .pageTop.pn2 .bg:after{border-color:#1818b510}
+.stores-page .pageSlg{color:#272741;text-align:center;font-size:36px;width:100%}
+.stores-page .pageTitleArea{display:none}
+.stores-page .stores-intro{padding:35px 0}
+.stores-page .stores-intro h2{font-size:24px;margin:10px 0}
+.store-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}
+.store-card{padding:28px;border:0;border-radius:12px;box-shadow:0 2px 20px #25253b03}
+.store-card>img{width:100%;height:auto;aspect-ratio:4/3;border-radius:0;object-fit:cover}
+.store-card-body{padding:14px 0 0}
+.store-brand{display:block;font-size:13px;color:#1818b5;margin-bottom:5px}
+.store-card h3{font-size:24px;line-height:1.35;font-weight:800;margin-bottom:24px}
+.store-card p{font-size:14px;line-height:1.8;margin-bottom:18px;min-height:50px}
+.store-card a{font-size:13px}
+@media(max-width:1150px){.store-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.store-card{padding:22px}}
+@media(max-width:900px){.store-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.store-grid{grid-template-columns:1fr;gap:22px}.stores-page .pageTop{height:190px}.stores-page .pageSlg{font-size:28px}.store-card{padding:26px}.stores-page .stores-intro p{font-size:14px}.store-card h3{font-size:25px}.store-card p{min-height:0}}
+
+/* Shared vector wordmark and document-approved company introduction. */
+#header .head h1 a.brand-wordmark{width:150px;height:45px;line-height:0}
+#header .brand-logo{display:block;width:150px;height:45px;object-fit:contain}
+#header .brand-logo-inverse{display:none}
+#header.dark .brand-logo-primary{display:none}
+#header.dark .brand-logo-inverse{display:block}
+#header.on .brand-logo-primary{display:block}
+#header.on .brand-logo-inverse{display:none}
+.brand-menu-logo img{width:240px;height:auto;max-width:90%}
+.brand-footer-wordmark img{display:block;object-fit:contain;height:45px;width:150px}
+.index .cont02 .brand-about-lead{font-size:clamp(24px,3vw,40px);font-weight:700;line-height:1.45;margin-bottom:20px}
+.brand-company-label{color:#1818b5!important;font-size:14px!important;font-weight:700;letter-spacing:.05em;padding-top:20px}
+@media(max-width:812px){#header .head h1 a.brand-wordmark,#header .brand-logo{width:120px;height:36px}.index .cont02 .brand-about-lead{font-size:25px;margin-bottom:15px}.index .cont02 p{font-size:15px;line-height:1.7}}

@@ -180,7 +180,7 @@ img {
 .head h1 a{
     display:block;
     width:145px;height:41px;
-    background:url('/img/wigomedi_logo.png') no-repeat center center/contain;;
+    background:url('/img/88lion/logo.svg') no-repeat center center/contain;;
     background-size:contain;
     text-indent:-9999px;
     transition:all 0.6s;
@@ -335,7 +335,7 @@ img {
     width:94%;
     margin:0 auto;
 }
-.allmenu .allmenuwrap>div>.wigomedi{
+.allmenu .allmenuwrap>div>.brand-menu-logo{
     width:25%;
     font-family:"Nunito Sans";font-size:3.6vw;color:var(--main-color01);font-weight:500;line-height:1.2em;text-align:left;
 }
@@ -367,7 +367,7 @@ img {
 @media(max-width:812px){
     
     .allmenu .allmenuwrap>div{width:88%;}
-    .allmenu .allmenuwrap>div>.wigomedi{display:none;}
+    .allmenu .allmenuwrap>div>.brand-menu-logo{display:none;}
     .allmenu .allmenuwrap>div>ul{display:block;width:100%;}
     .allmenu .allmenuwrap>div>ul>li{width:100%;margin-bottom:15px;}
     .allmenu .allmenuwrap>div>ul>li>a{font-size: 26px;}
@@ -376,7 +376,7 @@ img {
     .allmenu .allmenuwrap>div>ul>li>ul>li>a{font-size: 15px;}
 }
 
-#header.dark .head h1 a{background:url('https://ggotbosa.com/img/homepage/wigomedi_logo_white.png') no-repeat center center/contain;}
+#header.dark .head h1 a{background:url('/img/88lion/logo-white.svg') no-repeat center center/contain;}
 #header.dark .head .gnb .btnMenu>div{background:#fff;}
 #header.dark .head .gnb>a {color: #fff;}
 #header.dark .head .login_btn{border: 1.5px solid #fff; border-radius: 50%; color: #fff; font-size: 24px;}
@@ -389,7 +389,7 @@ img {
 #header.on{background:#fff;}
 #header.on:before{opacity:1;}
 #header.on:after{transform:scaleY(1);}
-#header.on .head h1 a{background:url('https://ggotbosa.com/img/homepage/wigomedi_logo.png') no-repeat center center/contain;}
+#header.on .head h1 a{background:url('/img/88lion/logo.svg') no-repeat center center/contain;}
 #header.on .head .pcNav>ul>li>a{color:#000;}
 #header.on .head .language>a{border:1px solid #000;color:#000;}
 #header.on .head .language>a i{border-left:2px solid #000;border-bottom:2px solid #000;}
@@ -492,9 +492,8 @@ img {
     flex: 1;
     aspect-ratio: 5 / 6;
 }
-.index .cont01 .list_products .product_list:nth-child(1) {background: url('/img/newbex_PC.png') no-repeat center center/cover;}
+.index .cont01 .list_products .product_list:nth-child(1) {background: #f7f1e5;}
 .index .cont01 .list_products .product_list:nth-child(2) {background: url('/img/allvis_PC.png') no-repeat center center/cover;}
-.index .cont01 .list_products .product_list:nth-child(3) {background: url('/img/revivecell_PC.png') no-repeat center center/cover;}
 .index .product_title {
     display: flex;
     flex-direction: column;
@@ -839,9 +838,8 @@ form {
         aspect-ratio: 7/3;
         padding: 10px 15px;
     }
-    .index .cont01 .list_products .product_list:nth-child(1) {background: url('/img/newbex_M.png') no-repeat center center/cover;}
+    .index .cont01 .list_products .product_list:nth-child(1) {background: #f7f1e5;}
     .index .cont01 .list_products .product_list:nth-child(2) {background: url('/img/allvis_M.png') no-repeat center center/cover;}
-    .index .cont01 .list_products .product_list:nth-child(3) {background: url('/img/revivecell_M.png') no-repeat center center/cover;}
     .index .product_slide {
         width: 100%;
         height: 100%;
