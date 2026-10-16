@@ -1,0 +1,38 @@
+name: AI Change Preview
+
+on:
+  pull_request:
+    branches: [wigomedi]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout proposed code
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Review changed files
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          git diff --name-status "$BASE_SHA" "$HEAD_SHA"
+          {
+            echo '## AI 변경사항 검토'
+            echo ''
+            echo 'PR의 **Files changed** 탭에서 실제 코드 차이를 검토하세요.'
+            echo ''
+            echo '### 변경 파일'
+            echo '~~~text'
+            git diff --name-status "$BASE_SHA" "$HEAD_SHA"
+            echo '~~~'
+            echo ''
+            echo '**이 작업은 미리보기 전용이며 카페24로 업로드하지 않습니다.**'
+          } >> "$GITHUB_STEP_SUMMARY"
