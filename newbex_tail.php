@@ -28,6 +28,7 @@
                         <p>본사 소재지 : 대전 서구 탄방동 590번지 샤크존빌딩 2층 223-228호</p>
                         <p>사업영역 : 88LION 두피·뷰티 케어 및 홈케어, ALLVIS 관리 기기, 파트너 협업</p>
                         <p style="color: #888; margin-top: 20px;">COPYRIGHT©(주)위고 All rights reserved</p>
+                        <p style="font-size: 10px; color: #999; margin-top: 6px;">test</p>
                     </div>
                 </div>
             </div>
