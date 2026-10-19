@@ -1,0 +1,143 @@
+name: Approve Cafe24 PR Deployment
+
+on:
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'Merged PR number to deploy (latest wigomedi commit only)'
+        required: true
+        type: string
+      confirm:
+        description: 'Type DEPLOY to approve production upload'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: wigomedi-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: ${{ github.ref == 'refs/heads/wigomedi' }}
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Verify approval and merged PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ inputs.pr_number }}
+          CONFIRM: ${{ inputs.confirm }}
+          REPOSITORY: ${{ github.repository }}
+          RUN_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          test "$CONFIRM" = DEPLOY || { echo 'Approval requires DEPLOY'; exit 1; }
+          [[ "$PR_NUMBER" =~ ^[1-9][0-9]*$ ]] || { echo 'Invalid PR number'; exit 1; }
+          gh api "repos/$REPOSITORY/pulls/$PR_NUMBER" > /tmp/pr.json
+          jq -e --arg sha "$RUN_SHA" '.merged_at != null and .base.ref == "wigomedi" and .merge_commit_sha == $sha' /tmp/pr.json >/dev/null || {
+            echo 'PR must be merged into wigomedi and its merge commit must equal the current branch HEAD.'
+            echo 'For an older PR, prepare a new PR with the required changes instead.'
+            exit 1
+          }
+          echo "Verified merged PR #$PR_NUMBER at $RUN_SHA"
+
+      - name: Checkout approved production commit
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Prepare safe changed-file list
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ inputs.pr_number }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          gh api --paginate "repos/$REPOSITORY/pulls/$PR_NUMBER/files?per_page=100" --jq '.[] | [.status, .filename] | @tsv' > /tmp/pr-files.tsv
+          python3 - <<'PY'
+          import pathlib, re
+          records = pathlib.Path('/tmp/pr-files.tsv').read_text().splitlines()
+          allowed = {'.php','.html','.htm','.css','.js','.mjs','.png','.jpg','.jpeg','.webp','.gif','.svg','.ico','.woff','.woff2','.ttf','.webmanifest'}
+          deploy = []
+          ignored = []
+          for record in records:
+              status, name = record.split('\t', 1)
+              parts = name.split('/')
+              p = pathlib.Path(name)
+              if (not re.fullmatch(r'[A-Za-z0-9_./-]+', name)
+                  or any(part in ('','.','..') or part.startswith('.') for part in parts)
+                  or p.suffix.lower() not in allowed
+                  or any(part.lower() in ('vendor','node_modules','tests','test','backup','backups','secrets') for part in parts)
+                  or re.search(r'(^|/)(config|configuration|database|db|secret|credentials)([._/-]|$)', name, re.I)):
+                  ignored.append(name)
+                  continue
+              if status not in ('added','modified','renamed','copied'):
+                  ignored.append(name)
+                  continue
+              if not p.is_file() or p.is_symlink():
+                  raise SystemExit('Missing or unsafe approved file: ' + name)
+              deploy.append(name)
+          if not deploy:
+              raise SystemExit('No deployable files in the approved PR')
+          pathlib.Path('/tmp/deploy-files.txt').write_text('\n'.join(sorted(set(deploy)))+'\n')
+          with open(__import__('os').environ['GITHUB_STEP_SUMMARY'],'a') as out:
+              out.write('## 배포 승인 대상 파일\n\n')
+              for name in sorted(set(deploy)): out.write('- `'+name+'`\n')
+              out.write('\n삭제된 서버 파일은 삭제하지 않습니다.\n')
+              if ignored:
+                  out.write('\n### 제외 파일\n')
+                  for name in ignored: out.write('- `'+name+'`\n')
+          print('Approved deploy files:', *deploy, sep='\n - ')
+          PY
+
+      - name: Install SFTP helper
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y sshpass
+
+      - name: Configure SSH host verification
+        env:
+          SFTP_HOST_KEY: ${{ secrets.SFTP_HOST_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$SFTP_HOST_KEY"
+          mkdir -p "$HOME/.ssh"
+          chmod 700 "$HOME/.ssh"
+          printf '%s\n' "$SFTP_HOST_KEY" > "$HOME/.ssh/known_hosts"
+          chmod 600 "$HOME/.ssh/known_hosts"
+
+      - name: Upload approved changed files
+        env:
+          SFTP_HOST: ${{ secrets.FTP_SERVER }}
+          SFTP_USER: ${{ secrets.FTP_USERNAME }}
+          SSHPASS: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          set -euo pipefail
+          test -n "$SFTP_HOST" && test -n "$SFTP_USER" && test -n "$SSHPASS"
+          python3 - <<'PY'
+          from pathlib import Path
+          files = Path('/tmp/deploy-files.txt').read_text().splitlines()
+          dirs = set()
+          for name in files:
+              parents = Path(name).parts[:-1]
+              for i in range(1,len(parents)+1):
+                  dirs.add('/wigo8601471/www/'+'/'.join(parents[:i]))
+          with open('/tmp/deploy.sftp','w') as out:
+              for d in sorted(dirs, key=lambda p:(p.count('/'),p)):
+                  out.write('-mkdir "'+d+'"\n')
+              for name in files:
+                  out.write('put "'+name+'" "/wigo8601471/www/'+name+'"\n')
+              out.write('bye\n')
+          PY
+          sshpass -e sftp \
+            -oBatchMode=no \
+            -oPreferredAuthentications=password,keyboard-interactive \
+            -oStrictHostKeyChecking=yes \
+            -oUserKnownHostsFile="$HOME/.ssh/known_hosts" \
+            -oConnectTimeout=15 \
+            -P 22 -b /tmp/deploy.sftp "$SFTP_USER@$SFTP_HOST"
+          echo "Approved files uploaded successfully."
