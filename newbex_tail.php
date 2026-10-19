@@ -16,7 +16,7 @@
             </div>
             <div class="btmarea">
                 <div class="inner">
-                    <h1><a href="#"><img src="<?php echo G5_URL;?>/img/wigomedi_logo_white.png" alt="logo_footer"></a></h1>
+                    <h1><a href="#"><img src="<?php echo G5_URL;?>/img/88lion/logo-white.png" alt="logo_footer"></a></h1>
                     <div style="color: rgba(255,255,255,0.6);">
                         <p>회사명 : 주식회사 위고 (WIGO Inc.)</p>
                         <P>설립연도 : 2019년</P>
@@ -28,7 +28,6 @@
                         <p>본사 소재지 : 대전 서구 탄방동 590번지 샤크존빌딩 2층 223-228호</p>
                         <p>사업영역 : 상생 유통 플랫폼 구축 및 운영, 의료미용기기 유통, 생활편의 서비스</p>
                         <p style="color: #888; margin-top: 20px;">COPYRIGHT©(주)위고 All rights reserved</p>
-                        <p style="font-size: 10px; color: #999; margin-top: 6px;">test</p>
                     </div>
                 </div>
             </div>
