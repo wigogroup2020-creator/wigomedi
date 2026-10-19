@@ -16,7 +16,7 @@
             </div>
             <div class="btmarea">
                 <div class="inner">
-                    <h1><a class="brand-footer-wordmark" href="/" aria-label="88LION 홈"><img src="<?php echo G5_URL; ?>/img/88lion/logo-white.svg" alt="88LION 88라이온" width="150" height="45"></a></h1>
+                    <h1><a class="brand-footer-wordmark" href="/" aria-label="88LION 홈"><img src="<?php echo G5_URL; ?>/img/88lion/logo-white.png" alt="88LION 88라이온" width="150" height="45"></a></h1>
                     <div style="color: rgba(255,255,255,0.6);">
                         <p>회사명 : 주식회사 위고 (WIGO Inc.)</p>
                         <P>설립연도 : 2019년</P>
@@ -28,7 +28,6 @@
                         <p>본사 소재지 : 대전 서구 탄방동 590번지 샤크존빌딩 2층 223-228호</p>
                         <p>사업영역 : 88LION 두피·뷰티 케어 및 홈케어, ALLVIS 관리 기기, 파트너 협업</p>
                         <p style="color: #888; margin-top: 20px;">COPYRIGHT©(주)위고 All rights reserved</p>
-                        <p style="font-size: 10px; color: #999; margin-top: 6px;">test</p>
                     </div>
                 </div>
             </div>
