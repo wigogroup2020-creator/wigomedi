@@ -141,13 +141,13 @@ $brandIconUrl  = rtrim(G5_URL, '/') . '/img/grobio/favicon.svg?v=' . ($brandIcon
     <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/brand-88lion.css">
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-wigo.css?v=6">
+    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-wigo.css?v=7">
     <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-menu.css?v=2">
 	<?php if ($currentPage === 'index.php' || $currentPage === 'index.html') { ?>
-    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-home.css?v=2">
+    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-home.css?v=3">
 	<?php } ?>
 	<?php if ($currentPage === 'm11.html') { ?>
-    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-about.css?v=1">
+    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-about.css?v=2">
 	<?php } ?>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>

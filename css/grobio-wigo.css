@@ -83,3 +83,5 @@
 }
 .gw-pd .inner{padding-left:max(24px,3vw);padding-right:max(24px,3vw);box-sizing:border-box}
 .gw-pd .m21_view .preInfo.inner{padding-left:max(20px,3vw);padding-right:max(20px,3vw)}
+/* 푸터 링크 대비 */
+footer a{color:#cfe9dc}
