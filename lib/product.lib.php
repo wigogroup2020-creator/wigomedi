@@ -3,7 +3,7 @@ if (!defined('_GNUBOARD_')) exit;
 
 /*
  * 홈페이지 PRODUCT 카드 (GROBio × WIGO)
- * 기존 제품관리(p_product) 테이블을 그대로 읽습니다. 새 테이블 · 컬럼은 만들지 않습니다.
+ * 기존 제품관리(p_product) 테이블을 그대로 읽습니다. 새 테이블·컬럼은 만들지 않습니다.
  *
  *  - 그로바이오 제품 : product_kind = '그로바이오'
  *  - 제휴제품       : product_kind = '제휴제품' 또는 기존 'HIFU+LDM'(ALLVIS)
@@ -35,15 +35,15 @@ function wigo_prod_in_clause($group)
     return implode(',', $quoted);
 }
 
-/* 기본 카드: 사업계획서 기준 제품군. 확인되지 않은 효능 · 인증 · 수치 · 가격은 넣지 않습니다. */
+/* 기본 카드: 사업계획서 기준 제품군. 확인되지 않은 효능·인증·수치·가격은 넣지 않습니다. */
 function wigo_prod_defaults($group)
 {
     if ($group === 'grobio') {
         return array(
-            array('kind' => '그로바이오', 'slug' => 'sugar-grow', 'name' => '슈가그로우', 'info' => '프리미엄 두피 · 헤어케어 전문 솔루션', 'area' => '두피 · 헤어케어', 'en' => 'Scalp & Hair Care', 'tone' => 'mint', 'status' => '상세 안내 준비 중',
-                  'content' => '<p>그로바이오의 두피 · 헤어케어 브랜드입니다.</p><p>제품 구성과 사용 방법, 출시 일정은 확정되는 대로 안내합니다. 도입 상담은 문의하기를 이용해 주세요.</p>'),
-            array('kind' => '그로바이오', 'slug' => 'sugar-face', 'name' => '슈가페이스', 'info' => '프리미엄 페이셜 · 스킨케어 라인', 'area' => '피부 · 스킨케어', 'en' => 'Facial Skincare', 'tone' => 'blush', 'status' => '상세 안내 준비 중',
-                  'content' => '<p>그로바이오의 페이셜 · 스킨케어 브랜드입니다.</p><p>제품 구성과 사용 방법, 출시 일정은 확정되는 대로 안내합니다. 도입 상담은 문의하기를 이용해 주세요.</p>'),
+            array('kind' => '그로바이오', 'slug' => 'sugar-grow', 'name' => '슈가그로우', 'info' => '프리미엄 두피·헤어케어 전문 솔루션', 'area' => '두피·헤어케어', 'en' => 'Scalp & Hair Care', 'tone' => 'mint', 'status' => '상세 안내 준비 중',
+                  'content' => '<p>그로바이오의 두피·헤어케어 브랜드입니다.</p><p>제품 구성과 사용 방법, 출시 일정은 확정되는 대로 안내합니다. 도입 상담은 문의하기를 이용해 주세요.</p>'),
+            array('kind' => '그로바이오', 'slug' => 'sugar-face', 'name' => '슈가페이스', 'info' => '프리미엄 페이셜·스킨케어 라인', 'area' => '피부·스킨케어', 'en' => 'Facial Skincare', 'tone' => 'blush', 'status' => '상세 안내 준비 중',
+                  'content' => '<p>그로바이오의 페이셜·스킨케어 브랜드입니다.</p><p>제품 구성과 사용 방법, 출시 일정은 확정되는 대로 안내합니다. 도입 상담은 문의하기를 이용해 주세요.</p>'),
             array('kind' => '그로바이오', 'slug' => 'sugar-regen', 'name' => '슈가리젠', 'info' => '플래그십 2PC 셀프케어 앰플', 'area' => '셀프케어 앰플', 'en' => 'Self-care Ampoule', 'tone' => 'sky', 'status' => '상세 안내 준비 중',
                   'content' => '<p>그로바이오가 직접 제조하는 셀프케어 앰플 라인의 플래그십 제품입니다.</p><p>제품 구성과 사용 방법, 공급 조건은 확정되는 대로 안내합니다. 도입 상담은 문의하기를 이용해 주세요.</p>'),
             array('kind' => '그로바이오', 'slug' => 'grobio-wellness', 'name' => '그로바이오 웰니스', 'info' => '이너 웰니스 제품군', 'area' => '웰니스', 'en' => 'Nutritional & Bio', 'tone' => 'mute', 'status' => '출시 준비 중',

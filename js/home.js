@@ -1,4 +1,4 @@
-/* 메인(index) 전용: 헤더 배경, 제품 슬라이드 조작(번호 표시), 맨 위로. 스크롤 움직임은 motion.js */
+/* 메인(index) 전용: 헤더 배경, 제품 슬라이드 조작, 가벼운 등장 효과, 맨 위로 */
 (function () {
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var header = document.getElementById('header');
@@ -18,12 +18,6 @@
     }
     function sync() {
         if (!rail || !prev || !next) return;
-        var cards = rail.querySelectorAll('.hm-card'), cur = document.querySelector('.hm-cur'), tot = document.querySelector('.hm-tot');
-        if (cur && tot && cards.length) {
-            var w = step(), n = Math.min(cards.length, Math.round(rail.scrollLeft / w) + 1);
-            if (rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 2) n = cards.length;
-            cur.textContent = n; tot.textContent = cards.length;
-        }
         prev.disabled = rail.scrollLeft <= 2;
         next.disabled = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 2;
     }
@@ -38,6 +32,18 @@
         });
         window.addEventListener('resize', sync);
         sync();
+    }
+
+    var items = document.querySelectorAll('.hm [data-rv]');
+    if (!('IntersectionObserver' in window) || reduce) {
+        document.documentElement.classList.remove('hm-anim');
+    } else {
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+                if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+        items.forEach(function (el) { io.observe(el); });
     }
 
     var top = document.querySelector('.top_btn_index');
