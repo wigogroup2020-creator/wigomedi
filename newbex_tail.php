@@ -16,7 +16,7 @@
             </div>
             <div class="btmarea">
                 <div class="inner">
-                    <h1><a class="brand-footer-wordmark" href="/" aria-label="GROBio × WIGO 홈"><img src="<?php echo G5_URL; ?>/img/grobio/logo-white.png" alt="GROBio × WIGO" width="110" height="40"></a></h1>
+                    <h1><a class="brand-footer-wordmark" href="/" aria-label="GROBio × WIGO 홈"><img src="<?php echo G5_URL; ?>/img/grobio/lockup-white.png" alt="GROBio × WIGO" width="232" height="44"></a></h1>
                     <div style="color: rgba(255,255,255,0.6);">
                         <p>회사명 : 주식회사 위고 (WIGO Inc.)</p>
                         <P>설립연도 : 2019년</P>
@@ -26,7 +26,7 @@
                         <p>대표번호 : 1555-3336  (평일) AM 9:00 - PM 6:00, (점심) AM 11:30 - PM 13:00</p>
                         <p>이메일 : wigo01471@naver.com</p>
                         <p>본사 소재지 : 대전 서구 탄방동 590번지 샤크존빌딩 2층 223-228호</p>
-                        <p>사업영역 : 그로바이오 제품·기술, 위고 판매·플랫폼, 제휴제품 및 파트너 협업</p>
+                        <p>사업영역 : 그로바이오 제품 개발·제조, 위고 유통·플랫폼, 제휴제품 공급 및 파트너 협업</p>
                         <p style="color: #888; margin-top: 20px;">COPYRIGHT©(주)위고 All rights reserved</p>
                     </div>
                 </div>

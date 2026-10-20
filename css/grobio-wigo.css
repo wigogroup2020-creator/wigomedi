@@ -4,11 +4,11 @@
 /* 헤더 로고: 고정 박스 대신 높이 기준 자동 너비 -> 모바일 잘림 방지 */
 #header .head h1{width:auto;max-width:calc(100% - 150px)}
 #header .head h1 a.brand-wordmark{display:flex;align-items:center;gap:10px;width:auto;height:auto;line-height:1;text-indent:0;background:none!important;white-space:nowrap}
-#header .brand-logo{width:auto;height:46px;max-width:none;object-fit:contain}
+#header .brand-logo{width:auto;height:44px;max-width:none;object-fit:contain}
 .gw-x{font-weight:800;font-size:20px;line-height:1;letter-spacing:-.03em;color:var(--gw-n)}
 #header.dark .gw-x{color:#fff}
-@media(max-width:812px){#header .brand-logo{height:36px}.gw-x{font-size:16px}#header .head h1{max-width:calc(100% - 120px)}}
-.brand-footer-wordmark img{width:auto;height:52px;object-fit:contain}
+@media(max-width:812px){#header .brand-logo{height:30px}#header .head h1{max-width:calc(100% - 120px)}}
+.brand-footer-wordmark img{width:auto;height:44px;object-fit:contain}
 .footer_main_area{background:var(--gw-n)}
 /* 버튼 */
 .index .sec_slide a.gw-b,.gw-b{display:inline-flex;align-items:center;height:auto;padding:14px 26px;border-radius:99px;background:var(--gw-g);color:#fff;font-weight:700;font-size:16px;white-space:nowrap}
@@ -110,12 +110,12 @@
 .hero-playback{z-index:4}
 /* 섹션 도착 시 순차 등장(자바스크립트가 준비된 경우에만 적용) */
 html.gw-anim .index :is(.gw-in>*,.title,.gw-sy>*,.cont02 button,.gw-bento>.gw-pc,.gw-note,.gw-pt>*,.gw-ty>div,.cont03 li,.cont05 h1){opacity:0;transform:translateY(38px)}
-html.gw-anim .index .swiper-slide-active :is(.gw-in>*,.title,.gw-sy>*,.cont02 button,.gw-bento>.gw-pc,.gw-note,.gw-pt>*,.gw-ty>div,.cont03 li,.cont05 h1){opacity:1;transform:none;transition:opacity 1s var(--gw-o) .3s,transform 1.2s var(--gw-o) .3s}
-html.gw-anim .index .swiper-slide-active :is(.gw-in>*,.title,.gw-sy>*,.gw-bento>.gw-pc,.gw-pt>*,.gw-ty>div,.cont03 li,.cont05 h1):nth-child(2){transition-delay:.45s}
-html.gw-anim .index .swiper-slide-active :is(.gw-sy>*,.gw-bento>.gw-pc,.gw-ty>div,.cont03 li,.cont05 h1):nth-child(3){transition-delay:.6s}
-html.gw-anim .index .swiper-slide-active :is(.gw-bento>.gw-pc,.cont03 li):nth-child(4),html.gw-anim .index .swiper-slide-active :is(.cont02 button,.gw-note){transition-delay:.75s}
-html.gw-anim .index .swiper-slide-active .gw-bento>.gw-pc:nth-child(n+5){transition-delay:.9s}
-html.gw-anim .index .swiper-slide-active .gw-bento>.gw-pc:hover{transform:translateY(-5px);transition-delay:0s;transition-duration:.3s}
+html.gw-anim .index :is(.swiper-slide-active,.is-in:not(.sec_slide)) :is(.gw-in>*,.title,.gw-sy>*,.cont02 button,.gw-bento>.gw-pc,.gw-note,.gw-pt>*,.gw-ty>div,.cont03 li,.cont05 h1){opacity:1;transform:none;transition:opacity 1s var(--gw-o) .3s,transform 1.2s var(--gw-o) .3s}
+html.gw-anim .index :is(.swiper-slide-active,.is-in:not(.sec_slide)) :is(.gw-in>*,.title,.gw-sy>*,.gw-bento>.gw-pc,.gw-pt>*,.gw-ty>div,.cont03 li,.cont05 h1):nth-child(2){transition-delay:.45s}
+html.gw-anim .index :is(.swiper-slide-active,.is-in:not(.sec_slide)) :is(.gw-sy>*,.gw-bento>.gw-pc,.gw-ty>div,.cont03 li,.cont05 h1):nth-child(3){transition-delay:.6s}
+html.gw-anim .index :is(.swiper-slide-active,.is-in:not(.sec_slide)) :is(.gw-bento>.gw-pc,.cont03 li):nth-child(4),html.gw-anim .index :is(.swiper-slide-active,.is-in:not(.sec_slide)) :is(.cont02 button,.gw-note){transition-delay:.75s}
+html.gw-anim .index :is(.swiper-slide-active,.is-in:not(.sec_slide)) .gw-bento>.gw-pc:nth-child(n+5){transition-delay:.9s}
+html.gw-anim .index :is(.swiper-slide-active,.is-in:not(.sec_slide)) .gw-bento>.gw-pc:hover{transform:translateY(-5px);transition-delay:0s;transition-duration:.3s}
 .gw-rg,.gw-nd{animation:none}
 .fpSwiper>.swiper-wrapper>.swiper-slide-active .sec_slide .swiper-slide-active .gw-rg{animation:gwDraw 1.8s cubic-bezier(.6,0,.2,1) both}
 .fpSwiper>.swiper-wrapper>.swiper-slide-active .sec_slide .swiper-slide-active .gw-nd{animation:gwStab 1.3s .9s cubic-bezier(.2,.8,.2,1) both}
@@ -130,8 +130,8 @@ html.gw-anim .index .swiper-slide-active .gw-bento>.gw-pc:hover{transform:transl
 .gw-syn small{display:block;margin-top:8px;font:500 14px/1 'Pretendard',sans-serif;letter-spacing:0;opacity:.75}
 .gw-syn .la{left:3%;width:34%}.gw-syn .lb{right:3%;width:34%}
 .gw-syn .lc{left:50%;transform:translate(-50%,-50%);font:700 15px/1.3 'Pretendard',sans-serif;color:#00553d}
-.gw-sub .gw-syn i.g,.index .swiper-slide-active .gw-syn i.g{animation:gwL 1.6s var(--gw-e) both}
-.gw-sub .gw-syn i.w,.index .swiper-slide-active .gw-syn i.w{animation:gwR 1.6s var(--gw-e) both}
+.gw-sub .gw-syn i.g,.index :is(.swiper-slide-active,.is-in:not(.sec_slide)) .gw-syn i.g{animation:gwL 1.6s var(--gw-e) both}
+.gw-sub .gw-syn i.w,.index :is(.swiper-slide-active,.is-in:not(.sec_slide)) .gw-syn i.w{animation:gwR 1.6s var(--gw-e) both}
 @keyframes gwL{from{transform:translateX(-22%)}to{transform:none}}@keyframes gwR{from{transform:translateX(22%)}to{transform:none}}
 .index .cont02 .gw-syn i.g{border-color:#9fdcc2;background:#9fdcc233}.index .cont02 .gw-syn i.w{border-color:#9db8ff;background:#9db8ff2e}
 .index .cont02 .gw-syn span,.index .cont02 .gw-syn .lc{color:#fff}
@@ -199,3 +199,50 @@ html.gw-anim .index .swiper-slide-active .gw-bento>.gw-pc:hover{transform:transl
 .gw-products .lead,.gw-sub .lead{font-size:16px}
 }
 @media(prefers-reduced-motion:reduce){html.gw-anim .index :is(.gw-in>*,.title,.gw-sy>*,.cont02 button,.gw-bento>.gw-pc,.gw-note,.gw-pt>*,.gw-ty>div,.cont03 li,.cont05 h1){opacity:1!important;transform:none!important;transition:none!important}.gw-syn i{animation:none!important}.gw-prog{display:none}.gw-pc,.gw-pgrid .gw-pc{transition:none}}
+
+/* ===== 자연 스크롤 모드(메인) : 풀페이지 대신 일반 스크롤 + 겹쳐 올라오는 섹션 ===== */
+html.gw-flowmode,html.gw-flowmode body{height:auto}
+html.gw-flowmode body{overflow-x:hidden}
+.gw-flow{width:100%;height:auto}
+.gw-flow .gw-wrap{display:block}
+.gw-flow section.gw-sec{position:relative;width:100%;height:auto;min-height:100svh;overflow:hidden}
+.gw-flow section.sec_slide{height:100svh;min-height:600px;overflow:hidden}
+.gw-flow section[class*="cont0"]{padding:116px 0 96px}
+.gw-flow section.gw-sec~section.gw-sec{margin-top:-30px;border-radius:30px 30px 0 0;box-shadow:0 -18px 40px #0a225014}
+.gw-flow .sec_slide{--gw-p:0}
+.gw-flow .sec_slide .gw-in{transform:translate3d(0,calc(var(--gw-p)*-48px),0);opacity:calc(1 - var(--gw-p)*1.15);will-change:transform,opacity}
+.gw-flow .gw-fig{transform:translate3d(0,calc(var(--gw-p)*34px),0) scale(calc(1 - var(--gw-p)*.06))}
+.gw-flow .cont04 .gw-pt h1{font-size:clamp(26px,3.6vw,52px);line-height:1.25}
+.gw-flow .cont05 h1.gw-en{font-family:'Bricolage Grotesque','Pretendard',sans-serif;font-size:clamp(20px,2.6vw,34px);font-weight:700;letter-spacing:-.02em;opacity:.8}
+html.gw-flowmode footer,html.gw-flowmode footer.foot_main{position:relative;bottom:auto;left:auto;z-index:2}
+.gw-dots{position:fixed;right:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:60;color:var(--gw-g);transition:color .3s}
+.gw-dots.dark{color:#fff}
+.gw-dots button{width:10px;height:10px;max-width:none;padding:0;border:1.5px solid currentColor;border-radius:99px;background:transparent;cursor:pointer;transition:height .35s,background .35s,opacity .3s;opacity:.6;position:relative}
+.gw-dots button:hover{background:transparent;opacity:1}
+.gw-dots button.on{height:28px;background:currentColor;opacity:1}
+.gw-dots button:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+.gw-dots button span{position:absolute;right:20px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:12px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .2s}
+.gw-dots button:hover span,.gw-dots button:focus-visible span{opacity:1}
+.gw-progress{position:fixed;left:0;top:0;width:100%;height:3px;background:var(--gw-g);transform-origin:0 50%;transform:scaleX(0);z-index:1100;pointer-events:none}
+.side_menu{z-index:60}
+@media(max-width:812px){
+ .gw-flow section[class*="cont0"]{padding:96px 0 72px}
+ .gw-flow section.gw-sec~section.gw-sec{margin-top:-22px;border-radius:22px 22px 0 0}
+ .gw-dots{right:8px;gap:10px}.gw-dots button span{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+ .gw-flow .sec_slide .gw-in,.gw-flow .gw-fig{transform:none!important;opacity:1!important}
+}
+/* 보정: 버튼형 카드 폭, 좁은 PC 화면 좌우 여백, 점 내비 가독성 */
+.gw-pc{max-width:none;width:auto}
+.gw-flow :is(.title.inner,.cont02>.inner,.cont03>.inner,.cont04>.inner){padding-left:max(24px,4vw);padding-right:max(24px,4vw);box-sizing:border-box}
+.gw-flow .cont01 .title.inner{width:min(1380px,100%)}
+.gw-sub .inner{padding-left:max(24px,3vw);padding-right:max(24px,3vw);box-sizing:border-box}
+.gw-flow section.cont05{min-height:70svh}
+.gw-flow .cont04 .gw-pt h1{font-size:clamp(24px,3vw,44px)}
+.gw-dots button{border-width:2px;opacity:.75}
+.gw-dots:not(.dark) button{background:#ffffffb0}
+.gw-dots:not(.dark) button.on{background:currentColor}
+/* 스크롤 시 헤더 배경(본문과 겹침 방지) */
+html.gw-flowmode #header.gw-solid:before{opacity:1;background:#ffffffe6;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 #00553d14}
+html.gw-flowmode #header.gw-solid.dark:before{background:#0a2250d9;box-shadow:none}

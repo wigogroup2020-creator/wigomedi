@@ -4,17 +4,17 @@ require_once G5_LIB_PATH . '/product.lib.php';
 include_once(G5_PATH.'/newbex_head.php');
 $gw_home_cards = wigo_prod_home_cards();
 ?>
-    <script>document.documentElement.classList.add("gw-anim");</script>
-    <main class="swiper fpSwiper index">
-        <div class="swiper-wrapper">
-            <section class="sec_slide swiper swiper-slide" aria-label="GROBio × WIGO 소개">
+    <script>document.documentElement.classList.add("gw-anim","gw-flowmode");</script>
+    <main class="index gw-flow">
+        <div class="gw-wrap">
+            <section class="sec_slide swiper gw-sec" id="top" data-label="소개" aria-label="GROBio × WIGO 소개">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide gw">
                         <div class="gw-in">
                             <div>
-                                <h1>기술에서 시작해,<em>일상까지.</em></h1>
-                                <p>그로바이오의 바이오 뷰티 기술과 위고의 유통·플랫폼이 만났습니다. 두피, 피부, 뷰티기기까지 다음 단계를 함께 만듭니다.</p>
-                                <div class="gw-acts"><a class="gw-b" href="#products" data-go="2">제품 보기</a><a class="gw-b out" href="/pages/m11.html">우리 이야기</a></div>
+                                <h1>기술에서 일상까지,<em>그로바이오 × 위고.</em></h1>
+                                <p>그로바이오의 연구·제조 역량과 위고의 유통·플랫폼 역량을 하나로 연결해, 두피·피부 케어 제품을 고객의 일상까지 전달합니다.</p>
+                                <div class="gw-acts"><a class="gw-b" href="#products">제품 보기</a><a class="gw-b out" href="/pages/m11.html">회사소개</a></div>
                             </div>
                             <div class="gw-fig">
                                 <div class="gw-disc"><img src="/img/grobio/building.jpg" alt="그로바이오 사옥 전경" width="1200" height="1025"></div>
@@ -26,9 +26,9 @@ $gw_home_cards = wigo_prod_home_cards();
                     <div class="swiper-slide gw">
                         <div class="gw-in one">
                             <div>
-                                <h1>더 나은 뷰티를 위한<em>세 가지 연결.</em></h1>
+                                <h1>그로바이오가 보유한<em>세 가지 핵심 기술.</em></h1>
                                 <div class="gw-tl">
-                                    <div><b>마이크로니들</b><span>유효 성분이 피부에 닿는 방식을 연구하는 핵심 전달 기술입니다.</span></div>
+                                    <div><b>마이크로니들</b><span>유효 성분이 피부에 전달되는 방식을 연구하는 핵심 전달 기술입니다.</span></div>
                                     <div><b>바이오 앰플</b><span>자체 생산 시설에서 직접 제조하고 품질을 관리합니다.</span></div>
                                     <div><b>바이오 원료</b><span>프리미엄 성분을 적용한 제품 개발 역량을 갖추고 있습니다.</span></div>
                                 </div>
@@ -39,7 +39,7 @@ $gw_home_cards = wigo_prod_home_cards();
                         <div class="gw-in one">
                             <div>
                                 <h1>그로바이오 제품과<em>위고 제휴제품.</em></h1>
-                                <p>직접 만드는 그로바이오 제품과 위고가 연결하는 파트너 제품을 구분해서 소개합니다.</p>
+                                <p>직접 개발·제조하는 그로바이오 제품과 위고가 공급하는 제휴제품을 구분해 소개합니다.</p>
                                 <div class="gw-acts"><a class="gw-b" href="/pages/m21.html">그로바이오 제품</a><a class="gw-b out" href="/pages/m22.html">제휴제품</a></div>
                             </div>
                         </div>
@@ -48,19 +48,19 @@ $gw_home_cards = wigo_prod_home_cards();
                 <div class="gw-track" aria-hidden="true"><i class="gw-prog"></i></div>
                 <button class="hero-playback" type="button" aria-pressed="false">슬라이드 일시정지</button>
             </section>
-            <section class="cont02 swiper-slide">
+            <section class="cont02 gw-sec" id="about" data-label="기업소개" data-dark="1">
                 <div class="inner">
                     <div class="title">
                         <span class="sub_title">About us</span>
-                        <h1>만드는 곳과 연결하는 곳,<br>함께 커지는 시너지.</h1>
+                        <h1>개발·제조의 그로바이오,<br>유통·플랫폼의 위고.</h1>
                     </div>
                     <div class="gw-sy">
-                        <div class="gw-syn" role="img" aria-label="그로바이오와 위고가 겹쳐 함께 성장합니다"><i class="g"></i><i class="w"></i><span class="la">GROBio<small>만든다</small></span><span class="lb">WIGO<small>연결한다</small></span><span class="lc">함께<br>성장</span></div>
+                        <div class="gw-syn" role="img" aria-label="그로바이오와 위고가 겹쳐 함께 성장합니다"><i class="g"></i><i class="w"></i><span class="la">GROBio<small>개발·제조</small></span><span class="lb">WIGO<small>유통·플랫폼</small></span><span class="lc">함께<br>성장</span></div>
                         <div>
                             <ol class="gw-steps">
-                                <li><b>그로바이오가 개발하고 제조합니다</b><span>제품 개발·제조·품질, 브랜드와 기술</span></li>
-                                <li><b>위고가 시장과 고객에게 연결합니다</b><span>지역 유통·온라인 플랫폼·주문 운영</span></li>
-                                <li><b>현장의 반응이 다시 제품이 됩니다</b><span>판매 현장의 목소리를 개발에 되돌려 함께 성장</span></li>
+                                <li><b>그로바이오가 개발하고 제조합니다</b><span>제품 개발과 제조, 품질 관리, 브랜드와 핵심 기술</span></li>
+                                <li><b>위고가 시장과 고객에게 공급합니다</b><span>지역 유통, 온라인 플랫폼, 주문·운영 관리</span></li>
+                                <li><b>현장의 의견을 다시 개발에 반영합니다</b><span>고객과 파트너의 의견을 제품 개선으로 연결합니다</span></li>
                             </ol>
                             <div class="gw-lm"><a href="/pages/m12.html"><b>그로바이오 공장</b> 대전 유성구 테크노2로 310-7</a><a href="/pages/m12.html"><b>위고 사무실</b> 대전 서구 둔산중로 19, 샤크존 2층</a></div>
                         </div>
@@ -68,7 +68,7 @@ $gw_home_cards = wigo_prod_home_cards();
                     <button onclick="location.href='/pages/m11.html'">자세히 보기</button>
                 </div>
             </section>
-            <section class="cont01 swiper-slide" id="products">
+            <section class="cont01 gw-sec" id="products" data-label="제품">
                 <div class="title inner">
                     <span class="sub_title">Product</span>
                     <h1>그로바이오 제품과 위고 제휴제품</h1>
@@ -80,17 +80,17 @@ $gw_home_cards = wigo_prod_home_cards();
                 <?php } ?>
                 <p class="gw-note"><a href="/pages/m21.html">그로바이오 제품 전체 보기</a> · <a href="/pages/m22.html">제휴제품 전체 보기</a></p>
             </section>
-            <section class="cont04 swiper-slide">
+            <section class="cont04 gw-sec" id="partner" data-label="파트너 문의" data-dark="1">
                 <div class="inner gw-pt">
                     <div>
-                        <h1>좋은 제품의 가치를,<br>더 넓은 시장으로.</h1>
-                        <p>그로바이오의 제품과 위고의 플랫폼을 잇는 총판·유통 파트너를 모집합니다.</p>
-                        <button onclick="location.href='/pages/m41.html'">총판·파트너 문의하기</button>
+                        <h1>가맹·대리점부터 지역 파트너까지,<br>그로바이오·위고와 함께 성장하세요.</h1>
+                        <p>그로바이오 제품과 위고 제휴제품의 총판·대리점 도입을 상담합니다.</p>
+                        <button onclick="location.href='/pages/m41.html'">문의하기</button>
                     </div>
-                    <div class="gw-ty"><div><b>광역총판</b><span>지역 유통망 구축과 사업 확장을 함께할 파트너</span></div><div><b>대리점</b><span>제품 판매와 고객 접점을 함께 넓혀갈 파트너</span></div><div><b>제품·판매 제휴</b><span>온라인 판매와 제품 공급 등 새로운 협력을 제안할 파트너</span></div></div>
+                    <div class="gw-ty"><div><b>광역총판</b><span>지역 단위 유통망을 구축하고 판매를 확대할 파트너</span></div><div><b>대리점</b><span>제품 판매와 고객 접점을 넓혀 갈 파트너</span></div><div><b>제품·판매 제휴</b><span>온라인 판매와 제품 공급 등 협력을 제안하는 파트너</span></div></div>
                 </div>
             </section>
-            <section class="cont03 swiper-slide">
+            <section class="cont03 gw-sec" id="customer" data-label="공지·자료">
                 <div class="inner">
                     <div class="title">
                         <span class="sub_title">Customer</span>
@@ -104,14 +104,15 @@ $gw_home_cards = wigo_prod_home_cards();
                     </ul>
                 </div>
             </section>
-            <section class="cont05 swiper-slide">
+            <section class="cont05 gw-sec" id="closing" data-label="마무리" data-dark="1">
                 <div class="inner">
-                    <h1>기술과 상생을 연결하다.</h1>
-                    <h1>함께 만드는 뷰티의 다음.</h1>
+                    <h1>기술부터 일상까지, 그로바이오.</h1>
+                    <h1 class="gw-en">We Grow Together with WIGO</h1>
                 </div>
             </section>
         </div>
-        <div class="swiper-pagination"></div>
+        <div class="gw-dots" role="group" aria-label="섹션 이동"></div>
+        <div class="gw-progress" aria-hidden="true"></div>
         <div class="side_menu">
             <a class="top_btn_index" href="#" aria-label="맨 위로">
                 <img src="/img/common/top_btn.png" alt="top_btn">
