@@ -1,0 +1,165 @@
+<?php
+if (!defined('_GNUBOARD_')) exit;
+
+/*
+ * 홈페이지 PRODUCT 카드 (GROBio × WIGO)
+ * 기존 제품관리(p_product) 테이블을 그대로 읽습니다. 새 테이블·컬럼은 만들지 않습니다.
+ *
+ *  - 그로바이오 제품 : product_kind = '그로바이오'
+ *  - 제휴제품       : product_kind = '제휴제품' 또는 기존 'HIFU+LDM'(ALLVIS)
+ *  - Newbex / ReviveCell 은 홈페이지 PRODUCT에 표시하지 않습니다(DB 데이터는 그대로 보관).
+ *
+ * 해당 구분에 등록된 행이 하나도 없으면 아래 기본 카드를 보여줍니다.
+ * 관리자 > 제품관리 > "기본 카드 등록"을 누르면 기본 카드가 DB에 들어가 수정할 수 있습니다.
+ */
+
+function wigo_prod_e($value)
+{
+    return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
+}
+
+function wigo_prod_groups()
+{
+    return array(
+        'grobio'  => array('label' => '그로바이오', 'kinds' => array('그로바이오')),
+        'partner' => array('label' => '제휴제품',   'kinds' => array('제휴제품', 'HIFU+LDM')),
+    );
+}
+
+function wigo_prod_in_clause($group)
+{
+    $groups = wigo_prod_groups();
+    if (!isset($groups[$group])) return "''";
+    $quoted = array();
+    foreach ($groups[$group]['kinds'] as $kind) $quoted[] = "'" . sql_real_escape_string($kind) . "'";
+    return implode(',', $quoted);
+}
+
+/* 기본 카드: 사업계획서 기준 제품군. 확인되지 않은 효능·인증·수치·가격은 넣지 않습니다. */
+function wigo_prod_defaults($group)
+{
+    if ($group === 'grobio') {
+        return array(
+            array('kind' => '그로바이오', 'name' => '슈가그로우', 'info' => '프리미엄 두피·헤어케어 전문 솔루션',
+                  'content' => '<p>그로바이오의 두피·헤어케어 브랜드입니다.</p><p>제품 구성과 사용 방법, 출시 일정은 확정되는 대로 안내합니다. 도입 상담은 문의하기로 남겨 주세요.</p>'),
+            array('kind' => '그로바이오', 'name' => '슈가페이스', 'info' => '프리미엄 페이셜·스킨케어 라인',
+                  'content' => '<p>그로바이오의 페이셜·스킨케어 브랜드입니다.</p><p>제품 구성과 사용 방법, 출시 일정은 확정되는 대로 안내합니다. 도입 상담은 문의하기로 남겨 주세요.</p>'),
+            array('kind' => '그로바이오', 'name' => '슈가리젠', 'info' => '플래그십 2PC 셀프케어 앰플',
+                  'content' => '<p>그로바이오가 직접 제조하는 셀프케어 앰플 라인의 플래그십 제품입니다.</p><p>구성·사용법·판매 조건은 최종 확정 후 안내합니다. 도입 상담은 문의하기로 남겨 주세요.</p>'),
+            array('kind' => '그로바이오', 'name' => '그로바이오 웰니스', 'info' => '이너 웰니스 제품군 · 출시 준비 중',
+                  'content' => '<p>이너 웰니스 제품군을 준비하고 있습니다.</p><p>제품 구성과 출시 일정은 관련 기준 검토를 마친 뒤 안내합니다.</p>'),
+        );
+    }
+    if ($group === 'partner') {
+        return array(
+            array('kind' => '제휴제품', 'name' => 'ALLVIS 올비스', 'info' => 'HIFU & LDM 관리 기기',
+                  'content' => '<p>매장 관리 프로그램을 위한 HIFU &amp; LDM 기기입니다. 제품 구성과 사용 방법, 도입 조건은 상담을 통해 안내합니다.</p>'
+                             . '<p><a href="/img/file/올비스_카달로그(국문).pdf" download>카탈로그 · 국문 다운로드</a><br><a href="/img/file/올비스_카달로그(영문).pdf" download>카탈로그 · 영문 다운로드</a></p>'),
+        );
+    }
+    return array();
+}
+
+function wigo_prod_count($group)
+{
+    $in = wigo_prod_in_clause($group);
+    $row = sql_fetch("SELECT COUNT(*) AS cnt FROM p_product WHERE product_kind IN ($in)", false);
+    return is_array($row) && isset($row['cnt']) ? (int) $row['cnt'] : 0;
+}
+
+function wigo_prod_image_url($file)
+{
+    // 업로드 파일명은 날짜+숫자+확장자 형태입니다. 그 밖의 값은 사용하지 않습니다.
+    if (!is_string($file) || $file === '' || !preg_match('/^[0-9A-Za-z._+-]{1,120}$/D', $file) || strpos($file, '..') !== false) return '';
+    return G5_DATA_URL . '/product/' . rawurlencode($file);
+}
+
+/* 카드 목록. $group = 'grobio' | 'partner' */
+function wigo_prod_cards($group, $limit = 0)
+{
+    $cards = array();
+    $groups = wigo_prod_groups();
+    if (!isset($groups[$group])) return $cards;
+    $in = wigo_prod_in_clause($group);
+    $result = sql_query("SELECT product_no, product_kind, product_subject, product_info, product_file FROM p_product WHERE use_yn = 'y' AND product_kind IN ($in) ORDER BY product_no ASC", false);
+    while ($result && ($row = sql_fetch_array($result))) {
+        $cards[] = array(
+            'no'    => (int) $row['product_no'],
+            'group' => $group,
+            'kind'  => $groups[$group]['label'],
+            'name'  => $row['product_subject'],
+            'info'  => $row['product_info'],
+            'img'   => wigo_prod_image_url($row['product_file']),
+            'href'  => '/pages/m21_view.html?product_no=' . (int) $row['product_no'],
+            'desc'  => '',
+        );
+    }
+    if (!$cards && wigo_prod_count($group) === 0) {
+        foreach (wigo_prod_defaults($group) as $d) {
+            $cards[] = array('no' => 0, 'group' => $group, 'kind' => $groups[$group]['label'], 'name' => $d['name'], 'info' => $d['info'],
+                             'img' => '', 'href' => '', 'desc' => trim(strip_tags($d['content'])));
+        }
+    }
+    return ($limit > 0) ? array_slice($cards, 0, $limit) : $cards;
+}
+
+/* 홈: 그로바이오 최대 4개 + 제휴제품 최대 2개 */
+function wigo_prod_home_cards()
+{
+    return array_merge(wigo_prod_cards('grobio', 4), wigo_prod_cards('partner', 2));
+}
+
+/* 카드 1장. DB 제품은 상세 페이지로, 기본 카드는 안내 팝업으로 연결합니다. */
+function wigo_prod_card_html($card, $index)
+{
+    $tone = 'c' . (($index % 5) + 1);
+    $img = $card['img'] !== '' ? '<img class="ph" src="' . wigo_prod_e($card['img']) . '" alt="" loading="lazy">' : '';
+    $cls = 'gw-pc ' . $tone . ($img !== '' ? ' has-img' : '');
+    $inner = $img
+        . '<span class="k">' . wigo_prod_e($card['kind']) . '</span>'
+        . '<span class="m">' . wigo_prod_e($card['name']) . '</span>'
+        . '<span class="i">' . wigo_prod_e($card['info']) . '</span>';
+    if ($card['href'] !== '') {
+        return '<a class="' . $cls . '" href="' . wigo_prod_e($card['href']) . '">' . $inner . '</a>';
+    }
+    return '<button type="button" class="' . $cls . '" data-t="' . wigo_prod_e($card['name']) . '" data-d="' . wigo_prod_e($card['desc']) . '">' . $inner . '</button>';
+}
+
+/* 관리자: 기본 카드를 p_product에 등록(해당 구분이 비어 있을 때만). 등록한 개수를 돌려줍니다. */
+function wigo_prod_seed()
+{
+    global $member;
+    $added = 0;
+    $reg = sql_real_escape_string(isset($member['mb_id']) ? $member['mb_id'] : '');
+    foreach (array('grobio', 'partner') as $group) {
+        if (wigo_prod_count($group) > 0) continue;
+        foreach (wigo_prod_defaults($group) as $d) {
+            $sql = "INSERT INTO p_product SET
+                product_kind = '" . sql_real_escape_string($d['kind']) . "',
+                use_yn = 'y',
+                product_info = '" . sql_real_escape_string($d['info']) . "',
+                product_subject = '" . sql_real_escape_string($d['name']) . "',
+                product_content = '" . sql_real_escape_string($d['content']) . "',
+                product_price = '0', product_price_member = '0', product_price_sales = '0', product_price_branch = '0', product_price_chong = '0',
+                product_file = '',
+                reg_mb_id = '$reg',
+                reg_datetime = '" . G5_TIME_YMDHIS . "'";
+            if (sql_query($sql, false)) $added++;
+        }
+    }
+    return $added;
+}
+
+/* 기본 카드(DB에 없는 카드) 안내 팝업 + 동작 스크립트 */
+function wigo_prod_dialog_html()
+{
+    return '<dialog id="gwDlg" class="gw-dlg"><div><div class="gw-dh"><h2 id="gwT"></h2><button type="button" class="gw-x2" aria-label="닫기">×</button></div>'
+        . '<p id="gwD"></p><div class="gw-dn">제품 공급 및 유통 상담은 위고로 문의해 주세요.</div>'
+        . '<div class="gw-acts"><a class="gw-b" href="tel:15553336">전화 문의</a><a class="gw-b out" href="/pages/m41.html">온라인 문의</a></div></div></dialog>'
+        . '<script>(function(){var d=document.getElementById("gwDlg");if(!d||!d.showModal)return;'
+        . 'document.querySelectorAll("button.gw-pc").forEach(function(b){b.addEventListener("click",function(){'
+        . 'document.getElementById("gwT").textContent=b.dataset.t;document.getElementById("gwD").textContent=b.dataset.d;d.showModal();});});'
+        . 'd.querySelector(".gw-x2").addEventListener("click",function(){d.close();});'
+        . 'd.addEventListener("click",function(e){var r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();});'
+        . '})();</script>';
+}

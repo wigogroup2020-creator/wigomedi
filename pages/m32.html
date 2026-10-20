@@ -35,7 +35,7 @@ include_once(G5_PATH.'/newbex_head.php');
 					$result = sql_query($sql, false);
 					
 					while($result && ($row=sql_fetch_array($result))){
-                        if (!preg_match('/88\s*lion|88라이온|allvis|올비스/iu', $row['notice_subject']) || preg_match('/newbex|뉴벡스|revive[ _-]*cell|리바이브셀/iu', $row['notice_subject'])) continue;
+                        if (!preg_match('/grobio|그로바이오|wigo|위고|sugar|슈가|88\s*lion|88라이온|allvis|올비스/iu', $row['notice_subject']) || preg_match('/newbex|뉴벡스|revive[ _-]*cell|리바이브셀/iu', $row['notice_subject'])) continue;
 						$notice_no = $row['notice_no'];	// 상세보기 할때 이거 넘기면 됨
 						// 내용은 $row['notice_content'];
 					?>

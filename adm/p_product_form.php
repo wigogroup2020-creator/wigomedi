@@ -28,9 +28,11 @@ require_once './admin.head.php';
                     <th scope="row">분류</th>
                     <td>
                         <select name="product_kind">
-							<option value="Newbex" <?php if($result['product_kind'] == "Newbex") echo "selected";?>>Newbex</option>
-							<option value="HIFU+LDM" <?php if($result['product_kind'] == "HIFU+LDM") echo "selected";?>>HIFU+LDM</option>
-							<option value="ReviveCell" <?php if($result['product_kind'] == "ReviveCell") echo "selected";?>>ReviveCell</option>
+							<option value="그로바이오" <?php if($result['product_kind'] == "그로바이오") echo "selected";?>>그로바이오 (홈페이지 PRODUCT 표시)</option>
+							<option value="제휴제품" <?php if($result['product_kind'] == "제휴제품") echo "selected";?>>제휴제품 (홈페이지 PRODUCT 표시)</option>
+							<option value="Newbex" <?php if($result['product_kind'] == "Newbex") echo "selected";?>>Newbex (기존 · 홈페이지 미표시)</option>
+							<option value="HIFU+LDM" <?php if($result['product_kind'] == "HIFU+LDM") echo "selected";?>>HIFU+LDM (제휴제품에 함께 표시)</option>
+							<option value="ReviveCell" <?php if($result['product_kind'] == "ReviveCell") echo "selected";?>>ReviveCell (기존 · 홈페이지 미표시)</option>
 						</select>
                     </td>
                 </tr>

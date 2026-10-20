@@ -27,11 +27,9 @@ $(function () {
     function initSwiper() {
         if (mySwiper == undefined) {
         mySwiper = new Swiper(".fpSwiper", {
-            speed: 500,
+            speed: 1100,
             direction: "vertical",
-            mousewheel: {
-            releaseOnEdges: true,
-            },
+            mousewheel:{releaseOnEdges:true,thresholdDelta:6,thresholdTime:900,sensitivity:.8},
             pagination: {
             el: ".swiper-pagination",
             clickable: true,
@@ -47,7 +45,7 @@ $(function () {
                 hideFooterAndResetSwiper();
                 }
 
-                if ([1, 3].includes(currentIndex)) {
+                if ([1, 3, 5].includes(currentIndex)) {
                 header.classList.add("dark");
                 pagination.classList.add("dark");
                 } else {
@@ -133,11 +131,11 @@ $(function () {
 
 // sec_slide
 var swiper = document.querySelector(".sec_slide") ? new Swiper(".sec_slide", {
-    speed: 1000,
-    loop: true, // 슬라이드 반복 여부
+    speed:1400,effect:"fade",fadeEffect:{crossFade:true},loop:true,
+    on:{autoplayTimeLeft:function(s,t,p){var b=document.querySelector(".gw-prog");if(b)b.style.transform="scaleX("+(1-p)+")";}},
     spaceBetween: 0, //슬라이드 오른쪽 마진
     autoplay:{  //자동슬라이드 (false-비활성화)
-        delay: 4000, // 시간 설정
+        delay: 5500, // 시간 설정
         disableOnInteraction: false  // false-스와이프 후 자동 재생
     }
 }) : null;
@@ -285,3 +283,6 @@ $(function () {
         if (event.key === 'Escape' && $('.btnMenu').hasClass('openmenu')) $('.btnMenu').trigger('click').focus();
     });
 });
+
+// Swiper가 없으면 순차 등장 효과를 끄고 내용을 그대로 보여줍니다.
+if (typeof Swiper === "undefined") document.documentElement.classList.remove("gw-anim");

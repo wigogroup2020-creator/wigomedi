@@ -6,38 +6,39 @@
 <?php
 $currentPage = basename($_SERVER['SCRIPT_NAME']);
 $brandMeta = array(
-    'm11.html' => array('회사소개 | 88LION 88라이온', '88LION을 운영하는 주식회사 위고를 소개합니다. 두피·뷰티 케어 제품과 ALLVIS 관리 기기를 통해 고객과 파트너를 연결합니다.'),
-    'm21.html' => array('88LION 제품 소개 | 두피·뷰티 케어', '88LION 두피·뷰티 케어 제품과 홈케어를 소개합니다. 제품 구성과 사용 안내, 관리 프로그램 및 도입 상담을 확인하세요.'),
-    'm22.html' => array('ALLVIS 올비스 | HIFU & LDM 관리 기기', 'ALLVIS HIFU & LDM 관리 기기를 소개합니다. 제품 구성과 사용 안내, 매장 도입 상담을 확인하세요.'),
-    'stores.html' => array('88LION 매장안내 | 88라이온', '88LION을 만나볼 수 있는 매장을 안내합니다. 매장 사진과 위치를 확인하고 네이버 지도로 방문 정보를 확인하세요.'),
-    'm41.html' => array('제품 및 파트너 문의 | 88LION', '88LION 제품, ALLVIS 기기, 가맹·대리점 및 총판 도입을 상담합니다. 주식회사 위고에 문의해 주세요.'),
-    'm31.html' => array('공지사항 | 88LION', '88LION과 ALLVIS의 새로운 소식을 안내합니다.'),
-    'm32.html' => array('자료실 | 88LION', '88LION 제품과 ALLVIS 관리 기기의 자료를 확인하세요.')
+    'm11.html' => array('기업소개 | GROBio × WIGO', '제품을 만드는 그로바이오와 시장·고객에게 연결하는 위고가 함께 성장하는 방식을 소개합니다.'),
+    'm12.html' => array('오시는 길 | GROBio × WIGO', '그로바이오 공장(대전 유성구 테크노2로)과 위고 사무실(대전 서구 둔산중로) 위치와 연락처를 안내합니다.'),
+    'm21.html' => array('그로바이오 제품 | GROBio × WIGO', '마이크로니들과 바이오 앰플 기술을 바탕으로 한 그로바이오의 두피·피부·웰니스 제품을 소개합니다.'),
+    'm22.html' => array('제휴제품 | GROBio × WIGO', '위고가 판매와 유통으로 연결하는 제휴제품을 소개합니다.'),
+    'stores.html' => array('매장안내 | GROBio × WIGO', '제품을 만나볼 수 있는 매장을 안내합니다. 매장 사진과 위치를 확인하고 네이버 지도로 방문 정보를 확인하세요.'),
+    'm41.html' => array('제품 및 파트너 문의 | GROBio × WIGO', '그로바이오 제품, 제휴제품, 가맹·대리점 및 총판 도입을 상담합니다. 주식회사 위고에 문의해 주세요.'),
+    'm31.html' => array('공지사항 | GROBio × WIGO', '그로바이오와 위고의 새로운 소식을 안내합니다.'),
+    'm32.html' => array('자료실 | GROBio × WIGO', '그로바이오와 위고의 제품 소개·안내 자료를 확인하세요.')
 );
-$brandPage = isset($brandMeta[$currentPage]) ? $brandMeta[$currentPage] : array('88LION 88라이온 | 두피·뷰티 케어와 ALLVIS', '88LION 공식 홈페이지입니다. 두피·뷰티 케어 제품과 홈케어, ALLVIS HIFU & LDM 기기를 소개합니다. 제품 도입과 가맹·대리점 상담을 안내합니다.');
+$brandPage = isset($brandMeta[$currentPage]) ? $brandMeta[$currentPage] : array('GROBio × WIGO | 바이오 뷰티의 다음', '그로바이오의 바이오 뷰티 기술과 위고의 유통·플랫폼을 소개합니다. 두피, 피부, 뷰티기기 제품과 총판·파트너 상담을 안내합니다.');
 $brandPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $brandUrl = rtrim(G5_URL, '/') . (($brandPath === '/index.html') ? '/' : $brandPath);
 ?>
     <title><?php echo htmlspecialchars($brandPage[0], ENT_QUOTES, 'UTF-8'); ?></title>
     <meta name="naver-site-verification" content="60cef302f92d4d6100019aea5e2766764e8afd2a" />
     <meta name="description" content="<?php echo htmlspecialchars($brandPage[1], ENT_QUOTES, 'UTF-8'); ?>">
-    <meta name="keywords" content="88LION, 88라이온, 두피관리, 뷰티 케어, 홈케어, ALLVIS, 올비스, HIFU, LDM, 주식회사 위고">
+    <meta name="keywords" content="GROBio, 그로바이오, WIGO, 위고, 슈가그로우, 슈가페이스, 슈가리젠, 마이크로니들, 바이오 앰플, 총판 모집">
     <meta name="author" content="주식회사 위고">
     <link rel="canonical" href="<?php echo htmlspecialchars($brandUrl, ENT_QUOTES, 'UTF-8'); ?>">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="88LION">
-    <meta property="og:title" content="88LION 88라이온">
+    <meta property="og:site_name" content="GROBio × WIGO">
+    <meta property="og:title" content="GROBio × WIGO | 바이오 뷰티의 다음">
     <meta property="og:url" content="<?php echo htmlspecialchars($brandUrl, ENT_QUOTES, 'UTF-8'); ?>">
-    <meta property="og:image" content="<?php echo G5_URL; ?>/img/88lion/share.png">
+    <meta property="og:image" content="<?php echo G5_URL; ?>/img/grobio/share.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="88LION · 두피·뷰티 케어와 ALLVIS">
-    <meta property="og:description" content="두피·뷰티 케어부터 홈케어까지. 88LION 제품과 ALLVIS 관리 기기를 만나보세요.">
+    <meta property="og:image:alt" content="GROBio × WIGO">
+    <meta property="og:description" content="그로바이오의 바이오 뷰티 기술과 위고의 유통·플랫폼이 만났습니다.">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="88LION 88라이온">
-    <meta name="twitter:description" content="두피·뷰티 케어부터 홈케어까지. 88LION 제품과 ALLVIS 관리 기기를 만나보세요.">
-    <meta name="twitter:image" content="<?php echo G5_URL; ?>/img/88lion/share.png">
-    <link rel="icon" type="image/svg+xml" href="<?php echo G5_URL; ?>/img/88lion/favicon.svg">
+    <meta name="twitter:title" content="GROBio × WIGO | 바이오 뷰티의 다음">
+    <meta name="twitter:description" content="그로바이오의 바이오 뷰티 기술과 위고의 유통·플랫폼이 만났습니다.">
+    <meta name="twitter:image" content="<?php echo G5_URL; ?>/img/grobio/share.png">
+    <link rel="icon" type="image/svg+xml" href="<?php echo G5_URL; ?>/img/grobio/favicon.svg">
     <!-- css -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/swiper-bundle.min.css" />
@@ -52,12 +53,15 @@ $brandUrl = rtrim(G5_URL, '/') . (($brandPath === '/index.html') ? '/' : $brandP
 	}
 	?>
     <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/brand-88lion.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-wigo.css?v=1">
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
         <header id="header">
 		<div class="head">
-			<h1><a class="brand-wordmark" href="/" aria-label="88LION 88라이온 홈"><img class="brand-logo brand-logo-primary" src="<?php echo G5_URL; ?>/img/88lion/logo.svg" alt="88LION 88라이온" width="150" height="45"><img class="brand-logo brand-logo-inverse" src="<?php echo G5_URL; ?>/img/88lion/logo-white.svg" alt="" aria-hidden="true" width="150" height="45"></a></h1>
+			<h1><a class="brand-wordmark" href="/" aria-label="GROBio × WIGO 홈"><img class="brand-logo brand-logo-primary" src="<?php echo G5_URL; ?>/img/grobio/logo.png" alt="GROBio" width="121" height="46"><img class="brand-logo brand-logo-inverse" src="<?php echo G5_URL; ?>/img/grobio/logo-white.png" alt="" aria-hidden="true" width="121" height="46"><span class="gw-x">× WIGO</span></a></h1>
 			<div class="pcNav">
 				<ul>
 					<li><a href="<?php echo G5_URL;?>/pages/m11.html">ABOUT US</a>
@@ -69,8 +73,8 @@ $brandUrl = rtrim(G5_URL, '/') . (($brandPath === '/index.html') ? '/' : $brandP
 					</li>
 					<li><a href="<?php echo G5_URL;?>/pages/m21.html">PRODUCT</a>
 						<ul>
-							<li><a href="<?php echo G5_URL;?>/pages/m21.html">88LION</a></li>
-							<li><a href="<?php echo G5_URL;?>/pages/m22.html">ALLVIS</a></li>
+							<li><a href="<?php echo G5_URL;?>/pages/m21.html">그로바이오</a></li>
+							<li><a href="<?php echo G5_URL;?>/pages/m22.html">제휴제품</a></li>
 						</ul>
 					</li>
                     <li><a href="<?php echo G5_URL;?>/pages/stores.html">STORES</a><ul><li><a href="<?php echo G5_URL;?>/pages/stores.html">매장안내</a></li></ul></li>
@@ -124,7 +128,7 @@ $brandUrl = rtrim(G5_URL, '/') . (($brandPath === '/index.html') ? '/' : $brandP
 		<div class="allmenu" id="brand-allmenu">
 			<div class="allmenuwrap">
 				<div>
-					<div class="brand-menu-logo"><a href="/" aria-label="88LION 홈"><img src="<?php echo G5_URL; ?>/img/88lion/logo.svg" alt="88LION 88라이온" width="240" height="72"></a></div>
+					<div class="brand-menu-logo"><a href="/" aria-label="GROBio × WIGO 홈"><img src="<?php echo G5_URL; ?>/img/grobio/logo.png" alt="GROBio × WIGO" width="240" height="87"></a></div>
 					<ul>
                         <li><a>ABOUT US</a>
                             <ul>
@@ -135,8 +139,8 @@ $brandUrl = rtrim(G5_URL, '/') . (($brandPath === '/index.html') ? '/' : $brandP
                         </li>
                         <li><a>PRODUCT</a>
                             <ul>
-                                <li><a href="<?php echo G5_URL;?>/pages/m21.html">88LION</a></li>
-                                <li><a href="<?php echo G5_URL;?>/pages/m22.html">ALLVIS</a></li>
+                                <li><a href="<?php echo G5_URL;?>/pages/m21.html">그로바이오</a></li>
+                                <li><a href="<?php echo G5_URL;?>/pages/m22.html">제휴제품</a></li>
                             </ul>
                         </li>
                         <li><a href="<?php echo G5_URL;?>/pages/stores.html">STORES</a><ul><li><a href="<?php echo G5_URL;?>/pages/stores.html">매장안내</a></li></ul></li>

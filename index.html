@@ -1,90 +1,113 @@
 <?php
 require_once './_common.php';
+require_once G5_LIB_PATH . '/product.lib.php';
 include_once(G5_PATH.'/newbex_head.php');
+$gw_home_cards = wigo_prod_home_cards();
 ?>
+    <script>document.documentElement.classList.add("gw-anim");</script>
     <main class="swiper fpSwiper index">
         <div class="swiper-wrapper">
-            <section class="sec_slide swiper swiper-slide" aria-label="88LION 브랜드 소개">
+            <section class="sec_slide swiper swiper-slide" aria-label="GROBio × WIGO 소개">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide lion-hero lion-hero-primary">
-                        <div class="inner">
-                            <p class="hero-eyebrow">88LION · 88라이온</p>
-                            <h1>두피관리의 새로운 기준,<br>88LION.</h1>
-                            <span>프리미엄 두피관리부터 일상 속 홈케어까지.</span>
-                            <a class="brand-button" href="/pages/m21.html">88LION 만나보기 <span aria-hidden="true">↗</span></a>
-                        </div>
-                        <img class="hero-product" src="/img/88lion/scalp-care.webp" alt="88LION 프리미엄 두피관리 프로그램 안내" width="1055" height="1491">
-                    </div>
-                    <div class="swiper-slide lion-hero lion-hero-allvis">
-                        <div class="inner">
-                            <p class="hero-eyebrow">88LION × ALLVIS</p>
-                            <h1>매장과 일상을<br>연결하는 케어.</h1>
-                            <span>88LION 제품과 ALLVIS 기기로 이어가는 관리 루틴.</span>
-                            <a class="brand-button" href="/pages/m22.html">ALLVIS 알아보기 <span aria-hidden="true">↗</span></a>
+                    <div class="swiper-slide gw">
+                        <div class="gw-in">
+                            <div>
+                                <h1>기술에서 시작해,<em>일상까지.</em></h1>
+                                <p>그로바이오의 바이오 뷰티 기술과 위고의 유통·플랫폼이 만났습니다. 두피, 피부, 뷰티기기까지 다음 단계를 함께 만듭니다.</p>
+                                <div class="gw-acts"><a class="gw-b" href="#products" data-go="2">제품 보기</a><a class="gw-b out" href="/pages/m11.html">우리 이야기</a></div>
+                            </div>
+                            <div class="gw-fig">
+                                <div class="gw-disc"><img src="/img/grobio/building.jpg" alt="그로바이오 사옥 전경" width="1200" height="1025"></div>
+                                <svg viewBox="0 0 100 100" aria-hidden="true"><circle class="gw-rg" cx="50" cy="50" r="45" pathLength="100" transform="rotate(-23 50 50)"/><g class="gw-nd"><line x1="99" y1="1" x2="90" y2="10" stroke="#0a2250" stroke-width="7" stroke-linecap="round"/><line x1="90" y1="10" x2="84" y2="16" stroke="#0a2250" stroke-width="2.6" stroke-linecap="round"/></g></svg>
+                                <div class="gw-tag">대전 유성구 테크노2로</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="swiper-slide lion-hero lion-hero-partner">
-                        <div class="inner">
-                            <p class="hero-eyebrow">WE GROW TOGETHER</p>
-                            <h1>88LION과 함께하는<br>새로운 시작.</h1>
-                            <span>제품과 관리 프로그램으로 고객과 파트너를 연결합니다.</span>
-                            <a class="brand-button" href="/pages/m41.html">파트너 문의하기 <span aria-hidden="true">↗</span></a>
+                    <div class="swiper-slide gw">
+                        <div class="gw-in one">
+                            <div>
+                                <h1>더 나은 뷰티를 위한<em>세 가지 연결.</em></h1>
+                                <div class="gw-tl">
+                                    <div><b>마이크로니들</b><span>유효 성분이 피부에 닿는 방식을 연구하는 핵심 전달 기술입니다.</span></div>
+                                    <div><b>바이오 앰플</b><span>자체 생산 시설에서 직접 제조하고 품질을 관리합니다.</span></div>
+                                    <div><b>바이오 원료</b><span>프리미엄 성분을 적용한 제품 개발 역량을 갖추고 있습니다.</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide gw">
+                        <div class="gw-in one">
+                            <div>
+                                <h1>그로바이오 제품과<em>위고 제휴제품.</em></h1>
+                                <p>직접 만드는 그로바이오 제품과 위고가 연결하는 파트너 제품을 구분해서 소개합니다.</p>
+                                <div class="gw-acts"><a class="gw-b" href="/pages/m21.html">그로바이오 제품</a><a class="gw-b out" href="/pages/m22.html">제휴제품</a></div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="gw-track" aria-hidden="true"><i class="gw-prog"></i></div>
                 <button class="hero-playback" type="button" aria-pressed="false">슬라이드 일시정지</button>
             </section>
             <section class="cont02 swiper-slide">
                 <div class="inner">
                     <div class="title">
                         <span class="sub_title">About us</span>
-                        <h1>기업소개</h1>
+                        <h1>만드는 곳과 연결하는 곳,<br>함께 커지는 시너지.</h1>
                     </div>
-                    <div>
-                        <p class="brand-about-lead">위고는 88LION을 통해<br>고객과 파트너를 연결합니다.</p>
-                        <p>프리미엄 두피관리와 뷰티 케어, 일상 속 홈케어를 제안합니다.<br>제품과 관리 기기, 매장 운영을 연결하며 파트너와 함께 성장하는 기반을 만들어갑니다.</p>
-                        <button onclick="location.href='/pages/m11.html'">자세히 보기</button>
+                    <div class="gw-sy">
+                        <div class="gw-syn" role="img" aria-label="그로바이오와 위고가 겹쳐 함께 성장합니다"><i class="g"></i><i class="w"></i><span class="la">GROBio<small>만든다</small></span><span class="lb">WIGO<small>연결한다</small></span><span class="lc">함께<br>성장</span></div>
+                        <div>
+                            <ol class="gw-steps">
+                                <li><b>그로바이오가 개발하고 제조합니다</b><span>제품 개발·제조·품질, 브랜드와 기술</span></li>
+                                <li><b>위고가 시장과 고객에게 연결합니다</b><span>지역 유통·온라인 플랫폼·주문 운영</span></li>
+                                <li><b>현장의 반응이 다시 제품이 됩니다</b><span>판매 현장의 목소리를 개발에 되돌려 함께 성장</span></li>
+                            </ol>
+                            <div class="gw-lm"><a href="/pages/m12.html"><b>그로바이오 공장</b> 대전 유성구 테크노2로 310-7</a><a href="/pages/m12.html"><b>위고 사무실</b> 대전 서구 둔산중로 19, 샤크존 2층</a></div>
+                        </div>
                     </div>
+                    <button onclick="location.href='/pages/m11.html'">자세히 보기</button>
                 </div>
             </section>
-            <section class="cont01 swiper-slide">
+            <section class="cont01 swiper-slide" id="products">
                 <div class="title inner">
                     <span class="sub_title">Product</span>
-                    <h1>제품소개</h1>
+                    <h1>그로바이오 제품과 위고 제휴제품</h1>
                 </div>
-                <div class="inner list_products">
-                    <a class="product_list product01" href="/pages/m21.html">
-                        <img src="/img/88lion/scalp-care.webp" alt="88LION 프리미엄 두피관리 프로그램" width="1055" height="1491" loading="lazy">
-                        <div class="product_title"><span>프리미엄 두피·뷰티 케어</span><b>88LION</b><span class="product-link">자세히 보기 ↗</span></div>
-                    </a>
-                    <a class="product_list product02" href="/pages/m22.html">
-                        <div class="product_title"><span>HIFU &amp; LDM 관리 기기</span><b>ALLVIS</b><span class="product-link">자세히 보기 ↗</span></div>
-                    </a>
+                <?php if ($gw_home_cards) { ?>
+                <div class="inner gw-bento n<?php echo count($gw_home_cards); ?>">
+                    <?php foreach ($gw_home_cards as $i => $gw_card) echo wigo_prod_card_html($gw_card, $i); ?>
                 </div>
+                <?php } ?>
+                <p class="gw-note"><a href="/pages/m21.html">그로바이오 제품 전체 보기</a> · <a href="/pages/m22.html">제휴제품 전체 보기</a></p>
             </section>
             <section class="cont04 swiper-slide">
-                <div class="inner">
-                    <h1>가맹·대리점부터 지역 파트너까지,<br>88LION과 함께 성장하세요.</h1>
-                    <button onclick="location.href='/pages/m41.html'">문의하기</button>
+                <div class="inner gw-pt">
+                    <div>
+                        <h1>좋은 제품의 가치를,<br>더 넓은 시장으로.</h1>
+                        <p>그로바이오의 제품과 위고의 플랫폼을 잇는 총판·유통 파트너를 모집합니다.</p>
+                        <button onclick="location.href='/pages/m41.html'">총판·파트너 문의하기</button>
+                    </div>
+                    <div class="gw-ty"><div><b>광역총판</b><span>지역 유통망 구축과 사업 확장을 함께할 파트너</span></div><div><b>대리점</b><span>제품 판매와 고객 접점을 함께 넓혀갈 파트너</span></div><div><b>제품·판매 제휴</b><span>온라인 판매와 제품 공급 등 새로운 협력을 제안할 파트너</span></div></div>
                 </div>
             </section>
             <section class="cont03 swiper-slide">
                 <div class="inner">
                     <div class="title">
                         <span class="sub_title">Customer</span>
-                        <h1>공지&자료</h1>
+                        <h1>공지&amp;자료</h1>
                     </div>
                     <ul>
-                        <li><a href="/pages/m21.html"><div class="cate">88LION</div><div class="txt">프리미엄 두피·뷰티 케어 소개</div></a></li>
-                        <li><a href="/img/file/올비스_카달로그(국문).pdf" download><div class="cate">자료실</div><div class="txt">ALLVIS 카탈로그 · 국문</div></a></li>
-                        <li><a href="/img/file/올비스_카달로그(영문).pdf" download><div class="cate">자료실</div><div class="txt">ALLVIS 카탈로그 · 영문</div></a></li>
+                        <li><a href="/pages/m31.html"><div class="cate">공지사항</div><div class="txt">그로바이오·위고 소식</div></a></li>
+                        <li><a href="/pages/m32.html"><div class="cate">자료실</div><div class="txt">제품 소개·사용 안내자료</div></a></li>
+                        <li><a href="/img/file/올비스_카달로그(국문).pdf" download><div class="cate">ALLVIS</div><div class="txt">ALLVIS 카탈로그 · 국문</div></a></li>
+                        <li><a href="/img/file/올비스_카달로그(영문).pdf" download><div class="cate">ALLVIS</div><div class="txt">ALLVIS 카탈로그 · 영문</div></a></li>
                     </ul>
                 </div>
             </section>
             <section class="cont05 swiper-slide">
                 <div class="inner">
-                    <h1>두피부터 일상까지, 88LION.</h1>
-                    <h1>We Grow Together with WIGO</h1>
+                    <h1>기술과 상생을 연결하다.</h1>
+                    <h1>함께 만드는 뷰티의 다음.</h1>
                 </div>
             </section>
         </div>
@@ -98,6 +121,12 @@ include_once(G5_PATH.'/newbex_head.php');
             </a>
         </div>
     </main>
+    <?php echo wigo_prod_dialog_html(); ?>
+    <script>
+    (function(){
+        document.querySelectorAll('[data-go]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();var m=document.querySelector('.fpSwiper');if(m&&m.swiper)m.swiper.slideTo(+a.dataset.go);});});
+    })();
+    </script>
 <?php
 include_once(G5_PATH."/newbex_tail.php");
 ?>

@@ -52,6 +52,7 @@ if($member['mb_grade'] == "a"){
                     <div class="txts">
                         <h3><?php echo $product_subject;?></h3>
                         <p><?php echo $product_info;?></p>
+                        <?php if($product_price > 0){ ?>
                         <div class="price_original">
                             <?php 
                             if($special_price > 0){
@@ -77,6 +78,7 @@ if($member['mb_grade'] == "a"){
 								?>
                             </span>
                         </div>
+                        <?php } ?>
                         <button class="click_btn">문의하기</button>
                     </div>
                 </div>

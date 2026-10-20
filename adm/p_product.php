@@ -8,6 +8,16 @@ $g5['title'] = '제품관리';
 require_once './admin.head.php';
 ?>
 
+<div class="local_desc01 local_desc">
+	<p>홈페이지 PRODUCT 메뉴에는 분류가 <b>그로바이오</b>·<b>제휴제품</b>(기존 HIFU+LDM 포함)이고 사용여부가 '예'인 제품이 카드로 표시됩니다. 먼저 등록한 제품이 앞에 표시되며, 제품가격이 0이면 가격은 보이지 않습니다. 대표이미지가 없으면 글자 카드로 표시됩니다.</p>
+	<?php if ($is_admin === 'super') { ?>
+	<form method="post" action="./p_product_seed.php" onsubmit="return confirm('그로바이오 기본 카드(슈가그로우·슈가페이스·슈가리젠·그로바이오 웰니스)와 제휴제품 카드(ALLVIS)를 등록할까요?\n이미 해당 분류에 제품이 있으면 추가하지 않습니다.');">
+		<input type="hidden" name="token" value="<?php echo get_admin_token(); ?>">
+		<button type="submit" class="btn btn_01">기본 카드 등록</button>
+	</form>
+	<?php } ?>
+</div>
+
 <form name="fproduct" id="fproduct" action="./p_product_update.php" onsubmit="return fproduct_submit(this);" method="post">
 	<input type="hidden" name="token" value="">
 	<input type="hidden" name="w" value="u" id="check_w">
