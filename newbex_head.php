@@ -56,13 +56,16 @@ $brandUrl = rtrim(G5_URL, '/') . (($brandPath === '/index.html') ? '/' : $brandP
     <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/brand-88lion.css">
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-wigo.css?v=1">
+    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-wigo.css?v=3">
+	<?php if ($currentPage === 'index.php' || $currentPage === 'index.html') { ?>
+    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-home.css?v=1">
+	<?php } ?>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
         <header id="header">
 		<div class="head">
-			<h1><a class="brand-wordmark" href="/" aria-label="GROBio × WIGO 홈"><img class="brand-logo brand-logo-primary" src="<?php echo G5_URL; ?>/img/grobio/lockup.png" alt="GROBio × WIGO" width="232" height="44"><img class="brand-logo brand-logo-inverse" src="<?php echo G5_URL; ?>/img/grobio/lockup-white.png" alt="" aria-hidden="true" width="232" height="44"></a></h1>
+			<h1><a class="brand-wordmark" href="/" aria-label="GROBio × WIGO 홈"><img class="brand-logo brand-logo-primary" src="<?php echo G5_URL; ?>/img/grobio/lockup.png" alt="GROBio × WIGO" width="236" height="38"><img class="brand-logo brand-logo-inverse" src="<?php echo G5_URL; ?>/img/grobio/lockup-white.png" alt="" aria-hidden="true" width="236" height="38"></a></h1>
 			<div class="pcNav">
 				<ul>
 					<li><a href="<?php echo G5_URL;?>/pages/m11.html">ABOUT US</a>
@@ -129,7 +132,7 @@ $brandUrl = rtrim(G5_URL, '/') . (($brandPath === '/index.html') ? '/' : $brandP
 		<div class="allmenu" id="brand-allmenu">
 			<div class="allmenuwrap">
 				<div>
-					<div class="brand-menu-logo"><a href="/" aria-label="GROBio × WIGO 홈"><img src="<?php echo G5_URL; ?>/img/grobio/lockup.png" alt="GROBio × WIGO" width="260" height="49"></a></div>
+					<div class="brand-menu-logo"><a href="/" aria-label="GROBio × WIGO 홈"><img src="<?php echo G5_URL; ?>/img/grobio/lockup.png" alt="GROBio × WIGO" width="260" height="42"></a></div>
 					<ul>
                         <li><a>ABOUT US</a>
                             <ul>

@@ -4,11 +4,11 @@
 /* 헤더 로고: 고정 박스 대신 높이 기준 자동 너비 -> 모바일 잘림 방지 */
 #header .head h1{width:auto;max-width:calc(100% - 150px)}
 #header .head h1 a.brand-wordmark{display:flex;align-items:center;gap:10px;width:auto;height:auto;line-height:1;text-indent:0;background:none!important;white-space:nowrap}
-#header .brand-logo{width:auto;height:44px;max-width:none;object-fit:contain}
+#header .brand-logo{width:auto;height:38px;max-width:none;object-fit:contain}
 .gw-x{font-weight:800;font-size:20px;line-height:1;letter-spacing:-.03em;color:var(--gw-n)}
 #header.dark .gw-x{color:#fff}
-@media(max-width:812px){#header .brand-logo{height:30px}#header .head h1{max-width:calc(100% - 120px)}}
-.brand-footer-wordmark img{width:auto;height:44px;object-fit:contain}
+@media(max-width:812px){#header .brand-logo{height:26px}#header .head h1{max-width:calc(100% - 120px)}}
+.brand-footer-wordmark img{width:auto;height:36px;object-fit:contain}
 .footer_main_area{background:var(--gw-n)}
 /* 버튼 */
 .index .sec_slide a.gw-b,.gw-b{display:inline-flex;align-items:center;height:auto;padding:14px 26px;border-radius:99px;background:var(--gw-g);color:#fff;font-weight:700;font-size:16px;white-space:nowrap}

@@ -16,7 +16,7 @@
             </div>
             <div class="btmarea">
                 <div class="inner">
-                    <h1><a class="brand-footer-wordmark" href="/" aria-label="GROBio × WIGO 홈"><img src="<?php echo G5_URL; ?>/img/grobio/lockup-white.png" alt="GROBio × WIGO" width="232" height="44"></a></h1>
+                    <h1><a class="brand-footer-wordmark" href="/" aria-label="GROBio × WIGO 홈"><img src="<?php echo G5_URL; ?>/img/grobio/lockup-white.png" alt="GROBio × WIGO" width="236" height="38"></a></h1>
                     <div style="color: rgba(255,255,255,0.6);">
                         <p>회사명 : 주식회사 위고 (WIGO Inc.)</p>
                         <P>설립연도 : 2019년</P>
