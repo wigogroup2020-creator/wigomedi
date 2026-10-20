@@ -6,43 +6,43 @@
 <?php
 $currentPage = basename($_SERVER['SCRIPT_NAME']);
 
-$siteName = 'GROBio × WIGO 그로바이오·위고';
+$siteName = 'GROBio × WIGO 그로바이오 · 위고';
 
 $brandMeta = array(
     'm11.html' => array(
-        '기업소개 | 그로바이오·위고',
-        '그로바이오는 제품 개발·제조·품질과 브랜드·기술을, 위고는 판매·지역 유통·플랫폼 운영을 담당합니다. 두피·피부 케어와 뷰티기기를 중심으로 함께 사업을 추진합니다.'
+        '기업소개 | 그로바이오 · 위고',
+        '그로바이오는 제품 개발 · 제조 · 품질과 브랜드 · 기술을, 위고는 판매 · 지역 유통 · 플랫폼 운영을 담당합니다. 두피 · 피부 케어와 뷰티기기를 중심으로 함께 사업을 추진합니다.'
     ),
     'm12.html' => array(
-        '오시는 길 | 그로바이오·위고',
+        '오시는 길 | 그로바이오 · 위고',
         '그로바이오와 위고의 사업장 위치 및 방문 정보를 안내합니다. 방문 전 위치와 연락처를 확인해 주세요.'
     ),
     'm13.html' => array(
-        '협력사·고객사 | 그로바이오·위고',
-        '그로바이오와 위고의 협력사·고객사를 소개합니다. 제품과 유통, 판매 및 플랫폼 분야의 협력 정보를 확인하세요.'
+        '협력사 · 고객사 | 그로바이오 · 위고',
+        '그로바이오와 위고의 협력사 · 고객사를 소개합니다. 제품과 유통, 판매 및 플랫폼 분야의 협력 정보를 확인하세요.'
     ),
     'm21.html' => array(
-        '그로바이오 브랜드·제품 | GROBio × WIGO',
-        '그로바이오의 두피·헤어케어, 피부·스킨케어 및 앰플 브랜드와 제품을 소개합니다. 제품 정보와 구성, 사용 안내를 확인하세요.'
+        '그로바이오 브랜드 · 제품 | GROBio × WIGO',
+        '그로바이오의 두피 · 헤어케어, 피부 · 스킨케어 및 앰플 브랜드와 제품을 소개합니다. 제품 정보와 구성, 사용 안내를 확인하세요.'
     ),
     'm22.html' => array(
         '위고 제휴제품 | GROBio × WIGO',
-        '위고가 판매·유통하는 제휴제품을 소개합니다. ALLVIS 올비스를 비롯한 제품 정보와 도입 상담을 확인하세요.'
+        '위고가 판매 · 유통하는 제휴제품을 소개합니다. ALLVIS 올비스를 비롯한 제품 정보와 도입 상담을 확인하세요.'
     ),
     'stores.html' => array(
-        '매장안내 | 그로바이오·위고',
+        '매장안내 | 그로바이오 · 위고',
         '등록된 매장의 위치와 사진, 방문 정보를 안내합니다. 취급 제품과 상담 가능 여부는 방문 전 해당 매장에 확인해 주세요.'
     ),
     'm41.html' => array(
-        '제품·총판·제휴 문의 | 그로바이오·위고',
-        '제품 도입, 광역총판·대리점, 온라인 판매 및 제품 제휴를 상담합니다. 판매·유통·플랫폼 운영 담당 주식회사 위고에 문의해 주세요.'
+        '제품 · 총판 · 제휴 문의 | 그로바이오 · 위고',
+        '제품 도입, 광역총판 · 대리점, 온라인 판매 및 제품 제휴를 상담합니다. 판매 · 유통 · 플랫폼 운영 담당 주식회사 위고에 문의해 주세요.'
     ),
     'm31.html' => array(
-        '공지사항 | 그로바이오·위고',
-        '그로바이오와 위고의 제품·브랜드 소식과 사업 및 운영 공지를 확인하세요.'
+        '공지사항 | 그로바이오 · 위고',
+        '그로바이오와 위고의 제품 · 브랜드 소식과 사업 및 운영 공지를 확인하세요.'
     ),
     'm32.html' => array(
-        '자료실 | 그로바이오·위고',
+        '자료실 | 그로바이오 · 위고',
         '그로바이오 제품과 위고 제휴제품의 소개 자료, 사용 안내 및 사업 관련 자료를 확인하세요.'
     )
 );
@@ -50,15 +50,15 @@ $brandMeta = array(
 $brandPage = isset($brandMeta[$currentPage])
     ? $brandMeta[$currentPage]
     : array(
-        '그로바이오·위고 | 두피·피부 케어와 뷰티기기',
-        '그로바이오와 위고의 공동 홈페이지입니다. 두피·피부 케어와 뷰티기기를 중심으로 브랜드·제품, 제휴제품 및 광역총판·대리점 상담을 안내합니다.'
+        '그로바이오 · 위고 | 두피 · 피부 케어와 뷰티기기',
+        '그로바이오와 위고의 공동 홈페이지입니다. 두피 · 피부 케어와 뷰티기기를 중심으로 브랜드 · 제품, 제휴제품 및 광역총판 · 대리점 상담을 안내합니다.'
     );
 
-// 제품 상세: 제품명·설명을 제목과 설명에 사용합니다.
+// 제품 상세: 제품명 · 설명을 제목과 설명에 사용합니다.
 if ($currentPage === 'm21_view.html' && !empty($product_subject)) {
     $brandPage = array(
-        $product_subject . ' | 그로바이오·위고',
-        !empty($product_info) ? strip_tags($product_info) : '그로바이오·위고 제품 정보를 확인하세요.'
+        $product_subject . ' | 그로바이오 · 위고',
+        !empty($product_info) ? strip_tags($product_info) : '그로바이오 · 위고 제품 정보를 확인하세요.'
     );
 }
 
@@ -71,7 +71,7 @@ if ($brandPath === '/index.html' || $brandPath === '/index.php') {
 
 $brandUrl = rtrim(G5_URL, '/') . $brandPath;
 
-// 상세페이지는 제품·게시글 식별에 필요한 쿼리 문자열을 유지합니다.
+// 상세페이지는 제품 · 게시글 식별에 필요한 쿼리 문자열을 유지합니다.
 if (strpos($currentPage, '_view.') !== false) {
     $brandQuery = parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY);
 
@@ -112,9 +112,9 @@ $brandIconUrl  = rtrim(G5_URL, '/') . '/img/grobio/favicon.svg?v=' . ($brandIcon
 <meta property="og:image" content="<?php echo htmlspecialchars($brandShareUrl, ENT_QUOTES, 'UTF-8'); ?>">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="GROBio × WIGO 그로바이오·위고">
+<meta property="og:image:alt" content="GROBio × WIGO 그로바이오 · 위고">
 <meta name="twitter:image" content="<?php echo htmlspecialchars($brandShareUrl, ENT_QUOTES, 'UTF-8'); ?>">
-<meta name="twitter:image:alt" content="GROBio × WIGO 그로바이오·위고">
+<meta name="twitter:image:alt" content="GROBio × WIGO 그로바이오 · 위고">
 <?php } ?>
 
 <?php if ($brandIconExists) { ?>
@@ -144,10 +144,10 @@ $brandIconUrl  = rtrim(G5_URL, '/') . '/img/grobio/favicon.svg?v=' . ($brandIcon
     <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-wigo.css?v=7">
     <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-menu.css?v=2">
 	<?php if ($currentPage === 'index.php' || $currentPage === 'index.html') { ?>
-    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-home.css?v=3">
+    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-home.css?v=4">
 	<?php } ?>
 	<?php if ($currentPage === 'm11.html') { ?>
-    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-about.css?v=2">
+    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-about.css?v=3">
 	<?php } ?>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -241,7 +241,7 @@ $brandIconUrl  = rtrim(G5_URL, '/') . '/img/grobio/favicon.svg?v=' . ($brandIcon
 						<li><a href="<?php echo G5_URL;?>/pages/m12.html">오시는 길</a></li>
 						<li><a href="<?php echo G5_URL;?>/pages/m13.html">협력사 / 고객사</a></li>
 					</ul></div>
-					<div class="gwm-g"><h2>문의·소식</h2><ul>
+					<div class="gwm-g"><h2>문의 · 소식</h2><ul>
 						<li><a href="<?php echo G5_URL;?>/pages/m41.html">문의하기</a></li>
 						<li><a href="<?php echo G5_URL;?>/pages/m31.html">공지사항</a></li>
 						<li><a href="<?php echo G5_URL;?>/pages/m32.html">자료실</a></li>
