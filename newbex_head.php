@@ -144,7 +144,7 @@ $brandIconUrl  = rtrim(G5_URL, '/') . '/img/grobio/favicon.svg?v=' . ($brandIcon
     <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-wigo.css?v=7">
     <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-menu.css?v=2">
 	<?php if ($currentPage === 'index.php' || $currentPage === 'index.html') { ?>
-    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-home.css?v=4">
+    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-home.css?v=5">
 	<?php } ?>
 	<?php if ($currentPage === 'm11.html') { ?>
     <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-about.css?v=3">

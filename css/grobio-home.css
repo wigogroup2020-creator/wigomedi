@@ -4,6 +4,7 @@
 html.hm-page,html.hm-page body{height:auto}
 html.hm-page body{overflow-x:hidden}
 html.hm-page footer,html.hm-page footer.foot_main{position:relative;bottom:auto;left:auto}
+html.hm-page #header:before{opacity:1;background:#fff}
 html.hm-page #header.gw-solid:before{opacity:1;background:#ffffffeb;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 #00553d14}
 html.hm-page #header:after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:#00553d;transform-origin:0 50%;transform:scaleX(var(--pg,0));pointer-events:none}
 .hm{--g:#00553d;--gd:#003d2b;--n:#0a2250;--ink:#13211c;--mute:#4a5b54;--stone:#f0f4f1;--mint:#e2eee8;--blush:#e2eee8;--sky:#e2eee8;--e:cubic-bezier(.2,.7,.2,1);color:var(--ink);background:#fff;word-break:keep-all;font-size:17px;line-height:1.7}
@@ -13,6 +14,7 @@ html.hm-page #header:after{content:"";position:absolute;left:0;bottom:0;height:2
 .hm h1{font-size:clamp(32px,8.6vw,76px);line-height:1.18}
 .hm h2{font-size:clamp(28px,6.6vw,52px);line-height:1.22}
 .hm-lead{margin:20px 0 0;font-size:17px;line-height:1.7;color:var(--mute);max-width:30em}
+.hm-hero h1{color:#fff}.hm-hero .hm-lead{color:#d6eadf}
 .hm-sec{padding:72px 0}
 .hm a:focus-visible,.hm button:focus-visible,.hm-rail:focus-visible{outline:3px solid #2a63d6;outline-offset:3px}
 
@@ -22,18 +24,20 @@ html.hm-page #header:after{content:"";position:absolute;left:0;bottom:0;height:2
 .hm .hm-btn:hover{background:var(--gd);transform:translateY(-2px)}
 .hm .hm-btn.ghost{background:transparent;color:var(--g)}
 .hm .hm-btn.ghost:hover{background:var(--g);color:#fff}
+.hm-hero .hm-btn{background:#fff;border-color:#fff;color:var(--g)}.hm-hero .hm-btn:hover{background:var(--mint);border-color:var(--mint)}
+.hm-hero .hm-btn.ghost{background:transparent;color:#fff;border-color:#ffffffa0}.hm-hero .hm-btn.ghost:hover{background:#fff;color:var(--g)}
 .hm .hm-btn.dark{background:#fff;border-color:#fff;color:var(--g)}
 .hm .hm-btn.dark:hover{background:var(--mint);border-color:var(--mint)}
 
 /* 1. 히어로 */
-.hm-hero{padding:96px 0 48px;background:#fff;overflow:hidden}
+.hm-hero{padding:116px 0 56px;background:var(--g);color:#fff;overflow:hidden}
 .hm-hero-in{display:grid;gap:36px}
 .hm-ln{display:inline-block}
 .hm-ring{position:relative;width:min(100%,340px);aspect-ratio:1;margin:0 auto}
 .hm-ring:before,.hm-ring:after{content:"";position:absolute;border-radius:50%;will-change:transform}
-.hm-ring:before{inset:0;border:1.5px solid #00553d33;transform:rotate(calc(var(--sp,0)*140deg))}
-.hm-ring:after{inset:17%;border:1.5px dashed #00553d55;transform:rotate(calc(var(--sp,0)*-200deg))}
-.hm-core{position:absolute;inset:31%;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:50%;background:var(--g);color:#fff;text-align:center;line-height:1.1}
+.hm-ring:before{inset:0;border:1.5px solid #ffffff3d;transform:rotate(calc(var(--sp,0)*140deg))}
+.hm-ring:after{inset:17%;border:1.5px dashed #ffffff55;transform:rotate(calc(var(--sp,0)*-200deg))}
+.hm-core{position:absolute;inset:31%;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:50%;background:#fff;color:var(--g);text-align:center;line-height:1.1}
 .hm-core b{font:700 15px/1.2 'Bricolage Grotesque','Pretendard',sans-serif}
 .hm-core i{font-style:normal;font-size:13px;opacity:.7}
 .hm-heroimg{position:absolute;inset:14%;width:72%;height:72%;border-radius:50%;object-fit:cover;z-index:1;transform:scale(calc(1 + var(--sp,0)*.08))}
@@ -45,10 +49,24 @@ html.hm-page #header:after{content:"";position:absolute;left:0;bottom:0;height:2
 .hm-node:hover,.hm-node:focus-visible{background:var(--g);border-color:var(--g);color:#fff}
 
 /* 가로로 흐르는 띠(스크롤에 따라 좌우 이동, 장식) */
-.hm-band{overflow:hidden;background:var(--stone);color:var(--g);padding:18px 0;white-space:nowrap}
+.hm-band{overflow:hidden;background:var(--gd);color:#fff;padding:18px 0;white-space:nowrap}
 .hm-band span{display:inline-flex;gap:44px;padding-left:20px;will-change:transform;transform:translateX(calc(var(--bx,0)*-1px))}
 .hm-band b{font-size:clamp(22px,4.4vw,40px);font-weight:700;letter-spacing:-.03em;opacity:.92}
 .hm-band b+b:before{content:"·";margin-right:44px;opacity:.5}
+
+/* 사업 분야: 큰 사진 패널 (사진이 없으면 색 면) */
+.hm-apanels{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.hm-apanels a{position:relative;display:flex;align-items:flex-end;min-height:300px;border-radius:24px;overflow:hidden;background:#0b6a4b;color:#fff;text-decoration:none;isolation:isolate}
+.hm-apanels li:nth-child(2) a{background:#0a5a41}.hm-apanels li:nth-child(3) a{background:#08492f}
+.hm-apanels img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;transition:transform .8s var(--e)}
+.hm-apanels a:hover img{transform:scale(1.05)}
+.hm-apanels img+.ap-tx{color:#fff}
+.hm-apanels a:has(img):after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,#001f15cc,#001f1500 65%)}
+.ap-tx{display:block;width:100%;padding:26px 24px;color:#fff}
+.ap-tx b{display:block;font-size:clamp(24px,5.6vw,32px);letter-spacing:-.035em;line-height:1.25}
+.ap-tx span{display:block;margin-top:6px;font-size:15px;line-height:1.55;opacity:.9}
+.ap-tx i{display:inline-block;margin-top:10px;font-style:normal;font-size:24px;transition:transform .3s var(--e)}
+.hm-apanels a:hover .ap-tx i{transform:translateX(6px)}
 
 /* 2. 제품 슬라이드 */
 .hm-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:28px}
@@ -142,6 +160,8 @@ html.hm-anim .hm [data-rv].in,html.hm-anim .hm [data-rv-i].in{opacity:1;transfor
   .hm-duo-in{grid-template-columns:1.05fr 1fr;align-items:center;gap:72px}
   .hm-two{grid-template-columns:1fr 1fr}
   .hm-list a{flex-direction:row;justify-content:space-between;align-items:baseline;gap:20px}
+  .hm-apanels{grid-template-columns:repeat(3,1fr);gap:16px}
+  .hm-apanels a{min-height:440px}
   .hm-paths{grid-template-columns:repeat(3,1fr);gap:16px}
   .hm-paths a{grid-template-columns:1fr;align-content:space-between;min-height:260px;padding:32px 28px}
   .hm-paths i{grid-column:1;grid-row:auto;justify-self:end;align-self:end}
