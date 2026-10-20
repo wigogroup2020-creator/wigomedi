@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   preview:
-    if: ${{ (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/wigomedi') || (github.event_name == 'push' && github.ref == 'refs/heads/grobio-wigo-redesign') }}
+    if: ${{ (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/wigomedi') || (github.event_name == 'push' && github.ref == 'refs/heads/grobio-wigo-redesign' && vars.GROBIO_PREVIEW_AUTO_ENABLED == 'true') }}
     runs-on: ubuntu-24.04
     steps:
       - name: Confirm preview deployment
