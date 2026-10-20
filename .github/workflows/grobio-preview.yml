@@ -82,7 +82,7 @@ jobs:
               foreach (array('m11.html','m12.html','m21.html','m21_view.html','m22.html','m32.html','m41.html','stores.html') as $page) {
                   $html = str_replace($root.'/pages/'.$page, $root.'/grobio-test/pages/'.$page, $html);
                   $html = str_replace('"/pages/'.$page, '"/grobio-test/pages/'.$page, $html);
-                  $html = str_replace("'/pages/".$page, "'/grobio-test/pages/'.$page, $html);
+                  $html = str_replace("'/pages/".$page, "'/grobio-test/pages/".$page, $html);
               }
               $html = str_replace('href="/"','href="/grobio-test/"',$html);
               $html = str_replace('href="/index.html"','href="/grobio-test/index.html"',$html);
