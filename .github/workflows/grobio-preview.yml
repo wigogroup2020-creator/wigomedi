@@ -1,0 +1,147 @@
+name: Deploy GROBio Isolated Preview
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type PREVIEW to upload to /grobio-test only'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: wigomedi-grobio-preview
+  cancel-in-progress: false
+
+jobs:
+  preview:
+    if: ${{ github.ref == 'refs/heads/wigomedi' }}
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Confirm preview deployment
+        env:
+          CONFIRM: ${{ inputs.confirm }}
+        run: test "$CONFIRM" = PREVIEW
+
+      - name: Checkout GROBio redesign without changing production
+        uses: actions/checkout@v5
+        with:
+          ref: grobio-wigo-redesign
+          persist-credentials: false
+
+      - name: Build isolated read-only preview
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, shutil
+          dest=Path('/tmp/grobio-stage')
+          files=[
+            'index.html','newbex_head.php','newbex_tail.php',
+            'lib/product.lib.php',
+            'js/custom.js','js/home.js','js/menu.js',
+            'css/grobio-wigo.css','css/grobio-menu.css',
+            'css/grobio-home.css','css/grobio-about.css',
+            'pages/m11.html','pages/m12.html','pages/m21.html',
+            'pages/m21_view.html','pages/m22.html','pages/m32.html',
+            'pages/m41.html','pages/stores.html',
+          ]
+          files += [str(p) for p in Path('img/grobio').rglob('*') if p.is_file()]
+          for name in files:
+              src=Path(name)
+              assert src.is_file() and not src.is_symlink(), name
+              target=dest/name
+              target.parent.mkdir(parents=True,exist_ok=True)
+              if src.suffix.lower() in ('.php','.html','.css','.js'):
+                  content=src.read_text(encoding='utf-8')
+                  if src.suffix.lower() in ('.php','.html'):
+                      content=re.sub(r"G5_PATH\s*\.\s*(['\"])\/newbex_(head|tail)\.php\1",lambda m:"G5_PATH . "+m.group(1)+"/grobio-test/newbex_"+m.group(2)+".php"+m.group(1),content)
+                      content=re.sub(r"G5_LIB_PATH\s*\.\s*(['\"])\/product\.lib\.php\1",lambda m:"G5_PATH . "+m.group(1)+"/grobio-test/lib/product.lib.php"+m.group(1),content)
+                  target.write_text(content,encoding='utf-8')
+              else: shutil.copy2(src,target)
+          bootstrap=r"""<?php
+          // Read-only preview; the live Gnuboard common.php supplies DB and functions.
+          if ($_SERVER['REQUEST_METHOD'] !== 'GET' && $_SERVER['REQUEST_METHOD'] !== 'HEAD') {
+              http_response_code(405); exit('Preview is read-only.');
+          }
+          header('X-Robots-Tag: noindex, nofollow', true);
+          ob_start(function ($html) {
+              $root = rtrim(G5_URL, '/');
+              $paths = array(
+                '/css/grobio-wigo.css','/css/grobio-menu.css',
+                '/css/grobio-home.css','/css/grobio-about.css',
+                '/js/home.js','/js/menu.js','/js/custom.js',
+                '/img/grobio/'
+              );
+              foreach ($paths as $path) {
+                  $html = str_replace($root.$path, $root.'/grobio-test'.$path, $html);
+                  $html = str_replace('"'.$path, '"/grobio-test'.$path, $html);
+                  $html = str_replace("'".$path, "'/grobio-test".$path, $html);
+              }
+              foreach (array('m11.html','m12.html','m21.html','m21_view.html','m22.html','m32.html','m41.html','stores.html') as $page) {
+                  $html = str_replace($root.'/pages/'.$page, $root.'/grobio-test/pages/'.$page, $html);
+                  $html = str_replace('"/pages/'.$page, '"/grobio-test/pages/'.$page, $html);
+                  $html = str_replace("'/pages/".$page, "'/grobio-test/pages/'.$page, $html);
+              }
+              $html = str_replace('href="/"','href="/grobio-test/"',$html);
+              $html = str_replace('href="/index.html"','href="/grobio-test/index.html"',$html);
+              // Block all forms on preview pages (even GET forms).
+              $html = str_ireplace('<form ', '<form onsubmit="return false" ', $html);
+              return $html;
+          });
+          require_once dirname(__DIR__) . '/common.php';
+          """
+          (dest/'_common.php').write_text(bootstrap)
+          (dest/'pages/_common.php').write_text("<?php require_once dirname(__DIR__) . '/_common.php';")
+          # The product detail page must not include the live inquiry form.
+          detail=dest/'pages/m21_view.html'
+          content=detail.read_text()
+          content=re.sub(r'include_once\(G5_PATH\s*\.\s*["\']\/pages\/product_contact\.php["\']\);','// Inquiry form disabled in preview',content)
+          detail.write_text(content)
+          # Ensure no preview asset overwrites live paths.
+          for p in dest.rglob('*'):
+              if p.is_file(): print('PREVIEW',p.relative_to(dest))
+          PY
+
+      - name: Configure verified SFTP connection
+        env:
+          SFTP_HOST_KEY: ${{ secrets.SFTP_HOST_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$SFTP_HOST_KEY"
+          mkdir -p "$HOME/.ssh"
+          chmod 700 "$HOME/.ssh"
+          printf '%s\n' "$SFTP_HOST_KEY" > "$HOME/.ssh/known_hosts"
+          chmod 600 "$HOME/.ssh/known_hosts"
+          sudo apt-get update -qq
+          sudo apt-get install -y sshpass
+
+      - name: Upload preview files under /grobio-test only
+        env:
+          SFTP_HOST: ${{ secrets.FTP_SERVER }}
+          SFTP_USER: ${{ secrets.FTP_USERNAME }}
+          SSHPASS: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          set -euo pipefail
+          test -n "$SFTP_HOST" && test -n "$SFTP_USER" && test -n "$SSHPASS"
+          python3 - <<'PY'
+          from pathlib import Path
+          root=Path('/tmp/grobio-stage')
+          files=sorted(p for p in root.rglob('*') if p.is_file())
+          dirs=set()
+          for p in files:
+              parts=p.relative_to(root).parts[:-1]
+              for i in range(1,len(parts)+1):
+                  dirs.add('/wigo8601471/www/grobio-test/'+'/'.join(parts[:i]))
+          with open('/tmp/grobio-preview.sftp','w') as f:
+              f.write('-mkdir "/wigo8601471/www/grobio-test"\n')
+              for d in sorted(dirs,key=lambda d:(d.count('/'),d)):
+                  f.write('-mkdir "'+d+'"\n')
+              for p in files:
+                  rel=p.relative_to(root).as_posix()
+                  f.write('put "'+str(p)+'" "/wigo8601471/www/grobio-test/'+rel+'"\n')
+              f.write('bye\n')
+          PY
+          sshpass -e sftp -oBatchMode=no -oPreferredAuthentications=password,keyboard-interactive -oStrictHostKeyChecking=yes -oUserKnownHostsFile="$HOME/.ssh/known_hosts" -oConnectTimeout=15 -P 22 -b /tmp/grobio-preview.sftp "$SFTP_USER@$SFTP_HOST"
+          echo "Preview uploaded under /grobio-test/; production files unchanged."
