@@ -5,41 +5,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <?php
 $currentPage = basename($_SERVER['SCRIPT_NAME']);
+
+$siteName = 'GROBio × WIGO 그로바이오·위고';
+
 $brandMeta = array(
-    'm11.html' => array('기업소개 | GROBio × WIGO 그로바이오·위고', '두피·헤어케어, 피부 앰플, 뷰티기기. 그로바이오가 제품을 개발·제조하고 위고가 판매와 유통 플랫폼을 운영합니다.'),
-    'm12.html' => array('오시는 길 | GROBio × WIGO 그로바이오·위고', '그로바이오 공장(대전 유성구 테크노2로)과 위고 사무실(대전 서구 둔산중로)의 위치와 연락처를 안내합니다.'),
-    'm21.html' => array('그로바이오 제품 | GROBio × WIGO', '그로바이오가 개발·제조하는 두피·헤어케어, 스킨케어, 셀프케어 앰플 제품을 소개합니다.'),
-    'm22.html' => array('위고 제휴제품 | GROBio × WIGO', '위고가 공급하는 제휴제품을 소개합니다. 제품 구성과 도입 조건은 상담을 통해 안내합니다.'),
-    'stores.html' => array('매장안내 | GROBio × WIGO', '제품을 만나볼 수 있는 매장을 안내합니다. 매장 사진과 위치를 확인하고 네이버 지도로 방문 정보를 확인하세요.'),
-    'm41.html' => array('제품 및 파트너 문의 | GROBio × WIGO', '그로바이오 제품, 제휴제품, 가맹·대리점 및 총판 도입을 상담합니다. 주식회사 위고에 문의해 주세요.'),
-    'm31.html' => array('공지사항 | GROBio × WIGO', '그로바이오와 위고의 새로운 소식을 안내합니다.'),
-    'm32.html' => array('자료실 | GROBio × WIGO', '그로바이오와 위고의 제품 소개·사용 안내 자료를 확인하세요.')
+    'm11.html' => array(
+        '기업소개 | 그로바이오·위고',
+        '그로바이오는 제품 개발·제조·품질과 브랜드·기술을, 위고는 판매·지역 유통·플랫폼 운영을 담당합니다. 두피·피부 케어와 뷰티기기를 중심으로 함께 사업을 추진합니다.'
+    ),
+    'm12.html' => array(
+        '오시는 길 | 그로바이오·위고',
+        '그로바이오와 위고의 사업장 위치 및 방문 정보를 안내합니다. 방문 전 위치와 연락처를 확인해 주세요.'
+    ),
+    'm13.html' => array(
+        '협력사·고객사 | 그로바이오·위고',
+        '그로바이오와 위고의 협력사·고객사를 소개합니다. 제품과 유통, 판매 및 플랫폼 분야의 협력 정보를 확인하세요.'
+    ),
+    'm21.html' => array(
+        '그로바이오 브랜드·제품 | GROBio × WIGO',
+        '그로바이오의 두피·헤어케어, 피부·스킨케어 및 앰플 브랜드와 제품을 소개합니다. 제품 정보와 구성, 사용 안내를 확인하세요.'
+    ),
+    'm22.html' => array(
+        '위고 제휴제품 | GROBio × WIGO',
+        '위고가 판매·유통하는 제휴제품을 소개합니다. ALLVIS 올비스를 비롯한 제품 정보와 도입 상담을 확인하세요.'
+    ),
+    'stores.html' => array(
+        '매장안내 | 그로바이오·위고',
+        '등록된 매장의 위치와 사진, 방문 정보를 안내합니다. 취급 제품과 상담 가능 여부는 방문 전 해당 매장에 확인해 주세요.'
+    ),
+    'm41.html' => array(
+        '제품·총판·제휴 문의 | 그로바이오·위고',
+        '제품 도입, 광역총판·대리점, 온라인 판매 및 제품 제휴를 상담합니다. 판매·유통·플랫폼 운영 담당 주식회사 위고에 문의해 주세요.'
+    ),
+    'm31.html' => array(
+        '공지사항 | 그로바이오·위고',
+        '그로바이오와 위고의 제품·브랜드 소식과 사업 및 운영 공지를 확인하세요.'
+    ),
+    'm32.html' => array(
+        '자료실 | 그로바이오·위고',
+        '그로바이오 제품과 위고 제휴제품의 소개 자료, 사용 안내 및 사업 관련 자료를 확인하세요.'
+    )
 );
-$brandPage = isset($brandMeta[$currentPage]) ? $brandMeta[$currentPage] : array('GROBio × WIGO 그로바이오·위고 | 두피·피부·뷰티기기', '두피·헤어케어, 피부 앰플, 뷰티기기. 그로바이오 제품 안내와 위고의 제품 도입·총판·대리점 문의를 확인하세요.');
+
+$brandPage = isset($brandMeta[$currentPage])
+    ? $brandMeta[$currentPage]
+    : array(
+        '그로바이오·위고 | 두피·피부 케어와 뷰티기기',
+        '그로바이오와 위고의 공동 홈페이지입니다. 두피·피부 케어와 뷰티기기를 중심으로 브랜드·제품, 제휴제품 및 광역총판·대리점 상담을 안내합니다.'
+    );
+
+// 제품 상세: 제품명·설명을 제목과 설명에 사용합니다.
+if ($currentPage === 'm21_view.html' && !empty($product_subject)) {
+    $brandPage = array(
+        $product_subject . ' | 그로바이오·위고',
+        !empty($product_info) ? strip_tags($product_info) : '그로바이오·위고 제품 정보를 확인하세요.'
+    );
+}
+
 $brandPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$brandUrl = rtrim(G5_URL, '/') . (($brandPath === '/index.html') ? '/' : $brandPath);
+$brandPath = is_string($brandPath) ? $brandPath : '/';
+
+if ($brandPath === '/index.html' || $brandPath === '/index.php') {
+    $brandPath = '/';
+}
+
+$brandUrl = rtrim(G5_URL, '/') . $brandPath;
+
+// 상세페이지는 제품·게시글 식별에 필요한 쿼리 문자열을 유지합니다.
+if (strpos($currentPage, '_view.') !== false) {
+    $brandQuery = parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY);
+
+    if (is_string($brandQuery) && $brandQuery !== '') {
+        $brandUrl .= '?' . $brandQuery;
+    }
+}
+
+// 그로바이오 이미지가 서버에 있을 때만 출력합니다.
+$brandShareExists = is_file(G5_PATH . '/img/grobio/share.png');
+$brandIconExists  = is_file(G5_PATH . '/img/grobio/favicon.svg');
+
+$brandShareUrl = rtrim(G5_URL, '/') . '/img/grobio/share.png?v=' . ($brandShareExists ? filemtime(G5_PATH . '/img/grobio/share.png') : '1');
+$brandIconUrl  = rtrim(G5_URL, '/') . '/img/grobio/favicon.svg?v=' . ($brandIconExists ? filemtime(G5_PATH . '/img/grobio/favicon.svg') : '1');
 ?>
-    <title><?php echo htmlspecialchars($brandPage[0], ENT_QUOTES, 'UTF-8'); ?></title>
-    <meta name="naver-site-verification" content="60cef302f92d4d6100019aea5e2766764e8afd2a" />
-    <meta name="description" content="<?php echo htmlspecialchars($brandPage[1], ENT_QUOTES, 'UTF-8'); ?>">
-    <meta name="keywords" content="GROBio, 그로바이오, WIGO, 위고, 슈가그로우, 슈가페이스, 슈가리젠, 뷰티기기, 앰플, 두피케어, 총판, 대리점">
-    <meta name="author" content="주식회사 위고">
-    <link rel="canonical" href="<?php echo htmlspecialchars($brandUrl, ENT_QUOTES, 'UTF-8'); ?>">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="ko_KR">
-    <meta property="og:site_name" content="GROBio × WIGO">
-    <meta property="og:title" content="<?php echo htmlspecialchars($brandPage[0], ENT_QUOTES, 'UTF-8'); ?>">
-    <meta property="og:url" content="<?php echo htmlspecialchars($brandUrl, ENT_QUOTES, 'UTF-8'); ?>">
-    <meta property="og:image" content="<?php echo G5_URL; ?>/img/grobio/share.png?v=3">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="GROBio × WIGO 그로바이오·위고 | 기술에서 일상까지">
-    <meta property="og:description" content="<?php echo htmlspecialchars($brandPage[1], ENT_QUOTES, 'UTF-8'); ?>">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="<?php echo htmlspecialchars($brandPage[0], ENT_QUOTES, 'UTF-8'); ?>">
-    <meta name="twitter:description" content="<?php echo htmlspecialchars($brandPage[1], ENT_QUOTES, 'UTF-8'); ?>">
-    <meta name="twitter:image" content="<?php echo G5_URL; ?>/img/grobio/share.png?v=3">
-    <link rel="icon" type="image/svg+xml" href="<?php echo G5_URL; ?>/img/grobio/favicon.svg">
+<title><?php echo htmlspecialchars($brandPage[0], ENT_QUOTES, 'UTF-8'); ?></title>
+
+<meta name="naver-site-verification" content="60cef302f92d4d6100019aea5e2766764e8afd2a">
+
+<meta name="description" content="<?php echo htmlspecialchars($brandPage[1], ENT_QUOTES, 'UTF-8'); ?>">
+<meta name="keywords" content="그로바이오, GROBio, 위고, WIGO, 두피케어, 헤어케어, 스킨케어, 바이오 앰플, 마이크로니들, 뷰티기기, 제휴제품, 광역총판, 대리점">
+<meta name="author" content="주식회사 위고">
+
+<link rel="canonical" href="<?php echo htmlspecialchars($brandUrl, ENT_QUOTES, 'UTF-8'); ?>">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="<?php echo htmlspecialchars($siteName, ENT_QUOTES, 'UTF-8'); ?>">
+<meta property="og:title" content="<?php echo htmlspecialchars($brandPage[0], ENT_QUOTES, 'UTF-8'); ?>">
+<meta property="og:description" content="<?php echo htmlspecialchars($brandPage[1], ENT_QUOTES, 'UTF-8'); ?>">
+<meta property="og:url" content="<?php echo htmlspecialchars($brandUrl, ENT_QUOTES, 'UTF-8'); ?>">
+
+<meta name="twitter:card" content="<?php echo $brandShareExists ? 'summary_large_image' : 'summary'; ?>">
+<meta name="twitter:title" content="<?php echo htmlspecialchars($brandPage[0], ENT_QUOTES, 'UTF-8'); ?>">
+<meta name="twitter:description" content="<?php echo htmlspecialchars($brandPage[1], ENT_QUOTES, 'UTF-8'); ?>">
+
+<?php if ($brandShareExists) { ?>
+<meta property="og:image" content="<?php echo htmlspecialchars($brandShareUrl, ENT_QUOTES, 'UTF-8'); ?>">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="GROBio × WIGO 그로바이오·위고">
+<meta name="twitter:image" content="<?php echo htmlspecialchars($brandShareUrl, ENT_QUOTES, 'UTF-8'); ?>">
+<meta name="twitter:image:alt" content="GROBio × WIGO 그로바이오·위고">
+<?php } ?>
+
+<?php if ($brandIconExists) { ?>
+<link rel="icon" type="image/svg+xml" href="<?php echo htmlspecialchars($brandIconUrl, ENT_QUOTES, 'UTF-8'); ?>">
+<link rel="icon" type="image/png" sizes="32x32" href="<?php echo G5_URL; ?>/img/grobio/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="<?php echo G5_URL; ?>/img/grobio/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="<?php echo G5_URL; ?>/img/grobio/apple-touch-icon.png">
+<link rel="shortcut icon" href="<?php echo G5_URL; ?>/favicon.ico">
+<meta name="theme-color" content="#00553d">
+<?php } ?>
     <!-- css -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/swiper-bundle.min.css" />

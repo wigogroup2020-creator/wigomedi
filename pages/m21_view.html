@@ -1,6 +1,5 @@
 <?php
 require_once './_common.php';
-include_once(G5_PATH.'/newbex_head.php');
 
 $product_no = isset($product_no) ? (int) $product_no : 0;
 $gw_item = isset($_GET['item']) ? preg_replace('/[^a-z-]/', '', (string) $_GET['item']) : '';
@@ -42,6 +41,7 @@ if($member['mb_grade'] == "a"){
 }elseif($member['mb_grade'] == "d"){
 	$special_price = $product_price_member;	// 회원
 }
+include_once(G5_PATH.'/newbex_head.php');
 ?>
     <main class="container gw-pd">
         <div id="contents">
