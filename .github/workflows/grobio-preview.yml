@@ -47,7 +47,7 @@ jobs:
           dest=Path('/tmp/grobio-stage')
           files=[
             'index.html','newbex_head.php','newbex_tail.php',
-            'lib/product.lib.php',
+            'lib/product.lib.php','lib/photo.lib.php',
             'js/custom.js','js/home.js','js/menu.js',
             'css/grobio-wigo.css','css/grobio-menu.css',
             'css/grobio-home.css','css/grobio-about.css',
@@ -66,6 +66,13 @@ jobs:
                   if src.suffix.lower() in ('.php','.html'):
                       content=re.sub(r"G5_PATH\s*\.\s*(['\"])\/newbex_(head|tail)\.php\1",lambda m:"G5_PATH . "+m.group(1)+"/grobio-test/newbex_"+m.group(2)+".php"+m.group(1),content)
                       content=re.sub(r"G5_LIB_PATH\s*\.\s*(['\"])\/product\.lib\.php\1",lambda m:"G5_PATH . "+m.group(1)+"/grobio-test/lib/product.lib.php"+m.group(1),content)
+                  # Route preview PHP includes to staged libraries, not production libraries.
+                  if src.suffix.lower() in ('.php','.html'):
+                      content=re.sub(r"G5_LIB_PATH\s*\.\s*(['\"])\/(product|photo)\.lib\.php\1",lambda m:"G5_PATH . "+m.group(1)+"/grobio-test/lib/"+m.group(2)+".lib.php"+m.group(1),content)
+                      content=re.sub(r"G5_PATH\s*\.\s*(['\"])\/newbex_(head|tail)\.php\1",lambda m:"G5_PATH . "+m.group(1)+"/grobio-test/newbex_"+m.group(2)+".php"+m.group(1),content)
+                  if name == 'lib/photo.lib.php':
+                      content=content.replace("G5_PATH . '/img/grobio/photo/'", "G5_PATH . '/grobio-test/img/grobio/photo/'")
+                      content=content.replace("G5_URL . '/img/grobio/photo/'", "G5_URL . '/grobio-test/img/grobio/photo/'")
                   target.write_text(content,encoding='utf-8')
               else: shutil.copy2(src,target)
           bootstrap=r"""<?php
