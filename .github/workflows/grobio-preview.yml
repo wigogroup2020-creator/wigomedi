@@ -1,6 +1,9 @@
 name: Deploy GROBio Isolated Preview
 
 on:
+  push:
+    branches:
+      - grobio-wigo-redesign
   workflow_dispatch:
     inputs:
       confirm:
@@ -17,18 +20,23 @@ concurrency:
 
 jobs:
   preview:
-    if: ${{ github.ref == 'refs/heads/wigomedi' }}
+    if: ${{ (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/wigomedi') || (github.event_name == 'push' && github.ref == 'refs/heads/grobio-wigo-redesign') }}
     runs-on: ubuntu-24.04
     steps:
       - name: Confirm preview deployment
         env:
           CONFIRM: ${{ inputs.confirm }}
-        run: test "$CONFIRM" = PREVIEW
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            test "$CONFIRM" = PREVIEW
+          else
+            echo 'Automatic GROBio preview deployment after push'
+          fi
 
       - name: Checkout GROBio redesign without changing production
         uses: actions/checkout@v5
         with:
-          ref: grobio-wigo-redesign
+          ref: ${{ github.event_name == 'push' && github.sha || 'grobio-wigo-redesign' }}
           persist-credentials: false
 
       - name: Build isolated read-only preview
