@@ -1,5 +1,7 @@
-/* GROBio x WIGO redesign - brand-88lion.css 뒤에 로드. 홈(.index)과 공통 헤더 로고만 건드립니다. */
-:root,#header,.index{--main-color01:#00553d;--gw-g:#00553d;--gw-n:#0a2250;--gw-mint:#d6eee2;--gw-bg:#f3f8f5}
+/* GROBio x WIGO 공통 스타일 (brand-88lion.css 뒤에 로드).
+ * 헤더·푸터 로고, 제품 카드/팝업, 제품 목록, 오시는 길 페이지 공용 규칙만 둡니다.
+ * 메인은 grobio-home.css, 기업소개는 grobio-about.css 를 사용합니다. */
+:root,#header{--main-color01:#00553d;--gw-g:#00553d;--gw-n:#0a2250;--gw-mint:#d6eee2;--gw-bg:#f3f8f5}
 .gw-en,.gw-big,.gw-pc .m,.gw-x{font-family:'Bricolage Grotesque','Pretendard',sans-serif}
 /* 헤더 로고: 고정 박스 대신 높이 기준 자동 너비 -> 모바일 잘림 방지 */
 #header .head h1{width:auto;max-width:calc(100% - 150px)}
@@ -10,50 +12,12 @@
 @media(max-width:812px){#header .brand-logo{height:26px}#header .head h1{max-width:calc(100% - 120px)}}
 .brand-footer-wordmark img{width:auto;height:36px;object-fit:contain}
 .footer_main_area{background:var(--gw-n)}
-/* 버튼 */
-.index .sec_slide a.gw-b,.gw-b{display:inline-flex;align-items:center;height:auto;padding:14px 26px;border-radius:99px;background:var(--gw-g);color:#fff;font-weight:700;font-size:16px;white-space:nowrap}
-.index .sec_slide a.gw-b.out,.gw-b.out{background:transparent;color:#0c1f1b;box-shadow:inset 0 0 0 1.5px #0c1f1b55}
+/* 버튼(제품 팝업) */
+.gw-b{display:inline-flex;align-items:center;height:auto;padding:14px 26px;border-radius:99px;background:var(--gw-g);color:#fff;font-weight:700;font-size:16px;white-space:nowrap}
+.gw-b.out{background:transparent;color:#0c1f1b;box-shadow:inset 0 0 0 1.5px #0c1f1b55}
 .gw-acts{display:flex;gap:10px;flex-wrap:wrap}
-/* 히어로 슬라이드 */
-.index .sec_slide .gw{background:var(--gw-bg);height:100%}
-.index .sec_slide .gw img{height:100%;max-width:100%;object-fit:cover}
-.gw-in{position:absolute;inset:0;max-width:1360px;margin:0 auto;padding:92px max(5vw,28px) 48px;display:grid;grid-template-columns:1.1fr .9fr;gap:4vw;align-items:center;color:#0c1f1b;text-align:left}
-.gw-in.one{grid-template-columns:1fr}
-.gw-in h1{font-size:clamp(32px,5.8vw,92px);font-weight:800;line-height:1.08;letter-spacing:-.06em;margin:0}
-.gw-in h1 em{display:block;font-style:normal;color:var(--gw-g)}
-.gw-in p{max-width:30em;margin:26px 0 30px;font-size:clamp(15px,1.4vw,19px);line-height:1.75;color:#4a5d57}
-.gw-fig{position:relative;aspect-ratio:1;width:min(100%,64vh);justify-self:end}
-.gw-disc{position:absolute;inset:11%;border-radius:50%;overflow:hidden;background:#2a63d6}
-.index .sec_slide .gw-disc img{width:100%;height:100%;object-fit:cover;object-position:34% 60%;transform:scale(1.18)}
-.gw-fig svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.gw-rg{fill:none;stroke:var(--gw-g);stroke-width:7;stroke-linecap:round;stroke-dasharray:88 12;animation:gwDraw 1.8s cubic-bezier(.6,0,.2,1) both}
-.gw-nd{animation:gwStab 1.3s .9s cubic-bezier(.2,.8,.2,1) both}
-@keyframes gwDraw{from{stroke-dasharray:0 100}to{stroke-dasharray:88 12}}
-@keyframes gwStab{from{transform:translate(14px,-14px);opacity:0}to{transform:none;opacity:1}}
-.gw-tag{position:absolute;left:0;bottom:12%;background:#fffffff0;border-radius:99px;padding:10px 20px;font-size:14px;font-weight:700;box-shadow:0 12px 30px #0a225022}
-.gw-tl{margin-top:30px;border-top:1.5px solid #00553d33}
-.gw-tl>div{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center;padding:clamp(14px,2.4vh,28px) 0;border-bottom:1.5px solid #00553d33}
-.gw-tl b{font-size:clamp(26px,4vw,60px);font-weight:800;letter-spacing:-.06em;line-height:1.1;color:var(--gw-g)}
-.gw-tl span{color:#4a5d57;font-size:clamp(14px,1.3vw,18px);line-height:1.7}
-/* About (어두운 배경: 헤더 dark 전환과 맞물림) */
-.index .cont02{background:linear-gradient(135deg,#00402e 0%,#0a2250 100%)}
-.index .cont02 .title .sub_title{color:#9fdcc2}
-.index .cont02 .title h1{font-size:clamp(28px,4.4vw,64px);line-height:1.15;letter-spacing:-.055em}
-.gw-duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:min(1120px,92vw);margin-bottom:26px}
-.gw-duo article{background:#ffffff14;border:1px solid #ffffff26;border-radius:24px;padding:clamp(20px,2.8vw,40px);text-align:left}
-.gw-duo article.w{background:#ffffff1f}
-.gw-big{font-size:clamp(40px,5.4vw,80px);font-weight:800;letter-spacing:-.05em;line-height:1}
-.gw-duo h3{font-size:clamp(17px,1.6vw,22px);margin:18px 0 8px;font-weight:700}
-.index .cont02 .gw-duo p{padding:0;margin:0;max-width:none;font-size:clamp(14px,1.3vw,17px);line-height:1.7;opacity:.85}
-.gw-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.gw-chips span{padding:6px 14px;border-radius:99px;background:#ffffff1f;font-size:13px}
-.index .cont02 button{border:0;border-radius:99px;background:#fff;color:var(--gw-n);padding:13px 28px;font-weight:700;font-size:16px}
-.index .cont02 button,.index .cont02 button *{color:var(--gw-n)}
-/* Product */
-.index .cont01{background:var(--gw-bg)}
-.index .cont01 .title h1{letter-spacing:-.05em}
-.index .cont01 .inner.gw-bento{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:1fr 1fr;gap:14px;width:min(1180px,92vw);height:min(54vh,500px);overflow:visible}
+/* 제품 카드 공통 (제품 목록·팝업) */
 .gw-pc{grid-column:span 2;position:relative;overflow:hidden;border:0;border-radius:26px;padding:clamp(16px,2vw,28px);display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;text-align:left;cursor:pointer;transition:transform .3s}
-.gw-pc:nth-child(-n+2){grid-column:span 3}
 .gw-pc:hover{transform:translateY(-5px)}
 .gw-pc:after{content:"";position:absolute;width:58%;aspect-ratio:1;border-radius:50%;border:clamp(12px,1.6vw,22px) solid #ffffff66;right:-12%;bottom:-24%}
 .gw-pc .m{position:relative;z-index:1;font-size:clamp(30px,3.8vw,58px);font-weight:800;line-height:.95;letter-spacing:-.05em}
@@ -61,89 +25,6 @@
 .gw-pc .i{position:relative;z-index:1;font-size:clamp(13px,1.1vw,15px);opacity:.9}.gw-pc .i b{display:block;font-size:clamp(16px,1.5vw,20px);margin-bottom:2px}
 .gw-pc.c1{background:#bfe5d2;color:#00442f}.gw-pc.c2{background:#f5e2d9;color:#5b2a17}.gw-pc.c3{background:#fff;color:var(--gw-g);box-shadow:inset 0 0 0 1.5px #00553d33}.gw-pc.c4{background:var(--gw-n);color:#fff}.gw-pc.c5{background:var(--gw-g);color:#fff}
 .gw-pc.c4:after,.gw-pc.c5:after{border-color:#ffffff1f}
-.gw-note{width:min(1180px,92vw);margin:16px 0 0;font-size:13px;color:#6b7c76;text-align:left}.gw-note a{color:var(--gw-g);font-weight:700;text-decoration:underline}
-/* Partner */
-.index .cont04{background:var(--gw-n);text-align:left}
-.index .cont04 .inner.gw-pt{width:min(1180px,92vw);display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center}
-.index .cont04 h1{font-size:clamp(30px,4.6vw,68px);line-height:1.12;letter-spacing:-.055em;font-weight:800}
-.index .cont04 p{margin:20px 0 0;color:#c9d6ea;font-size:clamp(15px,1.4vw,18px);line-height:1.7}
-.index .cont04 button{background:#fff;color:var(--gw-n);border-radius:99px;font-weight:700;padding:14px 28px;font-size:16px}
-.gw-ty div{padding:clamp(14px,2.6vh,26px) 0;border-bottom:1px solid #ffffff2e}.gw-ty div:first-child{border-top:1px solid #ffffff2e}
-.gw-ty b{display:block;font-size:clamp(22px,2.6vw,36px);letter-spacing:-.045em;font-weight:800}.gw-ty span{color:#c9d6ea;font-size:15px}
-/* Customer / closing */
-.index .cont03{background:var(--gw-bg)}
-.index .cont03 ul li a .cate{color:var(--gw-g)}
-.index .cont03 ul li a:hover{background-color:var(--gw-mint)}
-.index .cont05{background:linear-gradient(135deg,#00553d 0%,#0a2250 100%);color:#fff}
-.index .cont05 h1{color:#fff;font-size:clamp(32px,6vw,92px);line-height:1.12;letter-spacing:-.06em;font-weight:800}
-.index .cont05 h1:last-child{color:#9fdcc2}
-.hero-playback{border-radius:99px}
-/* 팝업 */
-.gw-dlg{border:0;border-radius:26px;padding:30px;max-width:460px;width:calc(100% - 32px)}.gw-dlg::backdrop{background:#0a225099}
-.gw-dh{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.gw-dh h2{margin:0;font-size:26px}
-.gw-x2{border:0;background:var(--gw-mint);border-radius:50%;width:38px;height:38px;font-size:22px}
-.gw-dn{background:var(--gw-bg);border-radius:14px;padding:14px 16px;font-size:14px;margin:18px 0}
-/* 모바일: 풀페이지 100vh 안에 맞춤 */
-@media(max-width:812px){
-.gw-in{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:12px;padding:76px 24px 36px;align-content:start}
-.gw-in.one{grid-template-rows:none;align-content:center}
-.gw-in h1{font-size:clamp(30px,9.4vw,46px)}.gw-in p{margin:14px 0 18px;font-size:14px;line-height:1.65}
-.gw-fig{justify-self:center;width:min(78vw,36vh);margin-top:4px}
-.gw-b,.index .sec_slide a.gw-b{padding:12px 20px;font-size:14px}
-.gw-tl{margin-top:18px}.gw-tl>div{grid-template-columns:1fr;gap:4px;padding:12px 0}.gw-tl b{font-size:26px}.gw-tl span{font-size:13px;line-height:1.55}
-.gw-duo{grid-template-columns:1fr;gap:10px;margin-bottom:18px}.gw-duo article{padding:18px;border-radius:18px}.gw-big{font-size:36px}.gw-duo h3{margin:10px 0 6px;font-size:16px}.index .cont02 .gw-duo p{font-size:13px;line-height:1.55}.gw-chips{display:none}
-.index .cont01 .inner.gw-bento{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;height:36vh;min-height:230px;gap:12px;width:100%;padding:0 24px;scrollbar-width:none}
-.gw-pc,.gw-pc:nth-child(-n+2){flex:0 0 68vw;scroll-snap-align:center;border-radius:22px;grid-column:auto}
-.gw-note{width:100%;padding:0 24px;font-size:12px}
-.index .cont04 .inner.gw-pt{grid-template-columns:1fr;gap:18px}.gw-ty span{font-size:13px}.gw-ty div{padding:10px 0}.gw-ty b{font-size:20px}
-.index .cont04 p{margin:12px 0 0;font-size:14px}.index .cont04 button{margin-top:18px;padding:12px 22px;font-size:14px}
-.index .cont05 h1{font-size:clamp(28px,8.4vw,44px)}
-}
-@media(prefers-reduced-motion:reduce){.gw-rg,.gw-nd{animation:none}.gw-pc{transition:none}}
-
-/* ===== 자연스러운 전환: 느리게 출발해 부드럽게 도착 ===== */
-:root{--gw-e:cubic-bezier(.7,0,.2,1);--gw-o:cubic-bezier(.16,1,.3,1)}
-.fpSwiper>.swiper-wrapper{transition-timing-function:var(--gw-e)!important}
-.index .sec_slide>.swiper-wrapper{transition-timing-function:ease!important}
-.gw-track{position:absolute;left:max(5vw,28px);right:max(5vw,28px);bottom:30px;height:2px;background:#0c1f1b1a;z-index:3}
-.gw-prog{display:block;height:100%;background:var(--gw-g);transform-origin:left;transform:scaleX(0)}
-.hero-playback{z-index:4}
-/* 섹션 도착 시 순차 등장(자바스크립트가 준비된 경우에만 적용) */
-html.gw-anim .index :is(.gw-in>*,.title,.gw-sy>*,.cont02 button,.gw-bento>.gw-pc,.gw-note,.gw-pt>*,.gw-ty>div,.cont03 li,.cont05 h1){opacity:0;transform:translateY(38px)}
-html.gw-anim .index :is(.swiper-slide-active,.is-in:not(.sec_slide)) :is(.gw-in>*,.title,.gw-sy>*,.cont02 button,.gw-bento>.gw-pc,.gw-note,.gw-pt>*,.gw-ty>div,.cont03 li,.cont05 h1){opacity:1;transform:none;transition:opacity 1s var(--gw-o) .3s,transform 1.2s var(--gw-o) .3s}
-html.gw-anim .index :is(.swiper-slide-active,.is-in:not(.sec_slide)) :is(.gw-in>*,.title,.gw-sy>*,.gw-bento>.gw-pc,.gw-pt>*,.gw-ty>div,.cont03 li,.cont05 h1):nth-child(2){transition-delay:.45s}
-html.gw-anim .index :is(.swiper-slide-active,.is-in:not(.sec_slide)) :is(.gw-sy>*,.gw-bento>.gw-pc,.gw-ty>div,.cont03 li,.cont05 h1):nth-child(3){transition-delay:.6s}
-html.gw-anim .index :is(.swiper-slide-active,.is-in:not(.sec_slide)) :is(.gw-bento>.gw-pc,.cont03 li):nth-child(4),html.gw-anim .index :is(.swiper-slide-active,.is-in:not(.sec_slide)) :is(.cont02 button,.gw-note){transition-delay:.75s}
-html.gw-anim .index :is(.swiper-slide-active,.is-in:not(.sec_slide)) .gw-bento>.gw-pc:nth-child(n+5){transition-delay:.9s}
-html.gw-anim .index :is(.swiper-slide-active,.is-in:not(.sec_slide)) .gw-bento>.gw-pc:hover{transform:translateY(-5px);transition-delay:0s;transition-duration:.3s}
-.gw-rg,.gw-nd{animation:none}
-.fpSwiper>.swiper-wrapper>.swiper-slide-active .sec_slide .swiper-slide-active .gw-rg{animation:gwDraw 1.8s cubic-bezier(.6,0,.2,1) both}
-.fpSwiper>.swiper-wrapper>.swiper-slide-active .sec_slide .swiper-slide-active .gw-nd{animation:gwStab 1.3s .9s cubic-bezier(.2,.8,.2,1) both}
-.index .sec_slide .swiper-slide-active .gw-disc img{animation:gwKen 9s ease-out both}
-@keyframes gwKen{from{transform:scale(1.3)}to{transform:scale(1.18)}}
-
-/* ===== 시너지 그래픽: 두 링이 겹치며 함께 성장 ===== */
-.gw-syn{position:relative;width:min(560px,100%);aspect-ratio:1.6;margin:0 auto}
-.gw-syn i{position:absolute;top:0;width:62%;aspect-ratio:1;border-radius:50%;border:6px solid}
-.gw-syn i.g{left:0;border-color:#00553d;background:#00553d22}.gw-syn i.w{right:0;border-color:#0a2250;background:#0a225022}
-.gw-syn span{position:absolute;top:50%;transform:translateY(-50%);font:800 clamp(26px,3.4vw,44px)/1 'Bricolage Grotesque','Pretendard',sans-serif;letter-spacing:-.04em;text-align:center}
-.gw-syn small{display:block;margin-top:8px;font:500 14px/1 'Pretendard',sans-serif;letter-spacing:0;opacity:.75}
-.gw-syn .la{left:3%;width:34%}.gw-syn .lb{right:3%;width:34%}
-.gw-syn .lc{left:50%;transform:translate(-50%,-50%);font:700 15px/1.3 'Pretendard',sans-serif;color:#00553d}
-.gw-sub .gw-syn i.g,.index :is(.swiper-slide-active,.is-in:not(.sec_slide)) .gw-syn i.g{animation:gwL 1.6s var(--gw-e) both}
-.gw-sub .gw-syn i.w,.index :is(.swiper-slide-active,.is-in:not(.sec_slide)) .gw-syn i.w{animation:gwR 1.6s var(--gw-e) both}
-@keyframes gwL{from{transform:translateX(-22%)}to{transform:none}}@keyframes gwR{from{transform:translateX(22%)}to{transform:none}}
-.index .cont02 .gw-syn i.g{border-color:#9fdcc2;background:#9fdcc233}.index .cont02 .gw-syn i.w{border-color:#9db8ff;background:#9db8ff2e}
-.index .cont02 .gw-syn span,.index .cont02 .gw-syn .lc{color:#fff}
-.gw-sy{display:grid;grid-template-columns:1fr 1fr;gap:4vw;align-items:center;width:min(1120px,92vw);margin-bottom:26px;text-align:left}
-.gw-steps{list-style:none;margin:0;padding:0;counter-reset:s}
-.gw-steps li{counter-increment:s;position:relative;padding:14px 0 14px 46px;border-bottom:1px solid #ffffff2e}
-.gw-steps li:before{content:counter(s);position:absolute;left:0;top:14px;width:30px;height:30px;border-radius:50%;background:#ffffff1f;display:grid;place-items:center;font:700 14px 'Bricolage Grotesque'}
-.gw-steps b{display:block;font-size:clamp(16px,1.6vw,21px);letter-spacing:-.03em}.gw-steps span{font-size:14px;opacity:.75}
-.gw-lm{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-.gw-lm a{padding:8px 16px;border-radius:99px;background:#ffffff1a;font-size:13px}.gw-lm b{margin-right:6px;color:#9fdcc2}
-
-/* ===== 제품 카드 (DB 제품 = 링크, 기본 카드 = 버튼) ===== */
 .gw-pc{font:inherit;color:inherit;text-decoration:none;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start}
 .gw-pc:focus-visible{outline:3px solid var(--gw-g);outline-offset:3px}
 .gw-pc .k{position:relative;z-index:1;font-size:12px;font-weight:700;line-height:1;padding:6px 12px;border-radius:99px;background:#ffffff80}
@@ -151,12 +32,12 @@ html.gw-anim .index :is(.swiper-slide-active,.is-in:not(.sec_slide)) .gw-bento>.
 .gw-pc .m{margin-top:auto;font-size:clamp(26px,3.1vw,48px);font-weight:800;line-height:1.1;letter-spacing:-.05em;word-break:keep-all}
 .gw-pc .i{position:relative;z-index:1;display:block;margin-top:8px;font-size:clamp(13px,1.1vw,15px);line-height:1.5;opacity:.85}
 .gw-pc .ph{position:absolute;z-index:0;right:6%;top:10%;width:56%;height:58%;object-fit:contain}
-.index .gw-bento .gw-pc,.index .gw-bento .gw-pc:nth-child(n){grid-column:span 2}
-.index .gw-bento.n1 .gw-pc{grid-column:span 6}
-.index .gw-bento.n2 .gw-pc,.index .gw-bento.n4 .gw-pc{grid-column:span 3}
-.index .gw-bento.n5 .gw-pc:nth-child(-n+2){grid-column:span 3}
-.index .gw-bento.n1,.index .gw-bento.n2,.index .gw-bento.n3{grid-template-rows:1fr;height:min(40vh,380px)}
-.index .gw-note{text-align:left}
+.gw-pc{max-width:none;width:auto}
+/* 팝업 */
+.gw-dlg{border:0;border-radius:26px;padding:30px;max-width:460px;width:calc(100% - 32px)}.gw-dlg::backdrop{background:#0a225099}
+.gw-dh{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.gw-dh h2{margin:0;font-size:26px}
+.gw-x2{border:0;background:var(--gw-mint);border-radius:50%;width:38px;height:38px;font-size:22px}
+.gw-dn{background:var(--gw-bg);border-radius:14px;padding:14px 16px;font-size:14px;margin:18px 0}
 /* 제품 목록 페이지 */
 .gw-products h2{font-size:clamp(28px,4vw,52px);line-height:1.2;letter-spacing:-.055em;font-weight:800;margin:20px 0 14px}
 .gw-products .lead{max-width:46em;color:#4a5d57;font-size:17px;line-height:1.85;margin:0 0 36px}
@@ -170,16 +51,8 @@ html.gw-anim .index :is(.swiper-slide-active,.is-in:not(.sec_slide)) .gw-bento>.
 .gw-pgrid .gw-pc.c4:after,.gw-pgrid .gw-pc.c5:after{border-color:#ffffff1f}
 .gw-pnote{margin:26px 0 18px;color:#6b7c76;font-size:14px}
 .gw-empty{padding:60px 20px;border-radius:24px;background:#f3f8f5;text-align:center;color:#4a5d57}.gw-empty a{color:var(--gw-g);font-weight:700}
-
-/* ===== 하위 페이지 (기업소개 / 오시는 길) ===== */
-.gw-sub .gw-about h2{font-size:clamp(28px,4vw,52px);line-height:1.2;letter-spacing:-.055em;font-weight:800;margin:20px 0 18px}
+/* 하위 페이지 공통 */
 .gw-sub .lead{max-width:46em;color:#4a5d57;font-size:17px;line-height:1.85;margin:0 0 36px}
-.gw-sub .gw-syn{margin:50px auto 0}
-.gw-sub h3.gw-h{font-size:clamp(22px,2.4vw,30px);font-weight:800;letter-spacing:-.04em;margin:80px 0 22px}
-.gw-steps3,.gw-biz{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.gw-steps3 article{border-radius:22px;padding:28px;background:#f3f8f5}.gw-steps3 b{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#00553d;color:#fff;font:700 15px 'Bricolage Grotesque'}
-.gw-steps3 h4,.gw-biz h4{font-size:20px;margin:16px 0 8px;letter-spacing:-.03em}.gw-steps3 p,.gw-biz p{margin:0;color:#4a5d57;font-size:15px;line-height:1.7}
-.gw-biz a{border-radius:22px;padding:28px;background:#0a2250;color:#fff;transition:transform .3s}.gw-biz a:hover{transform:translateY(-5px)}.gw-biz h4{margin-top:0}.gw-biz p{color:#c9d6ea}.gw-biz span{display:block;margin-top:18px;font-weight:700;font-size:14px}
 .gw-more{display:inline-block;padding:14px 26px;border-radius:99px;background:#00553d;color:#fff;font-weight:700}
 .gw-lg{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .gw-lc{border-radius:26px;padding:clamp(22px,3vw,38px);background:#f3f8f5;display:flex;flex-direction:column;gap:14px}
@@ -189,60 +62,10 @@ html.gw-anim .index :is(.swiper-slide-active,.is-in:not(.sec_slide)) .gw-bento>.
 .gw-lc .inf{display:grid;gap:6px}.gw-lc .inf a{font-size:15px}.gw-lc .inf b{display:inline-block;width:72px;color:#6b7c76;font-weight:500}
 .gw-map{width:100%;height:260px;border:0;border-radius:18px;background:#e3eae6}
 .gw-btns{display:flex;gap:8px;flex-wrap:wrap}.gw-btns a{padding:11px 20px;border-radius:99px;background:#fff;box-shadow:inset 0 0 0 1.5px #0c1f1b26;font-weight:700;font-size:14px}.gw-btns a:hover{background:#00553d;color:#fff}
+.gw-sub .inner{padding-left:max(24px,3vw);padding-right:max(24px,3vw);box-sizing:border-box}
 @media(max-width:812px){
-.gw-sy{grid-template-columns:1fr;gap:12px;margin-bottom:16px}.gw-sy .gw-syn{width:min(300px,78vw)}.gw-syn span{font-size:22px}.gw-syn small{font-size:11px;margin-top:5px}.gw-syn .lc{font-size:11px}
-.gw-steps li{padding:9px 0 9px 40px}.gw-steps li:before{top:9px;width:26px;height:26px}.gw-steps span{display:none}.gw-steps b{font-size:15px}.gw-lm a{font-size:12px;padding:6px 12px}
-.gw-steps3,.gw-biz,.gw-lg{grid-template-columns:1fr}.gw-map{height:220px}.gw-sub h3.gw-h{margin-top:56px}
-.index .gw-bento.n1,.index .gw-bento.n2,.index .gw-bento.n3,.index .gw-bento.n4,.index .gw-bento.n5,.index .gw-bento.n6{display:flex;height:36vh;min-height:230px}
-.index .gw-bento .gw-pc,.index .gw-bento .gw-pc:nth-child(n),.index .gw-bento.n1 .gw-pc,.index .gw-bento.n2 .gw-pc,.index .gw-bento.n4 .gw-pc,.index .gw-bento.n5 .gw-pc:nth-child(-n+2){flex:0 0 68vw;grid-column:auto}
+.gw-lg{grid-template-columns:1fr}.gw-map{height:220px}
 .gw-pc .m{font-size:28px}.gw-pgrid{grid-template-columns:1fr}.gw-pgrid .gw-pc{min-height:240px}
 .gw-products .lead,.gw-sub .lead{font-size:16px}
 }
-@media(prefers-reduced-motion:reduce){html.gw-anim .index :is(.gw-in>*,.title,.gw-sy>*,.cont02 button,.gw-bento>.gw-pc,.gw-note,.gw-pt>*,.gw-ty>div,.cont03 li,.cont05 h1){opacity:1!important;transform:none!important;transition:none!important}.gw-syn i{animation:none!important}.gw-prog{display:none}.gw-pc,.gw-pgrid .gw-pc{transition:none}}
-
-/* ===== 자연 스크롤 모드(메인) : 풀페이지 대신 일반 스크롤 + 겹쳐 올라오는 섹션 ===== */
-html.gw-flowmode,html.gw-flowmode body{height:auto}
-html.gw-flowmode body{overflow-x:hidden}
-.gw-flow{width:100%;height:auto}
-.gw-flow .gw-wrap{display:block}
-.gw-flow section.gw-sec{position:relative;width:100%;height:auto;min-height:100svh;overflow:hidden}
-.gw-flow section.sec_slide{height:100svh;min-height:600px;overflow:hidden}
-.gw-flow section[class*="cont0"]{padding:116px 0 96px}
-.gw-flow section.gw-sec~section.gw-sec{margin-top:-30px;border-radius:30px 30px 0 0;box-shadow:0 -18px 40px #0a225014}
-.gw-flow .sec_slide{--gw-p:0}
-.gw-flow .sec_slide .gw-in{transform:translate3d(0,calc(var(--gw-p)*-48px),0);opacity:calc(1 - var(--gw-p)*1.15);will-change:transform,opacity}
-.gw-flow .gw-fig{transform:translate3d(0,calc(var(--gw-p)*34px),0) scale(calc(1 - var(--gw-p)*.06))}
-.gw-flow .cont04 .gw-pt h1{font-size:clamp(26px,3.6vw,52px);line-height:1.25}
-.gw-flow .cont05 h1.gw-en{font-family:'Bricolage Grotesque','Pretendard',sans-serif;font-size:clamp(20px,2.6vw,34px);font-weight:700;letter-spacing:-.02em;opacity:.8}
-html.gw-flowmode footer,html.gw-flowmode footer.foot_main{position:relative;bottom:auto;left:auto;z-index:2}
-.gw-dots{position:fixed;right:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:60;color:var(--gw-g);transition:color .3s}
-.gw-dots.dark{color:#fff}
-.gw-dots button{width:10px;height:10px;max-width:none;padding:0;border:1.5px solid currentColor;border-radius:99px;background:transparent;cursor:pointer;transition:height .35s,background .35s,opacity .3s;opacity:.6;position:relative}
-.gw-dots button:hover{background:transparent;opacity:1}
-.gw-dots button.on{height:28px;background:currentColor;opacity:1}
-.gw-dots button:focus-visible{outline:2px solid currentColor;outline-offset:3px}
-.gw-dots button span{position:absolute;right:20px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:12px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .2s}
-.gw-dots button:hover span,.gw-dots button:focus-visible span{opacity:1}
-.gw-progress{position:fixed;left:0;top:0;width:100%;height:3px;background:var(--gw-g);transform-origin:0 50%;transform:scaleX(0);z-index:1100;pointer-events:none}
-.side_menu{z-index:60}
-@media(max-width:812px){
- .gw-flow section[class*="cont0"]{padding:96px 0 72px}
- .gw-flow section.gw-sec~section.gw-sec{margin-top:-22px;border-radius:22px 22px 0 0}
- .gw-dots{right:8px;gap:10px}.gw-dots button span{display:none}
-}
-@media(prefers-reduced-motion:reduce){
- .gw-flow .sec_slide .gw-in,.gw-flow .gw-fig{transform:none!important;opacity:1!important}
-}
-/* 보정: 버튼형 카드 폭, 좁은 PC 화면 좌우 여백, 점 내비 가독성 */
-.gw-pc{max-width:none;width:auto}
-.gw-flow :is(.title.inner,.cont02>.inner,.cont03>.inner,.cont04>.inner){padding-left:max(24px,4vw);padding-right:max(24px,4vw);box-sizing:border-box}
-.gw-flow .cont01 .title.inner{width:min(1380px,100%)}
-.gw-sub .inner{padding-left:max(24px,3vw);padding-right:max(24px,3vw);box-sizing:border-box}
-.gw-flow section.cont05{min-height:70svh}
-.gw-flow .cont04 .gw-pt h1{font-size:clamp(24px,3vw,44px)}
-.gw-dots button{border-width:2px;opacity:.75}
-.gw-dots:not(.dark) button{background:#ffffffb0}
-.gw-dots:not(.dark) button.on{background:currentColor}
-/* 스크롤 시 헤더 배경(본문과 겹침 방지) */
-html.gw-flowmode #header.gw-solid:before{opacity:1;background:#ffffffe6;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 #00553d14}
-html.gw-flowmode #header.gw-solid.dark:before{background:#0a2250d9;box-shadow:none}
+@media(prefers-reduced-motion:reduce){.gw-pc,.gw-pgrid .gw-pc{transition:none}}

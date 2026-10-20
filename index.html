@@ -16,73 +16,84 @@ while ($gw_nres && ($gw_nrow = sql_fetch_array($gw_nres))) {
     <script>document.documentElement.classList.add("hm-page","hm-anim");</script>
     <main class="hm">
 
-        <section class="hm-hero">
-            <div class="hm-wrap">
-                <p class="hm-en">GROBio × WIGO</p>
-                <h1>기술은 그로바이오가,<br>공급은 위고가.</h1>
-                <p class="hm-lead">마이크로니들과 바이오 앰플을 직접 개발·제조하는 그로바이오. 그 제품을 파트너와 고객에게 전달하는 위고. 두 회사가 하나의 방향으로 성장합니다.</p>
-            </div>
-            <div class="hm-wrap hm-panels">
-                <a class="hm-panel p1" href="/pages/m21.html" data-rv>
-                    <span class="en">Bio Solution</span>
-                    <b>직접 개발하고<br>제조합니다</b>
-                    <span class="ds">마이크로니들·바이오 앰플 기반의 두피·피부 케어 제품</span>
-                    <i class="ar" aria-hidden="true">→</i>
-                </a>
-                <a class="hm-panel p2" href="/pages/m11.html" data-rv>
-                    <span class="en">Technology</span>
-                    <b>세 가지<br>핵심 기술</b>
-                    <span class="ds">마이크로니들 · 바이오 앰플 · 바이오 원료</span>
-                    <i class="ar" aria-hidden="true">→</i>
-                </a>
-                <a class="hm-panel p3" href="/pages/m41.html" data-rv>
-                    <span class="en">Partner Solution</span>
-                    <b>시장과 고객에게<br>공급합니다</b>
-                    <span class="ds">지역 유통, 온라인 플랫폼, 제휴제품 공급과 운영 지원</span>
-                    <i class="ar" aria-hidden="true">→</i>
-                </a>
+        <!-- 1. 정체성 -->
+        <section class="hm-hero" aria-labelledby="hm-h1">
+            <div class="hm-wrap hm-hero-in">
+                <div class="hm-hero-tx">
+                    <p class="hm-en">GROBio × WIGO · Bio Beauty</p>
+                    <h1 id="hm-h1">두피에서 피부까지,<br>케어 라인을 만듭니다.</h1>
+                    <p class="hm-lead">두피·헤어케어, 피부 앰플, 뷰티기기. 그로바이오가 개발·제조하고 위고가 판매와 유통 플랫폼을 운영합니다.</p>
+                    <p class="hm-acts">
+                        <a class="hm-btn" href="#products">제품 보기</a>
+                        <a class="hm-btn ghost" href="/pages/m41.html">비즈니스 문의</a>
+                    </p>
+                </div>
+                <div class="hm-ring" role="img" aria-label="그로바이오와 위고의 세 가지 사업 분야: 두피·헤어케어, 피부·스킨케어, 뷰티기기">
+                    <span class="hm-core"><b>GROBio</b><i>×</i><b>WIGO</b></span>
+                    <a class="hm-node n1" href="/pages/m21.html"><small>Scalp &amp; Hair</small><b>두피·헤어케어</b></a>
+                    <a class="hm-node n2" href="/pages/m21.html"><small>Skin &amp; Ampoule</small><b>피부·앰플</b></a>
+                    <a class="hm-node n3" href="/pages/m22.html"><small>Beauty Device</small><b>뷰티기기</b></a>
+                </div>
             </div>
         </section>
 
-        <section class="hm-sec hm-about">
+        <!-- 2. 제품 (좌우로 넘기는 슬라이드) -->
+        <section class="hm-sec hm-prod" id="products" aria-labelledby="hm-prod-h">
             <div class="hm-wrap">
-                <p class="hm-en" data-rv>About us</p>
-                <h2 data-rv>함께 만들고,<br>함께 성장합니다.</h2>
-                <p class="hm-txt" data-rv>그로바이오는 개발과 제조에, 위고는 유통과 플랫폼에 집중합니다. 서로의 전문 영역을 연결해 고객에게는 꾸준한 관리 경험을, 파트너에게는 안정적인 제품 공급을 제안합니다.</p>
-                <div class="hm-eq" role="img" aria-label="그로바이오의 개발·제조와 위고의 유통·플랫폼이 만나 함께 성장합니다" data-rv>
-                    <span><b>GROBio</b><small>개발·제조</small></span><i>×</i><span><b>WIGO</b><small>유통·플랫폼</small></span>
-                </div>
-                <ul class="hm-steps">
-                    <li data-rv><b>개발·제조</b><span>그로바이오가 제품을 개발하고 직접 제조합니다.</span></li>
-                    <li data-rv><b>유통·공급</b><span>위고가 지역 유통과 온라인 플랫폼으로 공급합니다.</span></li>
-                    <li data-rv><b>현장 반영</b><span>고객과 파트너의 의견을 제품 개선에 반영합니다.</span></li>
-                </ul>
-                <div class="hm-places" data-rv>
-                    <a href="/pages/m12.html"><small>그로바이오 공장</small><b>대전 유성구 테크노2로 310-7</b></a>
-                    <a href="/pages/m12.html"><small>위고 사무실</small><b>대전 서구 둔산중로 19, 샤크존 2층</b></a>
-                </div>
-                <a class="hm-btn light" href="/pages/m11.html" data-rv>기업소개 보기</a>
-            </div>
-        </section>
-
-        <section class="hm-sec hm-prod" id="products">
-            <div class="hm-wrap">
-                <div class="hm-head" data-rv>
-                    <div><p class="hm-en">Product</p><h2>제품</h2></div>
-                    <p class="hm-sub"><a href="/pages/m21.html">그로바이오 제품</a><a href="/pages/m22.html">제휴제품</a></p>
+                <div class="hm-head">
+                    <div><p class="hm-en">Product</p><h2 id="hm-prod-h">제품 구성</h2></div>
+                    <div class="hm-ctl" aria-label="제품 슬라이드 조작">
+                        <button type="button" class="hm-prev" aria-label="이전 제품">←</button>
+                        <button type="button" class="hm-next" aria-label="다음 제품">→</button>
+                    </div>
                 </div>
                 <?php if ($gw_home_cards) { ?>
-                <div class="hm-cards" data-rv>
-                    <?php foreach ($gw_home_cards as $i => $gw_card) echo wigo_prod_card_html($gw_card, $i); ?>
-                </div>
+                <ul class="hm-rail" tabindex="0" aria-label="제품 목록, 좌우로 넘겨 보세요">
+                    <?php foreach ($gw_home_cards as $gw_card) echo wigo_prod_rail_card_html($gw_card); ?>
+                </ul>
                 <?php } ?>
+                <p class="hm-links"><a href="/pages/m21.html">그로바이오 제품 전체</a><a href="/pages/m22.html">제휴제품 전체</a></p>
             </div>
         </section>
 
-        <section class="hm-sec hm-news">
+        <!-- 3. 그로바이오 × 위고 -->
+        <section class="hm-sec hm-duo" aria-labelledby="hm-duo-h">
+            <div class="hm-wrap hm-duo-in">
+                <figure class="hm-photo" data-rv>
+                    <img src="/img/grobio/building.jpg" alt="주식회사 위고가 위치한 대전 둔산동 샤크존빌딩 외관" width="1200" height="1025" loading="lazy">
+                    <figcaption>위고 사무실이 있는 대전 샤크존빌딩</figcaption>
+                </figure>
+                <div class="hm-duo-tx">
+                    <p class="hm-en" data-rv>About us</p>
+                    <h2 id="hm-duo-h" data-rv>제품은 그로바이오,<br>판매는 위고.</h2>
+                    <div class="hm-two" data-rv>
+                        <div><b>GROBio 그로바이오</b><p>두피·피부·뷰티기기 제품의 개발과 제조, 품질 관리, 브랜드·기술 권리</p></div>
+                        <div><b>WIGO 위고</b><p>제품 판매, 지역 유통망 운영, 온라인 플랫폼·주문 관리, 시스템 운영</p></div>
+                    </div>
+                    <a class="hm-btn dark" href="/pages/m11.html" data-rv>기업소개 자세히 보기</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. 비즈니스 안내 -->
+        <section class="hm-sec hm-biz" aria-labelledby="hm-biz-h">
             <div class="hm-wrap">
                 <div class="hm-head" data-rv>
-                    <div><p class="hm-en">Notice</p><h2>공지사항</h2></div>
+                    <div><p class="hm-en">Business</p><h2 id="hm-biz-h">비즈니스 문의</h2></div>
+                </div>
+                <ul class="hm-paths" data-rv>
+                    <li><a href="/pages/m41.html"><b>제품 도입</b><span>전문점·매장의 그로바이오 제품 도입 상담</span><i aria-hidden="true">→</i></a></li>
+                    <li><a href="/pages/m41.html"><b>총판·대리점</b><span>지역 유통과 판매를 함께할 광역총판·대리점 문의</span><i aria-hidden="true">→</i></a></li>
+                    <li><a href="/pages/m41.html"><b>제품·판매 제휴</b><span>제휴제품 판매와 온라인 플랫폼 협업 문의</span><i aria-hidden="true">→</i></a></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 5. 공지·자료 -->
+        <section class="hm-sec hm-news" aria-labelledby="hm-news-h">
+            <div class="hm-wrap">
+                <div class="hm-head" data-rv>
+                    <div><p class="hm-en">Notice</p><h2 id="hm-news-h">공지사항·자료</h2></div>
                     <p class="hm-sub"><a href="/pages/m31.html">더보기</a></p>
                 </div>
                 <ul class="hm-list" data-rv>
@@ -91,7 +102,7 @@ while ($gw_nres && ($gw_nrow = sql_fetch_array($gw_nres))) {
                     <?php } ?>
                     <?php if (!$gw_notices) { ?><li class="empty">등록된 공지사항이 없습니다.</li><?php } ?>
                 </ul>
-                <p class="hm-quick" data-rv>
+                <p class="hm-links" data-rv>
                     <a href="/pages/m32.html">자료실</a>
                     <a href="/img/file/올비스_카달로그(국문).pdf" download>ALLVIS 카탈로그 (국문)</a>
                     <a href="/img/file/올비스_카달로그(영문).pdf" download>ALLVIS 카탈로그 (영문)</a>
@@ -99,13 +110,11 @@ while ($gw_nres && ($gw_nrow = sql_fetch_array($gw_nres))) {
             </div>
         </section>
 
-        <section class="hm-sec hm-join">
-            <div class="hm-wrap">
-                <p class="hm-en" data-rv>We Grow Together with WIGO</p>
-                <h2 data-rv>함께 성장할<br>파트너를 찾습니다.</h2>
-                <p class="hm-txt" data-rv>가맹·대리점부터 지역 총판까지, 제품 도입과 운영 상담을 도와드립니다.</p>
-                <a class="hm-btn" href="/pages/m41.html" data-rv>문의하기</a>
-                <p class="hm-chips" data-rv><a href="/pages/m41.html">광역총판</a><a href="/pages/m41.html">대리점</a><a href="/pages/m41.html">제품·판매 제휴</a></p>
+        <!-- 6. 회사·운영 정보 -->
+        <section class="hm-sec hm-info" aria-label="회사 정보">
+            <div class="hm-wrap hm-info-in" data-rv>
+                <p><b>주식회사 위고</b> 대전 서구 둔산중로 19 샤크존 2층 223호 · 대표번호 1555-3336 (평일 09:00–18:00)</p>
+                <p class="hm-links"><a href="/pages/m12.html">오시는 길 · 사업장 안내</a><a href="/pages/m11.html">기업소개</a></p>
             </div>
         </section>
 
@@ -119,7 +128,7 @@ while ($gw_nres && ($gw_nrow = sql_fetch_array($gw_nres))) {
         </div>
     </main>
     <?php echo wigo_prod_dialog_html(); ?>
-    <script src="<?php echo G5_URL; ?>/js/home.js?v=1"></script>
+    <script src="<?php echo G5_URL; ?>/js/home.js?v=2"></script>
 <?php
 include_once(G5_PATH."/newbex_tail.php");
 ?>

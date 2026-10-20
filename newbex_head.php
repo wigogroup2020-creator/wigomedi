@@ -6,23 +6,23 @@
 <?php
 $currentPage = basename($_SERVER['SCRIPT_NAME']);
 $brandMeta = array(
-    'm11.html' => array('기업소개 | GROBio × WIGO 그로바이오·위고', '그로바이오는 개발과 제조를, 위고는 유통과 플랫폼을 맡아 고객과 파트너의 성장을 함께 만듭니다.'),
+    'm11.html' => array('기업소개 | GROBio × WIGO 그로바이오·위고', '두피·헤어케어, 피부 앰플, 뷰티기기. 그로바이오가 제품을 개발·제조하고 위고가 판매와 유통 플랫폼을 운영합니다.'),
     'm12.html' => array('오시는 길 | GROBio × WIGO 그로바이오·위고', '그로바이오 공장(대전 유성구 테크노2로)과 위고 사무실(대전 서구 둔산중로)의 위치와 연락처를 안내합니다.'),
-    'm21.html' => array('그로바이오 제품 | GROBio × WIGO', '마이크로니들과 바이오 앰플 기술을 바탕으로 개발·제조하는 그로바이오의 두피·피부·웰니스 제품을 소개합니다.'),
+    'm21.html' => array('그로바이오 제품 | GROBio × WIGO', '그로바이오가 개발·제조하는 두피·헤어케어, 스킨케어, 셀프케어 앰플 제품을 소개합니다.'),
     'm22.html' => array('위고 제휴제품 | GROBio × WIGO', '위고가 공급하는 제휴제품을 소개합니다. 제품 구성과 도입 조건은 상담을 통해 안내합니다.'),
     'stores.html' => array('매장안내 | GROBio × WIGO', '제품을 만나볼 수 있는 매장을 안내합니다. 매장 사진과 위치를 확인하고 네이버 지도로 방문 정보를 확인하세요.'),
     'm41.html' => array('제품 및 파트너 문의 | GROBio × WIGO', '그로바이오 제품, 제휴제품, 가맹·대리점 및 총판 도입을 상담합니다. 주식회사 위고에 문의해 주세요.'),
     'm31.html' => array('공지사항 | GROBio × WIGO', '그로바이오와 위고의 새로운 소식을 안내합니다.'),
     'm32.html' => array('자료실 | GROBio × WIGO', '그로바이오와 위고의 제품 소개·사용 안내 자료를 확인하세요.')
 );
-$brandPage = isset($brandMeta[$currentPage]) ? $brandMeta[$currentPage] : array('GROBio × WIGO 그로바이오·위고 | 바이오 뷰티 기술과 유통 플랫폼', '그로바이오와 위고의 공식 홈페이지입니다. 마이크로니들·바이오 앰플 기반의 두피·피부 케어 제품과 제휴제품, 총판·대리점 상담을 안내합니다.');
+$brandPage = isset($brandMeta[$currentPage]) ? $brandMeta[$currentPage] : array('GROBio × WIGO 그로바이오·위고 | 두피·피부·뷰티기기', '두피·헤어케어, 피부 앰플, 뷰티기기. 그로바이오 제품 안내와 위고의 제품 도입·총판·대리점 문의를 확인하세요.');
 $brandPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $brandUrl = rtrim(G5_URL, '/') . (($brandPath === '/index.html') ? '/' : $brandPath);
 ?>
     <title><?php echo htmlspecialchars($brandPage[0], ENT_QUOTES, 'UTF-8'); ?></title>
     <meta name="naver-site-verification" content="60cef302f92d4d6100019aea5e2766764e8afd2a" />
     <meta name="description" content="<?php echo htmlspecialchars($brandPage[1], ENT_QUOTES, 'UTF-8'); ?>">
-    <meta name="keywords" content="GROBio, 그로바이오, WIGO, 위고, 슈가그로우, 슈가페이스, 슈가리젠, 마이크로니들, 바이오 앰플, 두피케어, 총판, 대리점">
+    <meta name="keywords" content="GROBio, 그로바이오, WIGO, 위고, 슈가그로우, 슈가페이스, 슈가리젠, 뷰티기기, 앰플, 두피케어, 총판, 대리점">
     <meta name="author" content="주식회사 위고">
     <link rel="canonical" href="<?php echo htmlspecialchars($brandUrl, ENT_QUOTES, 'UTF-8'); ?>">
     <meta property="og:type" content="website">
@@ -30,7 +30,7 @@ $brandUrl = rtrim(G5_URL, '/') . (($brandPath === '/index.html') ? '/' : $brandP
     <meta property="og:site_name" content="GROBio × WIGO">
     <meta property="og:title" content="<?php echo htmlspecialchars($brandPage[0], ENT_QUOTES, 'UTF-8'); ?>">
     <meta property="og:url" content="<?php echo htmlspecialchars($brandUrl, ENT_QUOTES, 'UTF-8'); ?>">
-    <meta property="og:image" content="<?php echo G5_URL; ?>/img/grobio/share.png?v=2">
+    <meta property="og:image" content="<?php echo G5_URL; ?>/img/grobio/share.png?v=3">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="GROBio × WIGO 그로바이오·위고 | 기술에서 일상까지">
@@ -38,7 +38,7 @@ $brandUrl = rtrim(G5_URL, '/') . (($brandPath === '/index.html') ? '/' : $brandP
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?php echo htmlspecialchars($brandPage[0], ENT_QUOTES, 'UTF-8'); ?>">
     <meta name="twitter:description" content="<?php echo htmlspecialchars($brandPage[1], ENT_QUOTES, 'UTF-8'); ?>">
-    <meta name="twitter:image" content="<?php echo G5_URL; ?>/img/grobio/share.png?v=2">
+    <meta name="twitter:image" content="<?php echo G5_URL; ?>/img/grobio/share.png?v=3">
     <link rel="icon" type="image/svg+xml" href="<?php echo G5_URL; ?>/img/grobio/favicon.svg">
     <!-- css -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -55,10 +55,13 @@ $brandUrl = rtrim(G5_URL, '/') . (($brandPath === '/index.html') ? '/' : $brandP
 	?>
     <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/brand-88lion.css">
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-wigo.css?v=3">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-wigo.css?v=4">
 	<?php if ($currentPage === 'index.php' || $currentPage === 'index.html') { ?>
-    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-home.css?v=1">
+    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-home.css?v=2">
+	<?php } ?>
+	<?php if ($currentPage === 'm11.html') { ?>
+    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-about.css?v=1">
 	<?php } ?>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>

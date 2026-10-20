@@ -1,121 +1,137 @@
-/* GROBio × WIGO 메인 (모바일 우선) : 슬라이드 없이 섹션을 위에서 아래로 나열 */
+/* GROBio × WIGO 메인 (모바일 우선, index 전용) */
 html.hm-page,html.hm-page body{height:auto}
 html.hm-page body{overflow-x:hidden}
 html.hm-page footer,html.hm-page footer.foot_main{position:relative;bottom:auto;left:auto}
 html.hm-page #header.gw-solid:before{opacity:1;background:#ffffffeb;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 #00553d14}
-.hm{--g:#00553d;--n:#0a2250;--ink:#0f1f1a;--mute:#53655f;--line:#dfe8e3;--bg:#f3f8f5;--mint:#9fdcc2;color:var(--ink);background:#fff;word-break:keep-all}
+.hm{--g:#00553d;--n:#0a2250;--ink:#13211c;--mute:#52635c;--line:#e1e9e4;--bg:#f6f4ef;--mint:#cfe9dc;--blush:#f3dfd8;--sky:#d9e6f5;color:var(--ink);background:#fff;word-break:keep-all;font-size:17px;line-height:1.7}
 .hm *{box-sizing:border-box}
 .hm-wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 20px}
-.hm-en{margin:0 0 10px;font:700 12px/1 'Bricolage Grotesque','Pretendard',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--g)}
-.hm h1,.hm h2{margin:0;font-weight:800;letter-spacing:-.05em}
-.hm h1{font-size:clamp(32px,8.4vw,68px);line-height:1.14}
-.hm h2{font-size:clamp(26px,6.4vw,46px);line-height:1.2}
-.hm-lead,.hm-txt{margin:16px 0 0;font-size:15px;line-height:1.7;color:var(--mute);max-width:36em}
+.hm-en{margin:0 0 10px;font:700 12px/1 'Bricolage Grotesque','Pretendard',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--g)}
+.hm h1,.hm h2{margin:0;font-weight:700;letter-spacing:-.035em}
+.hm h1{font-size:clamp(30px,8vw,56px);line-height:1.25}
+.hm h2{font-size:clamp(24px,6vw,38px);line-height:1.3}
+.hm-lead{margin:16px 0 0;font-size:17px;line-height:1.7;color:var(--mute);max-width:30em}
 .hm-sec{padding:56px 0}
+.hm a:focus-visible,.hm button:focus-visible,.hm-rail:focus-visible{outline:3px solid #2a63d6;outline-offset:3px}
 
-/* Hero */
-.hm-hero{padding:96px 0 36px;background:linear-gradient(180deg,var(--bg) 0%,#fff 100%)}
-.hm-panels{display:grid;gap:10px;margin-top:28px}
-.hm-panel{position:relative;overflow:hidden;display:grid;grid-template-columns:1fr auto;grid-template-areas:"en ar" "b b" "ds ds";gap:6px 12px;padding:18px 18px 16px;border-radius:18px;color:#fff;text-decoration:none;min-height:132px;align-content:space-between;isolation:isolate}
-.hm-panel .en{grid-area:en;font:700 12px/1 'Bricolage Grotesque','Pretendard',sans-serif;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
-.hm-panel b{grid-area:b;font-size:21px;line-height:1.2;letter-spacing:-.045em;font-weight:800;margin-top:14px}
-.hm-panel .ds{grid-area:ds;font-size:13px;line-height:1.55;opacity:.85}
-.hm-panel .ar{grid-area:ar;font-style:normal;font-size:20px;line-height:1;transition:transform .25s}
-.hm-panel:hover .ar,.hm-panel:focus-visible .ar{transform:translateX(4px)}
-.hm-panel.p1{background:linear-gradient(135deg,#00553d,#0a7a58)}
-.hm-panel.p2{background:#0a2250 url(/img/grobio/building.jpg) center 40%/cover}
-.hm-panel.p2:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#0a225099,#0a2250e6)}
-.hm-panel.p3{background:linear-gradient(135deg,#0a2250,#1d3f8a)}
-.hm-panel:focus-visible,.hm a:focus-visible,.hm-cards .gw-pc:focus-visible{outline:3px solid #2a63d6;outline-offset:3px}
+/* 버튼 */
+.hm-acts{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 0}
+.hm .hm-btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 24px;border-radius:999px;background:var(--g);color:#fff;font-size:16px;font-weight:700;text-decoration:none;border:1.5px solid var(--g);width:auto;max-width:none}
+.hm .hm-btn.ghost{background:transparent;color:var(--g)}
+.hm .hm-btn.dark{background:var(--n);border-color:var(--n)}
 
-/* About */
-.hm-about{background:var(--n);color:#fff}
-.hm-about .hm-en{color:var(--mint)}
-.hm-about .hm-txt{color:#ffffffbf}
-.hm-eq{display:flex;align-items:center;justify-content:center;gap:12px;margin:28px 0 8px}
-.hm-eq span{flex:1;max-width:210px;text-align:center;padding:16px 10px;border:1.5px solid #ffffff4d;border-radius:18px}
-.hm-eq span:first-child{background:#9fdcc21f;border-color:#9fdcc299}
-.hm-eq span:last-of-type{background:#9db8ff1f;border-color:#9db8ff99}
-.hm-eq b{display:block;font:800 22px/1 'Bricolage Grotesque','Pretendard',sans-serif;letter-spacing:-.03em}
-.hm-eq small{display:block;margin-top:8px;font-size:12px;opacity:.8}
-.hm-eq i{font-style:normal;font-size:22px;opacity:.7}
-.hm-steps{list-style:none;margin:20px 0 0;padding:0;border-top:1px solid #ffffff2e}
-.hm-steps li{display:grid;grid-template-columns:84px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid #ffffff2e;font-size:14px;line-height:1.6}
-.hm-steps b{color:var(--mint);font-weight:800}
-.hm-steps span{color:#ffffffd9}
-.hm-places{display:grid;gap:8px;margin-top:20px}
-.hm-places a{display:block;padding:14px 16px;border:1px solid #ffffff33;border-radius:14px;color:#fff;text-decoration:none}
-.hm-places small{display:block;font-size:12px;color:var(--mint);margin-bottom:4px}
-.hm-places b{font-size:14px;font-weight:600}
-.hm-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 28px;margin-top:24px;border-radius:99px;background:var(--g);color:#fff;font-size:15px;font-weight:700;text-decoration:none}
-.hm-btn.light{background:#fff;color:var(--n)}
+/* 1. 히어로 */
+.hm-hero{padding:92px 0 40px;background:var(--bg);overflow:hidden}
+.hm-hero-in{display:grid;gap:28px}
+.hm-ring{position:relative;width:min(100%,340px);aspect-ratio:1;margin:0 auto}
+.hm-ring:before,.hm-ring:after{content:"";position:absolute;border-radius:50%}
+.hm-ring:before{inset:0;border:1.5px solid #00553d33}
+.hm-ring:after{inset:17%;border:1.5px dashed #00553d40}
+.hm-core{position:absolute;inset:31%;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:50%;background:var(--g);color:#fff;text-align:center;line-height:1.1}
+.hm-core b{font:700 15px/1.2 'Bricolage Grotesque','Pretendard',sans-serif}
+.hm-core i{font-style:normal;font-size:13px;opacity:.7}
+.hm .hm-node{position:absolute;display:block;width:42%;padding:9px 6px;border-radius:16px;background:#fff;color:var(--ink);text-align:center;text-decoration:none;box-shadow:0 6px 18px #0a225014;line-height:1.25;transform:translate(-50%,-50%)}
+.hm-node small{display:block;font:600 10px/1.2 'Bricolage Grotesque','Pretendard',sans-serif;letter-spacing:.04em;color:var(--g);text-transform:uppercase}
+.hm-node b{display:block;margin-top:3px;font-size:15px;font-weight:700}
+.hm-node.n1{left:50%;top:4%}
+.hm-node.n2{left:78%;top:74%;background:var(--blush)}
+.hm-node.n3{left:22%;top:74%;background:var(--sky)}
+.hm-node.n1{background:var(--mint)}
+.hm-node:hover,.hm-node:focus-visible{box-shadow:0 8px 22px #0a225030}
 
-/* Product */
-.hm-prod{background:var(--bg)}
-.hm-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:20px}
-.hm-sub{display:flex;gap:14px;margin:0;font-size:14px}
-.hm-sub a{color:var(--g);font-weight:700;text-decoration:underline;text-underline-offset:3px}
-.hm-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.hm-cards .gw-pc{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;grid-column:auto;width:auto;max-width:none;min-height:156px;padding:16px;border:0;border-radius:18px;text-align:left;text-decoration:none;cursor:pointer;transition:transform .25s}
-.hm-cards .gw-pc:hover{transform:translateY(-3px);background-color:inherit}
-.hm-cards .gw-pc:after{content:"";position:absolute;width:62%;aspect-ratio:1;border-radius:50%;border:12px solid #ffffff55;right:-14%;bottom:-26%}
-.hm-cards .gw-pc>*{position:relative;z-index:1}
-.hm-cards .gw-pc .k{font-size:11px;font-weight:700;background:#ffffffb8;color:inherit;border-radius:99px;padding:4px 10px}
-.hm-cards .gw-pc .m{font-size:20px;font-weight:800;letter-spacing:-.04em;line-height:1.12;font-family:'Pretendard',sans-serif;word-break:keep-all}
-.hm-cards .gw-pc .i{font-size:12px;line-height:1.4;opacity:.85;margin-top:4px;display:block}
-.hm-cards .gw-pc.c1{background:#bfe5d2;color:#00442f}.hm-cards .gw-pc.c2{background:#f5e2d9;color:#5b2a17}.hm-cards .gw-pc.c3{background:#fff;color:var(--g);box-shadow:inset 0 0 0 1.5px #00553d33}.hm-cards .gw-pc.c4{background:var(--n);color:#fff}.hm-cards .gw-pc.c5{background:var(--g);color:#fff}
-.hm-cards .gw-pc.c4:after,.hm-cards .gw-pc.c5:after{border-color:#ffffff1f}
-.hm-cards .gw-pc .ph{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;right:auto;top:auto}
-.hm-cards .gw-pc.has-img{color:#fff}
-.hm-cards .gw-pc.has-img:before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,transparent 30%,#000000a6)}
+/* 2. 제품 슬라이드 */
+.hm-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:22px}
+.hm-sub,.hm-links{margin:0;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:15px}
+.hm-sub a,.hm-links a{color:var(--g);font-weight:700;text-decoration:none;border-bottom:1px solid #00553d55;padding:6px 0}
+.hm-links{margin-top:18px}
+.hm-ctl{display:flex;gap:8px;flex:none}
+.hm .hm-ctl button{width:48px;max-width:48px;height:48px;border-radius:50%;border:1.5px solid var(--line);background:#fff;color:var(--g);font-size:20px;line-height:1;cursor:pointer;padding:0}
+.hm .hm-ctl button:hover{border-color:var(--g)}
+.hm .hm-ctl button[disabled]{opacity:.35;cursor:default}
+.hm-rail{display:flex;gap:14px;margin:0 -20px;padding:2px 20px 10px;list-style:none;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 20px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.hm-rail::-webkit-scrollbar{display:none}
+.hm-card{flex:0 0 78%;max-width:320px;scroll-snap-align:start;list-style:none}
+.hm .hm-card-in{display:flex;flex-direction:column;width:100%;max-width:none;height:100%;padding:0;border:1px solid var(--line);border-radius:20px;background:#fff;color:var(--ink);text-align:left;text-decoration:none;overflow:hidden;cursor:pointer;font:inherit;transition:transform .2s,box-shadow .2s}
+.hm .hm-card-in:hover{transform:translateY(-3px);box-shadow:0 12px 28px #0a225018}
+.hm-media{position:relative;display:block;aspect-ratio:4/3;background:var(--mint);overflow:hidden}
+.t-blush .hm-media{background:var(--blush)}
+.t-sky .hm-media{background:var(--sky)}
+.t-navy .hm-media{background:#dfe5f1}
+.t-mute .hm-media{background:#ecece8}
+.hm-ph{width:100%;height:100%;object-fit:cover;display:block}
+.hm-art{position:absolute;inset:0;display:flex;align-items:flex-end;padding:14px}
+.hm-art i{position:absolute;right:-12%;top:-18%;width:70%;aspect-ratio:1;border-radius:50%;border:1.5px solid #00553d40;box-shadow:0 0 0 22px #ffffff59}
+.hm-art:before{content:"";position:absolute;left:12%;top:26%;width:34%;aspect-ratio:1;border-radius:50%;background:#ffffffa6}
+.hm-art em{position:relative;font:700 13px/1.2 'Bricolage Grotesque','Pretendard',sans-serif;font-style:normal;letter-spacing:.04em;color:var(--g)}
+.hm-chip{position:absolute;left:12px;top:12px;padding:5px 10px;border-radius:999px;background:#fff;font-size:12px;font-weight:700;color:var(--mute)}
+.hm-body{display:flex;flex-direction:column;gap:4px;padding:16px 18px 18px;flex:1}
+.hm-area{font-size:13px;font-weight:700;color:var(--g)}
+.hm-name{font-size:20px;line-height:1.3;font-weight:700;letter-spacing:-.03em}
+.hm-desc{font-size:15px;line-height:1.55;color:var(--mute)}
+.hm-cta{margin-top:auto;padding-top:10px;font-size:15px;font-weight:700;color:var(--g)}
+.hm-cta i{font-style:normal;margin-left:6px}
 
-/* Notice */
-.hm-list{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+/* 3. 그로바이오 × 위고 */
+.hm-duo{background:var(--bg)}
+.hm-duo-in{display:grid;gap:28px}
+.hm-photo{margin:0}
+.hm-photo img{display:block;width:100%;height:auto;max-height:420px;object-fit:cover;border-radius:20px}
+.hm-photo figcaption{margin-top:8px;font-size:14px;color:var(--mute)}
+.hm-two{display:grid;gap:12px;margin:22px 0 26px}
+.hm-two>div{padding:16px 18px;border-radius:16px;background:#fff;border:1px solid var(--line)}
+.hm-two b{display:block;font-size:17px;font-weight:700;color:var(--g)}
+.hm-two>div+div b{color:var(--n)}
+.hm-two p{margin:6px 0 0;font-size:15px;line-height:1.6;color:var(--mute)}
+
+/* 4. 비즈니스 */
+.hm-paths{margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.hm-paths a{display:grid;grid-template-columns:1fr auto;gap:2px 12px;align-items:center;padding:18px 2px;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none}
+.hm-paths b{font-size:19px;font-weight:700;letter-spacing:-.03em}
+.hm-paths span{grid-column:1;font-size:15px;line-height:1.55;color:var(--mute)}
+.hm-paths i{grid-column:2;grid-row:1/3;font-style:normal;font-size:20px;color:var(--g);transition:transform .2s}
+.hm-paths a:hover i{transform:translateX(4px)}
+
+/* 5. 공지 */
+.hm-news{background:var(--bg)}
+.hm-list{margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
 .hm-list li{border-bottom:1px solid var(--line)}
-.hm-list a{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 2px;color:var(--ink);text-decoration:none}
-.hm-list a:hover .tt{color:var(--g);text-decoration:underline;text-underline-offset:3px}
-.hm-list .tt{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:15px;font-weight:600}
-.hm-list time{flex:none;font-size:12px;color:var(--mute)}
-.hm-list .empty{padding:20px 2px;color:var(--mute);font-size:14px}
-.hm-quick{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
-.hm-quick a,.hm-chips a{display:inline-flex;align-items:center;min-height:38px;padding:0 14px;border:1px solid var(--line);border-radius:99px;color:var(--ink);font-size:13px;font-weight:600;text-decoration:none;background:#fff}
+.hm-list a{display:flex;flex-direction:column;gap:4px;padding:16px 2px;color:var(--ink);text-decoration:none}
+.hm-list .tt{font-size:17px;font-weight:600;line-height:1.5}
+.hm-list time{font-size:14px;color:var(--mute)}
+.hm-list .empty{padding:18px 2px;color:var(--mute);font-size:15px}
 
-/* Join */
-.hm-join{background:linear-gradient(135deg,#00402e 0%,var(--n) 100%);color:#fff;padding:64px 0}
-.hm-join .hm-en{color:var(--mint);letter-spacing:.06em;text-transform:none;font-size:13px}
-.hm-join .hm-txt{color:#ffffffc7}
-.hm-join .hm-btn{background:#fff;color:var(--n)}
-.hm-chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
-.hm-join .hm-chips a{background:#ffffff1a;border-color:#ffffff40;color:#fff}
+/* 6. 회사 정보 */
+.hm-info{padding:36px 0 44px}
+.hm-info-in p{margin:0;font-size:15px;line-height:1.7;color:var(--mute)}
+.hm-info-in b{color:var(--ink)}
 
-/* 등장 효과: 아주 가볍게 */
-html.hm-anim .hm [data-rv]{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+/* 등장 효과: 읽기를 돕는 짧은 페이드만 */
+html.hm-anim .hm [data-rv]{opacity:0;transform:translateY(12px);transition:opacity .5s,transform .5s}
 html.hm-anim .hm [data-rv].in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){html.hm-anim .hm [data-rv]{opacity:1;transform:none;transition:none}}
 
-/* 태블릿·PC */
-@media(min-width:760px){
- .hm-wrap{padding:0 32px}
- .hm-sec{padding:96px 0}
- .hm-hero{padding:132px 0 56px}
- .hm-lead,.hm-txt{font-size:17px}
- .hm-panels{grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
- .hm-panel{min-height:300px;padding:28px;border-radius:24px;grid-template-areas:"en ar" "b b" "ds ds";align-content:stretch;grid-template-rows:auto 1fr auto}
- .hm-panel b{font-size:30px;margin-top:0;align-self:end}
- .hm-panel .ds{font-size:14px;margin-top:6px}
- .hm-about .hm-wrap{display:grid;grid-template-columns:1fr 1fr;column-gap:56px}
- .hm-about .hm-en,.hm-about h2,.hm-about .hm-txt{grid-column:1}
- .hm-about .hm-eq{grid-column:2;grid-row:1/4;align-self:center;margin:0}
- .hm-about .hm-steps,.hm-about .hm-places,.hm-about .hm-btn{grid-column:1/-1}
- .hm-about .hm-places{grid-template-columns:1fr 1fr}
- .hm-about .hm-btn{justify-self:start}
- .hm-eq b{font-size:30px}.hm-eq span{padding:30px 14px}
- .hm-steps{margin-top:48px}.hm-steps li{grid-template-columns:140px 1fr;font-size:16px;padding:18px 0}
- .hm-cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
- .hm-cards .gw-pc{min-height:240px;padding:26px;border-radius:24px}
- .hm-cards .gw-pc .m{font-size:30px}.hm-cards .gw-pc .i{font-size:14px}
- .hm-list .tt{font-size:17px}.hm-list a{padding:20px 4px}
- .hm-join{padding:110px 0}
+@media (min-width:768px){
+  .hm{font-size:18px}
+  .hm-lead{font-size:18px}
+  .hm-wrap{padding:0 32px}
+  .hm-sec{padding:84px 0}
+  .hm-hero{padding:132px 0 72px}
+  .hm-hero-in{grid-template-columns:1.1fr .9fr;align-items:center;gap:48px}
+  .hm-ring{width:min(100%,440px)}
+  .hm-node b{font-size:17px}
+  .hm-node small{font-size:11px}
+  .hm-core b{font-size:19px}
+  .hm-rail{margin:0 -32px;padding:2px 32px 12px;scroll-padding:0 32px}
+  .hm-card{flex-basis:300px}
+  .hm-duo-in{grid-template-columns:1fr 1fr;align-items:center;gap:56px}
+  .hm-two{grid-template-columns:1fr 1fr}
+  .hm-list a{flex-direction:row;justify-content:space-between;align-items:baseline;gap:20px}
+  .hm-paths{display:grid;grid-template-columns:repeat(3,1fr);gap:0 28px;border-top:0}
+  .hm-paths a{border-top:1px solid var(--ink);padding:22px 2px 26px}
+  .hm-info-in{display:flex;justify-content:space-between;gap:24px;align-items:center}
+  .hm-info .hm-links{margin:0}
 }
-.hm-cards .gw-pc:last-child:nth-child(odd){grid-column:1/-1;min-height:120px}
-@media(min-width:760px){.hm-cards .gw-pc:last-child:nth-child(odd){grid-column:auto;min-height:240px}.hm-cards .gw-pc:nth-child(5):last-child{grid-column:span 2}}
+@media (min-width:1100px){
+  .hm-rail{margin:0;padding:2px 0 12px;scroll-padding:0}
+  .hm-card{flex-basis:calc((100% - 56px)/4)}
+}
+@media (prefers-reduced-motion:reduce){html.hm-anim .hm [data-rv]{opacity:1;transform:none;transition:none}.hm .hm-card-in{transition:none}}

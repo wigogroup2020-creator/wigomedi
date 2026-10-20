@@ -2,61 +2,6 @@ $(function () {
     // ✅ .index 페이지에서만 실행
     if (!$('main').hasClass('index')) return;
 
-    // ✅ 자연 스크롤 모드: 풀페이지 스와이프 대신 일반 스크롤 + 섹션 등장/전환 효과
-    if ($('main').hasClass('gw-flow')) {
-        $("header").addClass("head");
-        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var secs = Array.prototype.slice.call(document.querySelectorAll('.gw-flow .gw-sec'));
-        var header = document.querySelector('#header');
-        var dots = document.querySelector('.gw-dots');
-        var bar = document.querySelector('.gw-progress');
-        var hero = document.querySelector('.sec_slide');
-        var dotEls = [];
-        secs.forEach(function (sec, i) {
-            var b = document.createElement('button');
-            b.type = 'button';
-            b.setAttribute('aria-label', (sec.getAttribute('data-label') || ('섹션 ' + (i + 1))) + '(으)로 이동');
-            b.innerHTML = '<span>' + (sec.getAttribute('data-label') || '') + '</span>';
-            b.addEventListener('click', function () {
-                sec.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
-            });
-            dots.appendChild(b); dotEls.push(b);
-        });
-        if ('IntersectionObserver' in window) {
-            var io = new IntersectionObserver(function (entries) {
-                entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); } });
-            }, { threshold: 0.18 });
-            secs.forEach(function (sec) { io.observe(sec); });
-        } else {
-            secs.forEach(function (sec) { sec.classList.add('is-in'); });
-        }
-        var ticking = false;
-        function update() {
-            ticking = false;
-            var y = window.pageYOffset || document.documentElement.scrollTop;
-            var vh = window.innerHeight;
-            var max = document.documentElement.scrollHeight - vh;
-            if (bar) bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, y / max) : 0) + ')';
-            if (hero && !reduce) hero.style.setProperty('--gw-p', Math.min(1, Math.max(0, y / (vh * 0.9))).toFixed(3));
-            var cur = 0;
-            secs.forEach(function (sec, i) { if (sec.getBoundingClientRect().top <= 60) cur = i; });
-            var dark = secs[cur].hasAttribute('data-dark');
-            if (header) header.classList.toggle('dark', dark);
-            if (header) header.classList.toggle('gw-solid', y > 40);
-            if (dots) dots.classList.toggle('dark', dark);
-            dotEls.forEach(function (b, i) { b.classList.toggle('on', i === cur); if (i === cur) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current'); });
-        }
-        window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
-        window.addEventListener('resize', update);
-        update();
-        // 앵커(#products 등) 부드럽게 이동
-        $('a[href^="#"]').on('click', function (e) {
-            var id = this.getAttribute('href');
-            if (id.length > 1 && document.querySelector(id)) { e.preventDefault(); document.querySelector(id).scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); }
-        });
-        return;
-    }
-
     let mySwiper = undefined;
     let reachedEndOnce = false;
     let footerShown = false;
@@ -187,7 +132,6 @@ $(function () {
 // sec_slide
 var swiper = document.querySelector(".sec_slide") ? new Swiper(".sec_slide", {
     speed:1400,effect:"fade",fadeEffect:{crossFade:true},loop:true,
-    on:{autoplayTimeLeft:function(s,t,p){var b=document.querySelector(".gw-prog");if(b)b.style.transform="scaleX("+(1-p)+")";}},
     spaceBetween: 0, //슬라이드 오른쪽 마진
     autoplay:{  //자동슬라이드 (false-비활성화)
         delay: 5500, // 시간 설정
@@ -340,4 +284,3 @@ $(function () {
 });
 
 // Swiper가 없으면 순차 등장 효과를 끄고 내용을 그대로 보여줍니다.
-if (typeof Swiper === "undefined") document.documentElement.classList.remove("gw-anim");
