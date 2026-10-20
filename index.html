@@ -4,13 +4,13 @@ require_once G5_LIB_PATH . '/product.lib.php';
 include_once(G5_PATH.'/newbex_head.php');
 $gw_home_cards = wigo_prod_home_cards();
 
-// 공지사항: 최신 3건 (기존 공지사항 게시판과 같은 데이터)
+// 공지사항: 최신 5건 (기존 공지사항 게시판과 같은 데이터)
 $gw_notices = array();
 $gw_nres = sql_query("select notice_no, notice_subject, reg_datetime from p_notice where notice_kind = 'a' order by notice_no desc limit 12", false);
 while ($gw_nres && ($gw_nrow = sql_fetch_array($gw_nres))) {
     if (preg_match('/newbex|뉴벡스|revive[ _-]*cell|리바이브셀/iu', $gw_nrow['notice_subject'])) continue;
     $gw_notices[] = $gw_nrow;
-    if (count($gw_notices) >= 3) break;
+    if (count($gw_notices) >= 5) break;
 }
 ?>
     <script>document.documentElement.classList.add("hm-page","hm-anim");</script>
@@ -24,7 +24,7 @@ while ($gw_nres && ($gw_nrow = sql_fetch_array($gw_nres))) {
                     <h1 id="hm-h1">두피에서 피부까지,<br>케어 라인을 만듭니다.</h1>
                     <p class="hm-lead">두피·헤어케어, 피부 앰플, 뷰티기기. 그로바이오가 개발·제조하고 위고가 판매와 유통 플랫폼을 운영합니다.</p>
                     <p class="hm-acts">
-                        <a class="hm-btn" href="#products">제품 보기</a>
+                        <a class="hm-btn" href="/pages/m21.html">제품 보기</a>
                         <a class="hm-btn ghost" href="/pages/m41.html">비즈니스 문의</a>
                     </p>
                 </div>
@@ -61,7 +61,6 @@ while ($gw_nres && ($gw_nrow = sql_fetch_array($gw_nres))) {
             <div class="hm-wrap hm-duo-in">
                 <figure class="hm-photo" data-rv>
                     <img src="/img/grobio/building.jpg" alt="주식회사 위고가 위치한 대전 둔산동 샤크존빌딩 외관" width="1200" height="1025" loading="lazy">
-                    <figcaption>위고 사무실이 있는 대전 샤크존빌딩</figcaption>
                 </figure>
                 <div class="hm-duo-tx">
                     <p class="hm-en" data-rv>About us</p>
@@ -93,7 +92,7 @@ while ($gw_nres && ($gw_nrow = sql_fetch_array($gw_nres))) {
         <section class="hm-sec hm-news" aria-labelledby="hm-news-h">
             <div class="hm-wrap">
                 <div class="hm-head" data-rv>
-                    <div><p class="hm-en">Notice</p><h2 id="hm-news-h">공지사항·자료</h2></div>
+                    <div><p class="hm-en">Notice</p><h2 id="hm-news-h">공지사항</h2></div>
                     <p class="hm-sub"><a href="/pages/m31.html">더보기</a></p>
                 </div>
                 <ul class="hm-list" data-rv>
@@ -102,19 +101,6 @@ while ($gw_nres && ($gw_nrow = sql_fetch_array($gw_nres))) {
                     <?php } ?>
                     <?php if (!$gw_notices) { ?><li class="empty">등록된 공지사항이 없습니다.</li><?php } ?>
                 </ul>
-                <p class="hm-links" data-rv>
-                    <a href="/pages/m32.html">자료실</a>
-                    <a href="/img/file/올비스_카달로그(국문).pdf" download>ALLVIS 카탈로그 (국문)</a>
-                    <a href="/img/file/올비스_카달로그(영문).pdf" download>ALLVIS 카탈로그 (영문)</a>
-                </p>
-            </div>
-        </section>
-
-        <!-- 6. 회사·운영 정보 -->
-        <section class="hm-sec hm-info" aria-label="회사 정보">
-            <div class="hm-wrap hm-info-in" data-rv>
-                <p><b>주식회사 위고</b> 대전 서구 둔산중로 19 샤크존 2층 223호 · 대표번호 1555-3336 (평일 09:00–18:00)</p>
-                <p class="hm-links"><a href="/pages/m12.html">오시는 길 · 사업장 안내</a><a href="/pages/m11.html">기업소개</a></p>
             </div>
         </section>
 
@@ -127,8 +113,7 @@ while ($gw_nres && ($gw_nrow = sql_fetch_array($gw_nres))) {
             </a>
         </div>
     </main>
-    <?php echo wigo_prod_dialog_html(); ?>
-    <script src="<?php echo G5_URL; ?>/js/home.js?v=2"></script>
+    <script src="<?php echo G5_URL; ?>/js/home.js?v=3"></script>
 <?php
 include_once(G5_PATH."/newbex_tail.php");
 ?>

@@ -51,7 +51,6 @@
 .ab-site-in{display:grid;gap:24px}
 .ab-site figure{margin:0}
 .ab-site img{display:block;width:100%;height:auto;max-height:420px;object-fit:cover;border-radius:20px}
-.ab-site figcaption{margin-top:8px;font-size:14px;color:var(--mute)}
 .ab-addr{margin:0 0 14px;border-top:1px solid var(--line)}
 .ab-addr>div{padding:12px 0;border-bottom:1px solid var(--line)}
 .ab-addr dt{font-size:14px;font-weight:700;color:var(--g)}

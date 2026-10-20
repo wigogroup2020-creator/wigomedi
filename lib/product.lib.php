@@ -40,19 +40,19 @@ function wigo_prod_defaults($group)
 {
     if ($group === 'grobio') {
         return array(
-            array('kind' => '그로바이오', 'name' => '슈가그로우', 'info' => '프리미엄 두피·헤어케어 전문 솔루션', 'area' => '두피·헤어케어', 'en' => 'Scalp & Hair Care', 'tone' => 'mint', 'status' => '상세 안내 준비 중',
+            array('kind' => '그로바이오', 'slug' => 'sugar-grow', 'name' => '슈가그로우', 'info' => '프리미엄 두피·헤어케어 전문 솔루션', 'area' => '두피·헤어케어', 'en' => 'Scalp & Hair Care', 'tone' => 'mint', 'status' => '상세 안내 준비 중',
                   'content' => '<p>그로바이오의 두피·헤어케어 브랜드입니다.</p><p>제품 구성과 사용 방법, 출시 일정은 확정되는 대로 안내합니다. 도입 상담은 문의하기를 이용해 주세요.</p>'),
-            array('kind' => '그로바이오', 'name' => '슈가페이스', 'info' => '프리미엄 페이셜·스킨케어 라인', 'area' => '피부·스킨케어', 'en' => 'Facial Skincare', 'tone' => 'blush', 'status' => '상세 안내 준비 중',
+            array('kind' => '그로바이오', 'slug' => 'sugar-face', 'name' => '슈가페이스', 'info' => '프리미엄 페이셜·스킨케어 라인', 'area' => '피부·스킨케어', 'en' => 'Facial Skincare', 'tone' => 'blush', 'status' => '상세 안내 준비 중',
                   'content' => '<p>그로바이오의 페이셜·스킨케어 브랜드입니다.</p><p>제품 구성과 사용 방법, 출시 일정은 확정되는 대로 안내합니다. 도입 상담은 문의하기를 이용해 주세요.</p>'),
-            array('kind' => '그로바이오', 'name' => '슈가리젠', 'info' => '플래그십 2PC 셀프케어 앰플', 'area' => '셀프케어 앰플', 'en' => 'Self-care Ampoule', 'tone' => 'sky', 'status' => '상세 안내 준비 중',
+            array('kind' => '그로바이오', 'slug' => 'sugar-regen', 'name' => '슈가리젠', 'info' => '플래그십 2PC 셀프케어 앰플', 'area' => '셀프케어 앰플', 'en' => 'Self-care Ampoule', 'tone' => 'sky', 'status' => '상세 안내 준비 중',
                   'content' => '<p>그로바이오가 직접 제조하는 셀프케어 앰플 라인의 플래그십 제품입니다.</p><p>제품 구성과 사용 방법, 공급 조건은 확정되는 대로 안내합니다. 도입 상담은 문의하기를 이용해 주세요.</p>'),
-            array('kind' => '그로바이오', 'name' => '그로바이오 웰니스', 'info' => '이너 웰니스 제품군', 'area' => '웰니스', 'en' => 'Nutritional & Bio', 'tone' => 'mute', 'status' => '출시 준비 중',
+            array('kind' => '그로바이오', 'slug' => 'grobio-wellness', 'name' => '그로바이오 웰니스', 'info' => '이너 웰니스 제품군', 'area' => '웰니스', 'en' => 'Nutritional & Bio', 'tone' => 'mute', 'status' => '출시 준비 중',
                   'content' => '<p>이너 웰니스 제품군을 준비하고 있습니다.</p><p>제품 구성과 출시 일정은 관련 기준 검토를 마친 뒤 안내합니다.</p>'),
         );
     }
     if ($group === 'partner') {
         return array(
-            array('kind' => '제휴제품', 'name' => 'ALLVIS 올비스', 'info' => 'HIFU & LDM 관리 기기', 'area' => '뷰티기기 · 제휴제품', 'en' => 'Beauty Device', 'tone' => 'navy', 'status' => '',
+            array('kind' => '제휴제품', 'slug' => 'allvis', 'name' => 'ALLVIS 올비스', 'info' => 'HIFU & LDM 관리 기기', 'area' => '뷰티기기 · 제휴제품', 'en' => 'Beauty Device', 'tone' => 'navy', 'status' => '',
                   'content' => '<p>매장 관리 프로그램을 위한 HIFU &amp; LDM 기기입니다. 제품 구성과 사용 방법, 도입 조건은 상담을 통해 안내합니다.</p>'
                              . '<p><a href="/img/file/올비스_카달로그(국문).pdf" download>카탈로그 · 국문 다운로드</a><br><a href="/img/file/올비스_카달로그(영문).pdf" download>카탈로그 · 영문 다운로드</a></p>'),
         );
@@ -101,7 +101,7 @@ function wigo_prod_cards($group, $limit = 0)
     if (!$cards && wigo_prod_count($group) === 0) {
         foreach (wigo_prod_defaults($group) as $d) {
             $cards[] = array('no' => 0, 'group' => $group, 'kind' => $groups[$group]['label'], 'name' => $d['name'], 'info' => $d['info'],
-                             'img' => '', 'href' => '', 'desc' => trim(strip_tags($d['content'])),
+                             'img' => '', 'href' => '/pages/m21_view.html?item=' . $d['slug'], 'desc' => '',
                              'area' => $d['area'], 'en' => $d['en'], 'tone' => $d['tone'], 'status' => $d['status']);
         }
     }
@@ -134,14 +134,11 @@ function wigo_prod_rail_card_html($card)
         . '<span class="hm-body"><span class="hm-area">' . wigo_prod_e($card['area']) . '</span>'
         . '<strong class="hm-name">' . wigo_prod_e($card['name']) . '</strong>'
         . '<span class="hm-desc">' . wigo_prod_e($card['info']) . '</span>'
-        . '<span class="hm-cta">' . (($card['href'] !== '') ? '자세히 보기' : '제품 안내 보기') . '<i aria-hidden="true">→</i></span></span>';
-    if ($card['href'] !== '') {
-        return '<li class="hm-card t-' . $tone . '"><a class="hm-card-in" href="' . wigo_prod_e($card['href']) . '">' . $inner . '</a></li>';
-    }
-    return '<li class="hm-card t-' . $tone . '"><button type="button" class="hm-card-in" data-t="' . wigo_prod_e($card['name']) . '" data-d="' . wigo_prod_e($card['desc']) . '">' . $inner . '</button></li>';
+        . '<span class="hm-cta">' . '자세히 보기' . '<i aria-hidden="true">→</i></span></span>';
+    return '<li class="hm-card t-' . $tone . '"><a class="hm-card-in" href="' . wigo_prod_e($card['href']) . '">' . $inner . '</a></li>';
 }
 
-/* 카드 1장. DB 제품은 상세 페이지로, 기본 카드는 안내 팝업으로 연결합니다. */
+/* 카드 1장. 모든 카드는 제품 상세 페이지로 연결합니다(기본 카드는 ?item= 안내 페이지). */
 function wigo_prod_card_html($card, $index)
 {
     $tone = 'c' . (($index % 5) + 1);
@@ -151,10 +148,7 @@ function wigo_prod_card_html($card, $index)
         . '<span class="k">' . wigo_prod_e($card['kind']) . '</span>'
         . '<span class="m">' . wigo_prod_e($card['name']) . '</span>'
         . '<span class="i">' . wigo_prod_e($card['info']) . '</span>';
-    if ($card['href'] !== '') {
-        return '<a class="' . $cls . '" href="' . wigo_prod_e($card['href']) . '">' . $inner . '</a>';
-    }
-    return '<button type="button" class="' . $cls . '" data-t="' . wigo_prod_e($card['name']) . '" data-d="' . wigo_prod_e($card['desc']) . '">' . $inner . '</button>';
+    return '<a class="' . $cls . '" href="' . wigo_prod_e($card['href']) . '">' . $inner . '</a>';
 }
 
 /* 관리자: 기본 카드를 p_product에 등록(해당 구분이 비어 있을 때만). 등록한 개수를 돌려줍니다. */
@@ -182,16 +176,13 @@ function wigo_prod_seed()
     return $added;
 }
 
-/* 기본 카드(DB에 없는 카드) 안내 팝업 + 동작 스크립트 */
-function wigo_prod_dialog_html()
+/* 상세 페이지(m21_view)용: 기본 카드 slug 로 기본 제품 정보를 찾습니다. */
+function wigo_prod_default_by_slug($slug)
 {
-    return '<dialog id="gwDlg" class="gw-dlg"><div><div class="gw-dh"><h2 id="gwT"></h2><button type="button" class="gw-x2" aria-label="닫기">×</button></div>'
-        . '<p id="gwD"></p><div class="gw-dn">제품 공급 및 유통 상담은 위고로 문의해 주세요.</div>'
-        . '<div class="gw-acts"><a class="gw-b" href="tel:15553336">전화 문의</a><a class="gw-b out" href="/pages/m41.html">온라인 문의</a></div></div></dialog>'
-        . '<script>(function(){var d=document.getElementById("gwDlg");if(!d||!d.showModal)return;'
-        . 'document.querySelectorAll("button[data-t]").forEach(function(b){b.addEventListener("click",function(){'
-        . 'document.getElementById("gwT").textContent=b.dataset.t;document.getElementById("gwD").textContent=b.dataset.d;d.showModal();});});'
-        . 'd.querySelector(".gw-x2").addEventListener("click",function(){d.close();});'
-        . 'd.addEventListener("click",function(e){var r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();});'
-        . '})();</script>';
+    foreach (array('grobio', 'partner') as $group) {
+        foreach (wigo_prod_defaults($group) as $d) {
+            if ($d['slug'] === $slug) return $d;
+        }
+    }
+    return null;
 }

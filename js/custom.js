@@ -142,7 +142,7 @@ var swiper = document.querySelector(".sec_slide") ? new Swiper(".sec_slide", {
 $(function(){
     // all menu
     let btnchk = 0;
-    $(".btnMenu").click(function(){
+    if (!document.getElementById('gwm-ready')) $(".btnMenu").click(function(){
         if(btnchk == 0){
             $(this).stop().addClass("openmenu");	
             $(".allmenuBg").addClass("on");
@@ -273,13 +273,13 @@ $(function () {
         var main = document.querySelector('.fpSwiper');
         if (main && main.swiper) main.swiper.slideTo(0); else window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-    $('.btnMenu').on('click', function () {
+    if (!document.getElementById('gwm-ready')) $('.btnMenu').on('click', function () {
         this.setAttribute('aria-expanded', this.classList.contains('openmenu') ? 'true' : 'false');
     }).on('keydown', function (event) {
         if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); $(this).trigger('click'); }
     });
     $(document).on('keydown', function (event) {
-        if (event.key === 'Escape' && $('.btnMenu').hasClass('openmenu')) $('.btnMenu').trigger('click').focus();
+        if (!document.getElementById('gwm-ready') && event.key === 'Escape' && $('.btnMenu').hasClass('openmenu')) $('.btnMenu').trigger('click').focus();
     });
 });
 

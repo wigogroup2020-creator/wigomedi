@@ -12,10 +12,6 @@
 @media(max-width:812px){#header .brand-logo{height:26px}#header .head h1{max-width:calc(100% - 120px)}}
 .brand-footer-wordmark img{width:auto;height:36px;object-fit:contain}
 .footer_main_area{background:var(--gw-n)}
-/* 버튼(제품 팝업) */
-.gw-b{display:inline-flex;align-items:center;height:auto;padding:14px 26px;border-radius:99px;background:var(--gw-g);color:#fff;font-weight:700;font-size:16px;white-space:nowrap}
-.gw-b.out{background:transparent;color:#0c1f1b;box-shadow:inset 0 0 0 1.5px #0c1f1b55}
-.gw-acts{display:flex;gap:10px;flex-wrap:wrap}
 /* 제품 카드 공통 (제품 목록·팝업) */
 .gw-pc{grid-column:span 2;position:relative;overflow:hidden;border:0;border-radius:26px;padding:clamp(16px,2vw,28px);display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;text-align:left;cursor:pointer;transition:transform .3s}
 .gw-pc:hover{transform:translateY(-5px)}
@@ -33,11 +29,6 @@
 .gw-pc .i{position:relative;z-index:1;display:block;margin-top:8px;font-size:clamp(13px,1.1vw,15px);line-height:1.5;opacity:.85}
 .gw-pc .ph{position:absolute;z-index:0;right:6%;top:10%;width:56%;height:58%;object-fit:contain}
 .gw-pc{max-width:none;width:auto}
-/* 팝업 */
-.gw-dlg{border:0;border-radius:26px;padding:30px;max-width:460px;width:calc(100% - 32px)}.gw-dlg::backdrop{background:#0a225099}
-.gw-dh{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.gw-dh h2{margin:0;font-size:26px}
-.gw-x2{border:0;background:var(--gw-mint);border-radius:50%;width:38px;height:38px;font-size:22px}
-.gw-dn{background:var(--gw-bg);border-radius:14px;padding:14px 16px;font-size:14px;margin:18px 0}
 /* 제품 목록 페이지 */
 .gw-products h2{font-size:clamp(28px,4vw,52px);line-height:1.2;letter-spacing:-.055em;font-weight:800;margin:20px 0 14px}
 .gw-products .lead{max-width:46em;color:#4a5d57;font-size:17px;line-height:1.85;margin:0 0 36px}
@@ -69,3 +60,26 @@
 .gw-products .lead,.gw-sub .lead{font-size:16px}
 }
 @media(prefers-reduced-motion:reduce){.gw-pc,.gw-pgrid .gw-pc{transition:none}}
+.m21_view .thumb .gw-noimg{display:grid;place-items:center;aspect-ratio:1;width:100%;padding:24px;border-radius:20px;background:var(--gw-mint);color:var(--gw-g);font-size:22px;font-weight:700;text-align:center;word-break:keep-all}
+/* 제품 상세 (m21_view): 그로바이오 톤으로 정리 */
+.gw-pd .pageTop.pn2 .bg{background:linear-gradient(120deg,#00553d,#0a6b4d)}
+.gw-pd .m21_view .preInfo{display:grid;grid-template-columns:1fr;gap:22px;padding:8px 20px 28px;max-width:1200px;margin:0 auto;word-break:keep-all}
+.gw-pd .m21_view .preInfo .thumb{position:static;height:auto;padding:0;width:100%;max-width:440px;margin:0 auto;overflow:visible}
+.gw-pd .m21_view .preInfo .thumb img{position:static;display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:20px}
+.gw-pd .m21_view .thumb .gw-noimg{aspect-ratio:4/3}
+.gw-pd .m21_view .preInfo .txts{padding:0}
+.gw-pd .m21_view .preInfo .txts h3{font-size:28px;font-weight:700;letter-spacing:-.035em;line-height:1.3;margin:0}
+.gw-pd .m21_view .preInfo .txts p{padding:10px 0 22px;margin:0 0 22px;font-size:17px;line-height:1.7;color:#52635c;border-bottom:1px solid #e1e9e4}
+.gw-pd .m21_view .preInfo .txts .click_btn{display:inline-flex;align-items:center;justify-content:center;width:100%;max-width:none;min-height:52px;margin-top:22px;border:0;border-radius:999px;background:#00553d;color:#fff;font-size:16px;font-weight:700;cursor:pointer}
+.gw-pd .m21_view .preInfo .txts .click_btn:hover{background:#0a6b4d}
+.gw-pd .m21_view .feature{display:block;max-width:1200px;margin:0 auto;padding:12px 20px 64px;font-size:17px;line-height:1.8;color:#33453e;word-break:keep-all}
+.gw-pd .m21_view .feature p{margin:0 0 14px}
+.gw-pd .m21_view .feature img{max-width:100%;height:auto}
+.gw-pd .m21_view .feature a{color:#00553d;font-weight:700}
+@media (min-width:768px){
+  .gw-pd .m21_view .preInfo{grid-template-columns:1fr 1fr;gap:56px;padding:16px 32px 40px;align-items:center}
+  .gw-pd .m21_view .preInfo .txts .click_btn{width:auto;min-width:200px;padding:0 32px}
+  .gw-pd .m21_view .feature{padding:16px 32px 88px}
+}
+.gw-pd .inner{padding-left:max(24px,3vw);padding-right:max(24px,3vw);box-sizing:border-box}
+.gw-pd .m21_view .preInfo.inner{padding-left:max(20px,3vw);padding-right:max(20px,3vw)}

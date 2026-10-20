@@ -1,0 +1,38 @@
+/* 전체 메뉴 (햄버거 버튼) */
+.gwm{position:fixed;inset:0;z-index:7000;background:#f6f4ef;color:#13211c;overflow-y:auto;overscroll-behavior:contain;word-break:keep-all;-webkit-overflow-scrolling:touch}
+.gwm[hidden]{display:none}
+.gwm.open{animation:gwmIn .22s ease-out}
+@keyframes gwmIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+html.gwm-lock,html.gwm-lock body{overflow:hidden}
+.gwm *{box-sizing:border-box}
+.gwm-top{position:sticky;top:0;z-index:1;display:flex;align-items:center;justify-content:space-between;height:72px;padding:0 20px;background:#f6f4ef}
+.gwm-logo img{display:block;height:28px;width:auto}
+.gwm .gwm-x{position:relative;width:48px;max-width:48px;height:48px;border:1.5px solid #cfd9d3;border-radius:50%;background:#fff;padding:0;cursor:pointer}
+.gwm-x span{position:absolute;left:14px;top:22px;width:18px;height:2px;background:#13211c;border-radius:2px}
+.gwm-x span:first-child{transform:rotate(45deg)}
+.gwm-x span:last-child{transform:rotate(-45deg)}
+.gwm-in{max-width:1200px;margin:0 auto;padding:8px 20px 48px;display:grid;gap:28px}
+.gwm-en{margin:0 0 10px;font:700 12px/1 'Bricolage Grotesque','Pretendard',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#00553d}
+.gwm-tt{margin:0;font-size:26px;line-height:1.35;font-weight:700;letter-spacing:-.035em}
+.gwm-contact{display:flex;flex-direction:column;gap:2px;margin:18px 0 16px;font-size:16px;color:#52635c}
+.gwm-contact a{color:#13211c;font-weight:700;text-decoration:none;font-size:18px}
+.gwm .gwm-cta{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 26px;border-radius:999px;background:#00553d;color:#fff;font-size:16px;font-weight:700;text-decoration:none}
+.gwm-nav{display:grid;gap:0}
+.gwm-g{padding:18px 0 8px;border-top:1px solid #d9e1dc}
+.gwm-g h2{margin:0 0 4px;font-size:13px;font-weight:700;color:#00553d;letter-spacing:.02em}
+.gwm-g ul{margin:0;padding:0;list-style:none}
+.gwm-g a{display:flex;align-items:center;min-height:52px;font-size:22px;font-weight:600;letter-spacing:-.03em;color:#13211c;text-decoration:none}
+.gwm-g a:hover{color:#00553d}
+.gwm a:focus-visible,.gwm button:focus-visible{outline:3px solid #2a63d6;outline-offset:3px}
+@media (min-width:768px){
+  .gwm-top{height:88px;padding:0 max(32px,3vw)}
+  .gwm-logo img{height:34px}
+  .gwm-in{padding:32px 32px 64px;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
+  .gwm-tt{font-size:clamp(30px,3.4vw,44px)}
+  .gwm-nav{grid-template-columns:1fr 1fr;gap:0 40px}
+  .gwm-g{padding:22px 0 14px}
+  .gwm-g a{font-size:24px}
+}
+@media (prefers-reduced-motion:reduce){.gwm.open{animation:none}}
+/* 메뉴가 열려 있는 동안 헤더의 로고·버튼은 메뉴 안의 것을 사용 */
+html.gwm-lock #header .head h1,html.gwm-lock #header .head .gnb,html.gwm-lock .side_menu{display:none!important}
