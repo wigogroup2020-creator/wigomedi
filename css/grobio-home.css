@@ -136,6 +136,10 @@ html.hm-page #header:after{content:"";position:absolute;left:0;bottom:0;height:2
 .hm-list time{font-size:14px;color:var(--mute)}
 .hm-list .empty{padding:18px 2px;color:var(--mute);font-size:15px}
 
+/* 사진 출처 */
+.hm-credit{margin:0;padding:18px 20px;font-size:13px;line-height:1.5;color:var(--mute);background:var(--stone);text-align:center}
+.hm-credit a{color:var(--g);text-decoration:underline}
+
 /* 움직임 (hm-anim 은 js/motion.js 가 붙일 때만 적용) */
 html.hm-anim .hm-ln{opacity:0;transform:translateY(.5em);transition:opacity .8s var(--e),transform .8s var(--e)}
 html.hm-anim .hm-ln+.hm-ln{transition-delay:.12s}
