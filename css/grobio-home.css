@@ -67,7 +67,15 @@ html.hm-page #header:after{content:"";position:absolute;left:0;bottom:0;height:2
 
 /* ④ 뷰티 컬렉션 */
 .hm-coll{background:#fff}
-.hm-grid{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 14px}
+.hm-head-ctl{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+.hm-ctl{display:flex;gap:8px;flex:none}
+.hm .hm-ctl button{width:48px;max-width:48px;height:48px;border-radius:50%;border:1px solid #cfc4ae;background:transparent;color:var(--g);font-size:20px;line-height:1;cursor:pointer;padding:0;transition:background .25s,color .25s}
+.hm .hm-ctl button:hover{background:var(--g);color:#fff}
+.hm .hm-ctl button[disabled]{opacity:.35;cursor:default;background:transparent;color:var(--g)}
+.hm-grid{display:flex;gap:14px;margin:0 -20px;padding:2px 20px 8px;list-style:none;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 20px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.hm-grid::-webkit-scrollbar{display:none}
+.hm-grid li{flex:0 0 62%;max-width:300px;scroll-snap-align:start}
+.hm-grid:focus-visible{outline:3px solid #2a63d6;outline-offset:3px}
 .hm-grid a{display:block;color:var(--ink);text-decoration:none}
 .hm-pic{display:block;aspect-ratio:1;overflow:hidden;background:#e9e4d8}
 .hm-pic img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .7s var(--e)}
@@ -125,7 +133,8 @@ html.hm-anim .hm [data-rv].in,html.hm-anim .hm [data-rv-i].in{opacity:1;transfor
   .hm-trio li{padding:32px 0 0;border-bottom:0!important}
   .hm-about-in{grid-template-columns:1fr 1fr;gap:72px}
   .hm-roles{grid-template-columns:1fr 1fr;gap:32px}
-  .hm-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 28px}
+  .hm-grid{gap:28px;margin:0 -40px;padding:2px 40px 8px;scroll-padding:0 40px}
+  .hm-grid li{flex-basis:calc((100% - 56px - 80px)/3);max-width:none}
   .hm-paths{grid-template-columns:repeat(3,minmax(0,1fr));gap:0 32px}
   .hm-paths li{border-bottom:1px solid #d9d0bd}
   .hm-paths a{padding:32px 40px 32px 0}

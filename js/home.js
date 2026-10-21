@@ -7,6 +7,28 @@
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+    /* 뷰티 컬렉션: 스와이프(스크롤 스냅) + 이전/다음 버튼. 자동 전환 없음 */
+    var rail = document.querySelector('.hm-grid');
+    var prev = document.querySelector('.hm-prev'), next = document.querySelector('.hm-next');
+    function step() { var c = rail && rail.querySelector('li'); return c ? c.getBoundingClientRect().width + 14 : 300; }
+    function sync() {
+        if (!rail || !prev || !next) return;
+        prev.disabled = rail.scrollLeft <= 2;
+        next.disabled = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 2;
+    }
+    function go(d) { rail.scrollBy({ left: d * step(), behavior: reduce ? 'auto' : 'smooth' }); }
+    if (rail) {
+        if (prev) prev.addEventListener('click', function () { go(-1); });
+        if (next) next.addEventListener('click', function () { go(1); });
+        rail.addEventListener('scroll', sync, { passive: true });
+        rail.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+            else if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+        });
+        window.addEventListener('resize', sync);
+        sync();
+    }
+
     var top = document.querySelector('.top_btn_index');
     if (top) top.addEventListener('click', function (e) {
         e.preventDefault();
