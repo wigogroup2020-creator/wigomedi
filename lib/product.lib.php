@@ -3,7 +3,7 @@ if (!defined('_GNUBOARD_')) exit;
 
 /*
  * 홈페이지 PRODUCT 카드 (GROBio × WIGO)
- * 기존 제품관리(p_product) 테이블을 그대로 읽습니다. 새 테이블·컬럼은 만들지 않습니다.
+ * 기존 제품관리(p_product) 테이블을 그대로 읽습니다. 새 테이블 · 컬럼은 만들지 않습니다.
  *
  *  - 그로바이오 제품 : product_kind = '그로바이오'
  *  - 제휴제품       : product_kind = '제휴제품' 또는 기존 'HIFU+LDM'(ALLVIS)
