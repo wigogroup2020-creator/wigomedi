@@ -141,13 +141,13 @@ $brandIconUrl  = rtrim(G5_URL, '/') . '/img/grobio/favicon.svg?v=' . ($brandIcon
     <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/brand-88lion.css">
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-wigo.css?v=11">
+    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-wigo.css?v=13">
     <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-menu.css?v=4">
 	<?php if ($currentPage === 'index.php' || $currentPage === 'index.html') { ?>
     <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-home.css?v=9">
 	<?php } ?>
 	<?php if ($currentPage === 'm11.html') { ?>
-    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-about.css?v=3">
+    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-about.css?v=4">
 	<?php } ?>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -236,9 +236,7 @@ $brandIconUrl  = rtrim(G5_URL, '/') . '/img/grobio/favicon.svg?v=' . ($brandIcon
 						<li><a href="<?php echo G5_URL;?>/pages/m31.html">공지사항</a></li>
 						<li><a href="<?php echo G5_URL;?>/pages/m32.html">자료실</a></li>
 						<li><a href="<?php echo G5_URL;?>/pages/m41.html">문의하기</a></li>
-						<?php if ($member['mb_id']) { ?>
-						<li class="sub"><a href="<?php echo G5_URL;?>/page/info.php"><?php echo htmlspecialchars($member['mb_name'], ENT_QUOTES, 'UTF-8'); ?>님 정보</a></li>
-						<?php } else { ?>
+						<?php if (!$member['mb_id']) { ?>
 						<li class="sub"><a href="<?php echo G5_URL;?>/pages/login.html">로그인</a></li>
 						<?php } ?>
 						<li class="sub"><a href="https://pf.kakao.com/_KmSJn">카카오톡 상담</a></li>

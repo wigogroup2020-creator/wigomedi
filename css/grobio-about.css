@@ -1,12 +1,6 @@
 /* 기업소개(m11) 전용 */
 .ab{--g:#00553d;--n:#0a2250;--ink:#13211c;--mute:#52635c;--line:#e1e9e4;--stone:#f0f4f1;--e:cubic-bezier(.2,.7,.2,1);--mint:#e2eee8;--blush:#e2eee8;--sky:#e2eee8;color:var(--ink);word-break:keep-all;font-size:17px;line-height:1.7}
 .ab *{box-sizing:border-box}
-/* 상단 배너: 기존 스톡 이미지 대신 브랜드 색과 원형 모티프 */
-.ab .pageTop.pn1 .bg{background:#00553d}
-.ab .pageTop.pn1 .bg:before,.ab .pageTop.pn1 .bg:after{content:"";position:absolute;border-radius:50%;border:1.5px solid #ffffff33;will-change:transform}
-.ab .pageTop.pn1 .bg:before{right:6%;top:-70%;width:46%;aspect-ratio:1;transform:rotate(calc(var(--pg,0)*360deg))}
-.ab .pageTop.pn1 .bg:after{right:16%;top:-30%;width:26%;aspect-ratio:1;border-style:dashed;transform:rotate(calc(var(--pg,0)*-360deg))}
-.ab .pageTop .inner{position:relative}
 .ab-sec{padding:48px 0}
 .ab-in{width:100%;max-width:1200px;margin:0 auto;padding:0 20px}
 .ab h2{margin:0;font-weight:700;letter-spacing:-.035em;font-size:clamp(24px,6vw,38px);line-height:1.3}
@@ -80,4 +74,4 @@
 }
 html.hm-anim .ab [data-rv],html.hm-anim .ab [data-rv-i]{opacity:0;transform:translateY(28px);transition:opacity .7s var(--e),transform .7s var(--e);transition-delay:calc(var(--i,0)*.08s)}
 html.hm-anim .ab [data-rv].in,html.hm-anim .ab [data-rv-i].in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.ab *,.ab *:before,.ab *:after{transition:none!important}.ab-site img,.ab .pageTop.pn1 .bg:before,.ab .pageTop.pn1 .bg:after{transform:none!important}}
+@media (prefers-reduced-motion:reduce){.ab *,.ab *:before,.ab *:after{transition:none!important}.ab-site img{transform:none!important}}
