@@ -1,12 +1,5 @@
-이 폴더에 아래 파일명으로 jpg를 넣으면 메인에 자동으로 나타납니다. 파일이 없으면 빈 칸(짙은 초록/연한 회녹색 면)으로 보입니다.
-파일명은 정확히 같아야 하고, 용량은 파일당 300KB 안팎(최대 500KB)을 권장합니다.
-
-hero-1.jpg  1920x1080  대표 슬라이드 1 (두피 · 헤어케어)  왼쪽에 글자가 올라가므로 왼쪽 절반은 단순한 배경
-hero-2.jpg  1920x1080  대표 슬라이드 2 (피부 · 앰플)
-hero-3.jpg  1920x1080  대표 슬라이드 3 (뷰티기기)
-story-1.jpg 1200x900   소개 묶음 1 (제품)
-story-2.jpg 1200x900   소개 묶음 2 (그로바이오)
-story-3.jpg 1200x900   소개 묶음 3 (위고)
-story-4.jpg 1200x900   소개 묶음 4 (사업장)
-
-제품 카드 사진은 이 폴더가 아니라 관리자 제품관리에서 등록합니다.
+메인에서 쓰는 사진(파일명 고정, jpg):
+slide-grow.jpg  메인 대표 화면 원형 이미지(그린 앰플)
+slide-face.jpg, slide-regen.jpg, slide-device.jpg, story-brand.jpg  원본 콘셉트 이미지 보관용
+컬렉션 5개 이미지는 img/grobio/products/<sugar-grow|sugar-face|sugar-regen|beauty-device|partner-select>.jpg 입니다.
+관리자 제품관리에서 같은 이름의 제품에 사진을 올리면 그 사진이 우선합니다.

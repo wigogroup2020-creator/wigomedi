@@ -35,29 +35,40 @@ function wigo_prod_in_clause($group)
     return implode(',', $quoted);
 }
 
-/* 기본 카드: 사업계획서 기준 제품군. 확인되지 않은 효능 · 인증 · 수치 · 가격은 넣지 않습니다. */
+/* 기본 카드: 목록에 보이는 4개(그로바이오) + 1개(제휴제품). 확인되지 않은 효능 · 인증 · 수치 · 가격 · 출시 일정은 넣지 않습니다. */
 function wigo_prod_defaults($group)
 {
     if ($group === 'grobio') {
         return array(
-            array('kind' => '그로바이오', 'slug' => 'sugar-grow', 'name' => '슈가그로우', 'info' => '프리미엄 두피 · 헤어케어 전문 솔루션', 'area' => '두피 · 헤어케어', 'en' => 'Scalp & Hair Care', 'tone' => 'mint', 'status' => '상세 안내 준비 중',
-                  'content' => '<p>그로바이오의 두피 · 헤어케어 브랜드입니다.</p><p>제품 구성과 사용 방법, 출시 일정은 확정되는 대로 안내합니다. 도입 상담은 문의하기를 이용해 주세요.</p>'),
-            array('kind' => '그로바이오', 'slug' => 'sugar-face', 'name' => '슈가페이스', 'info' => '프리미엄 페이셜 · 스킨케어 라인', 'area' => '피부 · 스킨케어', 'en' => 'Facial Skincare', 'tone' => 'blush', 'status' => '상세 안내 준비 중',
-                  'content' => '<p>그로바이오의 페이셜 · 스킨케어 브랜드입니다.</p><p>제품 구성과 사용 방법, 출시 일정은 확정되는 대로 안내합니다. 도입 상담은 문의하기를 이용해 주세요.</p>'),
-            array('kind' => '그로바이오', 'slug' => 'sugar-regen', 'name' => '슈가리젠', 'info' => '플래그십 2PC 셀프케어 앰플', 'area' => '셀프케어 앰플', 'en' => 'Self-care Ampoule', 'tone' => 'sky', 'status' => '상세 안내 준비 중',
-                  'content' => '<p>그로바이오가 직접 제조하는 셀프케어 앰플 라인의 플래그십 제품입니다.</p><p>제품 구성과 사용 방법, 공급 조건은 확정되는 대로 안내합니다. 도입 상담은 문의하기를 이용해 주세요.</p>'),
-            array('kind' => '그로바이오', 'slug' => 'grobio-wellness', 'name' => '그로바이오 웰니스', 'info' => '이너 웰니스 제품군', 'area' => '웰니스', 'en' => 'Nutritional & Bio', 'tone' => 'mute', 'status' => '출시 준비 중',
-                  'content' => '<p>이너 웰니스 제품군을 준비하고 있습니다.</p><p>제품 구성과 출시 일정은 관련 기준 검토를 마친 뒤 안내합니다.</p>'),
+            array('kind' => '그로바이오', 'slug' => 'sugar-grow', 'name' => '슈가그로우', 'info' => '두피 · 헤어케어', 'area' => '두피 · 헤어케어', 'en' => 'Scalp & Hair Care', 'tone' => 'mint', 'status' => '',
+                  'content' => '<p>그로바이오의 두피 · 헤어케어 제품입니다.</p>'),
+            array('kind' => '그로바이오', 'slug' => 'sugar-face', 'name' => '슈가페이스', 'info' => '페이셜 케어', 'area' => '페이셜 케어', 'en' => 'Facial Care', 'tone' => 'blush', 'status' => '',
+                  'content' => '<p>그로바이오의 페이셜 케어 제품입니다.</p>'),
+            array('kind' => '그로바이오', 'slug' => 'sugar-regen', 'name' => '슈가리젠', 'info' => '셀프케어 앰플', 'area' => '셀프케어 앰플', 'en' => 'Self-care Ampoule', 'tone' => 'sky', 'status' => '',
+                  'content' => '<p>그로바이오가 제조하는 셀프케어 앰플 제품입니다.</p>'),
+            array('kind' => '그로바이오', 'slug' => 'beauty-device', 'name' => '뷰티기기', 'info' => '기기 기반 케어', 'area' => '뷰티기기', 'en' => 'Beauty Device', 'tone' => 'lav', 'status' => '',
+                  'content' => '<p>제품과 함께 사용하는 기기 기반 케어 제품입니다.</p>'),
         );
     }
     if ($group === 'partner') {
         return array(
-            array('kind' => '제휴제품', 'slug' => 'allvis', 'name' => 'ALLVIS 올비스', 'info' => 'HIFU & LDM 관리 기기', 'area' => '뷰티기기 · 제휴제품', 'en' => 'Beauty Device', 'tone' => 'navy', 'status' => '',
-                  'content' => '<p>매장 관리 프로그램을 위한 HIFU &amp; LDM 기기입니다. 제품 구성과 사용 방법, 도입 조건은 상담을 통해 안내합니다.</p>'
-                             . '<p><a href="/img/file/올비스_카달로그(국문).pdf" download>카탈로그 · 국문 다운로드</a><br><a href="/img/file/올비스_카달로그(영문).pdf" download>카탈로그 · 영문 다운로드</a></p>'),
+            array('kind' => '제휴제품', 'slug' => 'partner-select', 'name' => '제휴상품', 'info' => '함께 선보이는 뷰티 셀렉션', 'area' => '제휴제품', 'en' => 'Beauty Selection', 'tone' => 'ivory', 'status' => '',
+                  'content' => '<p>위고가 함께 선보이는 뷰티 셀렉션입니다. 제품 구성은 상담을 통해 안내합니다.</p>'),
         );
     }
     return array();
+}
+
+/* 예전 기본 카드(웰니스 · ALLVIS): 목록에는 쓰지 않지만 기존 상세 주소(?item=)가 깨지지 않도록 남깁니다. */
+function wigo_prod_legacy_defaults()
+{
+    return array(
+        array('kind' => '그로바이오', 'slug' => 'grobio-wellness', 'name' => '그로바이오 웰니스', 'info' => '이너 웰니스 제품군',
+              'content' => '<p>이너 웰니스 제품군을 준비하고 있습니다.</p>'),
+        array('kind' => '제휴제품', 'slug' => 'allvis', 'name' => 'ALLVIS 올비스', 'info' => 'HIFU & LDM 관리 기기',
+              'content' => '<p>매장 관리 프로그램을 위한 HIFU &amp; LDM 기기입니다. 제품 구성과 사용 방법, 도입 조건은 상담을 통해 안내합니다.</p>'
+                         . '<p><a href="/img/file/올비스_카달로그(국문).pdf" download>카탈로그 · 국문 다운로드</a><br><a href="/img/file/올비스_카달로그(영문).pdf" download>카탈로그 · 영문 다운로드</a></p>'),
+    );
 }
 
 function wigo_prod_count($group)
@@ -116,34 +127,26 @@ function wigo_prod_cards($group, $limit = 0)
     return ($limit > 0) ? array_slice($cards, 0, $limit) : $cards;
 }
 
-/* 홈: 그로바이오 최대 4개 + 제휴제품 최대 2개 */
-function wigo_prod_home_cards()
+/* 홈 뷰티 컬렉션: 5개 고정(그로바이오 4 + 제휴 1). 이름이 같은 등록 제품이 있으면 그 상세로, 없으면 기본 안내로 연결합니다. */
+function wigo_prod_collection()
 {
-    $cards = array_merge(wigo_prod_cards('grobio', 4), wigo_prod_cards('partner', 2));
-    // 출시 준비 중인 웰니스는 목록 맨 뒤로 보냅니다.
-    usort($cards, function ($a, $b) {
-        $aw = (strpos($a['name'], '웰니스') !== false) ? 1 : 0;
-        $bw = (strpos($b['name'], '웰니스') !== false) ? 1 : 0;
-        return $aw - $bw;
-    });
-    return $cards;
-}
-
-/* 메인 슬라이드용 카드 1장 (이미지가 있으면 사진, 없으면 분야 그래픽) */
-function wigo_prod_rail_card_html($card)
-{
-    $tone = preg_match('/^[a-z]+$/', (string) $card['tone']) ? $card['tone'] : 'mint';
-    $en = ($card['en'] !== '') ? $card['en'] : $card['kind'];
-    $media = ($card['img'] !== '')
-        ? '<img class="hm-ph" src="' . wigo_prod_e($card['img']) . '" alt="" loading="lazy">'
-        : '<span class="hm-art" aria-hidden="true"><i></i><em>' . wigo_prod_e($en) . '</em></span>';
-    $chip = ($card['status'] !== '') ? '<span class="hm-chip">' . wigo_prod_e($card['status']) . '</span>' : '';
-    $inner = '<span class="hm-media">' . $media . $chip . '</span>'
-        . '<span class="hm-body"><span class="hm-area">' . wigo_prod_e($card['area']) . '</span>'
-        . '<strong class="hm-name">' . wigo_prod_e($card['name']) . '</strong>'
-        . '<span class="hm-desc">' . wigo_prod_e($card['info']) . '</span>'
-        . '<span class="hm-cta">' . '자세히 보기' . '<i aria-hidden="true">→</i></span></span>';
-    return '<li class="hm-card t-' . $tone . '"><a class="hm-card-in" href="' . wigo_prod_e($card['href']) . '">' . $inner . '</a></li>';
+    $out = array();
+    foreach (array('grobio', 'partner') as $group) {
+        foreach (wigo_prod_defaults($group) as $d) {
+            $kinds = wigo_prod_in_clause($group);
+            $name = sql_real_escape_string($d['name']);
+            $row = sql_fetch("SELECT product_no, product_file FROM p_product WHERE use_yn = 'y' AND product_kind IN ($kinds) AND product_subject = '$name' ORDER BY product_no ASC LIMIT 1", false);
+            $db = (is_array($row) && !empty($row['product_no']));
+            $img = ($db ? wigo_prod_image_url($row['product_file']) : '');
+            if ($img === '') $img = wigo_prod_default_image($d['slug']);
+            $out[] = array(
+                'slug' => $d['slug'], 'name' => $d['name'], 'info' => $d['info'], 'img' => $img,
+                'href' => $db ? '/pages/m21_view.html?product_no=' . (int) $row['product_no'] : '/pages/m21_view.html?item=' . $d['slug'],
+                'tone' => $d['tone'],
+            );
+        }
+    }
+    return $out;
 }
 
 /* 카드 1장. 모든 카드는 제품 상세 페이지로 연결합니다(기본 카드는 ?item= 안내 페이지). */
@@ -159,15 +162,17 @@ function wigo_prod_card_html($card, $index)
     return '<a class="' . $cls . '" href="' . wigo_prod_e($card['href']) . '">' . $inner . '</a>';
 }
 
-/* 관리자: 기본 카드를 p_product에 등록(해당 구분이 비어 있을 때만). 등록한 개수를 돌려줍니다. */
+/* 관리자: 기본 카드를 p_product에 등록. 같은 분류에 같은 이름의 제품이 이미 있으면 건너뜁니다(기존 제품은 수정 · 삭제하지 않음). */
 function wigo_prod_seed()
 {
     global $member;
     $added = 0;
     $reg = sql_real_escape_string(isset($member['mb_id']) ? $member['mb_id'] : '');
     foreach (array('grobio', 'partner') as $group) {
-        if (wigo_prod_count($group) > 0) continue;
+        $in = wigo_prod_in_clause($group);
         foreach (wigo_prod_defaults($group) as $d) {
+            $exists = sql_fetch("SELECT COUNT(*) AS cnt FROM p_product WHERE product_kind IN ($in) AND product_subject = '" . sql_real_escape_string($d['name']) . "'", false);
+            if (is_array($exists) && (int) $exists['cnt'] > 0) continue;
             $sql = "INSERT INTO p_product SET
                 product_kind = '" . sql_real_escape_string($d['kind']) . "',
                 use_yn = 'y',
@@ -191,6 +196,9 @@ function wigo_prod_default_by_slug($slug)
         foreach (wigo_prod_defaults($group) as $d) {
             if ($d['slug'] === $slug) return $d;
         }
+    }
+    foreach (wigo_prod_legacy_defaults() as $d) {
+        if ($d['slug'] === $slug) return $d;
     }
     return null;
 }

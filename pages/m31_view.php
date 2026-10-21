@@ -8,7 +8,7 @@ if ($notice_no == 0) {
     echo "잘못된 접근입니다."; exit;
 }
 
-$sql = "SELECT * FROM p_notice WHERE notice_no = '$notice_no'";
+$sql = "SELECT * FROM p_notice WHERE notice_no = '$notice_no' AND use_yn <> 'n'";
 $row = sql_fetch($sql);
 
 if (!$row) {
@@ -55,25 +55,27 @@ $page_title = ($row['notice_kind'] === 'a') ? '공지사항' : '자료실';
                         <?php echo $row['notice_content'];?>
                     </div>
                     <!-- 첨부파일 -->
+                    <?php if ($row['notice_file']) { $gw_fu = G5_URL . '/data/notice/' . rawurlencode($row['notice_file']); $gw_fd = G5_BBS_URL . '/newbex_download.php?notice_no=' . (int) $notice_no; ?>
                     <dl class="b_file">
                         <dt>첨부파일</dt>
                         <dd>
                             <ul>
-                                <li><a href="<?php echo G5_URL;?>/data/notice/<?php echo $row['notice_file'];?>" download><?php echo $row['notice_file'];?></a></li>
-                                <li><a class="download_btn" href="<?php echo G5_URL;?>/data/notice/<?php echo $row['notice_file'];?>" download></a></li>
-                                <li><a class="view_btn" href="<?php echo G5_URL;?>/data/notice/<?php echo $row['notice_file'];?>" target="_blank"></a></li>
+                                <li><a href="<?php echo $gw_fd;?>" download><?php echo htmlspecialchars($row['notice_file_name'] !== '' ? $row['notice_file_name'] : $row['notice_file'], ENT_QUOTES, 'UTF-8');?></a></li>
+                                <li><a class="download_btn" href="<?php echo $gw_fd;?>" download aria-label="파일 다운로드"></a></li>
+                                <li><a class="view_btn" href="<?php echo $gw_fu;?>" target="_blank" rel="noopener" aria-label="파일 보기"></a></li>
                             </ul>
                         </dd>
                     </dl>
+                    <?php } ?>
                     <!-- 이전글 다음글 -->
                     <?php
                     $sql_prev = "SELECT notice_no, notice_subject FROM p_notice 
-                                WHERE notice_no > '$notice_no' AND notice_kind = '{$kind}'
+                                WHERE notice_no > '$notice_no' AND notice_kind = '{$kind}' AND use_yn <> 'n'
                                 ORDER BY notice_no ASC LIMIT 1";
                     $row_prev = sql_fetch($sql_prev);
 
                     $sql_next = "SELECT notice_no, notice_subject FROM p_notice 
-                                WHERE notice_no < '$notice_no' AND notice_kind = '{$kind}'
+                                WHERE notice_no < '$notice_no' AND notice_kind = '{$kind}' AND use_yn <> 'n'
                                 ORDER BY notice_no DESC LIMIT 1";
                                 $row_next = sql_fetch($sql_next);
                     ?>

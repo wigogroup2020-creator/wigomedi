@@ -1,5 +1,6 @@
 <?php
 require_once './_common.php';
+require_once G5_LIB_PATH . '/board.lib.php';
 include_once(G5_PATH.'/newbex_head.php');
 ?>
     <main class="container">
@@ -31,20 +32,15 @@ include_once(G5_PATH.'/newbex_head.php');
                     <li><div class="cate">PDF</div><div class="txt">ALLVIS 카탈로그 · 국문</div><div class="date">공식 자료</div><div class="btn view"><a class="view_btn" href="/img/file/올비스_카달로그(국문).pdf" target="_blank" rel="noopener" aria-label="ALLVIS 국문 카탈로그 보기"></a></div><div class="btn download"><a class="download_btn" href="/img/file/올비스_카달로그(국문).pdf" download aria-label="ALLVIS 국문 카탈로그 다운로드"></a></div></li>
                     <li><div class="cate">PDF</div><div class="txt">ALLVIS 카탈로그 · 영문</div><div class="date">공식 자료</div><div class="btn view"><a class="view_btn" href="/img/file/올비스_카달로그(영문).pdf" target="_blank" rel="noopener" aria-label="ALLVIS 영문 카탈로그 보기"></a></div><div class="btn download"><a class="download_btn" href="/img/file/올비스_카달로그(영문).pdf" download aria-label="ALLVIS 영문 카탈로그 다운로드"></a></div></li>
                     <?php
-                    $sql = "select * from p_notice where notice_kind = 'b' order by notice_no desc";
-					$result = sql_query($sql, false);
-					
-					while($result && ($row=sql_fetch_array($result))){
-                        if (!preg_match('/grobio|그로바이오|wigo|위고|sugar|슈가|88\s*lion|88라이온|allvis|올비스/iu', $row['notice_subject']) || preg_match('/newbex|뉴벡스|revive[ _-]*cell|리바이브셀/iu', $row['notice_subject'])) continue;
-						$notice_no = $row['notice_no'];	// 상세보기 할때 이거 넘기면 됨
-						// 내용은 $row['notice_content'];
-					?>
+                    foreach (wigo_board_rows('b') as $row) {
+                        $notice_no = $row['notice_no'];
+                    ?>
 						<li>
 							<div class="cate"><?php echo strtoupper($row['notice_file_exp']);?></div>
 							<div class="txt"><a href="<?php echo G5_URL;?>/pages/m31_view.php?no=<?php echo $notice_no;?>" style="font-size:17px"><?php echo $row['notice_subject'];?></a></div>
 							<div class="date"><?php echo substr($row['reg_datetime'], 0,10);?></div>
-							<div class="btn view"><a class="view_btn" href="<?php echo G5_URL;?>/data/notice/<?php echo $row['notice_file'];?>" target="_blank"></a></div>
-							<div class="btn download"><a class="download_btn" href="<?php echo G5_BBS_URL;?>/newbex_download.php?notice_no=<?php echo $notice_no;?>" download></a></div>
+							<div class="btn view"><?php if ($row['notice_file']) { ?><a class="view_btn" href="<?php echo G5_URL;?>/data/notice/<?php echo rawurlencode($row['notice_file']);?>" target="_blank" rel="noopener" aria-label="파일 보기"></a><?php } ?></div>
+							<div class="btn download"><?php if ($row['notice_file']) { ?><a class="download_btn" href="<?php echo G5_BBS_URL;?>/newbex_download.php?notice_no=<?php echo $notice_no;?>" download aria-label="파일 다운로드"></a><?php } ?></div>
 						</li>
 					<?php
 					}
