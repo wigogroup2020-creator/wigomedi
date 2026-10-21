@@ -9,11 +9,3 @@ function wigo_photo($name)
     if (!is_file($path)) return '';
     return G5_URL . '/img/grobio/photo/' . $name . '?v=' . filemtime($path);
 }
-
-/* 사진 한 칸: 파일이 있으면 <img>, 없으면 빈 칸(.ph-empty) */
-function wigo_photo_tag($name, $w, $h, $eager = false)
-{
-    $u = wigo_photo($name);
-    if (!$u) return '';
-    return '<img src="' . htmlspecialchars($u, ENT_QUOTES, 'UTF-8') . '" alt="" width="' . (int) $w . '" height="' . (int) $h . '"' . ($eager ? ' fetchpriority="high"' : ' loading="lazy"') . '>';
-}

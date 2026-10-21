@@ -71,13 +71,6 @@ function wigo_prod_legacy_defaults()
     );
 }
 
-function wigo_prod_count($group)
-{
-    $in = wigo_prod_in_clause($group);
-    $row = sql_fetch("SELECT COUNT(*) AS cnt FROM p_product WHERE product_kind IN ($in)", false);
-    return is_array($row) && isset($row['cnt']) ? (int) $row['cnt'] : 0;
-}
-
 /* 기본 제품 사진: img/grobio/products/<slug>.jpg 가 있으면 그 주소, 없으면 빈 문자열 */
 function wigo_prod_default_image($slug)
 {
@@ -105,40 +98,6 @@ function wigo_prod_image_url($file)
     // 업로드 파일명은 날짜+숫자+확장자 형태입니다. 그 밖의 값은 사용하지 않습니다.
     if (!is_string($file) || $file === '' || !preg_match('/^[0-9A-Za-z._+-]{1,120}$/D', $file) || strpos($file, '..') !== false) return '';
     return G5_DATA_URL . '/product/' . rawurlencode($file);
-}
-
-/* 카드 목록. $group = 'grobio' | 'partner' */
-function wigo_prod_cards($group, $limit = 0)
-{
-    $cards = array();
-    $groups = wigo_prod_groups();
-    if (!isset($groups[$group])) return $cards;
-    $in = wigo_prod_in_clause($group);
-    $result = sql_query("SELECT product_no, product_kind, product_subject, product_info, product_file FROM p_product WHERE use_yn = 'y' AND product_kind IN ($in) ORDER BY product_no ASC", false);
-    while ($result && ($row = sql_fetch_array($result))) {
-        $cards[] = array(
-            'no'    => (int) $row['product_no'],
-            'group' => $group,
-            'kind'  => $groups[$group]['label'],
-            'name'  => $row['product_subject'],
-            'info'  => $row['product_info'],
-            'img'   => (wigo_prod_image_url($row['product_file']) !== '' ? wigo_prod_image_url($row['product_file']) : wigo_prod_image_by_name($row['product_subject'])),
-            'href'  => '/pages/m21_view.html?product_no=' . (int) $row['product_no'],
-            'desc'  => '',
-            'area'  => $groups[$group]['label'],
-            'en'    => '',
-            'tone'  => ($group === 'partner') ? 'navy' : 'mint',
-            'status' => '',
-        );
-    }
-    if (!$cards && wigo_prod_count($group) === 0) {
-        foreach (wigo_prod_defaults($group) as $d) {
-            $cards[] = array('no' => 0, 'group' => $group, 'kind' => $groups[$group]['label'], 'name' => $d['name'], 'info' => $d['info'],
-                             'img' => wigo_prod_default_image($d['slug']), 'href' => '/pages/m21_view.html?item=' . $d['slug'], 'desc' => '',
-                             'area' => $d['area'], 'en' => $d['en'], 'tone' => $d['tone'], 'status' => $d['status']);
-        }
-    }
-    return ($limit > 0) ? array_slice($cards, 0, $limit) : $cards;
 }
 
 /* 제품 목록 페이지용: DB와 무관하게 고정 카드(그로바이오 4 / 제휴 1)를 돌려줍니다. */
