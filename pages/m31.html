@@ -1,10 +1,11 @@
 <?php
 require_once './_common.php';
+require_once G5_LIB_PATH . '/board.lib.php';
 include_once(G5_PATH.'/newbex_head.php');
 ?>
     <main class="container">
         <div id="contents">
-            <div class="pageTop pn3">
+            <div class="pageTop pn3 bn-face">
                 <div class="bg"></div>
                 <div class="inner">
                     <h1 class="pageSlg">공지사항</h1>
@@ -28,13 +29,10 @@ include_once(G5_PATH.'/newbex_head.php');
                         <div>첨부파일</div>
                     </li>
 					<?php
-					$sql = "select * from p_notice where notice_kind = 'a' order by notice_no desc";
-					$result = sql_query($sql, false);
-					
-					for($i=1;$result && ($row=sql_fetch_array($result));$i++){
-                        if (preg_match('/newbex|뉴벡스|revive[ _-]*cell|리바이브셀/iu', $row['notice_subject'])) { $i--; continue; }
-						$notice_no = $row['notice_no'];	// 상세보기 할때 이거 넘기면 됨
-						// 내용은 $row['notice_content'];
+					$gw_rows = wigo_board_rows('a');
+					foreach ($gw_rows as $i0 => $row) {
+						$i = $i0 + 1;
+						$notice_no = $row['notice_no'];
 					?>
 						<li>
 							<div class="cate"><?php echo $i;?></div>

@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   preview:
-    if: ${{ (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/wigomedi') || (github.event_name == 'push' && github.ref == 'refs/heads/grobio-wigo-redesign') }}
+    if: ${{ (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/wigomedi') || (github.event_name == 'push' && github.ref == 'refs/heads/grobio-wigo-redesign' && vars.GROBIO_PREVIEW_AUTO_ENABLED == 'true') }}
     runs-on: ubuntu-24.04
     steps:
       - name: Confirm preview deployment
@@ -47,12 +47,12 @@ jobs:
           dest=Path('/tmp/grobio-stage')
           files=[
             'index.html','newbex_head.php','newbex_tail.php',
-            'lib/product.lib.php','lib/photo.lib.php',
-            'js/custom.js','js/home.js','js/menu.js',
+            'lib/product.lib.php','lib/photo.lib.php','lib/board.lib.php',
+            'js/custom.js','js/home.js','js/menu.js','js/soon.js',
             'css/grobio-wigo.css','css/grobio-menu.css',
             'css/grobio-home.css','css/grobio-about.css',
-            'pages/m11.html','pages/m12.html','pages/m21.html',
-            'pages/m21_view.html','pages/m22.html','pages/m32.html',
+            'pages/m11.html','pages/m12.html','pages/m13.html','pages/m21.html',
+            'pages/m21_view.html','pages/m22.html','pages/m31.html','pages/m31_view.php','pages/m32.html',
             'pages/m41.html','pages/stores.html',
           ]
           files += [str(p) for p in Path('img/grobio').rglob('*') if p.is_file()]
@@ -68,7 +68,7 @@ jobs:
                       content=re.sub(r"G5_LIB_PATH\s*\.\s*(['\"])\/product\.lib\.php\1",lambda m:"G5_PATH . "+m.group(1)+"/grobio-test/lib/product.lib.php"+m.group(1),content)
                   # Route preview PHP includes to staged libraries, not production libraries.
                   if src.suffix.lower() in ('.php','.html'):
-                      content=re.sub(r"G5_LIB_PATH\s*\.\s*(['\"])\/(product|photo)\.lib\.php\1",lambda m:"G5_PATH . "+m.group(1)+"/grobio-test/lib/"+m.group(2)+".lib.php"+m.group(1),content)
+                      content=re.sub(r"G5_LIB_PATH\s*\.\s*(['\"])\/(product|photo|board)\.lib\.php\1",lambda m:"G5_PATH . "+m.group(1)+"/grobio-test/lib/"+m.group(2)+".lib.php"+m.group(1),content)
                       content=re.sub(r"G5_PATH\s*\.\s*(['\"])\/newbex_(head|tail)\.php\1",lambda m:"G5_PATH . "+m.group(1)+"/grobio-test/newbex_"+m.group(2)+".php"+m.group(1),content)
                   if name == 'lib/photo.lib.php':
                       content=content.replace("G5_PATH . '/img/grobio/photo/'", "G5_PATH . '/grobio-test/img/grobio/photo/'")
@@ -86,7 +86,7 @@ jobs:
               $paths = array(
                 '/css/grobio-wigo.css','/css/grobio-menu.css',
                 '/css/grobio-home.css','/css/grobio-about.css',
-                '/js/home.js','/js/menu.js','/js/custom.js',
+                '/js/home.js','/js/menu.js','/js/soon.js','/js/custom.js',
                 '/img/grobio/'
               );
               foreach ($paths as $path) {
@@ -94,7 +94,7 @@ jobs:
                   $html = str_replace('"'.$path, '"/grobio-test'.$path, $html);
                   $html = str_replace("'".$path, "'/grobio-test".$path, $html);
               }
-              foreach (array('m11.html','m12.html','m21.html','m21_view.html','m22.html','m32.html','m41.html','stores.html') as $page) {
+              foreach (array('m11.html','m12.html','m13.html','m21.html','m21_view.html','m22.html','m31.html','m31_view.php','m32.html','m41.html','stores.html') as $page) {
                   $html = str_replace($root.'/pages/'.$page, $root.'/grobio-test/pages/'.$page, $html);
                   $html = str_replace('"/pages/'.$page, '"/grobio-test/pages/'.$page, $html);
                   $html = str_replace("'/pages/".$page, "'/grobio-test/pages/".$page, $html);

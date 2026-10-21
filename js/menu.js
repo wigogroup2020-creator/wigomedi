@@ -30,6 +30,7 @@
     });
     if (closeBtn) closeBtn.addEventListener('click', function () { close(); });
     menu.addEventListener('click', function (e) {
+        if (e.target === menu) { close(); return; }
         var a = e.target.closest ? e.target.closest('a[href]') : null;
         if (a) close(false);
     });

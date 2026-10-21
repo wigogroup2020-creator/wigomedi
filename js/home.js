@@ -1,4 +1,4 @@
-/* 메인(index) 전용: 헤더 배경, 제품 슬라이드 조작, 가벼운 등장 효과, 맨 위로 */
+/* 메인(index) 전용: 헤더 배경, 맨 위로. 자동 슬라이드 없음. 스크롤 움직임은 motion.js */
 (function () {
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var header = document.getElementById('header');
@@ -7,21 +7,16 @@
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
-
-    /* 제품 슬라이드: 스와이프(스크롤 스냅) + 이전/다음 버튼 + 방향키 */
-    var rail = document.querySelector('.hm-rail');
-    var prev = document.querySelector('.hm-prev');
-    var next = document.querySelector('.hm-next');
-    function step() {
-        var c = rail && rail.querySelector('.hm-card');
-        return c ? c.getBoundingClientRect().width + 14 : 300;
-    }
+    /* 뷰티 컬렉션: 스와이프(스크롤 스냅) + 이전/다음 버튼. 자동 전환 없음 */
+    var rail = document.querySelector('.hm-grid');
+    var prev = document.querySelector('.hm-prev'), next = document.querySelector('.hm-next');
+    function step() { var c = rail && rail.querySelector('li'); return c ? c.getBoundingClientRect().width + 14 : 300; }
     function sync() {
         if (!rail || !prev || !next) return;
         prev.disabled = rail.scrollLeft <= 2;
         next.disabled = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 2;
     }
-    function go(dir) { rail.scrollBy({ left: dir * step(), behavior: reduce ? 'auto' : 'smooth' }); }
+    function go(d) { rail.scrollBy({ left: d * step(), behavior: reduce ? 'auto' : 'smooth' }); }
     if (rail) {
         if (prev) prev.addEventListener('click', function () { go(-1); });
         if (next) next.addEventListener('click', function () { go(1); });
