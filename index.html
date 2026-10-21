@@ -17,24 +17,27 @@ while ($gw_nres && ($gw_nrow = sql_fetch_array($gw_nres))) {
     <script>document.documentElement.classList.add("hm-page");</script>
     <main class="hm">
 
-        <!-- 1. 대표 슬라이드: 사진이 없으면 빈 칸(짙은 면)으로 표시 -->
-        <section class="hm-hero" aria-roledescription="carousel" aria-label="그로바이오 · 위고 소개">
+        <!-- 1. 대표 슬라이드: 제품 사진 + 제품별 배경색 -->
+        <section class="hm-hero" aria-roledescription="carousel" aria-label="그로바이오 · 위고 제품 소개">
             <?php
             $gw_slides = array(
-                array('hero-1.jpg', '두피 · 헤어케어', '두피 상태를 살피는 케어 제품', '슈가그로우 등 그로바이오 두피 · 헤어케어 제품을 소개합니다.', '/pages/m21.html', '제품 알아보기'),
-                array('hero-2.jpg', '피부 · 앰플', '피부와 셀프케어 앰플', '슈가페이스, 슈가리젠 등 피부 · 스킨케어 제품을 소개합니다.', '/pages/m21.html', '제품 알아보기'),
-                array('hero-3.jpg', '뷰티기기', '관리기기 제휴제품', '위고가 판매하는 제휴제품 올비스 HIFU &amp; LDM 관리기기를 소개합니다.', '/pages/m22.html', '제휴제품 알아보기'),
+                array('slide-grow.jpg', '#dfe8df', '두피 · 헤어케어', '슈가그로우', '그로바이오의 두피 · 헤어케어 브랜드입니다.', '/pages/m21_view.html?item=sugar-grow', '제품 알아보기', 'GROBio Sugar Grow 앰플 이미지'),
+                array('slide-face.jpg', '#f6e4d8', '피부 · 스킨케어', '슈가페이스', '그로바이오의 페이셜 · 스킨케어 브랜드입니다.', '/pages/m21_view.html?item=sugar-face', '제품 알아보기', 'GROBio Sugar Face 앰플 이미지'),
+                array('slide-regen.jpg', '#dce8f4', '셀프케어 앰플', '슈가리젠', '그로바이오가 직접 제조하는 셀프케어 앰플 라인의 플래그십 제품입니다.', '/pages/m21_view.html?item=sugar-regen', '제품 알아보기', 'GROBio Sugar Regen 앰플 이미지'),
+                array('slide-device.jpg', '#e6e2f1', '뷰티기기 · 제휴제품', '뷰티기기', '위고가 판매하는 제휴제품 올비스 HIFU &amp; LDM 관리기기를 소개합니다.', '/pages/m22.html', '제휴제품 알아보기', '뷰티기기 이미지'),
             );
             ?>
             <div class="hm-slides" tabindex="0" aria-label="슬라이드, 좌우로 넘겨 보세요">
-                <?php foreach ($gw_slides as $gw_i => $gw_s) { ?>
-                <div class="hm-slide<?php echo $gw_i === 0 ? ' on' : ''; ?>" role="group" aria-roledescription="slide" aria-label="<?php echo $gw_i + 1; ?> / <?php echo count($gw_slides); ?>">
-                    <div class="hm-slide-bg"><?php echo wigo_photo_tag($gw_s[0], 1920, 1080, $gw_i === 0); ?></div>
+                <?php foreach ($gw_slides as $gw_i => $gw_s) { $gw_tag = $gw_i === 0 ? 'h1' : 'h2'; ?>
+                <div class="hm-slide<?php echo $gw_i === 0 ? ' on' : ''; ?>" style="--tint:<?php echo $gw_s[1]; ?>" role="group" aria-roledescription="slide" aria-label="<?php echo $gw_i + 1; ?> / <?php echo count($gw_slides); ?>">
                     <div class="hm-wrap hm-slide-in">
-                        <p class="hm-kicker"><?php echo $gw_s[1]; ?></p>
-                        <h1 class="hm-h"><?php echo $gw_s[2]; ?></h1>
-                        <p class="hm-lead"><?php echo $gw_s[3]; ?></p>
-                        <a class="hm-btn" href="<?php echo $gw_s[4]; ?>"><?php echo $gw_s[5]; ?></a>
+                        <div class="hm-slide-tx">
+                            <p class="hm-kicker"><?php echo $gw_s[2]; ?></p>
+                            <<?php echo $gw_tag; ?> class="hm-h"><?php echo $gw_s[3]; ?></<?php echo $gw_tag; ?>>
+                            <p class="hm-lead"><?php echo $gw_s[4]; ?></p>
+                            <a class="hm-btn" href="<?php echo $gw_s[5]; ?>"><?php echo $gw_s[6]; ?></a>
+                        </div>
+                        <div class="hm-slide-img"><?php $gw_u = wigo_photo($gw_s[0]); if ($gw_u) { ?><img src="<?php echo htmlspecialchars($gw_u, ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo $gw_s[7]; ?>" width="1000" height="1000"<?php echo $gw_i === 0 ? ' fetchpriority="high"' : ' loading="lazy"'; ?>><?php } ?></div>
                     </div>
                 </div>
                 <?php } ?>
@@ -63,26 +66,17 @@ while ($gw_nres && ($gw_nrow = sql_fetch_array($gw_nres))) {
             </div>
         </section>
 
-        <!-- 3. 그로바이오 × 위고 소개 (분류별 묶음) -->
+        <!-- 3. 그로바이오 × 위고 -->
         <section class="hm-sec hm-story" aria-labelledby="hm-story-h">
-            <div class="hm-wrap">
-                <div class="hm-head" data-rv><h2 id="hm-story-h">그로바이오 × 위고</h2></div>
-                <div class="hm-groups" data-rv-group>
-                    <?php
-                    $gw_groups = array(
-                        array('story-1.jpg', '제품', array(array('두피 · 헤어케어', '/pages/m21.html'), array('피부 · 앰플', '/pages/m21.html'), array('뷰티기기', '/pages/m22.html')), '두피, 피부, 뷰티기기 분야의 제품을 소개합니다.'),
-                        array('story-2.jpg', '그로바이오', array(array('제품 개발 · 제조', '/pages/m11.html'), array('품질 관리', '/pages/m11.html'), array('브랜드 · 기술 권리', '/pages/m11.html')), '제품을 개발하고 제조하며 품질과 권리를 관리합니다.'),
-                        array('story-3.jpg', '위고', array(array('제품 판매', '/pages/m11.html'), array('지역 유통망 운영', '/pages/m11.html'), array('온라인 판매 · 시스템 운영', '/pages/m11.html')), '제품 판매와 유통, 온라인 판매와 시스템 운영을 맡습니다.'),
-                        array('story-4.jpg', '사업장', array(array('오시는 길', '/pages/m12.html'), array('매장 안내', '/pages/stores.html'), array('문의하기', '/pages/m41.html')), '대전에 있는 그로바이오와 위고 사업장을 안내합니다.'),
-                    );
-                    foreach ($gw_groups as $gw_g) { ?>
-                    <article class="hm-group">
-                        <div class="hm-pic"><?php echo wigo_photo_tag($gw_g[0], 1200, 900); ?></div>
-                        <h3><?php echo $gw_g[1]; ?></h3>
-                        <ul><?php foreach ($gw_g[2] as $gw_l) { ?><li><a href="<?php echo $gw_l[1]; ?>"><?php echo $gw_l[0]; ?></a></li><?php } ?></ul>
-                        <p><?php echo $gw_g[3]; ?></p>
-                    </article>
-                    <?php } ?>
+            <div class="hm-wrap hm-story-in">
+                <figure class="hm-story-img" data-zoom><?php $gw_u = wigo_photo('story-brand.jpg'); if ($gw_u) { ?><img src="<?php echo htmlspecialchars($gw_u, ENT_QUOTES, 'UTF-8'); ?>" alt="GROBio와 WIGO 라벨을 적용한 화장품 이미지" width="1100" height="1100" loading="lazy"><?php } ?></figure>
+                <div class="hm-story-tx">
+                    <h2 id="hm-story-h" data-rv>그로바이오 × 위고</h2>
+                    <div class="hm-roles" data-rv-group>
+                        <div><h3>GROBio 그로바이오</h3><p>제품 개발과 제조, 품질 관리, 브랜드와 기술 권리를 관리합니다.</p><a href="/pages/m11.html">그로바이오 소개</a></div>
+                        <div><h3>WIGO 위고</h3><p>제품 판매와 지역 유통망, 온라인 판매와 시스템 운영을 맡습니다.</p><a href="/pages/m11.html">위고 소개</a></div>
+                    </div>
+                    <p class="hm-story-links" data-rv><a href="/pages/m12.html">오시는 길</a><a href="/pages/stores.html">매장 안내</a><a href="/pages/m41.html">문의하기</a></p>
                 </div>
             </div>
         </section>

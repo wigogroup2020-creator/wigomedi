@@ -67,6 +67,14 @@ function wigo_prod_count($group)
     return is_array($row) && isset($row['cnt']) ? (int) $row['cnt'] : 0;
 }
 
+/* 기본 제품 사진: img/grobio/products/<slug>.jpg 가 있으면 그 주소, 없으면 빈 문자열 */
+function wigo_prod_default_image($slug)
+{
+    $slug = preg_replace('/[^a-z-]/', '', (string) $slug);
+    $path = G5_PATH . '/img/grobio/products/' . $slug . '.jpg';
+    return ($slug !== '' && is_file($path)) ? G5_URL . '/img/grobio/products/' . $slug . '.jpg?v=' . filemtime($path) : '';
+}
+
 function wigo_prod_image_url($file)
 {
     // 업로드 파일명은 날짜+숫자+확장자 형태입니다. 그 밖의 값은 사용하지 않습니다.
@@ -101,7 +109,7 @@ function wigo_prod_cards($group, $limit = 0)
     if (!$cards && wigo_prod_count($group) === 0) {
         foreach (wigo_prod_defaults($group) as $d) {
             $cards[] = array('no' => 0, 'group' => $group, 'kind' => $groups[$group]['label'], 'name' => $d['name'], 'info' => $d['info'],
-                             'img' => '', 'href' => '/pages/m21_view.html?item=' . $d['slug'], 'desc' => '',
+                             'img' => wigo_prod_default_image($d['slug']), 'href' => '/pages/m21_view.html?item=' . $d['slug'], 'desc' => '',
                              'area' => $d['area'], 'en' => $d['en'], 'tone' => $d['tone'], 'status' => $d['status']);
         }
     }
