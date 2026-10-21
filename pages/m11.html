@@ -2,45 +2,110 @@
 require_once './_common.php';
 include_once(G5_PATH.'/newbex_head.php');
 ?>
-<main class="container">
-	<div id="contents">
-		<div class="pageTop pn1">
-			<div class="bg"></div>
-			<div class="inner">
-				<h1 class="pageSlg">기업소개</h1>
-			</div>
-		</div>
-		<div class="pageTitleArea inner">
-			<ul>
-				<li><a href="/index.html">Home</a></li>
-				<li>About us</li>
-				<li>기업소개</li>
-			</ul>
-		</div>
-		<div class="category inner">
-			<ul>
-				<li class="on"><a href="/pages/m11.html">기업소개</a></li>
-				<li><a href="/pages/m12.html">오시는 길</a></li>
-				<li><a href="/pages/m13.html">협력사 / 고객사</a></li>
-			</ul>
-		</div>
-        <div class="page m11 inner brand-about">
-            <p class="brand-company-label">88LION · 88라이온 / 운영사 주식회사 위고</p>
-            <div class="slogan"><img src="/img/m11_img01.jpg" alt="고객과 파트너를 연결하는 위고"><span>고객의 관리 경험과 파트너의 성장을 연결합니다.</span></div>
-            <h1>회사 개요 <small>Company Overview</small></h1>
-            <p>주식회사 위고는 제품과 서비스, 파트너를 연결하는 기업입니다. 88LION을 중심으로 프리미엄 두피관리와 뷰티 케어, 홈케어 제품을 소개하고, ALLVIS 관리 기기를 통해 매장의 프로그램 구성을 지원합니다.</p>
-            <p>고객에게는 매장과 일상에서 이어지는 관리 경험을, 파트너에게는 제품과 프로그램을 활용한 운영 방향을 제안합니다. 제품 공급과 상담, 디지털 플랫폼을 통한 업무 연결을 바탕으로 파트너와 함께 성장하고자 합니다.</p>
-            <h1>주요 사업영역 <small>Core Business Areas</small></h1>
-            <div class="brand-business-grid">
-                <article><b>01</b><h2>88LION 제품 및 관리 프로그램</h2><p>두피·뷰티 케어 제품과 홈케어를 중심으로 고객의 꾸준한 관리 루틴을 제안합니다.</p><a href="/pages/m21.html">88LION 알아보기 ↗</a></article>
-                <article><b>02</b><h2>ALLVIS 관리 기기</h2><p>HIFU와 LDM을 활용한 관리 기기를 소개하고, 매장의 운영 환경에 맞춰 제품 구성과 도입 상담을 안내합니다.</p><a href="/pages/m22.html">ALLVIS 알아보기 ↗</a></article>
-                <article><b>03</b><h2>파트너 협업</h2><p>가맹·대리점과 지역 파트너에게 제품 및 프로그램을 소개하고 운영에 필요한 상담을 제공합니다.</p><a href="/pages/m41.html">파트너 문의하기 ↗</a></article>
+<main class="container gw-sub ab"><div id="contents">
+        <div class="pageTop pn1 bn-company"><div class="bg"></div><div class="inner"><h1 class="pageSlg">기업소개</h1></div></div>
+        <div class="pageTitleArea inner"><ul><li><a href="/index.html">Home</a></li><li>About us</li><li>기업소개</li></ul></div>
+        <div class="category inner"><ul><li class="on"><a href="/pages/m11.html">기업소개</a></li><li><a href="/pages/m12.html">오시는 길</a></li><li><a href="/pages/m13.html">협력사 / 고객사</a></li></ul></div>
+
+        <!-- ① 공동 사업 소개 -->
+        <section class="ab-sec ab-intro" aria-labelledby="ab-h1">
+            <div class="ab-in">
+                <h2 id="ab-h1" data-rv>원료를 깊이 살피고,<br>케어를 넓게 생각합니다.</h2>
+                <p class="ab-lead">두피에서 피부, 전신 케어까지.<br>그로바이오와 위고는 원료와 제품, 사용하는 방식까지 함께 생각합니다.<br>바이오 앰플과 마이크로니들, 뷰티기기를 아우르며 일상에서 만날 수 있는 케어를 만들어갑니다.</p>
+                <ul class="ab-fields">
+                    <li><a href="#ab-area1">두피 · 헤어케어</a></li>
+                    <li><a href="#ab-area2">피부 · 스킨케어</a></li>
+                    <li><a href="#ab-area3">뷰티기기</a></li>
+                </ul>
             </div>
-            <h1>위고의 비전 <small>Vision &amp; Value</small></h1>
-            <p>위고는 고객에게 필요한 관리가 일상으로 이어지고, 파트너의 운영이 지속될 수 있도록 제품과 서비스를 연결하겠습니다.</p>
-        </div>
-	</div> 
-</main>
+        </section>
+
+        <!-- ② 그로바이오와 위고 -->
+        <section class="ab-sec ab-duo" aria-labelledby="ab-h2">
+            <div class="ab-in">
+                <h2 class="ab-h" data-rv id="ab-h2">제품을 만드는 전문성,<br>고객에게 전하는 실행력</h2>
+                <div class="ab-two" data-rv-group>
+                    <article class="g">
+                        <p class="ab-tag">제품 · 기술</p>
+                        <h3>GROBio 그로바이오</h3>
+                        <p class="ab-role">원료를 연구하고 제품을 만듭니다.</p>
+                        <ul>
+                            <li>두피 · 피부 · 뷰티기기 제품 개발</li>
+                            <li>제품 제조와 품질 관리</li>
+                            <li>브랜드 및 기술 권리 관리</li>
+                        </ul>
+                    </article>
+                    <article class="w">
+                        <p class="ab-tag">판매 · 운영</p>
+                        <h3>WIGO 위고</h3>
+                        <p class="ab-role">제품이 고객을 만나는 길을 만듭니다.</p>
+                        <ul>
+                            <li>제품 판매와 지역 유통망 운영</li>
+                            <li>광역총판 등 지역권 설정 · 운영</li>
+                            <li>제휴제품 온라인 판매</li>
+                            <li>플랫폼 · 주문 관리, 시스템 운영 · 유지보수</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ③ 주요 사업영역 -->
+        <section class="ab-sec ab-area" aria-labelledby="ab-h3">
+            <div class="ab-in">
+                <h2 class="ab-h" data-rv id="ab-h3">일상의 케어를 넓혀갑니다.</h2>
+                <div class="ab-cards" data-rv-group>
+                    <a id="ab-area1" class="t-mint" href="/pages/m21.html"><h3>두피 · 헤어케어</h3><p>슈가그로우를 소개합니다.</p><span>제품 보기 →</span></a>
+                    <a id="ab-area2" class="t-blush" href="/pages/m21.html"><h3>페이셜 케어 · 셀프케어 앰플</h3><p>슈가페이스와 슈가리젠을 소개합니다.</p><span>제품 보기 →</span></a>
+                    <a id="ab-area3" class="t-sky" href="/pages/m21.html"><h3>뷰티기기</h3><p>제품과 함께 사용하는 기기 기반 케어를 소개합니다.</p><span>제품 보기 →</span></a>
+                </div>
+                            </div>
+        </section>
+
+        <!-- ④ 제품과 판매 운영 -->
+        <section class="ab-sec ab-ops" aria-labelledby="ab-h4">
+            <div class="ab-in">
+                <h2 class="ab-h" data-rv id="ab-h4">개발에서 판매까지 함께합니다.</h2>
+                <dl class="ab-rows" data-rv-group>
+                    <div><dt><span>그로바이오</span>제품 영역</dt><dd>제품 개발 · 제조 · 품질 관리, 브랜드와 기술 권리 관리</dd></div>
+                    <div><dt><span>위고</span>판매 영역</dt><dd>제품 판매, 광역총판 등 지역 유통망과 지역권 설정 · 운영</dd></div>
+                    <div><dt><span>위고</span>온라인 · 시스템</dt><dd>제휴제품 온라인 판매, 플랫폼과 주문 관리, 시스템 운영 · 유지보수</dd></div>
+                </dl>
+            </div>
+        </section>
+
+        <!-- ⑤ 사업장 안내 -->
+        <section class="ab-sec ab-site" aria-labelledby="ab-h5">
+            <div class="ab-in ab-site-in">
+                <figure data-zoom>
+                    <img src="/img/grobio/building.jpg" alt="주식회사 위고 사무실이 있는 대전 둔산동 샤크존빌딩 외관" width="1200" height="1025" loading="lazy">
+                </figure>
+                <div>
+                    <h2 class="ab-h" data-rv id="ab-h5">사업장 안내</h2>
+                    <dl class="ab-addr">
+                        <div><dt>그로바이오</dt><dd>대전 유성구 테크노2로 310-7</dd></div>
+                        <div><dt>위고 사무실</dt><dd>대전 서구 둔산중로 19 샤크존 2층 223호</dd></div>
+                    </dl>
+                    <p class="ab-sm">방문 전에는 대표번호 1555-3336(평일 09:00–18:00)으로 먼저 문의해 주세요.</p>
+                    <a class="ab-btn line" href="/pages/m12.html">오시는 길 보기</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ⑥ 비즈니스 문의 -->
+        <section class="ab-sec ab-cta" aria-labelledby="ab-h6">
+            <div class="ab-in">
+                <h2 class="ab-h" data-rv id="ab-h6">기술과 상생을 연결하다.<br>함께 만드는 뷰티의 미래</h2>
+                <ul class="ab-paths" data-rv-group>
+                    <li><a href="/pages/m41.html"><b>제품 도입</b><span>전문점 · 매장의 그로바이오 제품 도입</span></a></li>
+                    <li><a href="/pages/m41.html"><b>총판 · 대리점</b><span>광역총판 · 대리점 운영 문의</span></a></li>
+                    <li><a href="/pages/m41.html"><b>제품 · 판매 제휴</b><span>제휴제품 판매, 온라인 플랫폼 협업</span></a></li>
+                </ul>
+                <a class="ab-btn" href="/pages/m41.html">문의하기</a>
+            </div>
+        </section>
+    </div></main>
+    <script src="<?php echo G5_URL; ?>/js/motion.js?v=1"></script>
 <?php
 include_once(G5_PATH."/newbex_tail.php");
 ?>

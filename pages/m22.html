@@ -1,14 +1,24 @@
 <?php
 require_once './_common.php';
+require_once G5_LIB_PATH . '/product.lib.php';
 include_once(G5_PATH.'/newbex_head.php');
+$gw_cards = wigo_prod_static_cards('partner');
 ?>
-<main class="container"><div id="contents">
-    <div class="pageTop pn2"><div class="bg"></div><div class="inner"><h1 class="pageSlg">제품소개</h1></div></div>
-    <div class="pageTitleArea inner"><ul><li><a href="/">Home</a></li><li>Product</li><li>ALLVIS</li></ul></div>
-    <nav class="category inner" aria-label="제품 분류"><ul><li><a href="/pages/m21.html">88LION</a></li><li class="on"><a href="/pages/m22.html">ALLVIS</a></li></ul></nav>
-    <div class="page inner brand-product-page">
-        <div class="brand-product-intro"><div class="brand-product-visual"><img src="/img/allvis_PC.png" alt="ALLVIS HIFU 및 LDM 관리 기기"></div><div class="brand-product-copy"><p class="brand-eyebrow">PRODUCT / ALLVIS</p><h2>ALLVIS HIFU &amp; LDM</h2><p>매장 관리 프로그램을 위한 HIFU &amp; LDM 기기.<br>제품 구성과 사용 방법, 도입 조건을 상담해 보세요.</p><a class="brand-button" href="/pages/m41.html">제품 및 도입 문의 ↗</a></div></div>
-        <div class="brand-product-guide"><h2>ALLVIS 제품 자료</h2><p>기기 구성과 사용 안내는 기존 공식 카탈로그를 참고해 주세요. 세부 모델과 매장 도입 조건은 상담을 통해 안내합니다.</p><div class="brand-downloads"><a href="/img/file/올비스_카달로그(국문).pdf" download>카탈로그 · 국문 ↓</a><a href="/img/file/올비스_카달로그(영문).pdf" download>카탈로그 · 영문 ↓</a></div></div>
+<main class="container gw-sub"><div id="contents">
+    <div class="pageTop pn2 bn-select"><div class="bg"></div><div class="inner"><h1 class="pageSlg">제품소개</h1></div></div>
+    <div class="pageTitleArea inner"><ul><li><a href="/">Home</a></li><li>Product</li><li>제휴제품</li></ul></div>
+    <nav class="category inner" aria-label="제품 분류"><ul><li><a href="/pages/m21.html">그로바이오</a></li><li class="on"><a href="/pages/m22.html">제휴제품</a></li></ul></nav>
+    <div class="page inner gw-products">
+        <h2>위고 제휴제품</h2>
+        <?php if ($gw_cards) { ?>
+        <div class="gw-pgrid">
+            <?php foreach ($gw_cards as $i => $gw_card) echo wigo_prod_card_html($gw_card, $i); ?>
+        </div>
+        <?php } else { ?>
+        <div class="gw-empty"><p>표시할 제품을 준비하고 있습니다.<br>제품 문의는 대표번호 <a href="tel:15553336">1555-3336</a>로 연락해 주세요.</p></div>
+        <?php } ?>
     </div>
 </div></main>
-<?php include_once(G5_PATH.'/newbex_tail.php'); ?>
+<?php
+include_once(G5_PATH."/newbex_tail.php");
+?>

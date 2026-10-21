@@ -1,14 +1,28 @@
 <?php
 require_once './_common.php';
-include_once(G5_PATH.'/newbex_head.php');
+require_once G5_LIB_PATH . '/product.lib.php';
 
-$sql = "select * from p_product where product_no = '".$product_no."' ";
-$result = sql_fetch($sql);
+$product_no = isset($product_no) ? (int) $product_no : 0;
+$gw_item = isset($_GET['item']) ? preg_replace('/[^a-z-]/', '', (string) $_GET['item']) : '';
+$result = array();
+if ($product_no > 0) {
+    $result = sql_fetch("select * from p_product where product_no = '" . $product_no . "' ");
+} elseif ($gw_item !== '') {
+    // DB에 아직 등록되지 않은 기본 제품: 기본 안내 정보를 보여줍니다.
+    require_once G5_LIB_PATH . '/product.lib.php';
+    $gw_def = wigo_prod_default_by_slug($gw_item);
+    if ($gw_def) {
+        $result = array('product_info' => $gw_def['info'], 'product_subject' => $gw_def['name'], 'product_kind' => $gw_def['kind'],
+            'product_file' => '', 'gw_default_img' => wigo_prod_default_image($gw_item), 'product_content' => $gw_def['content'], 'product_price' => 0, 'product_price_member' => 0,
+            'product_price_sales' => 0, 'product_price_branch' => 0, 'product_price_chong' => 0);
+    }
+}
 
 $product_info = $result['product_info'];
 $product_subject = $result['product_subject'];
 $product_kind = $result['product_kind'];
 $product_file = $result['product_file'];
+$gw_default_img = isset($result['gw_default_img']) ? $result['gw_default_img'] : '';
 $product_content = $result['product_content'];
 $product_price = $result['product_price'];					// 정상가
 $product_price_member = $result['product_price_member'];	// 회원가
@@ -29,10 +43,12 @@ if($member['mb_grade'] == "a"){
 }elseif($member['mb_grade'] == "d"){
 	$special_price = $product_price_member;	// 회원
 }
+include_once(G5_PATH.'/newbex_head.php');
 ?>
-    <main class="container">
+    <main class="container gw-pd">
         <div id="contents">
-            <div class="pageTop pn2">
+            <?php $gw_bn = $product_file ? G5_URL.'/data/product/'.rawurlencode($product_file) : ($gw_default_img ? $gw_default_img : wigo_prod_image_by_name($product_subject)); ?>
+            <div class="pageTop pn2 bn-prod"style="--bp:url('<?php echo htmlspecialchars($gw_bn !== '' ? $gw_bn : '/img/grobio/photo/slide-grow.jpg', ENT_QUOTES, 'UTF-8'); ?>')">
                 <div class="bg"></div>
                 <div class="inner">
                     <h1 class="pageSlg"><?php echo $product_subject;?></h1>
@@ -48,10 +64,11 @@ if($member['mb_grade'] == "a"){
 
             <div class="page m21_view">
                 <div class="preInfo inner">
-                    <div class="thumb"><img src="<?php echo G5_URL;?>/data/product/<?php echo $product_file;?>"></div>
+                    <div class="thumb"><?php if ($product_file) { ?><img src="<?php echo G5_URL;?>/data/product/<?php echo $product_file;?>" alt="<?php echo htmlspecialchars($product_subject, ENT_QUOTES, 'UTF-8');?>"><?php } elseif ($gw_default_img) { ?><img src="<?php echo htmlspecialchars($gw_default_img, ENT_QUOTES, 'UTF-8');?>" alt="<?php echo htmlspecialchars($product_subject, ENT_QUOTES, 'UTF-8');?>"><?php } else { ?><span class="gw-noimg"><?php echo htmlspecialchars($product_subject, ENT_QUOTES, 'UTF-8');?></span><?php } ?></div>
                     <div class="txts">
                         <h3><?php echo $product_subject;?></h3>
                         <p><?php echo $product_info;?></p>
+                        <?php if($product_price > 0){ ?>
                         <div class="price_original">
                             <?php 
                             if($special_price > 0){
@@ -77,10 +94,11 @@ if($member['mb_grade'] == "a"){
 								?>
                             </span>
                         </div>
+                        <?php } ?>
                         <button class="click_btn">문의하기</button>
                     </div>
                 </div>
-                <div class="feature">
+                <div class="feature gw-feature">
 					<?php echo $product_content;?>
                 </div>
             </div>

@@ -1,0 +1,153 @@
+/* GROBio × WIGO 메인 (모바일 우선, index 전용)
+   움직임: transform/opacity 만 사용. js/motion.js 가 --z(사진 확대) --i(순서) 변수를 갱신.
+   대표 화면의 O + 사선 심볼은 기존 프로젝트 원본(원이 그려지고 사선이 꽂히는 동작)을 그대로 사용합니다.
+   스크립트가 없거나 '움직임 줄이기'면 모두 정지 상태로 그대로 보입니다. */
+html.hm-page,html.hm-page body{height:auto}
+html.hm-page body{overflow-x:hidden}
+html.hm-page footer,html.hm-page footer.foot_main{position:relative;bottom:auto;left:auto}
+html.hm-page #header:before{opacity:1;background:#fff}
+html.hm-page #header.gw-solid:before{opacity:1;background:#ffffffeb;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 #00553d14}
+html.hm-page #header:after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:#00553d;transform-origin:0 50%;transform:scaleX(var(--pg,0));pointer-events:none}
+.hm{--g:#00553d;--gd:#003d2b;--n:#0a2250;--ink:#13211c;--mute:#4a5b54;--stone:#f0f4f1;--ivory:#f8f4ed;--gold:#a58a5b;--serif:'Pretendard-Regular','Pretendard',sans-serif;--e:cubic-bezier(.2,.7,.2,1);color:var(--ink);background:var(--ivory);word-break:keep-all;font-size:17px;line-height:1.7}
+.hm *{box-sizing:border-box}
+.hm-wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 20px}
+.hm h1,.hm h2{margin:0;font-family:var(--serif);font-weight:700;letter-spacing:-.04em}
+.hm h1{font-size:clamp(30px,8vw,64px);line-height:1.22}
+.hm h2{font-size:clamp(26px,6.2vw,46px);line-height:1.25}
+.hm h3{margin:0}
+.hm-lead{margin:20px 0 0;font-size:17px;line-height:1.75;color:var(--mute)}
+.hm-sec{padding:76px 0}
+.hm a:focus-visible,.hm button:focus-visible{outline:3px solid #2a63d6;outline-offset:3px}
+.hm-eyebrow{margin:0 0 14px;font-size:13px;font-weight:700;letter-spacing:.18em;color:var(--gold)}
+
+/* 버튼 */
+.hm .hm-btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border-radius:2px;background:var(--g);color:#fff;font-size:16px;font-weight:700;letter-spacing:.02em;text-decoration:none;border:1.5px solid var(--g);width:auto;max-width:none;transition:background .25s,color .25s,transform .25s var(--e)}
+.hm .hm-btn:hover{background:var(--gd);border-color:var(--gd);transform:translateY(-2px)}
+.hm .hm-btn.line{background:transparent;color:var(--g)}
+.hm .hm-btn.line:hover{background:var(--g);color:#fff}
+
+/* 공통 머리글 */
+.hm-head{margin-bottom:40px}
+.hm-sub-tx{margin:18px 0 0;font-size:17px;line-height:1.75;color:var(--mute)}
+
+/* ① 대표 화면 */
+.hm-hero{padding:104px 0 64px;background:linear-gradient(180deg,#eef3ec 0%,var(--ivory) 100%);overflow:hidden}
+.hm-hero-in{display:grid;gap:36px;align-items:center}
+.hm-logo{display:block;width:min(100%,300px);height:auto;margin:0 0 30px}
+.hm .hm-h{color:var(--ink)}
+.hm-hero .hm-lead{max-width:30em}
+.hm-acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hm-fig{position:relative;aspect-ratio:1;width:min(88%,420px);justify-self:center}
+.hm-disc{position:absolute;inset:11%;border-radius:50%;overflow:hidden;background:#cfe0d4}
+.hm-disc img{display:block;width:100%;height:100%;object-fit:cover;transform:scale(1.12)}
+.hm-fig svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+/* 원본 심볼 동작: 원이 그려지고(gwDraw) 사선이 꽂힙니다(gwStab) */
+.gw-rg{fill:none;stroke:#00553d;stroke-width:7;stroke-linecap:round;stroke-dasharray:88 12;animation:gwDraw 1.8s cubic-bezier(.6,0,.2,1) both}
+.gw-nd{animation:gwStab 1.3s .9s cubic-bezier(.2,.8,.2,1) both}
+@keyframes gwDraw{from{stroke-dasharray:0 100}to{stroke-dasharray:88 12}}
+@keyframes gwStab{from{transform:translate(14px,-14px);opacity:0}to{transform:none;opacity:1}}
+
+/* ② 세 가지 연결 */
+.hm-three{background:#fff}
+.hm-trio{margin:0;padding:0;list-style:none;display:grid;gap:0}
+.hm-trio li{padding:28px 0;border-top:1px solid #d9d0bd}
+.hm-trio li:last-child{border-bottom:1px solid #d9d0bd}
+.hm-trio .no{display:block;margin-bottom:10px;font:700 13px/1 'Bricolage Grotesque','Pretendard',sans-serif;letter-spacing:.16em;color:var(--gold)}
+.hm-trio h3{font-family:var(--serif);font-size:clamp(24px,5vw,32px);font-weight:700;letter-spacing:-.03em;color:var(--g)}
+.hm-trio p{margin:10px 0 0;font-size:17px;color:var(--mute)}
+
+/* ③ ABOUT US */
+.hm-about-in{display:grid;gap:36px;align-items:center}
+.hm-about-img{margin:0;overflow:hidden;aspect-ratio:4/3;background:#dfe6df}
+.hm-about-img img{display:block;width:100%;height:100%;object-fit:cover;transform:scale(calc(1.12 - var(--z,1)*.12));will-change:transform}
+.hm-roles{display:grid;gap:22px;margin:30px 0 32px}
+.hm-roles>div{padding-top:16px;border-top:1px solid var(--gold)}
+.hm-roles h3{font-size:18px;font-weight:700;letter-spacing:.06em;color:var(--g)}
+.hm-roles p{margin:8px 0 0;font-size:16px;line-height:1.7;color:var(--mute)}
+
+/* ④ 뷰티 컬렉션 */
+.hm-coll{background:#fff}
+.hm-head-ctl{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+.hm-ctl{display:flex;gap:8px;flex:none}
+.hm .hm-ctl button{width:48px;max-width:48px;height:48px;border-radius:50%;border:1px solid #cfc4ae;background:transparent;color:var(--g);font-size:20px;line-height:1;cursor:pointer;padding:0;transition:background .25s,color .25s}
+.hm .hm-ctl button:hover{background:var(--g);color:#fff}
+.hm .hm-ctl button[disabled]{opacity:.35;cursor:default;background:transparent;color:var(--g)}
+.hm-grid{display:flex;gap:14px;margin:0 -20px;padding:2px 20px 8px;list-style:none;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 20px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.hm-grid::-webkit-scrollbar{display:none}
+.hm-grid li{flex:0 0 62%;max-width:300px;scroll-snap-align:start}
+.hm-grid:focus-visible{outline:3px solid #2a63d6;outline-offset:3px}
+.hm-grid a{display:block;color:var(--ink);text-decoration:none}
+.hm-pic{display:block;aspect-ratio:1;overflow:hidden;background:#e9e4d8}
+.hm-pic img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .7s var(--e)}
+.hm-grid a:hover .hm-pic img{transform:scale(1.05)}
+.hm-grid strong{display:block;margin-top:14px;font-family:var(--serif);font-size:clamp(18px,4.6vw,24px);font-weight:700;letter-spacing:-.03em;line-height:1.3}
+.hm-grid .d{display:block;margin-top:4px;font-size:15px;color:var(--mute)}
+.hm-fine{margin:30px 0 0;font-size:13px;color:#6b7a73}
+
+/* ⑤ 파트너 문의 */
+.hm-biz{background:linear-gradient(180deg,#e9efe7 0%,#dde8df 100%)}
+.hm-paths{margin:0;padding:0;list-style:none;display:grid;gap:0}
+.hm-paths li{border-top:1px solid #d9d0bd}
+.hm-paths li:last-child{border-bottom:1px solid #d9d0bd}
+.hm-paths a{position:relative;display:block;padding:26px 56px 26px 2px;color:var(--ink);text-decoration:none;transition:padding .3s var(--e),color .25s}
+.hm-paths a:hover{color:var(--g);padding-left:12px}
+.hm-paths h3{font-family:var(--serif);font-size:clamp(22px,5vw,28px);font-weight:700;letter-spacing:-.03em}
+.hm-paths p{margin:6px 0 0;font-size:16px;color:var(--mute)}
+.hm-paths .go{position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:22px;color:var(--g);transition:transform .3s var(--e)}
+.hm-paths a:hover .go{transform:translate(6px,-50%)}
+
+/* ⑥ 공지사항 · 자료실 */
+.hm-news{background:#fff}
+.hm-news .hm-head{margin-bottom:28px}
+.hm-boards{display:grid;gap:40px}
+.hm-board .bh{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:14px;border-bottom:2px solid var(--ink)}
+.hm-board h3{font-size:21px;font-weight:700;letter-spacing:-.03em}
+.hm-board .bh a{display:inline-flex;align-items:center;min-height:44px;font-size:15px;font-weight:700;color:var(--g);text-decoration:none}
+.hm-list{margin:0;padding:0;list-style:none}
+.hm-list li{border-bottom:1px solid #e4dccb}
+.hm-list a{display:flex;flex-direction:column;gap:4px;padding:16px 2px;color:var(--ink);text-decoration:none;transition:color .25s,padding .3s var(--e)}
+.hm-list a:hover{color:var(--g);padding-left:8px}
+.hm-list .tt{font-size:16px;font-weight:600;line-height:1.5}
+.hm-list time{font-size:14px;color:var(--mute)}
+.hm-list .empty{padding:18px 2px;color:var(--mute);font-size:15px;border:0}
+
+/* ⑦ 마지막 브랜드 메시지 */
+.hm-final{position:relative;overflow:hidden;padding:96px 0;background:radial-gradient(900px 420px at 15% 0%,#1f8a5f66,transparent 70%),radial-gradient(700px 400px at 90% 100%,#c9a45a40,transparent 70%),linear-gradient(135deg,#00402d 0%,#00553d 45%,#0a7a53 100%);color:#fff;text-align:center}
+.hm-final:before,.hm-final:after{content:"";position:absolute;border-radius:50%;border:1.5px solid #ffffff2e;pointer-events:none}
+.hm-final:before{width:520px;aspect-ratio:1;left:-140px;top:-200px;box-shadow:0 0 0 38px #ffffff0d,0 0 0 90px #ffffff08}
+.hm-final:after{width:420px;aspect-ratio:1;right:-120px;bottom:-190px;border-color:#e6d3a855;box-shadow:0 0 0 34px #e6d3a812}
+.hm-final .hm-wrap{position:relative;z-index:1}
+.hm-fm{margin:0;font-family:var(--serif);font-weight:700;font-size:clamp(26px,6.4vw,50px);line-height:1.4;letter-spacing:-.03em}
+.hm-fm span{color:#e6d3a8}
+
+/* 움직임 */
+html.hm-anim .hm [data-rv],html.hm-anim .hm [data-rv-i]{opacity:0;transform:translateY(28px);transition:opacity .7s var(--e),transform .7s var(--e);transition-delay:calc(var(--i,0)*.08s)}
+html.hm-anim .hm [data-rv].in,html.hm-anim .hm [data-rv-i].in{opacity:1;transform:none}
+
+@media (min-width:768px){
+  .hm{font-size:18px}
+  .hm-wrap{padding:0 40px}
+  .hm-sec{padding:120px 0}
+  .hm-head{margin-bottom:56px}
+  .hm-hero{padding:128px 0 88px}
+  .hm-hero-in{grid-template-columns:1.1fr .9fr;gap:56px}
+  .hm-logo{width:320px}
+  .hm-fig{width:min(100%,460px);justify-self:end}
+  .hm-trio{grid-template-columns:repeat(3,minmax(0,1fr));gap:40px}
+  .hm-trio li{padding:32px 0 0;border-bottom:0!important}
+  .hm-about-in{grid-template-columns:1fr 1fr;gap:72px}
+  .hm-roles{grid-template-columns:1fr 1fr;gap:32px}
+  .hm-grid{gap:28px;margin:0 -40px;padding:2px 40px 8px;scroll-padding:0 40px}
+  .hm-grid li{flex-basis:calc((100% - 56px - 80px)/3);max-width:none}
+  .hm-paths{grid-template-columns:repeat(3,minmax(0,1fr));gap:0 32px}
+  .hm-paths li{border-bottom:1px solid #d9d0bd}
+  .hm-paths a{padding:32px 40px 32px 0}
+  .hm-paths a:hover{padding-left:0}
+  .hm-boards{grid-template-columns:1fr 1fr;gap:56px}
+  .hm-list a{flex-direction:row;justify-content:space-between;align-items:baseline;gap:20px}
+  .hm-final{padding:140px 0}
+}
+@media (prefers-reduced-motion:reduce){
+  .hm *,.hm *:before,.hm *:after{transition:none!important;animation:none!important}
+  .hm-about-img img{transform:none!important}
+}

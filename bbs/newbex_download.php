@@ -4,11 +4,13 @@ include_once('./_common.php');
 // clean the output buffer
 ob_end_clean();
 
-$sql = "select * from p_notice where notice_no = '".$notice_no."' ";
+$notice_no = (int) $notice_no;
+$sql = "select * from p_notice where notice_no = '".$notice_no."' and use_yn <> 'n' ";
 $result = sql_fetch($sql);
+if (!$result || !$result['notice_file'] || !is_file(G5_DATA_PATH.'/notice/'.basename($result['notice_file']))) { header('HTTP/1.1 404 Not Found'); exit('파일을 찾을 수 없습니다.'); }
 
 $notice_file_name = $result['notice_file_name'];	// 파일명
-$notice_file = $result['notice_file'];				// 저장된파일명
+$notice_file = basename($result['notice_file']);				// 저장된파일명
 
 $filepath = G5_DATA_PATH.'/notice/'.$notice_file;
 $filepath = addslashes($filepath);

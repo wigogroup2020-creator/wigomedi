@@ -27,11 +27,9 @@ $(function () {
     function initSwiper() {
         if (mySwiper == undefined) {
         mySwiper = new Swiper(".fpSwiper", {
-            speed: 500,
+            speed: 1100,
             direction: "vertical",
-            mousewheel: {
-            releaseOnEdges: true,
-            },
+            mousewheel:{releaseOnEdges:true,thresholdDelta:6,thresholdTime:900,sensitivity:.8},
             pagination: {
             el: ".swiper-pagination",
             clickable: true,
@@ -47,7 +45,7 @@ $(function () {
                 hideFooterAndResetSwiper();
                 }
 
-                if ([1, 3].includes(currentIndex)) {
+                if ([1, 3, 5].includes(currentIndex)) {
                 header.classList.add("dark");
                 pagination.classList.add("dark");
                 } else {
@@ -133,11 +131,10 @@ $(function () {
 
 // sec_slide
 var swiper = document.querySelector(".sec_slide") ? new Swiper(".sec_slide", {
-    speed: 1000,
-    loop: true, // 슬라이드 반복 여부
+    speed:1400,effect:"fade",fadeEffect:{crossFade:true},loop:true,
     spaceBetween: 0, //슬라이드 오른쪽 마진
     autoplay:{  //자동슬라이드 (false-비활성화)
-        delay: 4000, // 시간 설정
+        delay: 5500, // 시간 설정
         disableOnInteraction: false  // false-스와이프 후 자동 재생
     }
 }) : null;
@@ -145,7 +142,7 @@ var swiper = document.querySelector(".sec_slide") ? new Swiper(".sec_slide", {
 $(function(){
     // all menu
     let btnchk = 0;
-    $(".btnMenu").click(function(){
+    if (!document.getElementById('gwm-ready')) $(".btnMenu").click(function(){
         if(btnchk == 0){
             $(this).stop().addClass("openmenu");	
             $(".allmenuBg").addClass("on");
@@ -274,14 +271,16 @@ $(function () {
     $('.top_btn_index').on('click', function (event) {
         event.preventDefault();
         var main = document.querySelector('.fpSwiper');
-        if (main && main.swiper) main.swiper.slideTo(0);
+        if (main && main.swiper) main.swiper.slideTo(0); else window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-    $('.btnMenu').on('click', function () {
+    if (!document.getElementById('gwm-ready')) $('.btnMenu').on('click', function () {
         this.setAttribute('aria-expanded', this.classList.contains('openmenu') ? 'true' : 'false');
     }).on('keydown', function (event) {
         if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); $(this).trigger('click'); }
     });
     $(document).on('keydown', function (event) {
-        if (event.key === 'Escape' && $('.btnMenu').hasClass('openmenu')) $('.btnMenu').trigger('click').focus();
+        if (!document.getElementById('gwm-ready') && event.key === 'Escape' && $('.btnMenu').hasClass('openmenu')) $('.btnMenu').trigger('click').focus();
     });
 });
+
+// Swiper가 없으면 순차 등장 효과를 끄고 내용을 그대로 보여줍니다.

@@ -1,0 +1,93 @@
+/* GROBio x WIGO 공통 스타일 (brand-88lion.css 뒤에 로드).
+ * 헤더·푸터 로고, 제품 카드/팝업, 제품 목록, 오시는 길 페이지 공용 규칙만 둡니다.
+ * 메인은 grobio-home.css, 기업소개는 grobio-about.css 를 사용합니다. */
+:root,#header{--main-color01:#00553d;--gw-g:#00553d;--gw-n:#0a2250;--gw-mint:#d6eee2;--gw-bg:#f3f8f5}
+.gw-en,.gw-x{font-family:'Bricolage Grotesque','Pretendard',sans-serif}
+/* 헤더 로고: 고정 박스 대신 높이 기준 자동 너비 -> 모바일 잘림 방지 */
+#header .head h1{width:auto;max-width:calc(100% - 150px)}
+#header .head h1 a.brand-wordmark{display:flex;align-items:center;gap:10px;width:auto;height:auto;line-height:1;text-indent:0;background:none!important;white-space:nowrap}
+#header .brand-logo{width:auto;height:38px;max-width:none;object-fit:contain}
+.gw-x{font-weight:800;font-size:20px;line-height:1;letter-spacing:-.03em;color:var(--gw-n)}
+#header.dark .gw-x{color:#fff}
+@media(max-width:812px){#header .brand-logo{height:26px}#header .head h1{max-width:calc(100% - 120px)}}
+.brand-footer-wordmark img{width:auto;height:36px;object-fit:contain}
+.footer_main_area{background:var(--gw-n)}
+/* 제품 목록 페이지 */
+.gw-products h2{font-size:clamp(28px,4vw,52px);line-height:1.2;letter-spacing:-.055em;font-weight:800;margin:20px 0 14px}
+.gw-products .lead{max-width:46em;color:#4a5d57;font-size:17px;line-height:1.85;margin:0 0 36px}
+.gw-pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.gw-empty{padding:60px 20px;border-radius:24px;background:#f3f8f5;text-align:center;color:#4a5d57}.gw-empty a{color:var(--gw-g);font-weight:700}
+/* 하위 페이지 공통 */
+.gw-sub .lead{max-width:46em;color:#4a5d57;font-size:17px;line-height:1.85;margin:0 0 36px}
+.gw-lg{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.gw-lc{border-radius:26px;padding:clamp(22px,3vw,38px);background:#f3f8f5;display:flex;flex-direction:column;gap:14px}
+.gw-lc.w{background:#eef2fa}.gw-lc .tg{font-size:13px;font-weight:700;color:#00553d}.gw-lc.w .tg{color:#0a2250}
+.gw-lc h3{font:800 clamp(30px,3.6vw,46px)/1 'Bricolage Grotesque','Pretendard',sans-serif;letter-spacing:-.05em;margin:0}
+.gw-lc address{font-style:normal;font-size:17px;line-height:1.6}
+.gw-lc .inf{display:grid;gap:6px}.gw-lc .inf a{font-size:15px}.gw-lc .inf b{display:inline-block;width:72px;color:#6b7c76;font-weight:500}
+.gw-map{width:100%;height:260px;border:0;border-radius:18px;background:#e3eae6}
+.gw-btns{display:flex;gap:8px;flex-wrap:wrap}.gw-btns a{padding:11px 20px;border-radius:99px;background:#fff;box-shadow:inset 0 0 0 1.5px #0c1f1b26;font-weight:700;font-size:14px}.gw-btns a:hover{background:#00553d;color:#fff}
+.gw-sub .inner{padding-left:max(24px,3vw);padding-right:max(24px,3vw);box-sizing:border-box}
+@media(max-width:812px){
+.gw-lg{grid-template-columns:1fr}.gw-map{height:220px}
+.gw-products .lead,.gw-sub .lead{font-size:16px}
+}
+@media(prefers-reduced-motion:reduce){.gw-pc2 .pic img{transition:none}}
+.m21_view .thumb .gw-noimg{display:grid;place-items:center;aspect-ratio:1;width:100%;padding:24px;border-radius:20px;background:var(--gw-mint);color:var(--gw-g);font-size:22px;font-weight:700;text-align:center;word-break:keep-all}
+/* 제품 상세 (m21_view): 그로바이오 톤으로 정리 */
+.gw-pd .m21_view .preInfo{display:grid;grid-template-columns:1fr;gap:22px;padding:8px 20px 28px;max-width:1200px;margin:0 auto;word-break:keep-all}
+.gw-pd .m21_view .preInfo .thumb{position:static;height:auto;padding:0;width:100%;max-width:440px;margin:0 auto;overflow:visible}
+.gw-pd .m21_view .preInfo .thumb img{position:static;display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:20px}
+.gw-pd .m21_view .thumb .gw-noimg{aspect-ratio:4/3}
+.gw-pd .m21_view .preInfo .txts{padding:0}
+.gw-pd .m21_view .preInfo .txts h3{font-size:28px;font-weight:700;letter-spacing:-.035em;line-height:1.3;margin:0}
+.gw-pd .m21_view .preInfo .txts p{padding:10px 0 22px;margin:0 0 22px;font-size:17px;line-height:1.7;color:#52635c;border-bottom:1px solid #e1e9e4}
+.gw-pd .m21_view .preInfo .txts .click_btn{display:inline-flex;align-items:center;justify-content:center;width:100%;max-width:none;min-height:52px;margin-top:22px;border:0;border-radius:999px;background:#00553d;color:#fff;font-size:16px;font-weight:700;cursor:pointer}
+.gw-pd .m21_view .preInfo .txts .click_btn:hover{background:#0a6b4d}
+.gw-pd .m21_view .feature{display:block;max-width:1200px;margin:0 auto;padding:12px 20px 64px;font-size:17px;line-height:1.8;color:#33453e;word-break:keep-all}
+.gw-pd .m21_view .feature p{margin:0 0 14px}
+.gw-pd .m21_view .feature img{max-width:100%;height:auto}
+.gw-pd .m21_view .feature a{color:#00553d;font-weight:700}
+@media (min-width:768px){
+  .gw-pd .m21_view .preInfo{grid-template-columns:1fr 1fr;gap:56px;padding:16px 32px 40px;align-items:center}
+  .gw-pd .m21_view .preInfo .txts .click_btn{width:auto;min-width:200px;padding:0 32px}
+  .gw-pd .m21_view .feature{padding:16px 32px 88px}
+}
+.gw-pd .inner{padding-left:max(24px,3vw);padding-right:max(24px,3vw);box-sizing:border-box}
+.gw-pd .m21_view .preInfo.inner{padding-left:max(20px,3vw);padding-right:max(20px,3vw)}
+/* 푸터 링크 대비 */
+footer a{color:#cfe9dc}
+
+/* 제품 목록 카드(이미지형) */
+.gw-pgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 14px}
+@media (min-width:768px){.gw-pgrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 24px}}
+.gw-pc2{display:block;color:#13211c;text-decoration:none;font:inherit}
+.gw-pc2 .pic{display:block;aspect-ratio:1;overflow:hidden;background:#f1ede4}
+.gw-pc2 .pic img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.gw-pc2:hover .pic img{transform:scale(1.05)}
+.gw-pc2 strong{display:block;margin-top:14px;font-size:clamp(17px,4.4vw,22px);font-weight:700;letter-spacing:-.03em;line-height:1.3}
+.gw-pc2 .d{display:block;margin-top:4px;font-size:15px;color:#4a5b54}
+.gw-pc2:focus-visible{outline:3px solid #2a63d6;outline-offset:3px}
+
+/* 하위 페이지 상단 배너: 페이지마다 맞는 이미지와 그 이미지 색에 맞춘 어두운 면 */
+.pageTop.pn1 .bg,.pageTop.pn2 .bg,.stores-page .pageTop.pn2 .bg,.pageTop.pn3 .bg{--bt:#4a3f73;--bi:url(/img/grobio/photo/slide-device.jpg);background:linear-gradient(90deg,var(--bt) 0%,var(--bt) 34%,transparent 100%),var(--bi) center 40%/cover no-repeat}
+.pageTop.pn2 .bg:after,.stores-page .pageTop.pn2 .bg:after{border-color:#ffffff26}
+.pageTop.bn-grow .bg{--bt:#00553d;--bi:url(/img/grobio/photo/slide-grow.jpg)}
+.pageTop.bn-select .bg{--bt:#5e4f33;--bi:url(/img/grobio/photo/story-brand.jpg)}
+.pageTop.bn-store .bg{--bt:#efe6d6;--bi:url(/img/grobio/photo/banner-store.jpg)}
+.pageTop.bn-face .bg{--bt:#7a4a3a;--bi:url(/img/grobio/photo/slide-face.jpg)}
+.pageTop.bn-regen .bg{--bt:#1f4568;--bi:url(/img/grobio/photo/slide-regen.jpg)}
+.stores-page .pageTop{background:linear-gradient(90deg,#efe6d6 0%,#efe6d6 34%,transparent 100%),url(/img/grobio/photo/banner-store.jpg) center/cover no-repeat}
+.stores-page .pageTop .pageSlg{color:#4a3a1f}
+.stores-page .pageTop.bn-store .bg{--bt:#efe6d6;--bi:url(/img/grobio/photo/banner-store.jpg)}
+.stores-page .pageSlg{text-align:left;font-size:46px}
+.stores-page .pageTop .inner{padding:0 28px}
+.pageTop.pn3 .inner{padding-left:28px;padding-right:28px}
+@media (max-width:600px){.stores-page .pageSlg{font-size:32px}.stores-page .pageTop .inner,.pageTop.pn3 .inner{padding:0 20px}}
+.pageTop.bn-company .bg{--bt:#1d2f45;--bi:url(/img/grobio/building.jpg)}
+.pageTop.bn-map .bg{--bt:#dfe9e1;--bi:url(/img/grobio/photo/banner-map.jpg)}
+.pageTop.bn-map .pageSlg{color:#0d3b2a}
+.pageTop.bn-device .bg{--bt:#4a3f73;--bi:url(/img/grobio/photo/slide-device.jpg)}
+.gw-pd .pageTop.bn-prod .bg,.pageTop.bn-prod .bg{background:linear-gradient(90deg,#00553d 0%,#00553d 34%,transparent 100%),var(--bp,url(/img/grobio/photo/slide-grow.jpg)) center 40%/cover no-repeat}
+.pageTop.pn1 .inner{padding-left:28px;padding-right:28px}
+@media (max-width:600px){.pageTop.pn1 .inner{padding:0 20px}}
