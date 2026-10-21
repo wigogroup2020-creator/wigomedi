@@ -85,3 +85,20 @@
 .gw-pd .m21_view .preInfo.inner{padding-left:max(20px,3vw);padding-right:max(20px,3vw)}
 /* 푸터 링크 대비 */
 footer a{color:#cfe9dc}
+
+/* 제품 목록 카드(이미지형) */
+.gw-pgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 14px}
+@media (min-width:768px){.gw-pgrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 24px}}
+.gw-pc2{display:block;color:#13211c;text-decoration:none;font:inherit}
+.gw-pc2 .pic{display:block;aspect-ratio:1;overflow:hidden;background:#f1ede4}
+.gw-pc2 .pic img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.gw-pc2:hover .pic img{transform:scale(1.05)}
+.gw-pc2 strong{display:block;margin-top:14px;font-size:clamp(17px,4.4vw,22px);font-weight:700;letter-spacing:-.03em;line-height:1.3}
+.gw-pc2 .d{display:block;margin-top:4px;font-size:15px;color:#4a5b54}
+.gw-pc2:focus-visible{outline:3px solid #2a63d6;outline-offset:3px}
+
+/* 하위 페이지 상단 배너: 브랜드 그린 + 제품 이미지 (기존 파란색 · 스톡 배경 대체) */
+.pageTop.pn2 .bg,.stores-page .pageTop.pn2 .bg,.pageTop.pn3 .bg{background:linear-gradient(90deg,#00553d 0%,#00553df0 38%,#00553d66 100%),url(/img/grobio/photo/slide-grow.jpg) center 40%/cover no-repeat}
+.pageTop.pn2 .bg:after,.stores-page .pageTop.pn2 .bg:after{border-color:#ffffff26}
+.stores-page .pageTop{background:#00553d}
+.stores-page .pageTop .pageSlg{color:#fff}

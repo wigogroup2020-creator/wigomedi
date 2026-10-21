@@ -38,6 +38,7 @@
     <script src="<?php echo G5_URL;?>/js/jquery-3.6.0.min.js"></script>
     <script src="<?php echo G5_URL; ?>/js/swiper-bundle.min.js"></script>
     <script src="<?php echo G5_URL;?>/js/custom.js"></script>
-    <script src="<?php echo G5_URL;?>/js/menu.js?v=1"></script>
+    <script src="<?php echo G5_URL;?>/js/menu.js?v=2"></script>
+    <script src="<?php echo G5_URL;?>/js/soon.js?v=1"></script>
 </body>
 </html>

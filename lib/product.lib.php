@@ -86,6 +86,20 @@ function wigo_prod_default_image($slug)
     return ($slug !== '' && is_file($path)) ? G5_URL . '/img/grobio/products/' . $slug . '.jpg?v=' . filemtime($path) : '';
 }
 
+/* 등록 제품에 사진이 없을 때: 같은 이름의 기본 제품 사진, 없으면 빈 문자열 */
+function wigo_prod_image_by_name($name)
+{
+    foreach (array('grobio', 'partner') as $group) {
+        foreach (wigo_prod_defaults($group) as $d) {
+            if ($d['name'] === $name) return wigo_prod_default_image($d['slug']);
+        }
+    }
+    foreach (wigo_prod_legacy_defaults() as $d) {
+        if ($d['name'] === $name && $d['slug'] === 'allvis') return wigo_prod_default_image('allvis');
+    }
+    return '';
+}
+
 function wigo_prod_image_url($file)
 {
     // 업로드 파일명은 날짜+숫자+확장자 형태입니다. 그 밖의 값은 사용하지 않습니다.
@@ -108,7 +122,7 @@ function wigo_prod_cards($group, $limit = 0)
             'kind'  => $groups[$group]['label'],
             'name'  => $row['product_subject'],
             'info'  => $row['product_info'],
-            'img'   => wigo_prod_image_url($row['product_file']),
+            'img'   => (wigo_prod_image_url($row['product_file']) !== '' ? wigo_prod_image_url($row['product_file']) : wigo_prod_image_by_name($row['product_subject'])),
             'href'  => '/pages/m21_view.html?product_no=' . (int) $row['product_no'],
             'desc'  => '',
             'area'  => $groups[$group]['label'],
@@ -149,17 +163,11 @@ function wigo_prod_collection()
     return $out;
 }
 
-/* 카드 1장. 모든 카드는 제품 상세 페이지로 연결합니다(기본 카드는 ?item= 안내 페이지). */
+/* 목록 카드 1장: 큰 제품 이미지 + 이름 + 짧은 설명. 누르면 "준비 중" 안내(js/soon.js). */
 function wigo_prod_card_html($card, $index)
 {
-    $tone = 'c' . (($index % 5) + 1);
-    $img = $card['img'] !== '' ? '<img class="ph" src="' . wigo_prod_e($card['img']) . '" alt="" loading="lazy">' : '';
-    $cls = 'gw-pc ' . $tone . ($img !== '' ? ' has-img' : '');
-    $inner = $img
-        . '<span class="k">' . wigo_prod_e($card['kind']) . '</span>'
-        . '<span class="m">' . wigo_prod_e($card['name']) . '</span>'
-        . '<span class="i">' . wigo_prod_e($card['info']) . '</span>';
-    return '<a class="' . $cls . '" href="' . wigo_prod_e($card['href']) . '">' . $inner . '</a>';
+    $img = $card['img'] !== '' ? '<img src="' . wigo_prod_e($card['img']) . '" alt="' . wigo_prod_e($card['name']) . '" loading="lazy" width="900" height="900">' : '';
+    return '<a class="gw-pc2" href="#" data-soon><span class="pic">' . $img . '</span><strong>' . wigo_prod_e($card['name']) . '</strong><span class="d">' . wigo_prod_e($card['info']) . '</span></a>';
 }
 
 /* 관리자: 기본 카드를 p_product에 등록. 같은 분류에 같은 이름의 제품이 이미 있으면 건너뜁니다(기존 제품은 수정 · 삭제하지 않음). */

@@ -140,11 +140,11 @@ $brandIconUrl  = rtrim(G5_URL, '/') . '/img/grobio/favicon.svg?v=' . ($brandIcon
 	?>
     <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/brand-88lion.css">
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Noto+Serif+KR:wght@500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-wigo.css?v=7">
-    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-menu.css?v=2">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-wigo.css?v=9">
+    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-menu.css?v=4">
 	<?php if ($currentPage === 'index.php' || $currentPage === 'index.html') { ?>
-    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-home.css?v=8">
+    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-home.css?v=9">
 	<?php } ?>
 	<?php if ($currentPage === 'm11.html') { ?>
     <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-about.css?v=3">
@@ -219,42 +219,33 @@ $brandIconUrl  = rtrim(G5_URL, '/') . '/img/grobio/favicon.svg?v=' . ($brandIcon
 		</div>
 		<div class="gwm" id="brand-allmenu" role="dialog" aria-modal="true" aria-label="전체 메뉴" hidden>
 			<span id="gwm-ready" hidden></span>
+			<div class="gwm-panel">
 			<div class="gwm-top">
-				<a class="gwm-logo" href="/" aria-label="GROBio × WIGO 홈"><img src="<?php echo G5_URL; ?>/img/grobio/lockup.png" alt="GROBio × WIGO" width="236" height="38"></a>
+				<a class="gwm-logo" href="/" aria-label="홈"><img src="<?php echo G5_URL; ?>/img/grobio/lockup.png" alt="GROBio × WIGO" width="236" height="38"></a>
 				<button type="button" class="gwm-x" aria-label="메뉴 닫기"><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
 			</div>
 			<div class="gwm-in">
-				<div class="gwm-lead">
-					<p class="gwm-en">GROBio × WIGO</p>
-					<p class="gwm-tt">두피에서 피부까지,<br>케어 라인을 만듭니다.</p>
-					<p class="gwm-contact"><a href="tel:15553336">대표번호 1555-3336</a><span>평일 09:00–18:00</span></p>
-					<a class="gwm-cta" href="<?php echo G5_URL;?>/pages/m41.html">비즈니스 문의</a>
-				</div>
 				<div class="gwm-nav" role="navigation" aria-label="전체 메뉴">
-					<div class="gwm-g"><h2>제품</h2><ul>
-						<li><a href="<?php echo G5_URL;?>/pages/m21.html">그로바이오 제품</a></li>
+					<ul>
+						<li><a href="<?php echo G5_URL;?>/pages/m11.html">회사소개</a></li>
+						<li><a href="<?php echo G5_URL;?>/pages/m21.html">제품소개</a></li>
 						<li><a href="<?php echo G5_URL;?>/pages/m22.html">제휴제품</a></li>
-						<li><a href="<?php echo G5_URL;?>/pages/stores.html">매장 안내</a></li>
-					</ul></div>
-					<div class="gwm-g"><h2>기업소개</h2><ul>
-						<li><a href="<?php echo G5_URL;?>/pages/m11.html">기업소개</a></li>
+						<li><a href="<?php echo G5_URL;?>/pages/stores.html">매장안내</a></li>
 						<li><a href="<?php echo G5_URL;?>/pages/m12.html">오시는 길</a></li>
 						<li><a href="<?php echo G5_URL;?>/pages/m13.html">협력사 / 고객사</a></li>
-					</ul></div>
-					<div class="gwm-g"><h2>문의 · 소식</h2><ul>
-						<li><a href="<?php echo G5_URL;?>/pages/m41.html">문의하기</a></li>
 						<li><a href="<?php echo G5_URL;?>/pages/m31.html">공지사항</a></li>
 						<li><a href="<?php echo G5_URL;?>/pages/m32.html">자료실</a></li>
-					</ul></div>
-					<div class="gwm-g"><h2>회원</h2><ul>
+						<li><a href="<?php echo G5_URL;?>/pages/m41.html">문의하기</a></li>
 						<?php if ($member['mb_id']) { ?>
-						<li><a href="<?php echo G5_URL;?>/page/info.php"><?php echo htmlspecialchars($member['mb_name'], ENT_QUOTES, 'UTF-8'); ?>님 정보</a></li>
+						<li class="sub"><a href="<?php echo G5_URL;?>/page/info.php"><?php echo htmlspecialchars($member['mb_name'], ENT_QUOTES, 'UTF-8'); ?>님 정보</a></li>
 						<?php } else { ?>
-						<li><a href="<?php echo G5_URL;?>/pages/login.html">로그인</a></li>
+						<li class="sub"><a href="<?php echo G5_URL;?>/pages/login.html">로그인</a></li>
 						<?php } ?>
-						<li><a href="https://pf.kakao.com/_KmSJn">카카오톡 상담</a></li>
-					</ul></div>
+						<li class="sub"><a href="https://pf.kakao.com/_KmSJn">카카오톡 상담</a></li>
+					</ul>
 				</div>
+				<p class="gwm-contact"><a href="tel:15553336">1555-3336</a><span>평일 09:00–18:00</span></p>
+			</div>
 			</div>
 		</div>
 	</header>
