@@ -85,7 +85,7 @@ html.hm-page #header:after{content:"";position:absolute;left:0;bottom:0;height:2
 .hm-fine{margin:30px 0 0;font-size:13px;color:#6b7a73}
 
 /* ⑤ 파트너 문의 */
-.hm-biz{background:var(--ivory)}
+.hm-biz{background:linear-gradient(180deg,#e9efe7 0%,#dde8df 100%)}
 .hm-paths{margin:0;padding:0;list-style:none;display:grid;gap:0}
 .hm-paths li{border-top:1px solid #d9d0bd}
 .hm-paths li:last-child{border-bottom:1px solid #d9d0bd}
@@ -112,7 +112,11 @@ html.hm-page #header:after{content:"";position:absolute;left:0;bottom:0;height:2
 .hm-list .empty{padding:18px 2px;color:var(--mute);font-size:15px;border:0}
 
 /* ⑦ 마지막 브랜드 메시지 */
-.hm-final{padding:96px 0;background:#0b3326;color:#fff;text-align:center}
+.hm-final{position:relative;overflow:hidden;padding:96px 0;background:radial-gradient(900px 420px at 15% 0%,#1f8a5f66,transparent 70%),radial-gradient(700px 400px at 90% 100%,#c9a45a40,transparent 70%),linear-gradient(135deg,#00402d 0%,#00553d 45%,#0a7a53 100%);color:#fff;text-align:center}
+.hm-final:before,.hm-final:after{content:"";position:absolute;border-radius:50%;border:1.5px solid #ffffff2e;pointer-events:none}
+.hm-final:before{width:520px;aspect-ratio:1;left:-140px;top:-200px;box-shadow:0 0 0 38px #ffffff0d,0 0 0 90px #ffffff08}
+.hm-final:after{width:420px;aspect-ratio:1;right:-120px;bottom:-190px;border-color:#e6d3a855;box-shadow:0 0 0 34px #e6d3a812}
+.hm-final .hm-wrap{position:relative;z-index:1}
 .hm-fm{margin:0;font-family:var(--serif);font-weight:700;font-size:clamp(26px,6.4vw,50px);line-height:1.4;letter-spacing:-.03em}
 .hm-fm span{color:#e6d3a8}
 
