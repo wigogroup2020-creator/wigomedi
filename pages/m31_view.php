@@ -23,7 +23,7 @@ $page_title = ($row['notice_kind'] === 'a') ? '공지사항' : '자료실';
 ?>
     <main class="container">
         <div id="contents">
-            <div class="pageTop pn3">
+            <div class="pageTop pn3 bn-face">
                 <div class="bg"></div>
                 <div class="inner">
                     <h1 class="pageSlg"><?php echo $page_title; ?></h1>

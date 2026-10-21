@@ -141,6 +141,16 @@ function wigo_prod_cards($group, $limit = 0)
     return ($limit > 0) ? array_slice($cards, 0, $limit) : $cards;
 }
 
+/* 제품 목록 페이지용: DB와 무관하게 고정 카드(그로바이오 4 / 제휴 1)를 돌려줍니다. */
+function wigo_prod_static_cards($group)
+{
+    $cards = array();
+    foreach (wigo_prod_defaults($group) as $d) {
+        $cards[] = array('name' => $d['name'], 'info' => $d['info'], 'img' => wigo_prod_default_image($d['slug']));
+    }
+    return $cards;
+}
+
 /* 홈 뷰티 컬렉션: 5개 고정(그로바이오 4 + 제휴 1). 이름이 같은 등록 제품이 있으면 그 상세로, 없으면 기본 안내로 연결합니다. */
 function wigo_prod_collection()
 {

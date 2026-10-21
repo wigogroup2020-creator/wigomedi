@@ -97,8 +97,18 @@ footer a{color:#cfe9dc}
 .gw-pc2 .d{display:block;margin-top:4px;font-size:15px;color:#4a5b54}
 .gw-pc2:focus-visible{outline:3px solid #2a63d6;outline-offset:3px}
 
-/* 하위 페이지 상단 배너: 브랜드 그린 + 제품 이미지 (기존 파란색 · 스톡 배경 대체) */
-.pageTop.pn2 .bg,.stores-page .pageTop.pn2 .bg,.pageTop.pn3 .bg{background:linear-gradient(90deg,#00553d 0%,#00553df0 38%,#00553d66 100%),url(/img/grobio/photo/slide-grow.jpg) center 40%/cover no-repeat}
+/* 하위 페이지 상단 배너: 페이지마다 맞는 이미지와 그 이미지 색에 맞춘 어두운 면 */
+.pageTop.pn2 .bg,.stores-page .pageTop.pn2 .bg,.pageTop.pn3 .bg{--bt:#4a3f73;--bi:url(/img/grobio/photo/slide-device.jpg);background:linear-gradient(90deg,var(--bt) 0%,var(--bt) 34%,transparent 100%),var(--bi) center 40%/cover no-repeat}
 .pageTop.pn2 .bg:after,.stores-page .pageTop.pn2 .bg:after{border-color:#ffffff26}
-.stores-page .pageTop{background:#00553d}
+.pageTop.bn-grow .bg{--bt:#00553d;--bi:url(/img/grobio/photo/slide-grow.jpg)}
+.pageTop.bn-select .bg{--bt:#5e4f33;--bi:url(/img/grobio/photo/story-brand.jpg)}
+.pageTop.bn-store .bg{--bt:#1d2f45;--bi:url(/img/grobio/building.jpg)}
+.pageTop.bn-face .bg{--bt:#7a4a3a;--bi:url(/img/grobio/photo/slide-face.jpg)}
+.pageTop.bn-regen .bg{--bt:#1f4568;--bi:url(/img/grobio/photo/slide-regen.jpg)}
+.stores-page .pageTop{background:linear-gradient(90deg,#1d2f45 0%,#1d2f45 34%,transparent 100%),url(/img/grobio/building.jpg) center 45%/cover no-repeat}
 .stores-page .pageTop .pageSlg{color:#fff}
+.stores-page .pageTop.bn-store .bg{--bt:#1d2f45;--bi:url(/img/grobio/building.jpg)}
+.stores-page .pageSlg{text-align:left;font-size:46px}
+.stores-page .pageTop .inner{padding:0 28px}
+.pageTop.pn3 .inner{padding-left:28px;padding-right:28px}
+@media (max-width:600px){.stores-page .pageSlg{font-size:32px}.stores-page .pageTop .inner,.pageTop.pn3 .inner{padding:0 20px}}
