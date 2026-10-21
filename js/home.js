@@ -40,6 +40,32 @@
         sync();
     }
 
+    /* 대표 슬라이드: 점/화살표/방향키, 6초 자동 전환(마우스·포커스 중이거나 '움직임 줄이기'면 멈춤) */
+    var slides = document.querySelectorAll('.hm-slide'), dots = document.querySelectorAll('.hm-dot');
+    var area = document.querySelector('.hm-hero'), cur = 0, timer = null, hold = false;
+    function show(n) {
+        cur = (n + slides.length) % slides.length;
+        slides.forEach(function (s, i) { s.classList.toggle('on', i === cur); s.setAttribute('aria-hidden', i === cur ? 'false' : 'true'); });
+        dots.forEach(function (d, i) { d.classList.toggle('on', i === cur); });
+    }
+    function play() { clearInterval(timer); if (!reduce && slides.length > 1) timer = setInterval(function () { if (!hold) show(cur + 1); }, 6000); }
+    if (slides.length) {
+        dots.forEach(function (d, i) { d.addEventListener('click', function () { show(i); play(); }); });
+        var sp = document.querySelector('.hm-sl-prev'), sn = document.querySelector('.hm-sl-next');
+        if (sp) sp.addEventListener('click', function () { show(cur - 1); play(); });
+        if (sn) sn.addEventListener('click', function () { show(cur + 1); play(); });
+        var box = document.querySelector('.hm-slides');
+        if (box) box.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowRight') { e.preventDefault(); show(cur + 1); play(); }
+            else if (e.key === 'ArrowLeft') { e.preventDefault(); show(cur - 1); play(); }
+        });
+        if (area) {
+            ['mouseenter', 'focusin', 'touchstart'].forEach(function (ev) { area.addEventListener(ev, function () { hold = true; }, { passive: true }); });
+            ['mouseleave', 'focusout'].forEach(function (ev) { area.addEventListener(ev, function () { hold = false; }); });
+        }
+        show(0); play();
+    }
+
     var top = document.querySelector('.top_btn_index');
     if (top) top.addEventListener('click', function (e) {
         e.preventDefault();

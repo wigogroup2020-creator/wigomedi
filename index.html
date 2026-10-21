@@ -2,8 +2,6 @@
 require_once './_common.php';
 require_once G5_LIB_PATH . '/product.lib.php';
 require_once G5_LIB_PATH . '/photo.lib.php';
-$gw_hero_photo = wigo_photo('hero.jpg');
-$gw_area_photo = array('scalp' => wigo_photo('area-scalp.jpg'), 'skin' => wigo_photo('area-skin.jpg'), 'device' => wigo_photo('area-device.jpg'));
 include_once(G5_PATH.'/newbex_head.php');
 $gw_home_cards = wigo_prod_home_cards();
 
@@ -19,52 +17,81 @@ while ($gw_nres && ($gw_nrow = sql_fetch_array($gw_nres))) {
     <script>document.documentElement.classList.add("hm-page");</script>
     <main class="hm">
 
-        <!-- 1. 정체성 -->
-        <section class="hm-hero" aria-labelledby="hm-h1">
-            <div class="hm-wrap hm-hero-in">
-                <div class="hm-hero-tx">
-                    <h1 id="hm-h1"><span class="hm-ln">두피 케어, 피부 앰플,</span> <span class="hm-ln">뷰티기기 제품.</span></h1>
-                    <p class="hm-lead">그로바이오가 개발하고 제조합니다. 위고가 판매와 유통을 맡습니다.</p>
-                    <p class="hm-acts">
-                        <a class="hm-btn" href="/pages/m21.html">제품 알아보기</a>
-                        <a class="hm-btn ghost" href="/pages/m41.html">총판 · 제휴 상담</a>
-                    </p>
+        <!-- 1. 대표 슬라이드: 사진이 없으면 빈 칸(짙은 면)으로 표시 -->
+        <section class="hm-hero" aria-roledescription="carousel" aria-label="그로바이오 · 위고 소개">
+            <?php
+            $gw_slides = array(
+                array('hero-1.jpg', '두피 · 헤어케어', '두피 상태를 살피는 케어 제품', '슈가그로우 등 그로바이오 두피 · 헤어케어 제품을 소개합니다.', '/pages/m21.html', '제품 알아보기'),
+                array('hero-2.jpg', '피부 · 앰플', '피부와 셀프케어 앰플', '슈가페이스, 슈가리젠 등 피부 · 스킨케어 제품을 소개합니다.', '/pages/m21.html', '제품 알아보기'),
+                array('hero-3.jpg', '뷰티기기', '관리기기 제휴제품', '위고가 판매하는 제휴제품 올비스 HIFU &amp; LDM 관리기기를 소개합니다.', '/pages/m22.html', '제휴제품 알아보기'),
+            );
+            ?>
+            <div class="hm-slides" tabindex="0" aria-label="슬라이드, 좌우로 넘겨 보세요">
+                <?php foreach ($gw_slides as $gw_i => $gw_s) { ?>
+                <div class="hm-slide<?php echo $gw_i === 0 ? ' on' : ''; ?>" role="group" aria-roledescription="slide" aria-label="<?php echo $gw_i + 1; ?> / <?php echo count($gw_slides); ?>">
+                    <div class="hm-slide-bg"><?php echo wigo_photo_tag($gw_s[0], 1920, 1080, $gw_i === 0); ?></div>
+                    <div class="hm-wrap hm-slide-in">
+                        <p class="hm-kicker"><?php echo $gw_s[1]; ?></p>
+                        <h1 class="hm-h"><?php echo $gw_s[2]; ?></h1>
+                        <p class="hm-lead"><?php echo $gw_s[3]; ?></p>
+                        <a class="hm-btn" href="<?php echo $gw_s[4]; ?>"><?php echo $gw_s[5]; ?></a>
+                    </div>
                 </div>
-                <div class="hm-ring" data-spin>
-                    <span class="hm-core" aria-hidden="true"><b>GROBio</b><i>×</i><b>WIGO</b></span>
-                    <?php if ($gw_hero_photo) { ?><img class="hm-heroimg" src="<?php echo htmlspecialchars($gw_hero_photo, ENT_QUOTES, 'UTF-8'); ?>" alt="" width="600" height="600" fetchpriority="high"><?php } ?>
-                    <a class="hm-node n1" href="/pages/m21.html"><b>두피 · 헤어케어</b></a>
-                    <a class="hm-node n2" href="/pages/m21.html"><b>피부 · 앰플</b></a>
-                    <a class="hm-node n3" href="/pages/m22.html"><b>뷰티기기</b></a>
-                </div>
+                <?php } ?>
+            </div>
+            <div class="hm-wrap hm-sl-ctl">
+                <span class="hm-dots" role="tablist" aria-label="슬라이드 선택">
+                    <?php foreach ($gw_slides as $gw_i => $gw_s) { ?><button type="button" class="hm-dot<?php echo $gw_i === 0 ? ' on' : ''; ?>" aria-label="<?php echo $gw_i + 1; ?>번 슬라이드 보기"></button><?php } ?>
+                </span>
+                <span class="hm-sl-nav"><button type="button" class="hm-sl-prev" aria-label="이전 슬라이드">←</button><button type="button" class="hm-sl-next" aria-label="다음 슬라이드">→</button></span>
             </div>
         </section>
 
-        <div class="hm-band" aria-hidden="true" data-band><span><b>두피 · 헤어케어</b><b>피부 · 앰플</b><b>뷰티기기</b><b>두피 · 헤어케어</b><b>피부 · 앰플</b><b>뷰티기기</b></span></div>
-
-        <!-- 2. 사업 분야 -->
-        <section class="hm-sec hm-areas" aria-labelledby="hm-area-h">
-            <div class="hm-wrap">
-                <div class="hm-head"><div><h2 id="hm-area-h" data-rv>세 가지 제품 분야</h2></div></div>
-                <ul class="hm-apanels" data-rv-group>
-                    <?php
-                    $gw_areas = array(
-                        array('scalp', '두피 · 헤어케어', '슈가그로우 등 그로바이오 두피 · 헤어케어 제품', '/pages/m21.html'),
-                        array('skin', '피부 · 앰플', '슈가페이스, 슈가리젠 등 피부 · 스킨케어 제품', '/pages/m21.html'),
-                        array('device', '뷰티기기', '위고 제휴제품 올비스 HIFU &amp; LDM 관리기기', '/pages/m22.html'),
-                    );
-                    foreach ($gw_areas as $gw_a) { ?>
-                    <li><a href="<?php echo $gw_a[3]; ?>" class="ap-<?php echo $gw_a[0]; ?>"><?php if ($gw_area_photo[$gw_a[0]]) { ?><img src="<?php echo htmlspecialchars($gw_area_photo[$gw_a[0]], ENT_QUOTES, 'UTF-8'); ?>" alt="" width="800" height="1000" loading="lazy" referrerpolicy="no-referrer-when-downgrade"><?php } ?><span class="ap-tx"><b><?php echo $gw_a[1]; ?></b><span><?php echo $gw_a[2]; ?></span><i aria-hidden="true">→</i></span></a></li>
+        <!-- 2. 공지사항 -->
+        <section class="hm-sec hm-news" aria-labelledby="hm-news-h">
+            <div class="hm-wrap hm-news-in">
+                <div class="hm-head" data-rv>
+                    <h2 id="hm-news-h">공지사항</h2>
+                    <p class="hm-sub"><a href="/pages/m31.html">전체 보기</a></p>
+                </div>
+                <ul class="hm-list" data-rv-group>
+                    <?php foreach ($gw_notices as $gw_n) { ?>
+                    <li><a href="<?php echo G5_URL; ?>/pages/m31_view.php?no=<?php echo (int) $gw_n['notice_no']; ?>"><span class="tt"><?php echo htmlspecialchars($gw_n['notice_subject'], ENT_QUOTES, 'UTF-8'); ?></span><time><?php echo htmlspecialchars(str_replace('-', '.', substr($gw_n['reg_datetime'], 0, 10)), ENT_QUOTES, 'UTF-8'); ?></time></a></li>
                     <?php } ?>
+                    <?php if (!$gw_notices) { ?><li class="empty">등록된 공지사항이 없습니다.</li><?php } ?>
                 </ul>
             </div>
         </section>
 
-        <!-- 3. 제품 (좌우로 넘기는 슬라이드) -->
+        <!-- 3. 그로바이오 × 위고 소개 (분류별 묶음) -->
+        <section class="hm-sec hm-story" aria-labelledby="hm-story-h">
+            <div class="hm-wrap">
+                <div class="hm-head" data-rv><h2 id="hm-story-h">그로바이오 × 위고</h2></div>
+                <div class="hm-groups" data-rv-group>
+                    <?php
+                    $gw_groups = array(
+                        array('story-1.jpg', '제품', array(array('두피 · 헤어케어', '/pages/m21.html'), array('피부 · 앰플', '/pages/m21.html'), array('뷰티기기', '/pages/m22.html')), '두피, 피부, 뷰티기기 분야의 제품을 소개합니다.'),
+                        array('story-2.jpg', '그로바이오', array(array('제품 개발 · 제조', '/pages/m11.html'), array('품질 관리', '/pages/m11.html'), array('브랜드 · 기술 권리', '/pages/m11.html')), '제품을 개발하고 제조하며 품질과 권리를 관리합니다.'),
+                        array('story-3.jpg', '위고', array(array('제품 판매', '/pages/m11.html'), array('지역 유통망 운영', '/pages/m11.html'), array('온라인 판매 · 시스템 운영', '/pages/m11.html')), '제품 판매와 유통, 온라인 판매와 시스템 운영을 맡습니다.'),
+                        array('story-4.jpg', '사업장', array(array('오시는 길', '/pages/m12.html'), array('매장 안내', '/pages/stores.html'), array('문의하기', '/pages/m41.html')), '대전에 있는 그로바이오와 위고 사업장을 안내합니다.'),
+                    );
+                    foreach ($gw_groups as $gw_g) { ?>
+                    <article class="hm-group">
+                        <div class="hm-pic"><?php echo wigo_photo_tag($gw_g[0], 1200, 900); ?></div>
+                        <h3><?php echo $gw_g[1]; ?></h3>
+                        <ul><?php foreach ($gw_g[2] as $gw_l) { ?><li><a href="<?php echo $gw_l[1]; ?>"><?php echo $gw_l[0]; ?></a></li><?php } ?></ul>
+                        <p><?php echo $gw_g[3]; ?></p>
+                    </article>
+                    <?php } ?>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. 제품 (DB 연결 카드, 좌우 슬라이드) -->
         <section class="hm-sec hm-prod" id="products" aria-labelledby="hm-prod-h">
             <div class="hm-wrap">
                 <div class="hm-head">
-                    <div><h2 id="hm-prod-h" data-rv>제품 안내</h2></div>
+                    <h2 id="hm-prod-h" data-rv>제품 안내</h2>
                     <div class="hm-ctl" aria-label="제품 슬라이드 조작">
                         <span class="hm-count" aria-live="polite"><b class="hm-cur">1</b> / <span class="hm-tot">1</span></span>
                         <button type="button" class="hm-prev" aria-label="이전 제품">←</button>
@@ -80,54 +107,16 @@ while ($gw_nres && ($gw_nrow = sql_fetch_array($gw_nres))) {
             </div>
         </section>
 
-        <!-- 3. 그로바이오 × 위고 -->
-        <section class="hm-sec hm-duo" aria-labelledby="hm-duo-h">
-            <div class="hm-wrap hm-duo-in">
-                <figure class="hm-photo" data-zoom>
-                    <img src="/img/grobio/building.jpg" alt="주식회사 위고가 위치한 대전 둔산동 샤크존빌딩 외관" width="1200" height="1025" loading="lazy">
-                </figure>
-                <div class="hm-duo-tx">
-                    <h2 id="hm-duo-h" data-rv>제품은 그로바이오,<br>판매는 위고가 맡습니다.</h2>
-                    <div class="hm-two" data-rv>
-                        <div><b>GROBio 그로바이오</b><p>두피 · 피부 · 뷰티기기 제품의 개발과 제조, 품질 관리, 브랜드 · 기술 권리</p></div>
-                        <div><b>WIGO 위고</b><p>제품 판매, 지역 유통망 운영, 온라인 플랫폼 · 주문 관리, 시스템 운영</p></div>
-                    </div>
-                    <a class="hm-btn dark" href="/pages/m11.html" data-rv>기업소개 자세히 보기</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. 비즈니스 안내 -->
+        <!-- 5. 비즈니스 문의 -->
         <section class="hm-sec hm-biz" aria-labelledby="hm-biz-h">
-            <div class="hm-wrap">
-                <div class="hm-head" data-rv>
-                    <div><h2 id="hm-biz-h">총판 · 대리점 · 제휴 상담</h2></div>
+            <div class="hm-wrap hm-biz-in">
+                <div data-rv>
+                    <h2 id="hm-biz-h">총판 · 대리점 · 제휴 상담</h2>
+                    <p class="hm-lead">제품 도입, 지역 유통, 제휴제품 판매 상담을 받습니다.</p>
                 </div>
-                <ul class="hm-paths" data-rv-group>
-                    <li><a href="/pages/m41.html"><b>제품 도입</b><span>전문점 · 매장의 그로바이오 제품 도입 상담</span><i aria-hidden="true">→</i></a></li>
-                    <li><a href="/pages/m41.html"><b>총판 · 대리점</b><span>지역 유통과 판매를 함께할 광역총판 · 대리점 문의</span><i aria-hidden="true">→</i></a></li>
-                    <li><a href="/pages/m41.html"><b>제품 · 판매 제휴</b><span>제휴제품 판매와 온라인 플랫폼 협업 문의</span><i aria-hidden="true">→</i></a></li>
-                </ul>
+                <a class="hm-btn" href="/pages/m41.html" data-rv>문의하기</a>
             </div>
         </section>
-
-        <!-- 5. 공지 · 자료 -->
-        <section class="hm-sec hm-news" aria-labelledby="hm-news-h">
-            <div class="hm-wrap">
-                <div class="hm-head" data-rv>
-                    <div><h2 id="hm-news-h">공지사항</h2></div>
-                    <p class="hm-sub"><a href="/pages/m31.html">더보기</a></p>
-                </div>
-                <ul class="hm-list" data-rv-group>
-                    <?php foreach ($gw_notices as $gw_n) { ?>
-                    <li><a href="<?php echo G5_URL; ?>/pages/m31_view.php?no=<?php echo (int) $gw_n['notice_no']; ?>"><span class="tt"><?php echo htmlspecialchars($gw_n['notice_subject'], ENT_QUOTES, 'UTF-8'); ?></span><time><?php echo htmlspecialchars(str_replace('-', '.', substr($gw_n['reg_datetime'], 0, 10)), ENT_QUOTES, 'UTF-8'); ?></time></a></li>
-                    <?php } ?>
-                    <?php if (!$gw_notices) { ?><li class="empty">등록된 공지사항이 없습니다.</li><?php } ?>
-                </ul>
-            </div>
-        </section>
-
-        <?php $gw_credit = wigo_photo_credits(array('hero.jpg','area-scalp.jpg','area-skin.jpg','area-device.jpg')); if ($gw_credit) { ?><p class="hm-credit"><?php echo $gw_credit; ?></p><?php } ?>
 
         <div class="side_menu">
             <a class="top_btn_index" href="#" aria-label="맨 위로">
@@ -139,7 +128,7 @@ while ($gw_nres && ($gw_nrow = sql_fetch_array($gw_nres))) {
         </div>
     </main>
     <script src="<?php echo G5_URL; ?>/js/motion.js?v=1"></script>
-    <script src="<?php echo G5_URL; ?>/js/home.js?v=5"></script>
+    <script src="<?php echo G5_URL; ?>/js/home.js?v=6"></script>
 <?php
 include_once(G5_PATH."/newbex_tail.php");
 ?>
