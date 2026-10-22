@@ -20,6 +20,19 @@ function wigo_store_ready()
     return !empty($row['table_name']);
 }
 
+// 기존 테이블에 전화번호(tel) 칸이 없으면 추가합니다. (관리자 화면에서만 호출)
+function wigo_store_ensure_schema()
+{
+    $table = wigo_store_table();
+    $col = sql_fetch("SHOW COLUMNS FROM `$table` LIKE 'tel'", false);
+    if (empty($col['Field'])) sql_query("ALTER TABLE `$table` ADD COLUMN tel varchar(30) NOT NULL DEFAULT '' AFTER location", false);
+}
+
+function wigo_store_tel_valid($tel)
+{
+    return is_string($tel) && ($tel === '' || preg_match('/^[0-9][0-9\-]{6,19}$/D', $tel));
+}
+
 function wigo_store_map_valid($url)
 {
     if (!is_string($url) || strlen($url) > 1000 || preg_match('/[\x00-\x20]/', $url) || !filter_var($url, FILTER_VALIDATE_URL)) return false;
