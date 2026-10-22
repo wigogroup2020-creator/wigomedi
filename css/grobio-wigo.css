@@ -7,6 +7,12 @@
 #header .head h1{width:auto;max-width:calc(100% - 150px)}
 #header .head h1 a.brand-wordmark{display:flex;align-items:center;gap:10px;width:auto;height:auto;line-height:1;text-indent:0;background:none!important;white-space:nowrap}
 #header .brand-logo{width:auto;height:38px;max-width:none;object-fit:contain}
+/* 일반 헤더는 기본 로고, 어두운 헤더는 흰색 로고만 표시합니다.
+ * 메뉴 hover 상태(.on)는 흰 배경이므로 기본 로고를 유지합니다. */
+#header .brand-logo-primary{display:block}
+#header .brand-logo-inverse{display:none}
+#header.dark:not(.on) .brand-logo-primary{display:none}
+#header.dark:not(.on) .brand-logo-inverse{display:block}
 .gw-x{font-weight:800;font-size:20px;line-height:1;letter-spacing:-.03em;color:var(--gw-n)}
 #header.dark .gw-x{color:#fff}
 @media(max-width:812px){#header .brand-logo{height:26px}#header .head h1{max-width:calc(100% - 120px)}}
