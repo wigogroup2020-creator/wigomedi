@@ -1,0 +1,150 @@
+name: Auto Deploy Cafe24 Production
+
+on:
+  push:
+    branches: [wigomedi]
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type DEPLOY to manually redeploy changed files from latest commit'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: wigomedi-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+
+      - name: Select safe changed files
+        env:
+          BEFORE: ${{ github.event.before }}
+          EVENT_NAME: ${{ github.event_name }}
+          CONFIRM: ${{ inputs.confirm }}
+        run: |
+          set -euo pipefail
+          if [ "$EVENT_NAME" = workflow_dispatch ]; then
+            test "$CONFIRM" = DEPLOY || { echo 'Manual deployment requires DEPLOY'; exit 1; }
+            git diff-tree --no-commit-id --name-status -r HEAD > /tmp/changes.tsv
+          elif [ -n "$BEFORE" ] && [ "$BEFORE" != "0000000000000000000000000000000000000000" ]; then
+            git diff --name-status "$BEFORE" HEAD > /tmp/changes.tsv
+          else
+            echo 'Missing previous commit; refusing automatic full-site upload'
+            exit 1
+          fi
+          python3 - <<'PY'
+          import os, pathlib, re
+          allowed={'.php','.html','.htm','.css','.js','.mjs','.png','.jpg','.jpeg','.webp','.gif','.svg','.ico','.woff','.woff2','.ttf','.webmanifest'}
+          blocked={'_common.php','common.php','config.php','dbconfig.php','.htaccess'}
+          deploy=[]; skipped=[]
+          for line in pathlib.Path('/tmp/changes.tsv').read_text().splitlines():
+              cols=line.split('\t')
+              status=cols[0]; name=cols[-1]
+              p=pathlib.PurePosixPath(name)
+              parts=p.parts
+              if (status not in ('A','M','T') or not re.fullmatch(r'[A-Za-z0-9_./-]+',name)
+                  or any(x in ('','.','..') or x.startswith('.') for x in parts)
+                  or p.suffix.lower() not in allowed or p.name.lower() in blocked
+                  or any(x.lower() in ('vendor','node_modules','tests','test','backup','backups','secrets','database','db') for x in parts)
+                  or re.search(r'(^|/)(config|configuration|secret|credentials)([._/-]|$)',name,re.I)):
+                  skipped.append(name); continue
+              f=pathlib.Path(name)
+              if not f.is_file() or f.is_symlink():
+                  raise SystemExit('Unsafe deploy path: '+name)
+              deploy.append(name)
+          pathlib.Path('/tmp/deploy-files.txt').write_text('\n'.join(sorted(set(deploy)))+'\n' if deploy else '')
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as out:
+              out.write('## Cafe24 production auto-deploy\n\n')
+              out.write('Deploy: '+str(len(deploy))+' files\n\n')
+              for name in sorted(set(deploy)): out.write('- `'+name+'`\n')
+              if skipped:
+                  out.write('\nExcluded / deleted (not removed on server):\n')
+                  for name in skipped: out.write('- `'+name+'`\n')
+          print('Selected:',deploy,'Excluded:',skipped)
+          PY
+
+      - name: PHP syntax check
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y php-cli sshpass
+          while IFS= read -r file; do
+            case "$file" in
+              *.php) php -l "$file" ;;
+              *.html|*.htm) if grep -q '<?php\|<?=' "$file"; then php -l "$file"; fi ;;
+            esac
+          done < /tmp/deploy-files.txt
+
+      - name: Validate SFTP host key
+        env:
+          SFTP_HOST_KEY: ${{ secrets.SFTP_HOST_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$SFTP_HOST_KEY"
+          mkdir -p "$HOME/.ssh"
+          chmod 700 "$HOME/.ssh"
+          printf '%s\n' "$SFTP_HOST_KEY" > "$HOME/.ssh/known_hosts"
+          chmod 600 "$HOME/.ssh/known_hosts"
+
+      - name: Backup existing files and upload changed files
+        env:
+          SFTP_HOST: ${{ secrets.FTP_SERVER }}
+          SFTP_USER: ${{ secrets.FTP_USERNAME }}
+          SSHPASS: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          set -euo pipefail
+          test -n "$SFTP_HOST" && test -n "$SFTP_USER" && test -n "$SSHPASS"
+          if [ ! -s /tmp/deploy-files.txt ]; then
+            echo 'No deployable changes; nothing to upload.'
+            exit 0
+          fi
+          python3 - <<'PY'
+          from pathlib import Path
+          files=Path('/tmp/deploy-files.txt').read_text().splitlines()
+          backup=Path('/tmp/cafe24-backup')
+          dirs=set()
+          with open('/tmp/backup.sftp','w') as b, open('/tmp/upload.sftp','w') as u:
+              for name in files:
+                  local=backup/name
+                  local.parent.mkdir(parents=True,exist_ok=True)
+                  b.write('-get "/wigo8601471/www/'+name+'" "'+str(local)+'"\n')
+                  parts=Path(name).parts[:-1]
+                  for i in range(1,len(parts)+1): dirs.add('/wigo8601471/www/'+'/'.join(parts[:i]))
+              b.write('bye\n')
+              for d in sorted(dirs,key=lambda x:(x.count('/'),x)): u.write('-mkdir "'+d+'"\n')
+              for name in files: u.write('put "'+name+'" "/wigo8601471/www/'+name+'"\n')
+              u.write('bye\n')
+          PY
+          export SSHPASS
+          sftp_cmd() {
+            sshpass -e sftp -oBatchMode=no -oPreferredAuthentications=password,keyboard-interactive -oStrictHostKeyChecking=yes -oUserKnownHostsFile="$HOME/.ssh/known_hosts" -oConnectTimeout=15 -P 22 -b "$1" "$SFTP_USER@$SFTP_HOST"
+          }
+          sftp_cmd /tmp/backup.sftp
+          echo 'Existing files backed up temporarily on runner.'
+          if ! sftp_cmd /tmp/upload.sftp; then
+            echo 'Upload failed. Attempting rollback of backed-up existing files.'
+            python3 - <<'PY'
+          from pathlib import Path
+          root=Path('/tmp/cafe24-backup')
+          with open('/tmp/rollback.sftp','w') as out:
+              for p in sorted(root.rglob('*')):
+                  if p.is_file():
+                      rel=p.relative_to(root).as_posix()
+                      out.write('put "'+str(p)+'" "/wigo8601471/www/'+rel+'"\n')
+              out.write('bye\n')
+          PY
+            sftp_cmd /tmp/rollback.sftp || echo 'WARNING: rollback failed; manual restoration required'
+            exit 1
+          fi
+          echo 'Cafe24 production upload complete. DB was not changed.'
