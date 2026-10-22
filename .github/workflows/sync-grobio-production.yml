@@ -1,9 +1,7 @@
 name: Sync GROBio Redesign to Production
 
 on:
-  workflow_run:
-    workflows: ["Deploy GROBio Isolated Preview"]
-    types: [completed]
+  push:
     branches: [grobio-wigo-redesign]
 
 permissions:
@@ -16,7 +14,6 @@ concurrency:
 
 jobs:
   sync:
-    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_repository.full_name == github.repository }}
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -27,9 +24,9 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
 
-      - name: Merge successfully previewed commit
+      - name: Merge GROBio redesign push
         env:
-          SOURCE_SHA: ${{ github.event.workflow_run.head_sha }}
+          SOURCE_SHA: ${{ github.sha }}
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
@@ -38,7 +35,7 @@ jobs:
           git checkout -B wigomedi origin/wigomedi
           git cat-file -e "$SOURCE_SHA^{commit}"
           if git merge-base --is-ancestor "$SOURCE_SHA" HEAD; then
-            echo 'Previewed commit already merged; no deployment necessary.'
+            echo 'Source commit already merged; no deployment necessary.'
             echo 'CHANGED=false' >> "$GITHUB_ENV"
             exit 0
           fi
@@ -56,4 +53,4 @@ jobs:
         run: |
           set -euo pipefail
           gh workflow run auto-deploy-production.yml --repo "$GITHUB_REPOSITORY" --ref wigomedi -f confirm=DEPLOY
-          echo 'Production deployment dispatched after successful preview and merge.'
+          echo 'Production deployment dispatched after merge.'
