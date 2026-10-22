@@ -15,6 +15,7 @@ $gw_cards = wigo_prod_cards('partner');
             <?php foreach ($gw_cards as $i => $gw_card) echo wigo_prod_card_html($gw_card, $i); ?>
         </div>
         <?php } else { ?>
+        <?php echo wigo_prod_debug_html('partner'); ?>
         <div class="gw-empty"><p>표시할 제품을 준비하고 있습니다.<br>제품 문의는 대표번호 <a href="tel:15553336">1555-3336</a>로 연락해 주세요.</p></div>
         <?php } ?>
     </div>

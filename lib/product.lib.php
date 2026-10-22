@@ -55,7 +55,7 @@ function wigo_prod_cards($group)
 {
     $cards = array();
     $kinds = wigo_prod_in_clause($group);
-    $result = sql_query("SELECT product_no, product_subject, product_info, product_file FROM p_product WHERE use_yn = 'y' AND product_kind IN ($kinds) ORDER BY product_no ASC", false);
+    $result = sql_query("SELECT product_no, product_subject, product_info, product_file FROM p_product WHERE LOWER(TRIM(use_yn)) = 'y' AND TRIM(product_kind) IN ($kinds) ORDER BY product_no ASC", false);
     if (!$result) return $cards;
     while ($row = sql_fetch_array($result)) {
         $cards[] = array(
@@ -81,4 +81,25 @@ function wigo_prod_card_html($card, $index)
     $img = $card['img'] !== '' ? '<img src="' . wigo_prod_e($card['img']) . '" alt="' . wigo_prod_e($card['name']) . '" loading="lazy" width="900" height="900">' : '';
     $link = (isset($card['group']) && $card['group'] === 'partner') ? 'href="#" data-soon' : 'href="' . wigo_prod_e($card['href']) . '"';
     return '<a class="gw-pc2" ' . $link . '><span class="pic">' . $img . '</span><strong>' . wigo_prod_e($card['name']) . '</strong><span class="d">' . wigo_prod_e($card['info']) . '</span></a>';
+}
+
+/*
+ * 관리자(로그인한 상태)에게만: 목록이 비어 있을 때 원인을 찾는 데 쓰는 점검 문구.
+ * p_product 의 분류(product_kind) · 사용여부(use_yn) 조합별 개수를 보여줍니다. 일반 방문자에게는 아무것도 출력하지 않습니다.
+ */
+function wigo_prod_debug_html($group)
+{
+    global $is_admin;
+    if (empty($is_admin)) return '';
+    $groups = wigo_prod_groups();
+    $res = sql_query("SELECT product_kind, use_yn, COUNT(*) AS c FROM p_product GROUP BY product_kind, use_yn", false);
+    $lines = array();
+    if (!$res) {
+        $lines[] = 'p_product 조회에 실패했습니다. 테이블 이름이나 DB 연결을 확인해 주세요.';
+    } else {
+        while ($r = sql_fetch_array($res)) $lines[] = '분류 [' . wigo_prod_e($r['product_kind']) . '] · 사용여부 [' . wigo_prod_e($r['use_yn']) . '] : ' . (int) $r['c'] . '건';
+        if (!$lines) $lines[] = 'p_product 에 등록된 제품이 없습니다.';
+    }
+    $want = isset($groups[$group]) ? implode(', ', $groups[$group]['kinds']) : '';
+    return '<div style="margin:18px 0;padding:14px 16px;border:1px dashed #c0392b;color:#7a2a20;font-size:13px;line-height:1.7;text-align:left"><b>[관리자 점검]</b> 이 목록은 분류가 <b>' . wigo_prod_e($want) . '</b> 이고 사용여부가 <b>y</b> 인 제품만 보여줍니다.<br>' . implode('<br>', $lines) . '</div>';
 }
