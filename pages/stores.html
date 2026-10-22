@@ -16,13 +16,21 @@ if (wigo_store_ready()) {
     <div class="pageTitleArea inner"><ul><li><a href="/">Home</a></li><li>Stores</li><li>매장안내</li></ul></div>
     <div class="page inner">
         <div class="stores-intro"><h2>가까운 매장에서<br>제품과 케어를 만나보세요.</h2></div>
+        <form class="store-find" id="storeFind" role="search" onsubmit="return false">
+            <div class="store-search"><label class="blind" for="storeQ">매장 검색</label><input id="storeQ" type="search" placeholder="지점명 또는 주소를 입력해 주세요" autocomplete="off" maxlength="50"><button type="submit" id="storeGo"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg><span>매장찾기</span></button></div>
+            <div class="store-regions" role="group" aria-label="지역 선택">
+                <button type="button" class="on" data-region="" aria-pressed="true">전체</button>
+                <?php foreach (wigo_store_regions() as $rg) { ?><button type="button" data-region="<?php echo wigo_store_escape($rg); ?>" aria-pressed="false"><?php echo wigo_store_escape($rg); ?></button><?php } ?>
+            </div>
+        </form>
+        <p class="store-count" id="storeCount" aria-live="polite"></p>
         <div class="store-grid">
             <?php foreach ($stores as $store) {
                 $tel = isset($store['tel']) && wigo_store_tel_valid($store['tel']) ? $store['tel'] : '';
                 $map = wigo_store_map_valid($store['map_url']) ? $store['map_url'] : '';
                 $has_photo = wigo_store_photo_valid($store['photo']);
             ?>
-            <article class="store-card">
+            <article class="store-card" data-region="<?php echo wigo_store_escape(wigo_store_region($store['location'])); ?>" data-text="<?php echo wigo_store_escape(mb_strtolower($store['name'] . ' ' . $store['location'], 'UTF-8')); ?>">
                 <div class="store-pic<?php echo $has_photo ? '' : ' none'; ?>"><?php if ($has_photo) { ?><img src="<?php echo wigo_store_escape(wigo_store_photo_url($store['photo'])); ?>" alt="<?php echo wigo_store_escape($store['name']); ?> 매장 사진" loading="lazy" width="800" height="600"><?php } ?></div>
                 <div class="store-card-body">
                     <div class="store-info"><h3><?php echo wigo_store_escape($store['name']); ?></h3>
@@ -31,8 +39,32 @@ if (wigo_store_ready()) {
                 </div>
             </article>
             <?php } ?>
+            <?php if ($stores) { ?><div class="stores-empty" id="storeNone" hidden><p>조건에 맞는 매장이 없습니다.<br>다른 지역이나 검색어로 찾아보세요.</p></div><?php } ?>
             <?php if (!$stores) { ?><div class="stores-empty"><p>매장안내 정보를 준비하고 있습니다.<br>매장 안내는 대표번호로 문의해 주세요.</p><a href="tel:15553336">1555-3336</a></div><?php } ?>
         </div>
     </div>
 </div></main>
+<script>
+(function(){
+    var q=document.getElementById('storeQ'); if(!q) return;
+    var cards=[].slice.call(document.querySelectorAll('.store-card')), tabs=[].slice.call(document.querySelectorAll('.store-regions button')),
+        none=document.getElementById('storeNone'), count=document.getElementById('storeCount'), region='';
+    function run(){
+        var t=q.value.trim().toLowerCase(), n=0;
+        cards.forEach(function(c){
+            var ok=(!region||c.getAttribute('data-region')===region)&&(!t||c.getAttribute('data-text').indexOf(t)>-1);
+            c.hidden=!ok; if(ok) n++;
+        });
+        if(none) none.hidden=n>0;
+        count.textContent=(region||t)?'검색 결과 '+n+'곳':'';
+    }
+    tabs.forEach(function(b){b.addEventListener('click',function(){
+        region=b.getAttribute('data-region');
+        tabs.forEach(function(x){var on=x===b;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on);});
+        run();
+    });});
+    q.addEventListener('input',run);
+    document.getElementById('storeGo').addEventListener('click',run);
+})();
+</script>
 <?php include_once G5_PATH . '/newbex_tail.php'; ?>
