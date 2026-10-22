@@ -25,14 +25,14 @@ include_once(G5_PATH.'/newbex_head.php');
 			</ul>
 		</div> -->
 		<div class="page m41 inner">
-			<p class="brand-contact-intro">그로바이오 제품, 위고 제휴제품, 가맹 · 대리점 및 총판 도입을 상담합니다.<br>문의 내용을 남겨 주시면 담당자가 확인 후 안내해 드립니다.</p>
+			<p class="brand-contact-intro">제휴 및 가맹 · 대리점 도입이 궁금하신가요?<br>문의 내용을 남겨주시면 담당자가 안내해 드리겠습니다.</p>
 			<form name="fcontact" method="post" action="./m41_update.php">
 				<input type="hidden" name="mb_id" value="<?php echo $member['mb_id'];?>">
 				<div class="form_box">
 					<ul>
 						<li>
 							<label for="mb_name">성함<span> *</span></label>
-							<input type="text" name="mb_name" placeholder="성함입력" id="mb_name" value="<?php echo $member['mb_name'];?>" required>
+							<input type="text" name="mb_name" placeholder="성함을 입력해 주세요" id="mb_name" value="<?php echo $member['mb_name'];?>" required>
 						</li>
 						<li>
 							<label for="mb_hp">연락처<span> *</span></label>
@@ -40,7 +40,7 @@ include_once(G5_PATH.'/newbex_head.php');
 						</li>
 						<li>
 							<label for="contact_company">업체명</label>
-							<input type="text" name="contact_company" placeholder="업체명입력" id="contact_company" required>
+							<input type="text" name="contact_company" placeholder="업체명을 입력해 주세요" id="contact_company" required>
 						</li>
 						<li>
 							<label for="contact_kind">문의유형<span> *</span></label>
@@ -48,7 +48,7 @@ include_once(G5_PATH.'/newbex_head.php');
 						</li>
 						<li>
 							<label for="contact_content">문의내용</label>
-							<textarea class="form-control" type="text" name="contact_content" id="contact_content" style="height: 150px; padding: 12px 18px 16px;"></textarea>
+							<textarea class="form-control" type="text" name="contact_content" id="contact_content"></textarea>
 						</li>
 					</ul>
 				</div>
