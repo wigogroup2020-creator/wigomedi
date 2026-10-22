@@ -1,0 +1,59 @@
+name: Sync GROBio Redesign to Production
+
+on:
+  workflow_run:
+    workflows: ["Deploy GROBio Isolated Preview"]
+    types: [completed]
+    branches: [grobio-wigo-redesign]
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: grobio-redesign-to-wigomedi
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_repository.full_name == github.repository }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout production branch
+        uses: actions/checkout@v5
+        with:
+          ref: wigomedi
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Merge successfully previewed commit
+        env:
+          SOURCE_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin wigomedi grobio-wigo-redesign
+          git checkout -B wigomedi origin/wigomedi
+          git cat-file -e "$SOURCE_SHA^{commit}"
+          if git merge-base --is-ancestor "$SOURCE_SHA" HEAD; then
+            echo 'Previewed commit already merged; no deployment necessary.'
+            echo 'CHANGED=false' >> "$GITHUB_ENV"
+            exit 0
+          fi
+          git merge --no-ff --no-edit "$SOURCE_SHA" || {
+            echo 'Merge conflict: production unchanged. Resolve via PR.'
+            exit 1
+          }
+          git push origin HEAD:wigomedi
+          echo 'CHANGED=true' >> "$GITHUB_ENV"
+
+      - name: Trigger guarded production deployment
+        if: ${{ env.CHANGED == 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh workflow run auto-deploy-production.yml --repo "$GITHUB_REPOSITORY" --ref wigomedi -f confirm=DEPLOY
+          echo 'Production deployment dispatched after successful preview and merge.'
