@@ -36,7 +36,7 @@ jobs:
           set -euo pipefail
           if [ "$EVENT_NAME" = workflow_dispatch ]; then
             test "$CONFIRM" = DEPLOY || { echo 'Manual deployment requires DEPLOY'; exit 1; }
-            git diff-tree --no-commit-id --name-status -r HEAD > /tmp/changes.tsv
+            git diff --name-status HEAD^1 HEAD > /tmp/changes.tsv
           elif [ -n "$BEFORE" ] && [ "$BEFORE" != "0000000000000000000000000000000000000000" ]; then
             git diff --name-status "$BEFORE" HEAD > /tmp/changes.tsv
           else
