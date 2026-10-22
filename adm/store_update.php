@@ -4,8 +4,8 @@ require_once './_common.php';
 require_once G5_LIB_PATH . '/store.lib.php';
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') { http_response_code(405); exit('POST 요청만 가능합니다.'); }
 $action = isset($_POST['action']) && is_string($_POST['action']) ? $_POST['action'] : '';
-if (!in_array($action, array('install', 'save', 'delete', 'sample'), true)) { http_response_code(400); exit('올바르지 않은 작업입니다.'); }
-auth_check_menu($auth, $sub_menu, $action === 'delete' ? 'd' : 'w');
+if (!in_array($action, array('install', 'save', 'delete', 'sample', 'bulk_save', 'bulk_delete'), true)) { http_response_code(400); exit('올바르지 않은 작업입니다.'); }
+auth_check_menu($auth, $sub_menu, in_array($action, array('delete', 'bulk_delete'), true) ? 'd' : 'w');
 check_admin_token();
 $table = wigo_store_table();
 if ($action === 'install') {
@@ -28,6 +28,28 @@ if ($action === 'install') {
 }
 if (!wigo_store_ready()) alert('최고관리자가 먼저 매장 관리 초기 설정을 진행해 주세요.', './stores.php');
 wigo_store_ensure_schema();
+if ($action === 'bulk_save' || $action === 'bulk_delete') {
+    // 목록에서 체크한 매장만 처리합니다. (제품관리의 선택수정 · 선택삭제와 같은 방식)
+    $ids = isset($_POST['store_id']) && is_array($_POST['store_id']) ? $_POST['store_id'] : array();
+    $chk = isset($_POST['chk']) && is_array($_POST['chk']) ? $_POST['chk'] : array();
+    if (!$chk) alert('항목을 하나 이상 선택해 주세요.', './stores.php');
+    foreach ($chk as $k) {
+        $k = (int) $k;
+        if (!isset($ids[$k]) || !is_scalar($ids[$k])) continue;
+        $sid = (int) $ids[$k];
+        if ($sid <= 0) continue;
+        if ($action === 'bulk_delete') {
+            $row = sql_fetch("SELECT photo FROM `$table` WHERE store_id = $sid");
+            if (!$row) continue;
+            if (sql_query("DELETE FROM `$table` WHERE store_id = $sid", false)) wigo_store_remove_photo($row['photo']);
+        } else {
+            $vis = isset($_POST['is_visible'][$k]) && $_POST['is_visible'][$k] === '1' ? 1 : 0;
+            $so = isset($_POST['sort_order'][$k]) && is_string($_POST['sort_order'][$k]) && preg_match('/^[0-9]{1,4}$/D', $_POST['sort_order'][$k]) ? (int) $_POST['sort_order'][$k] : 0;
+            sql_query("UPDATE `$table` SET is_visible = $vis, sort_order = $so, updated_at = '" . sql_real_escape_string(G5_TIME_YMDHIS) . "' WHERE store_id = $sid", false);
+        }
+    }
+    goto_url('./stores.php');
+}
 if ($action === 'sample') {
     // 샘플 지점 5개: 같은 이름이 이미 있으면 건너뜁니다. 사진 없이 단색 카드로 표시됩니다.
     $samples = array(array('샘플 지점 1', '서울특별시 ○○구 ○○로 00'), array('샘플 지점 2', '경기도 ○○시 ○○대로 00'), array('샘플 지점 3', '대전광역시 ○○구 ○○로 00'), array('샘플 지점 4', '부산광역시 ○○구 ○○로 00'), array('샘플 지점 5', '광주광역시 ○○구 ○○로 00'));
