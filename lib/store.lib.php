@@ -1,4 +1,6 @@
 <?php
+/* 매장안내 공개 페이지 및 관리자에서 공통 사용합니다.
+ * pages/stores.html 이 이 파일을 require_once 하므로 운영 서버에도 함께 배포되어야 합니다. */
 if (!defined('_GNUBOARD_')) exit;
 
 function wigo_store_table()
