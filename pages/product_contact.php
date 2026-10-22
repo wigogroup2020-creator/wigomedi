@@ -55,8 +55,14 @@
                                     array_unshift($options, $selected_product);
                                 }
 
+                                // 지금 보고 있는 제품(DB 미등록 기본 제품 포함)을 맨 앞에 두고 기본 선택합니다.
+                                $inq_name = isset($gw_inq_name) ? trim($gw_inq_name) : '';
+                                if ($inq_name !== '') {
+                                    echo '<option value="' . htmlspecialchars($inq_name, ENT_QUOTES, 'UTF-8') . '" selected>' . htmlspecialchars($inq_name, ENT_QUOTES, 'UTF-8') . '</option>';
+                                }
                                 foreach ($options as $row) {
-                                    echo "<option value='{$row['product_subject']}'>{$row['product_subject']}</option>";
+                                    if ($inq_name !== '' && $row['product_subject'] === $inq_name) continue;
+                                    echo "<option value='" . htmlspecialchars($row['product_subject'], ENT_QUOTES, 'UTF-8') . "'>" . htmlspecialchars($row['product_subject'], ENT_QUOTES, 'UTF-8') . "</option>";
                                 }
 								?>
 								<!-- <option value="revivecell">revivecell</option>

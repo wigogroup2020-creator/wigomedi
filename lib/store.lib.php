@@ -20,6 +20,36 @@ function wigo_store_ready()
     return !empty($row['table_name']);
 }
 
+// 기존 테이블에 전화번호(tel) 칸이 없으면 추가합니다. (관리자 화면에서만 호출)
+function wigo_store_ensure_schema()
+{
+    $table = wigo_store_table();
+    $col = sql_fetch("SHOW COLUMNS FROM `$table` LIKE 'tel'", false);
+    if (empty($col['Field'])) sql_query("ALTER TABLE `$table` ADD COLUMN tel varchar(30) NOT NULL DEFAULT '' AFTER location", false);
+}
+
+// 지역 탭 목록과, 주소 앞부분으로 지역을 판별합니다.
+function wigo_store_regions()
+{
+    return array('서울', '경기', '강원', '광주', '대구', '대전', '부산', '세종', '울산', '인천', '제주', '충청도', '전라도', '경상도');
+}
+
+function wigo_store_region($address)
+{
+    $a = trim((string) $address);
+    foreach (wigo_store_regions() as $r) {
+        if (mb_strpos($a, mb_substr($r, 0, 2, 'UTF-8'), 0, 'UTF-8') === 0 && !in_array($r, array('충청도', '전라도', '경상도'), true)) return $r;
+    }
+    $map = array('충청도' => array('충남', '충북', '충청'), '전라도' => array('전남', '전북', '전라'), '경상도' => array('경남', '경북', '경상'));
+    foreach ($map as $r => $keys) foreach ($keys as $k) if (mb_strpos($a, $k, 0, 'UTF-8') === 0) return $r;
+    return '';
+}
+
+function wigo_store_tel_valid($tel)
+{
+    return is_string($tel) && ($tel === '' || preg_match('/^[0-9][0-9\-]{6,19}$/D', $tel));
+}
+
 function wigo_store_map_valid($url)
 {
     if (!is_string($url) || strlen($url) > 1000 || preg_match('/[\x00-\x20]/', $url) || !filter_var($url, FILTER_VALIDATE_URL)) return false;

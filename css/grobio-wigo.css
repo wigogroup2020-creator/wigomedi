@@ -138,3 +138,47 @@ footer a{color:#cfe9dc}
 .m41 .foun_btn button:hover{background:#00694b;transform:translateY(-1px);box-shadow:0 12px 26px -12px #00553d99}
 .m41 .foun_btn button:focus-visible{outline:3px solid #00553d55;outline-offset:3px}
 @media (max-width:600px){.m41.page{padding:6px 16px 60px}.m41 form{padding:26px 20px 24px;border-radius:16px}.m41 .brand-contact-intro{font-size:14px;margin:8px 0 24px}.m41 .agree_box{flex-wrap:wrap}}
+
+/* 매장안내 카드 */
+.stores-page .pageTitleArea{display:none}
+.stores-page .page.inner{max-width:1180px;padding:0 28px 100px}
+.stores-page .stores-intro{padding:56px 0 44px}
+.stores-page .stores-intro h2{font-size:clamp(24px,3vw,32px);line-height:1.4;font-weight:700;margin:0;color:#13211c}
+.store-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px 28px}
+.store-card{background:none;border:0;border-radius:0;box-shadow:none;padding:0;overflow:visible}
+.store-pic{aspect-ratio:16/10;overflow:hidden;border-radius:10px;background:#dfe9e3}
+.store-pic img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.store-card:hover .store-pic img{transform:scale(1.03)}
+.store-card-body{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:16px 2px 0}
+.store-info{min-width:0}
+.store-card h3{margin:0 0 6px;font-size:18px;line-height:1.4;font-weight:700;color:#13211c;overflow-wrap:anywhere}
+.store-card .addr{display:block;margin:0;min-height:0;font-size:14px;line-height:1.55;color:#5d6e66;overflow-wrap:anywhere}
+.store-card a.addr:hover{color:#00553d;text-decoration:underline;text-underline-offset:3px}
+.store-tel{flex:none;display:grid;place-items:center;width:38px;height:38px;border:1px solid #cfdcd4;border-radius:50%;color:#00553d;background:#fff;transition:background .2s,color .2s,border-color .2s}
+.store-tel:hover,.store-tel:focus-visible{background:#00553d;border-color:#00553d;color:#fff}
+.store-tel:focus-visible{outline:3px solid #00553d55;outline-offset:2px}
+.stores-empty{grid-column:1/-1;padding:70px 24px;text-align:center;background:#f3f7f4;border-radius:14px;line-height:1.9;color:#52635c}
+.stores-empty a{display:inline-block;margin-top:14px;color:#00553d;font-weight:700}
+@media (max-width:900px){.store-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:34px 20px}}
+@media (max-width:560px){.stores-page .page.inner{padding:0 20px 70px}.stores-page .stores-intro{padding:40px 0 30px}.store-grid{grid-template-columns:1fr;gap:30px}}
+
+/* 매장 찾기: 검색 + 지역 탭 */
+.store-find{max-width:none;margin:0 0 26px;border:1px solid #dbe5df;border-radius:14px;overflow:hidden;background:#fff}
+.store-search{display:flex;align-items:center;gap:12px;margin:22px 22px 22px;padding:0 6px 0 22px;height:60px;background:#f3f7f4;border-radius:10px;border:1px solid transparent;transition:border-color .2s,background .2s,box-shadow .2s}
+.store-search:focus-within{background:#fff;border-color:#00553d;box-shadow:0 0 0 4px #00553d1f}
+.store-search input{flex:1;min-width:0;height:100%;padding:0;font:inherit;font-size:17px;font-weight:600;color:#13211c;background:none;border:0;box-shadow:none;border-radius:0}
+.store-search input:hover,.store-search input:focus{box-shadow:none;border:0}
+.store-search input::placeholder{color:#8fa098;font-weight:400}
+.store-search input::-webkit-search-cancel-button{display:none}
+.store-search button{flex:none;display:flex;align-items:center;gap:8px;width:auto;height:46px;padding:0 18px;font-size:14px;font-weight:700;color:#00553d;background:none;border-radius:8px}
+.store-search button:hover{background:#e3ece7}
+.store-regions{display:grid;grid-template-columns:repeat(8,1fr);border-top:1px solid #dbe5df}
+.store-regions button{width:auto;max-width:none;height:48px;padding:0;font-size:15px;font-weight:600;color:#52635c;background:#f6f9f7;border-radius:0;border-right:1px solid #dbe5df;border-bottom:1px solid #dbe5df;transition:background .2s,color .2s}
+
+.store-regions button:hover{background:#e8f0eb;color:#13211c}
+.store-regions button.on{background:#00553d;color:#fff;border-color:#00553d}
+.store-regions button:focus-visible{outline:3px solid #00553d55;outline-offset:-3px;position:relative}
+.store-count{min-height:22px;margin:0 0 14px;font-size:14px;font-weight:700;color:#00553d}
+.store-card[hidden],.stores-empty[hidden]{display:none}
+@media (max-width:900px){.store-regions{grid-template-columns:repeat(5,1fr)}}
+@media (max-width:560px){.store-search{height:54px;margin:14px;padding-left:16px}.store-search input{font-size:15px}.store-search button span{display:none}.store-regions{grid-template-columns:repeat(4,1fr)}.store-regions button{height:44px;font-size:14px}}
