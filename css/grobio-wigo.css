@@ -74,12 +74,12 @@ footer a{color:#cfe9dc}
 .pageTop.pn2 .bg:after,.stores-page .pageTop.pn2 .bg:after{border-color:#ffffff26}
 .pageTop.bn-grow .bg{--bt:#00553d;--bi:url(/img/grobio/photo/slide-grow.jpg)}
 .pageTop.bn-select .bg{--bt:#5e4f33;--bi:url(/img/grobio/photo/story-brand.jpg)}
-.pageTop.bn-store .bg{--bt:#efe6d6;--bi:url(/img/grobio/photo/banner-store.jpg)}
+.pageTop.bn-store .bg{--bt:#efe6d6;--bi:url(/img/grobio/photo/banner-store.jpg);background-position:center,center}
 .pageTop.bn-face .bg{--bt:#7a4a3a;--bi:url(/img/grobio/photo/slide-face.jpg)}
 .pageTop.bn-regen .bg{--bt:#1f4568;--bi:url(/img/grobio/photo/slide-regen.jpg)}
 .stores-page .pageTop{background:linear-gradient(90deg,#efe6d6 0%,#efe6d6 34%,transparent 100%),url(/img/grobio/photo/banner-store.jpg) center/cover no-repeat}
 .stores-page .pageTop .pageSlg{color:#4a3a1f}
-.stores-page .pageTop.bn-store .bg{--bt:#efe6d6;--bi:url(/img/grobio/photo/banner-store.jpg)}
+.stores-page .pageTop.bn-store .bg{--bt:#efe6d6;--bi:url(/img/grobio/photo/banner-store.jpg);background-position:center,center}
 .stores-page .pageSlg{text-align:left;font-size:46px}
 .stores-page .pageTop .inner{padding:0 28px}
 .pageTop.pn3 .inner{padding-left:28px;padding-right:28px}
@@ -111,3 +111,30 @@ footer a{color:#cfe9dc}
 .head .gnb .btnMenu:hover>svg{transform:scale(1.12)}
 .head .gnb .btnMenu:focus-visible,.head .gnb>.gw-user:focus-visible,.head .language>a:focus-visible{outline:3px solid #2a63d6;outline-offset:3px}
 @media(max-width:600px){.head .gnb{gap:8px;right:14px}}
+
+/* 문의하기 폼 */
+.m41.page{max-width:720px;margin:0 auto;padding:12px 20px 90px;text-align:center}
+.m41 .brand-contact-intro{margin:14px 0 34px;font-size:16px;line-height:1.8;color:#52635c;text-align:center}
+.m41 form{max-width:none;margin:0;padding:38px 40px 34px;background:#fff;border:1px solid #e3ebe6;border-radius:20px;box-shadow:0 18px 50px -28px #0a3a2a40;text-align:left}
+.m41 .form_box ul{gap:20px}
+.m41 .form_box ul li{display:flex;flex-direction:column;align-items:stretch;gap:8px}
+.m41 .form_box label{font-size:14px;font-weight:700;color:#13211c}
+.m41 .form_box label span{color:#00553d;margin-left:2px}
+.m41 input[type=text],.m41 select,.m41 textarea{height:50px;padding:0 16px;font:inherit;font-size:15px;color:#13211c;background:#f6f9f7;border:1px solid #dbe5df;border-radius:12px;box-shadow:none;transition:border-color .2s,background .2s,box-shadow .2s}
+.m41 textarea{height:150px!important;padding:14px 16px!important;resize:vertical;line-height:1.6;margin:0}
+.m41 input::placeholder,.m41 textarea::placeholder{color:#9aa8a1}
+.m41 input:hover,.m41 select:hover,.m41 textarea:hover{border-color:#b4c7bc;box-shadow:none}
+.m41 input:focus,.m41 select:focus,.m41 textarea:focus{border-color:#00553d;background:#fff;box-shadow:0 0 0 4px #00553d1f}
+.m41 select{appearance:none;-webkit-appearance:none;padding-right:44px;cursor:pointer;background:#f6f9f7 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2300553d' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 16px center}
+.m41 select:focus{background-color:#fff}
+.m41 .agree_box{display:flex;align-items:center;gap:8px;margin-top:22px;padding-top:20px;border-top:1px solid #e8efeb;font-size:14px;color:#3d4f47}
+.m41 .agree_box input{position:absolute;opacity:0;width:0;height:0}
+.m41 .agree_box .check_img{display:inline-block;flex:none;width:20px;height:20px;border:1.5px solid #b4c7bc;border-radius:6px;background:#fff;transition:.2s}
+.m41 .agree_box input:checked+.check_img{background:#00553d url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/14px no-repeat;border-color:#00553d}
+.m41 .agree_box input:focus-visible+.check_img{box-shadow:0 0 0 4px #00553d26}
+.m41 .agree_box a{margin-left:auto;font-size:13px;color:#00553d;text-decoration:underline;text-underline-offset:3px}
+.m41 .foun_btn{padding-top:26px}
+.m41 .foun_btn button{width:100%;max-width:none;height:54px;padding:0;font-size:16px;font-weight:700;letter-spacing:.02em;color:#fff;background:#00553d;border-radius:999px;transition:background .2s,transform .2s,box-shadow .2s}
+.m41 .foun_btn button:hover{background:#00694b;transform:translateY(-1px);box-shadow:0 12px 26px -12px #00553d99}
+.m41 .foun_btn button:focus-visible{outline:3px solid #00553d55;outline-offset:3px}
+@media (max-width:600px){.m41.page{padding:6px 16px 60px}.m41 form{padding:26px 20px 24px;border-radius:16px}.m41 .brand-contact-intro{font-size:14px;margin:8px 0 24px}.m41 .agree_box{flex-wrap:wrap}}

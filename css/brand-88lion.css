@@ -109,7 +109,7 @@ a:focus-visible,button:focus-visible,[role=button]:focus-visible{outline:3px sol
 
 /* Store guide: photo cards following the supplied four-column reference. */
 .stores-page{background:#f5f5f7}
-.stores-page .pageTop{height:235px;background:#f0f0f5}
+.stores-page .pageTop{background:#f0f0f5}
 .stores-page .pageTop.pn2 .bg{background:linear-gradient(120deg,#efeff5,#fafafa)}
 .stores-page .pageTop.pn2 .bg:after{border-color:#1818b510}
 .stores-page .pageSlg{color:#272741;text-align:center;font-size:36px;width:100%}
@@ -126,7 +126,7 @@ a:focus-visible,button:focus-visible,[role=button]:focus-visible{outline:3px sol
 .store-card a{font-size:13px}
 @media(max-width:1150px){.store-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.store-card{padding:22px}}
 @media(max-width:900px){.store-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:600px){.store-grid{grid-template-columns:1fr;gap:22px}.stores-page .pageTop{height:190px}.stores-page .pageSlg{font-size:28px}.store-card{padding:26px}.stores-page .stores-intro p{font-size:14px}.store-card h3{font-size:25px}.store-card p{min-height:0}}
+@media(max-width:600px){.store-grid{grid-template-columns:1fr;gap:22px}.stores-page .pageSlg{font-size:28px}.store-card{padding:26px}.stores-page .stores-intro p{font-size:14px}.store-card h3{font-size:25px}.store-card p{min-height:0}}
 
 /* Shared vector wordmark and document-approved company introduction. */
 #header .head h1 a.brand-wordmark{width:150px;height:45px;line-height:0}
