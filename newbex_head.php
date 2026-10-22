@@ -186,7 +186,7 @@ $brandIconUrl  = rtrim(G5_URL, '/') . '/img/grobio/favicon.svg?v=' . ($brandIcon
 			</div>
 			<div class="gnb">
 				<?php if ($member['mb_id']) { // 로그인 상태: 이름 첫 글자 배지 ?>
-				<a class="gw-user in" href="<?php echo G5_URL;?>/page/info.php" title="<?php echo htmlspecialchars($member['mb_name'], ENT_QUOTES, 'UTF-8');?>님 · 회원 정보" aria-label="회원 정보 (<?php echo htmlspecialchars($member['mb_name'], ENT_QUOTES, 'UTF-8');?>님 로그인 중)"><?php echo htmlspecialchars(mb_substr($member['mb_name'], 0, 1, 'UTF-8'), ENT_QUOTES, 'UTF-8');?></a>
+				<a class="gw-user in" href="<?php echo G5_URL;?>/page/info.php" title="<?php echo htmlspecialchars($member['mb_name'], ENT_QUOTES, 'UTF-8');?>님 · 회원 정보" aria-label="회원 정보 (<?php echo htmlspecialchars($member['mb_name'], ENT_QUOTES, 'UTF-8');?>님 로그인 중)"><?php echo htmlspecialchars(mb_strtoupper(mb_substr(trim($member['mb_name']) !== '' ? trim($member['mb_name']) : $member['mb_id'], 0, 1, 'UTF-8'), 'UTF-8'), ENT_QUOTES, 'UTF-8');?></a>
 				<?php } else { // 로그아웃 상태: 사람 아이콘 ?>
 				<a class="gw-user" href="<?php echo G5_URL;?>/pages/login.html" title="로그인" aria-label="로그인"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.6-3.6 3.4-5.6 7-5.6s6.4 2 7 5.6"/></svg></a>
 				<?php } ?>
