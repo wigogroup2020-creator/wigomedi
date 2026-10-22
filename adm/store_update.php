@@ -4,7 +4,7 @@ require_once './_common.php';
 require_once G5_LIB_PATH . '/store.lib.php';
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') { http_response_code(405); exit('POST 요청만 가능합니다.'); }
 $action = isset($_POST['action']) && is_string($_POST['action']) ? $_POST['action'] : '';
-if (!in_array($action, array('install', 'save', 'delete'), true)) { http_response_code(400); exit('올바르지 않은 작업입니다.'); }
+if (!in_array($action, array('install', 'save', 'delete', 'sample'), true)) { http_response_code(400); exit('올바르지 않은 작업입니다.'); }
 auth_check_menu($auth, $sub_menu, $action === 'delete' ? 'd' : 'w');
 check_admin_token();
 $table = wigo_store_table();
@@ -14,6 +14,7 @@ if ($action === 'install') {
         store_id int unsigned NOT NULL AUTO_INCREMENT,
         name varchar(100) NOT NULL,
         location varchar(150) NOT NULL,
+        tel varchar(30) NOT NULL DEFAULT '',
         photo varchar(64) NOT NULL,
         map_url varchar(1000) NOT NULL,
         is_visible tinyint unsigned NOT NULL DEFAULT 0,
@@ -26,6 +27,18 @@ if ($action === 'install') {
     goto_url('./stores.php');
 }
 if (!wigo_store_ready()) alert('최고관리자가 먼저 매장 관리 초기 설정을 진행해 주세요.', './stores.php');
+wigo_store_ensure_schema();
+if ($action === 'sample') {
+    // 샘플 지점 5개: 같은 이름이 이미 있으면 건너뜁니다. 사진 없이 단색 카드로 표시됩니다.
+    $samples = array(array('샘플 지점 1', '서울특별시 ○○구 ○○로 00'), array('샘플 지점 2', '경기도 ○○시 ○○대로 00'), array('샘플 지점 3', '대전광역시 ○○구 ○○로 00'), array('샘플 지점 4', '부산광역시 ○○구 ○○로 00'), array('샘플 지점 5', '광주광역시 ○○구 ○○로 00'));
+    $now = sql_real_escape_string(G5_TIME_YMDHIS);
+    foreach ($samples as $i => $sm) {
+        $n = sql_real_escape_string($sm[0]);
+        if (sql_fetch("SELECT store_id FROM `$table` WHERE name='$n'")) continue;
+        sql_query("INSERT INTO `$table` SET name='$n', location='" . sql_real_escape_string($sm[1]) . "', tel='1555-3336', photo='', map_url='', is_visible=1, sort_order=" . (900 + $i) . ", created_at='$now', updated_at='$now'", false);
+    }
+    goto_url('./stores.php');
+}
 $id = isset($_POST['store_id']) && is_scalar($_POST['store_id']) ? (int) $_POST['store_id'] : 0;
 $existing = $id > 0 ? sql_fetch("SELECT * FROM `$table` WHERE store_id = $id") : array();
 if ($id > 0 && !$existing) alert('매장을 찾을 수 없습니다.', './stores.php');
@@ -36,12 +49,13 @@ if ($action === 'delete') {
     goto_url('./stores.php');
 }
 $input = array();
-foreach (array('name' => 100, 'location' => 150, 'map_url' => 1000) as $field => $limit) {
+foreach (array('name' => 100, 'location' => 150, 'tel' => 30, 'map_url' => 1000) as $field => $limit) {
     // common.php already escapes request strings; validate the original text before SQL escaping.
     $input[$field] = isset($_POST[$field]) && is_string($_POST[$field]) ? trim(stripslashes($_POST[$field])) : '';
-    if ($input[$field] === '' || mb_strlen($input[$field], 'UTF-8') > $limit || preg_match('/[\x00-\x1f]/', $input[$field])) alert('매장명, 간단한 위치, 지도 링크를 길이에 맞게 입력해 주세요.');
+    if (($input[$field] === '' && in_array($field, array('name', 'location'), true)) || mb_strlen($input[$field], 'UTF-8') > $limit || preg_match('/[\x00-\x1f]/', $input[$field])) alert('지점명과 주소를 입력하고, 각 항목을 길이에 맞게 입력해 주세요.');
 }
-if (!wigo_store_map_valid($input['map_url'])) alert('실제 네이버 지도 HTTPS 링크를 입력해 주세요. map.naver.com 또는 naver.me 링크를 사용할 수 있습니다.');
+if (!wigo_store_tel_valid($input['tel'])) alert('전화번호는 숫자와 하이픈(-)만 입력해 주세요. 예: 042-123-4567');
+if ($input['map_url'] !== '' && !wigo_store_map_valid($input['map_url'])) alert('실제 네이버 지도 HTTPS 링크를 입력해 주세요. map.naver.com 또는 naver.me 링크를 사용할 수 있습니다.');
 $sort = isset($_POST['sort_order']) && is_string($_POST['sort_order']) ? $_POST['sort_order'] : '';
 if (!preg_match('/^[0-9]{1,4}$/D', $sort)) alert('노출 순서는 0부터 9999 사이의 숫자로 입력해 주세요.');
 $sort = (int) $sort;
@@ -51,12 +65,13 @@ try {
     $new_photo = wigo_store_upload(isset($_FILES['photo']) ? $_FILES['photo'] : array('error' => UPLOAD_ERR_NO_FILE));
 } catch (RuntimeException $error) { alert($error->getMessage()); }
 $photo = $new_photo !== '' ? $new_photo : (isset($existing['photo']) ? $existing['photo'] : '');
-if (!wigo_store_photo_valid($photo)) alert('매장 사진을 등록해 주세요.');
+if ($photo !== '' && !wigo_store_photo_valid($photo)) alert('매장 사진 정보가 올바르지 않습니다.');
 $name = sql_real_escape_string($input['name']);
 $location = sql_real_escape_string($input['location']);
 $map = sql_real_escape_string($input['map_url']);
+$tel = sql_real_escape_string($input['tel']);
 $now = sql_real_escape_string(G5_TIME_YMDHIS);
-$values = "name='$name', location='$location', map_url='$map', photo='$photo', sort_order=$sort, is_visible=$visible, updated_at='$now'";
+$values = "name='$name', location='$location', tel='$tel', map_url='$map', photo='$photo', sort_order=$sort, is_visible=$visible, updated_at='$now'";
 $sql = $id > 0 ? "UPDATE `$table` SET $values WHERE store_id=$id" : "INSERT INTO `$table` SET $values, created_at='$now'";
 if (!sql_query($sql, false)) {
     wigo_store_remove_photo($new_photo);
