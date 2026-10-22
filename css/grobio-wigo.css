@@ -91,3 +91,23 @@ footer a{color:#cfe9dc}
 .gw-pd .pageTop.bn-prod .bg,.pageTop.bn-prod .bg{background:linear-gradient(90deg,#00553d 0%,#00553d 34%,transparent 100%),var(--bp,url(/img/grobio/photo/slide-grow.jpg)) center 40%/cover no-repeat}
 .pageTop.pn1 .inner{padding-left:28px;padding-right:28px}
 @media (max-width:600px){.pageTop.pn1 .inner{padding:0 20px}}
+
+/* 상단 오른쪽: 회원(원형) · 언어(원형) · 메뉴(점 9개) */
+.head .gnb{gap:10px}
+.head .gnb>.gw-user{display:grid;place-items:center;width:36px;height:36px;margin:0;border:1.5px solid #13211c;border-radius:50%;color:#13211c;font-size:15px;font-weight:700;line-height:1;text-decoration:none;transition:background .25s,color .25s}
+.head .gnb>.gw-user:hover{background:#13211c;color:#fff}
+.head .gnb>.gw-user.in{background:#00553d;border-color:#00553d;color:#fff}
+.head .gnb>.gw-user.in:hover{background:#003d2b;border-color:#003d2b}
+.head .language{width:36px;height:36px;margin:0}
+.head .language>a{border:1.5px solid #13211c;border-radius:50%;font:700 12px/1 'Bricolage Grotesque','Pretendard',sans-serif;letter-spacing:.02em;color:#13211c}
+.head .language>a:hover{background:#13211c;color:#fff}
+.head .language .lang_box{top:42px;left:50%;right:auto;transform:translateX(-50%)}
+.head .language .lang_list{margin:0;padding:6px;list-style:none;background:#fff;border:1px solid #e1e6e3;border-radius:12px;box-shadow:0 12px 28px -12px #0a1f1666}
+.head .language .lang_box a,.head .language .lang_box .cur{display:flex;align-items:center;justify-content:center;width:56px;height:38px;border:0;border-radius:8px;background:none;font:700 13px/1 'Bricolage Grotesque','Pretendard',sans-serif;color:#13211c}
+.head .language .lang_box .cur{color:#00553d;background:#eef4f0}
+.head .language .lang_box a:hover{background:#f3f5f4}
+.head .gnb .btnMenu{display:grid;place-items:center;width:22px;height:36px;margin:0;color:#13211c}
+.head .gnb .btnMenu>svg{display:block;transition:transform .3s}
+.head .gnb .btnMenu:hover>svg{transform:scale(1.12)}
+.head .gnb .btnMenu:focus-visible,.head .gnb>.gw-user:focus-visible,.head .language>a:focus-visible{outline:3px solid #2a63d6;outline-offset:3px}
+@media(max-width:600px){.head .gnb{gap:8px;right:14px}}
