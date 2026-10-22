@@ -141,7 +141,7 @@ $brandIconUrl  = rtrim(G5_URL, '/') . '/img/grobio/favicon.svg?v=' . ($brandIcon
     <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/brand-88lion.css">
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-wigo.css?v=15">
+    <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-wigo.css?v=16">
     <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-menu.css?v=4">
 	<?php if ($currentPage === 'index.php' || $currentPage === 'index.html') { ?>
     <link rel="stylesheet" href="<?php echo G5_URL; ?>/css/grobio-home.css?v=11">
@@ -185,35 +185,22 @@ $brandIconUrl  = rtrim(G5_URL, '/') . '/img/grobio/favicon.svg?v=' . ($brandIcon
 				</ul>
 			</div>
 			<div class="gnb">
-				<?php
-				if($member['mb_id']){
-					// 로그인중
-				?>
-					<a href="<?php echo G5_URL;?>/page/info.php" style="display: flex; flex-direction: column; align-items: center; margin-right: 8px;">
-						<div class="login_btn" aria-label="회원 페이지"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 22v-2a8 8 0 0 1 16 0v2"/></svg></div>
-						<span><?php echo $member['mb_name'];?></span>
-					</a>
-				<?php 
-				}else{
-				?>
-					<a href="<?php echo G5_URL;?>/pages/login.html" style="display: flex; flex-direction: column; align-items: center; margin-right: 8px;">
-						<div class="login_btn" aria-label="회원 페이지"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 22v-2a8 8 0 0 1 16 0v2"/></svg></div>
-					</a>
-				<?php
-				}
-				?>
-                <div class="language">
-					<a>KOR<i></i></a>
+				<?php if ($member['mb_id']) { // 로그인 상태: 이름 첫 글자 배지 ?>
+				<a class="gw-user in" href="<?php echo G5_URL;?>/page/info.php" title="<?php echo htmlspecialchars($member['mb_name'], ENT_QUOTES, 'UTF-8');?>님 · 회원 정보" aria-label="회원 정보 (<?php echo htmlspecialchars($member['mb_name'], ENT_QUOTES, 'UTF-8');?>님 로그인 중)"><?php echo htmlspecialchars(mb_substr($member['mb_name'], 0, 1, 'UTF-8'), ENT_QUOTES, 'UTF-8');?></a>
+				<?php } else { // 로그아웃 상태: 사람 아이콘 ?>
+				<a class="gw-user" href="<?php echo G5_URL;?>/pages/login.html" title="로그인" aria-label="로그인"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.6-3.6 3.4-5.6 7-5.6s6.4 2 7 5.6"/></svg></a>
+				<?php } ?>
+				<div class="language">
+					<a role="button" tabindex="0" aria-haspopup="true" aria-label="언어 선택">KO</a>
 					<div class="lang_box">
 						<ul class="lang_list">
-							<li><a href="/en/" target="_blank">ENG</a></li>
+							<li><span class="cur">KO</span></li>
+							<li><a href="/en/" target="_blank" rel="noopener">EN</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="btnMenu" role="button" tabindex="0" aria-label="전체 메뉴" aria-expanded="false" aria-controls="brand-allmenu" aria-haspopup="dialog">
-					<div></div>
-					<div></div>
-					<div></div>
+					<svg width="22" height="22" viewBox="0 0 22 22" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="1.8"/><circle cx="11" cy="4" r="1.8"/><circle cx="18" cy="4" r="1.8"/><circle cx="4" cy="11" r="1.8"/><circle cx="11" cy="11" r="1.8"/><circle cx="18" cy="11" r="1.8"/><circle cx="4" cy="18" r="1.8"/><circle cx="11" cy="18" r="1.8"/><circle cx="18" cy="18" r="1.8"/></svg>
 				</div>
 			</div>
 		</div>
