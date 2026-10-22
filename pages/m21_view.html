@@ -18,6 +18,7 @@ if ($product_no > 0) {
     }
 }
 
+$gw_inq_name = isset($result['product_subject']) ? (string) $result['product_subject'] : '';   // 문의하기 창의 상품유형 기본값
 $product_info = $result['product_info'];
 $product_subject = $result['product_subject'];
 $product_kind = $result['product_kind'];

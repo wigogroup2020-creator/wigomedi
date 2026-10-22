@@ -100,12 +100,12 @@ function wigo_prod_image_url($file)
     return G5_DATA_URL . '/product/' . rawurlencode($file);
 }
 
-/* 제품 목록 페이지용: DB와 무관하게 고정 카드(그로바이오 4 / 제휴 1)를 돌려줍니다. */
+/* 제품 목록 페이지용: 고정 카드(그로바이오 4 / 제휴 1). 누르면 각 제품 상세로 이동합니다. */
 function wigo_prod_static_cards($group)
 {
     $cards = array();
-    foreach (wigo_prod_defaults($group) as $d) {
-        $cards[] = array('name' => $d['name'], 'info' => $d['info'], 'img' => wigo_prod_default_image($d['slug']));
+    foreach (wigo_prod_collection() as $c) {
+        if ($c['group'] === $group) $cards[] = $c;
     }
     return $cards;
 }
@@ -123,7 +123,7 @@ function wigo_prod_collection()
             $img = ($db ? wigo_prod_image_url($row['product_file']) : '');
             if ($img === '') $img = wigo_prod_default_image($d['slug']);
             $out[] = array(
-                'slug' => $d['slug'], 'name' => $d['name'], 'info' => $d['info'], 'img' => $img,
+                'group' => $group, 'slug' => $d['slug'], 'name' => $d['name'], 'info' => $d['info'], 'img' => $img,
                 'href' => $db ? '/pages/m21_view.html?product_no=' . (int) $row['product_no'] : '/pages/m21_view.html?item=' . $d['slug'],
                 'tone' => $d['tone'],
             );
@@ -132,11 +132,11 @@ function wigo_prod_collection()
     return $out;
 }
 
-/* 목록 카드 1장: 큰 제품 이미지 + 이름 + 짧은 설명. 누르면 "준비 중" 안내(js/soon.js). */
+/* 목록 카드 1장: 큰 제품 이미지 + 이름 + 짧은 설명. 누르면 제품 상세로 이동합니다. */
 function wigo_prod_card_html($card, $index)
 {
     $img = $card['img'] !== '' ? '<img src="' . wigo_prod_e($card['img']) . '" alt="' . wigo_prod_e($card['name']) . '" loading="lazy" width="900" height="900">' : '';
-    return '<a class="gw-pc2" href="#" data-soon><span class="pic">' . $img . '</span><strong>' . wigo_prod_e($card['name']) . '</strong><span class="d">' . wigo_prod_e($card['info']) . '</span></a>';
+    return '<a class="gw-pc2" href="' . wigo_prod_e($card['href']) . '"><span class="pic">' . $img . '</span><strong>' . wigo_prod_e($card['name']) . '</strong><span class="d">' . wigo_prod_e($card['info']) . '</span></a>';
 }
 
 /* 관리자: 기본 카드를 p_product에 등록. 같은 분류에 같은 이름의 제품이 이미 있으면 건너뜁니다(기존 제품은 수정 · 삭제하지 않음). */
