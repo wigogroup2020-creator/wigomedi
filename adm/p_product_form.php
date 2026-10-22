@@ -2,6 +2,7 @@
 $sub_menu = "100304";
 require_once './_common.php';
 require_once G5_EDITOR_LIB;
+require_once G5_LIB_PATH . '/product.lib.php';
 
 auth_check_menu($auth, $sub_menu, 'w');
 
@@ -84,7 +85,8 @@ require_once './admin.head.php';
                         <input type="file" name="product_file" id="product_file" class="frm_input">
 						<?php
 						if($result['product_file']){
-							echo "<img src='".G5_URL."/data/product/".$result['product_file']."' style='width:200px'>";
+							$gw_img = wigo_prod_file_url($result['product_file']);
+							if ($gw_img !== '') echo "<img src='".wigo_prod_e($gw_img)."' style='width:200px'>";
 						}
 						?>
                     </td>
