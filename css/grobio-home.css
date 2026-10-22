@@ -7,7 +7,8 @@ html.hm-page body{overflow-x:hidden}
 html.hm-page footer,html.hm-page footer.foot_main{position:relative;bottom:auto;left:auto}
 html.hm-page #header:before{opacity:1;background:#fff}
 html.hm-page #header.gw-solid:before{opacity:1;background:#ffffffeb;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 #00553d14}
-html.hm-page #header:after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:#00553d;transform-origin:0 50%;transform:scaleX(var(--pg,0));pointer-events:none}
+/* 메인 스크롤 진행률 표시선은 .head 에 배치해 서브메뉴 배경(#header:after)과 충돌하지 않도록 합니다. */
+html.hm-page #header .head:after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:#00553d;transform-origin:0 50%;transform:scaleX(var(--pg,0));pointer-events:none}
 .hm{--g:#00553d;--gd:#003d2b;--n:#0a2250;--ink:#13211c;--mute:#4a5b54;--stone:#f0f4f1;--ivory:#f8f4ed;--gold:#a58a5b;--serif:'Pretendard-Regular','Pretendard',sans-serif;--e:cubic-bezier(.2,.7,.2,1);color:var(--ink);background:var(--ivory);word-break:keep-all;font-size:17px;line-height:1.7}
 .hm *{box-sizing:border-box}
 .hm-wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 20px}
