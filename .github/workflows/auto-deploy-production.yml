@@ -116,8 +116,12 @@ jobs:
           set -euo pipefail
           test -n "$SFTP_HOST" && test -n "$SFTP_USER" && test -n "$SSHPASS"
           if [ ! -s /tmp/deploy-files.txt ]; then
-            echo 'ERROR: No deployable files selected; refusing false-success deployment.'
-            exit 1
+            if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+              echo 'ERROR: Manual deployment selected no deployable files.'
+              exit 1
+            fi
+            echo 'No deployable source files changed; skipping SFTP upload.'
+            exit 0
           fi
           python3 - <<'PY'
           from pathlib import Path
