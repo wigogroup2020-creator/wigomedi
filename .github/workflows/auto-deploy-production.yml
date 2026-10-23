@@ -43,7 +43,7 @@ jobs:
             test "$CONFIRM" = DEPLOY || { echo 'Manual deployment requires DEPLOY'; exit 1; }
             if [ -n "$FILE_PATHS" ]; then
               : > /tmp/changes.tsv
-              for f in $FILE_PATHS; do printf 'M\\t%s\\n' "$f" >> /tmp/changes.tsv; done
+              for f in $FILE_PATHS; do printf 'M\t%s\n' "$f" >> /tmp/changes.tsv; done
             else
               git diff --name-status HEAD^1 HEAD > /tmp/changes.tsv
             fi
@@ -116,8 +116,8 @@ jobs:
           set -euo pipefail
           test -n "$SFTP_HOST" && test -n "$SFTP_USER" && test -n "$SSHPASS"
           if [ ! -s /tmp/deploy-files.txt ]; then
-            echo 'No deployable changes; nothing to upload.'
-            exit 0
+            echo 'ERROR: No deployable files selected; refusing false-success deployment.'
+            exit 1
           fi
           python3 - <<'PY'
           from pathlib import Path
