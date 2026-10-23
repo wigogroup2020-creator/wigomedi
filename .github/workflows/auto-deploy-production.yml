@@ -6,8 +6,12 @@ on:
   workflow_dispatch:
     inputs:
       confirm:
-        description: 'Type DEPLOY to manually redeploy changed files from latest commit'
+        description: 'Type DEPLOY to manually redeploy; optionally set file_paths'
         required: true
+        type: string
+      file_paths:
+        description: 'Optional space-separated existing paths for manual repair deployment'
+        required: false
         type: string
 
 permissions:
@@ -32,11 +36,17 @@ jobs:
           BEFORE: ${{ github.event.before }}
           EVENT_NAME: ${{ github.event_name }}
           CONFIRM: ${{ inputs.confirm }}
+          FILE_PATHS: ${{ inputs.file_paths }}
         run: |
           set -euo pipefail
           if [ "$EVENT_NAME" = workflow_dispatch ]; then
             test "$CONFIRM" = DEPLOY || { echo 'Manual deployment requires DEPLOY'; exit 1; }
-            git diff --name-status HEAD^1 HEAD > /tmp/changes.tsv
+            if [ -n "$FILE_PATHS" ]; then
+              : > /tmp/changes.tsv
+              for f in $FILE_PATHS; do printf 'M\\t%s\\n' "$f" >> /tmp/changes.tsv; done
+            else
+              git diff --name-status HEAD^1 HEAD > /tmp/changes.tsv
+            fi
           elif [ -n "$BEFORE" ] && [ "$BEFORE" != "0000000000000000000000000000000000000000" ]; then
             git diff --name-status "$BEFORE" HEAD > /tmp/changes.tsv
           else
